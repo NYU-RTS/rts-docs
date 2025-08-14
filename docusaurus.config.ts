@@ -132,7 +132,7 @@ const config: Config = {
               href: "mailto:research-cloud-support@nyu.edu",
             },
             {
-              label: "Email Secure Research Data Environment",
+              label: "Email Secure Research Data Environment support",
               href: "mailto:srde-support@nyu.edu",
             },
             {
