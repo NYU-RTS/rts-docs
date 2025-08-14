@@ -128,8 +128,12 @@ const config: Config = {
               href: "mailto:hsrn-support@nyu.edu",
             },
             {
-              label: "Email research cloud support",
+              label: "Email Research Cloud support",
               href: "mailto:research-cloud-support@nyu.edu",
+            },
+            {
+              label: "Email Secure Research Data Environment",
+              href: "mailto:srde-support@nyu.edu",
             },
             {
               label: "Email general GenAI support",
@@ -138,7 +142,7 @@ const config: Config = {
             {
               label: "Email GenAI for research support",
               href: "mailto:genai-research-support@nyu.edu",
-             },
+            },
           ],
         },
         {
