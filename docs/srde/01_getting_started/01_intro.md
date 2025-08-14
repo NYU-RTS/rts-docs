@@ -5,5 +5,5 @@ Welcome to the Secure Research Data Environment documentation! If you do not hav
 If you are an active user, you can proceed to one of the categories on the left.
 
 :::tip
-If you are looking to use REDCap, proceed to [REDCap](../06_redcap/redcap.md)
+If you are looking to use REDCap, proceed to [REDCap](../05_redcap/redcap.md)
 :::

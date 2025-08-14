@@ -2,7 +2,7 @@
 
 Data Loss Prevention (DLP) is a tool provided by Google Cloud that automatically detects potentially sensitive information such as names, dates, social security numbers, credit card numbers, etc. As part of the SRDE egress process, we run a DLP scan to help the data steward more easily judge whether the data being exported is in compliance with the relevant data use agreement(s). The scan will flag any information it considers potentially sensitive, and it is up to the data steward to review the results and either approve the export or send it back to the researchers for further review.
 
-The DLP scan is triggered by the Egress_2 script as part of the [data egress process](../02_user_guide/03_data_transfers.mdx). Once it is generated, you can explore the table of flagged items in BigQuery. First, open a query tab as shown in the screenshot below, and then use SQL queries like the examples in this guide to check specific items and view overall statistics on the table.
+The DLP scan is triggered by the Egress_2 script as part of the data egress process. Once it is generated, you can explore the table of flagged items in BigQuery. First, open a query tab as shown in the screenshot below, and then use SQL queries like the examples in this guide to check specific items and view overall statistics on the table.
 
 ![DLP scan in BigQuery](./static/dlp_scan_big_query.png)
 
