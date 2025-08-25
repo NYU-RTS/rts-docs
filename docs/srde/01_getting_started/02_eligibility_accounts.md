@@ -3,7 +3,7 @@
 
 The Secure Research Data Environment (SRDE) is a centralized secure computing platform designed to support research projects that require storage and computational resources.  It provides a space for researchers to design and build secure, scalable, and resilient environments to store, share, and analyze moderate and high-risk data, as per the [NYU Electronic Data and System Risk Classification Policy](https://www.nyu.edu/about/policies-guidelines-compliance/policies-and-guidelines/electronic-data-and-system-risk-classification.html).
 
-The Research Technology Services team leverages cloud computing resources to provide flexible, scalable, remotely accessible secure virtual environments. The team provides researchers with consultations and resources to comply with security requirements of research grants and Data Use Agreements (DUAs). SRDE resources intend to meet the security controls outlined in the NIST SP 800-171 to safeguard Controlled Unclassified Information (CUI).
+The Research Technology Services team leverages cloud computing resources to provide flexible, scalable, remotely accessible secure virtual environments. The team provides researchers with consultations and resources to comply with security requirements of research grants and Data Use Agreements (DUAs). SRDE resources intend to meet the security controls outlined in NIST Special Publication 800-171.
 
 For more information, please see the [SRDE Infographic](https://drive.google.com/file/d/1hrkjX4hCi1YBz9_8F0HjuoVu6360Vw6r/view).
 
