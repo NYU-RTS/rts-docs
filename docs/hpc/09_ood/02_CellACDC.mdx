@@ -1,0 +1,32 @@
+# Cell-ACDC in OOD
+
+[Cell-ACDC](https://cell-acdc.readthedocs.io) is a GUI-based Python framework for segmentation, tracking, cell cycle annotations and quantification of microscopy data.
+
+## Getting Started
+You can run Cell-ACDC in OOD by going to the URL [ood.hpc.nyu.edu](http://ood.hpc.nyu.edu) in your browser and selecting `Cell-ACDC` from the `Interactive Apps` pull-down menu at the top of the page.  Once you've used it and other interactive apps they'll show up on your home screen under the `Recently Used Apps` header.
+
+:::note
+Be aware that when you start from `Recently Used Apps` it will start with the same configuration that you used previously.  If you'd like to configure your Cell-ACDC session differently, you'll need to select it from the menu.
+:::
+
+## Configuration
+
+You can select the number of cores, amount of memory, and number of hours.
+
+![OOD Cell-ACDC Configuration](./static/ood_cellacdc_config.png)
+
+## Cell-ACDC running in OOD
+
+After you hit the `Launch` button you'll have to wait for the scheduler to find node(s) for you to run on:
+![OOD Cell-ACDC in queue](./static/ood_cellacdc_in_queue.png)
+
+Then you'll have a short wait for the Cell-ACDC itself to start up.<br />
+Once that happens you'll get one last page that will give you links to:
+-   open a terminal window on the compute node your Cell-ACDC session is running on
+-   go to the directory associated with your Session ID that stores output, config and other related files for your session
+-   make changes to compression and image qualtiy
+-   get a link that you can share that will allow others to view your Cell-ACDC session
+
+![Pre-launch Cell-ACDC OOD](./static/ood_cellacdc_prelaunch.png)
+
+Please click the `Launch Cell-ACDC` button and a Cell-ACDC window will open.
