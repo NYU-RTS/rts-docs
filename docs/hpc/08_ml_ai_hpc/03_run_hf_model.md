@@ -1,4 +1,4 @@
-# LLMs on HPC
+# Run a Hugging Face model
 
 Here we provide an example of how one can run a Large-language model (LLM) on NYU Greene cluster
 
