@@ -1,6 +1,6 @@
 # Run a Hugging Face model
 
-Here we provide an example of how one can run a Large-language model (LLM) on NYU Greene cluster
+Here we provide an example of how one can run a Hugging Face Large-language model (LLM) on the NYU Greene cluster
 
 ## Prepare environment
 ### Create project directory
