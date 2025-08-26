@@ -76,14 +76,14 @@ You can find more information about using Singularity and Conda on our HPC syste
 ## Prepare script
 Create a python script using the following code from sections 1-9 and save it in a file called `huggingface.py`:
 
-1.   Import necessary modules:
+1.  Import necessary modules:
         ```python
         import torch
         import numpy as np
         from transformers import AutoTokenizer, AutoModel
         ```
 
-1.   Create a list of reviews:
+1.  Create a list of reviews:
         ```python
         texts = ["How do I get a replacement Medicare card?",
                 	"What is the monthly premium for Medicare Part B?",
@@ -93,19 +93,19 @@ Create a python script using the following code from sections 1-9 and save it in
                		"How do I sign up for Medicare Part B if I already have Part A?"]
         ```
 
-1.   Choose the model name from huggingface’s model hub and instantiate the model and tokenizer object for the given model. We are setting `output_hidden_states` as `True` as we want the output of the model to not only have loss, but also the embeddings for the sentences.
+1.  Choose the model name from huggingface’s model hub and instantiate the model and tokenizer object for the given model. We are setting `output_hidden_states` as `True` as we want the output of the model to not only have loss, but also the embeddings for the sentences.
         ```python
         model_name = 'cardiffnlp/twitter-roberta-base-sentiment'
         tokenizer = AutoTokenizer.from_pretrained(model_name)
         model = AutoModel.from_pretrained(model_name, output_hidden_states=True)
         ```
 
-1.   Create the ids to be used in the model using the tokenizer object. We set the return_tensors as “pt” as we want to return the pytorch tensor of the ids:
+1.  Create the ids to be used in the model using the tokenizer object. We set the return_tensors as “pt” as we want to return the pytorch tensor of the ids:
         ```python
         ids = tokenizer(texts, padding=True, return_tensors="pt")
         ```
 
-1.   Set the device to cuda, and move the model and the tokenizer to cuda as well. Since, we will be extracting embeddings, we will only be performing a forward pass of the model and hence we will set the model to validation mode using `eval()`:
+1.  Set the device to cuda, and move the model and the tokenizer to cuda as well. Since, we will be extracting embeddings, we will only be performing a forward pass of the model and hence we will set the model to validation mode using `eval()`:
         ```python
         device = 'cuda' if torch.cuda.is_available() else 'cpu'
         model.to(device)
@@ -113,23 +113,23 @@ Create a python script using the following code from sections 1-9 and save it in
         model.eval()
         ```
 
-1.   Performing the forward pass and storing the output tuple in out:
+1.  Performing the forward pass and storing the output tuple in out:
         ```python
         with torch.no_grad():
             out = model(**ids)
         ```
 
-1.   Extracting the embeddings of each review from the last layer:
+1.  Extracting the embeddings of each review from the last layer:
         ```python
         last_hidden_states = out.last_hidden_state	
         ```
 
-1.   For the purpose of classification, we are extracting the CLS token which is the first embedding in the embedding list for each review: 
+1.  For the purpose of classification, we are extracting the CLS token which is the first embedding in the embedding list for each review: 
         ```python
         sentence_embedding = last_hidden_states[:, 0, :]
         ```
 
-1.   We can check the shape of the final sentence embeddings for all the reviews. The output should look like `torch.Size([6, 768])`, where 6 is the batch size as we input 6 reviews as shown in step `2b`, and 768 is the embedding size of the RoBERTa model used.
+1.  We can check the shape of the final sentence embeddings for all the reviews. The output should look like `torch.Size([6, 768])`, where 6 is the batch size as we input 6 reviews as shown in step `2b`, and 768 is the embedding size of the RoBERTa model used.
         ```python
         print("Shape of the batch embedding: {}".format(sentence_embedding.shape))
         ```
