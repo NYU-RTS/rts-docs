@@ -16,11 +16,12 @@ from portkey_ai import Portkey
 
 portkey = Portkey(
     base_url="https://ai-gateway.apps.cloud.rt.nyu.edu/v1/",
-    api_key="",  # Replace with your Portkey API key
-    virtual_key="",  # Replace with your virtual key
+    api_key="", # Replace with your API key!
 )
 
 completion = portkey.chat.completions.create(
+    model="@vertexai/gemini-2.5-flash",
+    temperature=2.0,
     messages=[
         {"role": "system", "content": "You are not a helpful assistant"},
         {
@@ -28,8 +29,6 @@ completion = portkey.chat.completions.create(
             "content": "Complete the following sentence:The sun is shining and the sky is",
         },
     ],
-    model="gemini-2.5-flash-preview-04-17",
-    temperature=2.0, #tweak this parameter!
 )
 
 print(completion)
