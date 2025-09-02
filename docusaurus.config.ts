@@ -162,6 +162,11 @@ const config: Config = {
           title: "More",
           items: [
             {
+              label: "Feedback",
+              to:
+                "https://docs.google.com/forms/d/e/1FAIpQLSeHnmkPdR_IvWnT6a7U_V3RpfmQrpS8hjxI11FNnsZMlrBa4g/viewform",
+            },
+            {
               label: "Announcements",
               to: "/blog",
             },
