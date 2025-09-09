@@ -11,9 +11,48 @@ If you'd prefer to access the HPC cluster via a web gateway instead, please refe
 
 The following sections will outline basic ways to connect to the Greene cluster. Access to the clusters is primarily handled via the Secure Shell Protocol, or ssh. Below we outline ways to connect via ssh on Mac, Linux, and Windows machines.
 
-:::info Connecting to Torch from outside NYU Network
+## Quick Start HPC Connection Guide
+To connect to HPC systems, it's important to configure your machine's SSH client. For Linux and Mac machines, the configuration file is the ~/.ssh/config file on your computer. These are the basic lines that should be added to your ~/.ssh/config file:
+```sh
+Host greene.hpc.nyu.edu dtn.hpc.nyu.edu gw.hpc.nyu.edu
+  StrictHostKeyChecking no
+  ServerAliveInterval 60
+  ForwardAgent yes
+  UserKnownHostsFile /dev/null
+  LogLevel ERROR
+ 
+Host hpcgwtunnel
+  HostName gw.hpc.nyu.edu
+  ForwardX11 no
+  StrictHostKeyChecking no
+  LocalForward 8027 greene.hpc.nyu.edu:22
+  UserKnownHostsFile /dev/null
+  User <Your NetID>
 
+Host greene
+  HostName localhost
+  Port 8027
+  ForwardX11 yes
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  LogLevel ERROR
+  User <Your NetID>
+```
+### Setting Up an SSH Config File on Windows
+For Windows, you can now follow a similar configuration setup. Using Powershell you can use the following to create and open a Windows SSH config file:
+```sh
+# Create the config file with Powershell
+New-Item -Path $HOME\.ssh\config -ItemType File
 
+# Open config File with Notepad
+C:\WINDOWS\System32\notepad.exe $HOME\.ssh\config
+```
+Configuring the file above will allow you to use the cmd terminal to connect to Greene.
+
+### Connecting to the NYU Network
+To access the HPC systems, you must either be on the NYU secure network (such as the NYU WiFi or a wired connection from an NYU office) or use a method of accessing it, such as the NYU VPN or the HPC Gateway servers.
+
+:::info Connecting to the HPC clusters from outside NYU Network
 <Tabs>
   <TabItem value="VPN" label="VPN (Preferred)">
     [Set up your computer to use the NYU VPN][nyu vpn link]. Once you've created a VPN connection, you can proceed as if you were connected to the NYU net
@@ -24,17 +63,35 @@ The following sections will outline basic ways to connect to the Greene cluster.
 </Tabs>
 :::
 
-You do not need to use the NYU VPN or gateways if you are connected to the NYU network (wired connection in your office or WiFi) or if you have VPN connection initiated. In this case you can ssh directly to the clusters.
-
 ## Command Line Interface (with a Terminal)
 
 ### Mac & Linux Access
 
-To connect to the gateway servers, simply open a [terminal application][apple terminal link] and enter the following command:
+#### VPN Connection
+If you're on the VPN or the main NYU network on campus you can SSH directly to greene like so:
 
 ```sh
-ssh <NetID>@gw.hpc.nyu.edu
+ssh <Your NetID>@greene.hpc.nyu.edu
 ```
+ 
+#### Gateway / SSH Tunneling Option
+
+To connect to the gateway servers, after you've configured your ~/.ssh/config file, simply open a [terminal application][apple terminal link] and follow these steps:
+
+1. Open a terminal
+2. Connect to the gateway via the ssh command:
+```sh
+ssh hpcgwtunnel
+```
+3. Authenticate with your password and Duo MFA
+
+4. Open a second terminal
+5. Connect to the Greene login nodes via the ssh command:
+```sh
+ssh greene
+```
+6. Authenticate
+
 
 After typing in your password you will be logged in to the cluster. Once this connection is established, you can make one more hop and connect to one of the HPC clusters:
 
@@ -45,7 +102,7 @@ ssh <NetID>@greene.hpc.nyu.edu
 
 ### Windows CMD
 
-Windows 11 users have several options. First, the CMD program should contain an ssh client, allowing you to log into Greene or Hudson the same way as with a Linux terminal.
+Windows 11 users have several options. First, the CMD program should contain an ssh client, allowing you to log into the HPC systems the same way as with a Linux terminal.
 
 ### Windows WSL2
 
@@ -58,7 +115,9 @@ Instructions on WSL installation can be found here: [https://docs.microsoft.com/
 -   If you are using WSL 2 (Windows subsystem for Linux), you may not be able to access internet when Cisco AnyConnect VPN, installed from exe file, is activated. A potential solution: uninstall Cisco AnyConnect and install AnyConnect using Microsoft Store, and then setup new VPN connection using settings described on [IT webpage][install vpn on windows link].
 :::
 
-## Setting up SSH Keys
+## Additional Tips
+Below are some additional options and tips for connecting to the HPC resources.
+### Setting up SSH Keys
 
 Instead of typing your password every time you need to log in, you can also specify an ssh key.
 
@@ -75,7 +134,7 @@ Instead of typing your password every time you need to log in, you can also spec
 
 For additional recommendations on how to configure your SSH sessions, see the \[ssh configuring and x11 forwarding page].
 
-## PuTTY (Only for Windows)
+### PuTTY (Only for Windows)
 
 There are many SSH clients for Windows OS, but we recommend using [PuTTY SSH][putty link] if you have not already. Once it is installed, launch PuTTY and configure new session "Session" category as in the screenshot below:
 
@@ -86,8 +145,8 @@ Here we are instructing PuTTY to connect to host gw.hpc.nyu.edu on port 22 using
 Once you click "Open", a terminal window with prompt for password will pop up. Enter your NetID password and you should be authorized on the gateway server. Gateways are designed to support only a very minimal set of commands and their only purpose it to let users access HPC systems. Once you are there type in an ssh command that will let you connect to Greene cluster :
 
 ```sh
-# Greene Login
-ssh greene.hpc.nyu.edu
+# Gateway Login
+ssh gw.hpc.nyu.edu
 ```
 
 A new command line interface window will open up that prompts you for your password on the gateway server, from there you can connect to Greene by entering the following:
