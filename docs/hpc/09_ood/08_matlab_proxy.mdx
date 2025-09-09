@@ -1,7 +1,7 @@
-# Matlab in OOD
+# Matlab-Proxy in OOD
 
 ## Getting Started
-You can run Matlab in OOD by going to the URL [ood.hpc.nyu.edu](http://ood.hpc.nyu.edu) in your browser and selecting `MATLAB` from the `Interactive Apps` pull-down menu at the top of the page.  Once you've used it and other interactive apps they'll show up on your home screen under the `Recently Used Apps` header.
+You can run Matlab-Proxy in OOD by going to the URL [ood.hpc.nyu.edu](http://ood.hpc.nyu.edu) in your browser and selecting `MATLAB` from the `Interactive Apps` pull-down menu at the top of the page.  Once you've used it and other interactive apps they'll show up on your home screen under the `Recently Used Apps` header.
 
 :::note
 Be aware that when you start from `Recently Used Apps` it will start with the same configuration that you used previously.  If you'd like to configure your Matlab session differently, you'll need to select it from the menu.
@@ -9,7 +9,7 @@ Be aware that when you start from `Recently Used Apps` it will start with the sa
 
 ## Configuration
 
-You can select the version of Matlab to use, the number or cores, amount of memory, GPU type (if any), amount of time, and optional Slurm options.
+You can select the version of Matlab to use, the number or cores, amount of memory, GPU type (if any), amount of time, account, and optional Slurm options.
 
 ![OOD Matlab Configuration](./static/ood_matlab_config.png)
 
@@ -45,13 +45,10 @@ After you hit the `Launch` button you'll have to wait for the scheduler to find 
 ![OOD Matlab in queue](./static/ood_matlab_in_queue.png)
 
 Then you'll have a short wait for Matlab itself to start up.<br />
-Once that happens you'll get one last form that will allow you to:
--   make changes to compression and image qualtiy
+Once that happens you'll get a form that will allow you to:
 -   open a terminal window on the compute node your Matlab session is running on
--   get a link that you can share that will allow others to view your Matlab session
+-   go to the directory associated with your Session ID that stores output, config and other related files for your session
 
 ![Pre-launch matlab OOD](./static/ood_matlab_prelaunch.png)
 
-Then after you hit the `Launch Matlab` button you'll have the familiar Matlab Desktop to use.
-
-![OOD Matlab Running](./static/ood_matlab_running.png)
+Then after you hit the `Connect to Matlab` button you'll have the familiar Matlab Desktop to use.
