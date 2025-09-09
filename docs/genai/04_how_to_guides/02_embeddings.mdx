@@ -23,11 +23,10 @@ from portkey_ai import Portkey
 portkey = Portkey(
     base_url="https://ai-gateway.apps.cloud.rt.nyu.edu/v1/",
     api_key="",  # Replace with your Portkey API key
-    virtual_key="",  # Replace with your virtual key
 )
 
 response = portkey.embeddings.create(
-    model="text-embedding-3-small",
+    model="@AI-Provider/text-embedding-3-small", # Replace with AI Provider from your workspace!
     input="GenAI can be used for research.",
     encoding_format="float",
     dimensions=32,
