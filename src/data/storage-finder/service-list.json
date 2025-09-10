@@ -981,59 +981,6 @@
     }
   },
   {
-    "id": "13",
-    "title": "Research Archival Storage",
-    "facet_matches": ["5", "6", "28", "29", "10", "13", "14"],
-    "summary": null,
-    "field_data": {
-      "field_alumni_access": {
-        "value": "\u003Cp\u003EAvailable\u003C\/p\u003E",
-        "label": "Alumni Access",
-        "weight": 10
-      },
-      "field_backup": {
-        "value": "\u003Cp\u003EYes, 30 day retention\u003C\/p\u003E",
-        "label": "Backup",
-        "weight": 11
-      },
-      "field_eligibility": {
-        "value": "\u003Cp\u003EFaculty sponsored\u003C\/p\u003E",
-        "label": "Eligibility",
-        "weight": 7
-      },
-      "field_limitations": {
-        "value": "\u003Cp\u003E2TB limit\u003C\/p\u003E",
-        "label": "Limitations",
-        "weight": 5
-      },
-      "field_links": {
-        "value": "\u003Cp\u003E\u003Ca href=\u0022http:\/\/hpc.nyu.edu\/\u0022\u003Ehpc.nyu.edu\u003C\/a\u003E\u003C\/p\u003E",
-        "label": "Links",
-        "weight": 2
-      },
-      "field_permission_settings": {
-        "value": "\u003Cp\u003EUser controlled using facl\u003C\/p\u003E",
-        "label": "Permission Settings",
-        "weight": 6
-      },
-      "field_storable_files": {
-        "value": "\u003Cp\u003EModerate\u0026nbsp;\u0026amp; Low risk\u003C\/p\u003E",
-        "label": "Storable Files",
-        "weight": 3
-      },
-      "field_synchronous_access": {
-        "value": "\u003Cp\u003EYes\u003C\/p\u003E",
-        "label": "Synchronous Access",
-        "weight": 9
-      },
-      "field_use_case": {
-        "value": "\u003Cp\u003ELong term storage\u003C\/p\u003E",
-        "label": "Use Case",
-        "weight": 4
-      }
-    }
-  },
-  {
     "id": "22",
     "title": "Research Data Lake (Pilot)",
     "facet_matches": ["5", "6", "28", "32", "38", "54", "24", "10"],
