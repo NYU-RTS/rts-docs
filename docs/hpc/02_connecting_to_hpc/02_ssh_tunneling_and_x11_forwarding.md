@@ -2,44 +2,6 @@
 
 [xquartz]: https://www.xquartz.org/
 
-## Avoiding Man in the Middle Warning.
-
-If you see this warning:
-
-:::warning
-
-```sh
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
-Someone could be eavesdropping on you right now (man-in-the-middle attack)!
-It is also possible that a host key has just been changed.
-```
-
-:::
-
-Do not be alarmed - this is an issue that occurs because the cluster has multiple login nodes (`log-1`, `log-2`, and `log-3`) that `greene.hpc.nyu.edu` resolves to. 
-
-To avoid this warning, you can add these lines to your SSH configuration file. Open `~/.ssh/config` and place the following lines in it:
-
-
-:::tip
-
-```sh
-Host greene.hpc.nyu.edu dtn.hpc.nyu.edu gw.hpc.nyu.edu
-  StrictHostKeyChecking no
-  ServerAliveInterval 60
-  ForwardAgent yes
-  StrictHostKeyChecking no
-  UserKnownHostsFile /dev/null
-  LogLevel ERROR
-```
-
-:::
-
-The above will also fix SSH timeout errors by extending the `ServerAliveInterval` argument.
-
 ## SSH Tunneling (Mac, Linux)
 
 Setting up your workstation for SSH tunneling will make logging in and transferring files significantly easier, and installing and running an X server will allow you to use graphical software on the HPC clusters. X server is a software package that draws on your local screen windows created on a remote computer such as on the remote HPC.
