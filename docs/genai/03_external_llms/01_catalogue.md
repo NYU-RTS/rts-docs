@@ -2,13 +2,17 @@
 
 We currently facilitate access to the following externally hosted LLMs:
 
-## OpenAI
+## Anthropic (via AWS Bedrock)
+-   Claude Sonnet (4.0 & 3.7)
+-   Claude Opus 4.0
+
+## OpenAI (via Azure OpenAI)
 -   gpt-4o-mini
 -   gpt-4o
 -   o4-mini
 -   text-embedding-3-small
 
-## VertexAI
+## Google (via GCP VertexAI)
 -   gemini-2.5 models (pro, flash, flash-lite)
 -   gemini-2.0 models (flash, flash-lite)
 -   gemini-embedding-001
