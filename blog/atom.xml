@@ -8,7 +8,7 @@
     <subtitle>Connecting researchers to computational resources. Blog</subtitle>
     <icon>https://services.rt.nyu.edu/img/NYU.ico</icon>
     <entry>
-        <title type="html"><![CDATA[claude is now available!]]></title>
+        <title type="html"><![CDATA[Claude is now available]]></title>
         <id>https://services.rt.nyu.edu/blog/2025-09-10-claude/</id>
         <link href="https://services.rt.nyu.edu/blog/2025-09-10-claude/"/>
         <updated>2025-09-10T00:00:00.000Z</updated>
@@ -24,7 +24,7 @@
         <category label="GenAI" term="GenAI"/>
     </entry>
     <entry>
-        <title type="html"><![CDATA[o4-mini is now available!]]></title>
+        <title type="html"><![CDATA[o4-mini is now available]]></title>
         <id>https://services.rt.nyu.edu/blog/2025-05-02-o4-mini/</id>
         <link href="https://services.rt.nyu.edu/blog/2025-05-02-o4-mini/"/>
         <updated>2025-05-02T00:00:00.000Z</updated>

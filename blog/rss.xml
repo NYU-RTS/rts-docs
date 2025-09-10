@@ -9,7 +9,7 @@
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
-            <title><![CDATA[claude is now available!]]></title>
+            <title><![CDATA[Claude is now available]]></title>
             <link>https://services.rt.nyu.edu/blog/2025-09-10-claude/</link>
             <guid>https://services.rt.nyu.edu/blog/2025-09-10-claude/</guid>
             <pubDate>Wed, 10 Sep 2025 00:00:00 GMT</pubDate>
@@ -21,7 +21,7 @@
             <category>GenAI</category>
         </item>
         <item>
-            <title><![CDATA[o4-mini is now available!]]></title>
+            <title><![CDATA[o4-mini is now available]]></title>
             <link>https://services.rt.nyu.edu/blog/2025-05-02-o4-mini/</link>
             <guid>https://services.rt.nyu.edu/blog/2025-05-02-o4-mini/</guid>
             <pubDate>Fri, 02 May 2025 00:00:00 GMT</pubDate>
