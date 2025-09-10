@@ -16,7 +16,7 @@
             <description><![CDATA[We are pleased to announce that the claude (4.0 and 3.7) models are now available via Pythia. Here are the overviews for the models:]]></description>
             <content:encoded><![CDATA[<p>We are pleased to announce that the <code>claude</code> (<code>4.0</code> and <code>3.7</code>) models are now available via Pythia. Here are the overviews for the models:
 <a href="https://www.anthropic.com/claude/sonnet" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/claude/sonnet</a>, <a href="https://www.anthropic.com/claude/opus" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/claude/opus</a></p>
-<p>With API keys to access Claude, you can also enable Claude API tools like Claude Code. Here's an guide for this: <a href="https://portkey.ai/docs/integrations/libraries/claude-code#2-integrate-portkey-with-claude-code" target="_blank" rel="noopener noreferrer">https://portkey.ai/docs/integrations/libraries/claude-code#2-integrate-portkey-with-claude-code</a></p>]]></content:encoded>
+<p>With API keys to access Claude, you can also enable Claude API tools like Claude Code. Refer to this guide for more details: <a href="https://portkey.ai/docs/integrations/libraries/claude-code#2-integrate-portkey-with-claude-code" target="_blank" rel="noopener noreferrer">https://portkey.ai/docs/integrations/libraries/claude-code#2-integrate-portkey-with-claude-code</a></p>]]></content:encoded>
             <category>Pythia</category>
             <category>GenAI</category>
         </item>
