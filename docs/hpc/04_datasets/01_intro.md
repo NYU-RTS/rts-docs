@@ -92,7 +92,7 @@ Please open the ImageNet site, find the terms of use ([http://image-net.org/down
 
 NYU has a subscription to Twitter Decahose - 10% random sample of the realtime Twitter Firehose through a streaming connection
 
-*Data are stored* in GCP cloud (BigQuery) and on the HPC cluster Greene.
+*Datasets are stored* in GCP cloud (BigQuery) and on the HPC cluster Greene.
 
 Please contact Megan Brown at [The Center for Social Media & Politics](https://csmapnyu.org/) to get access to data and learn the tools available to work with it.
 
