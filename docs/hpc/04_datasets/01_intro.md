@@ -92,7 +92,7 @@ Please open the ImageNet site, find the terms of use ([http://image-net.org/down
 
 NYU has a subscription to Twitter Decahose - 10% random sample of the realtime Twitter Firehose through a streaming connection
 
-*Data are stored* in GCP cloud (BigQuery) and on HPC clusters Greene and Peel (Parquet format).
+*Datasets are stored* in GCP cloud (BigQuery) and on the HPC cluster Greene.
 
 Please contact Megan Brown at [The Center for Social Media & Politics](https://csmapnyu.org/) to get access to data and learn the tools available to work with it.
 
@@ -100,7 +100,7 @@ Please contact Megan Brown at [The Center for Social Media & Politics](https://c
 -   `/scratch/work/twitter_decahose/`
 
 ### ProQuest Congressional Record
-About data set: [ProQuest Congressional Record](https://guides.nyu.edu/tdm/proquest-congressional-record-tdm-guide)
+About data set: [ProQuest Congressional Record](https://guides.nyu.edu/govdocs/congressional#s-lg-box-14137380)
 
 The ProQuest Congressional Record text-as-data collection consists of machine-readable files capturing the full text and a small number of metadata fields for a full run of the Congressional Record between 1789 and 2005. Metadata fields include the date of publication, subjects (for issues for which such information exists in the ProQuest system), and URLs linking the full text to the canonical online record for that issue on the ProQuest Congressional platform. A total of 31,952 issues are available.
 
