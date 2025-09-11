@@ -57,7 +57,8 @@ singularity shell <image name>.simg:ro
 
 ![singularity4](./static/singularity4.png)
 
-:::tip[Run commands outside the container]
+:::tip
+#### Run commands outside the container
 You can run commands for the container using exec arguments without actually going into the container
 ```sh
 $ singularity exec <image name>.simg:ro <commands>
