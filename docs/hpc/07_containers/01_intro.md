@@ -1,6 +1,6 @@
 # Custom Applications with Containers
 
-## What is Singularity
+## What is Singularity?
 Singularity is a container based Linux kernel workspace that works just like Docker.  You can run pre-built programs in containers without having to worry about the pre-install environment.  You can even run Docker containers with Singularity.  Please see the [Singularity and Docker](https://docs.sylabs.io/guides/4.3/user-guide/singularity_and_docker.html) documentation by Syslabs for details about all the ways Singularity supports Docker.  For a detailed introduction on Singularity, visit their [official site](https://apptainer.org/documentation/).
 
 ## Why do we use Singularity
