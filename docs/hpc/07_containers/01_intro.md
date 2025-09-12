@@ -3,6 +3,8 @@
 ## What is Singularity?
 Singularity is a container based Linux kernel workspace that works just like Docker.  You can run pre-built programs in containers without having to worry about the pre-install environment.  You can even run Docker containers with Singularity.  Please see the [Singularity and Docker](https://docs.sylabs.io/guides/4.3/user-guide/singularity_and_docker.html) documentation by Syslabs for details about all the ways Singularity supports Docker.  For a detailed introduction on Singularity, visit their [official site](https://apptainer.org/documentation/).
 
+The Singularity we use is actually an alias for the name Apptainer.  When we transition to the new Torch cluster you will only see reference to Apptainer.  The reason for this is that there were two container projects with the name Singularity.  The original free and open-source (FOSS) project and a closed-source corporate fork.  The FOSS version has renamed itself to Apptainer to avoid confusion and this is the version we use.
+
 ## Why do we use Singularity
 There are multiple reasons to use Singularity on the HPC clusters:
 -   **Security**: Singularity provides a layer of security as it does not require any root access on our clusters. This makes it safer against malware and bad scripts that might jeopardize the outer system. Thus we only support Singularity on our clusters (there are not other options such as Kubernetes or Docker on our clusters right now).
