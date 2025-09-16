@@ -286,7 +286,7 @@ Singularity> pip install tensorboard
 ```
 
 :::note
-Please see [Conda Environments](../06_tools_and_software/04_conda_environments.mdx) for information on how to configure your conda environment.
+Please see [Conda Environments](../06_tools_and_software/06_conda_environments.mdx) for information on how to configure your conda environment.
 :::
 :::tip
 Please also keep in mind that once the overlay image is opened in default read-write mode, the file will be locked. You will not be able to open it from a new process. Once the overlay is opened either in read-write or read-only mode, it cannot be opened in RW mode from other processes either. For production jobs to run, the overlay image should be open in read-only mode. You can run many jobs at the same time as long as they are run in read-only mode. In this ways, it will protect the computation software environment, software packages are not allowed to change when there are jobs running. 

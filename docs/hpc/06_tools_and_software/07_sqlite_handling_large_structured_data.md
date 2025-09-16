@@ -79,7 +79,7 @@ conda will install pre-compiled packages. Which is good (faster) and bad (not fu
 :::
 
 :::tip
-Alternative: install packages to a local directory or use renv as described in [R Packages with renv](./03_r_packages_with_renv.mdx)
+Alternative: install packages to a local directory or use renv as described in [R Packages with renv](./05_r_packages_with_renv.mdx)
 ```sh
 mkdir /scratch/$USER/projects/myTempProject
 cd  /scratch/$USER/projects/myTempProject

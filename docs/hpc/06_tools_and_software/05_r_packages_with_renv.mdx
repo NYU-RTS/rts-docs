@@ -26,17 +26,21 @@ module load r/gcc/4.5.0
 R
 ```
 
-### Automatic deletion of your files
-This page describes the installation of packages on /scratch. One has to remember, though, that files stored in the HPC scratch file system are subject to the HPC Scratch old file purging policy: <br />
-**Files on the `/scratch` file system that have not been accessed for 60 or more days will be purged.** Please see details at [HPC Storage](../03_storage/01_intro_and_data_management.mdx).
-
+<details>
+<summary>
+**Automatic deletion of your files**
+Files on the `/scratch` file system that have not been accessed for 60 or more days will be purged (see [HPC Storage](../03_storage/01_intro_and_data_management.mdx) for details). Click to see how you can work around this limitation.
+</summary>
+:::tip
 Thus you can consider the following options:
-
 -   Reinstall your packages if some of the files get deleted
     -   You can do this manually 
     -   You can do this automatically. For example, within a workflow of a pipeline software like [Nextflow](https://www.nextflow.io/)
--   Pay for "Research Project Space" - Details available at [Research Project Space](../03_storage/05_research_project_space.mdx) 
+-   Pay for "Research Project Space" - for details see [Research Project Space](../03_storage/05_research_project_space.mdx)
 -   Use Singularity and install packages within a corresponding overlay file - Details available at [Squash File System and Singularity](../07_containers/04_squash_file_system_and_singularity.md)
+:::
+</details>
+
 
 ### Cache directory setup
 By default, renv will cache package installation files to your home directory (most likely either in `~/.local/share/renv` or `~/.cache/R/renv/` or something similar). 
@@ -177,7 +181,7 @@ renv::snapshot()
 2.  Take file `renv.lock` and copy it to a new location for the project
 3.  At the new location - restore environment: go to directory of the project and execute.
 :::warning
-Make sure version of R is the same
+Make sure version of `R` is the same
 :::
 ```R
 ## Reproduce environment
@@ -187,7 +191,7 @@ R
 renv::restore()
 renv::init()
 ```
-`renv` will install/compile what is needed on any system (Linux, Windows, etc). You can share your code with other researchers no matter what system they use. However, you should be careful that the same version of R is used between systems, as mentioned above.
+`renv` will install/compile what is needed on any system (Linux, Windows, etc). You can share your code with other researchers no matter what system they use. However, you should be careful that the same version of `R` is used between systems, as mentioned above.
 
 ### What to save/publish/commit with Git
 In order to have your work reproducible by you and/or others:
@@ -195,8 +199,8 @@ In order to have your work reproducible by you and/or others:
 - be sure to include `renv.lock` (which lists all packages and versions that you use including the version of R)
 
 ### Migrating from Packrat
-The `renv` package has replaced the now deprecated Packrat package. The `renv::migrate()` function makes it possible to migrate projects from Packrat to `renv`. See the ?migrate documentation for more details. In essence, calling `renv::migrate("<project path>")` will be enough to migrate the Packrat library and lockfile such that they can then be used by renv.
+The `renv` package has replaced the now deprecated `Packrat` package. The `renv::migrate()` function makes it possible to migrate projects from `Packrat` to `renv`. See the ?migrate documentation for more details. In essence, calling `renv::migrate("<project path>")` will be enough to migrate the `Packrat` library and lockfile such that they can then be used by `renv`.
 
 ## Useful links
--   [https://rstudio.github.io/renv/articles/renv.html](https://rstudio.github.io/renv/articles/renv.html)
+-   [Introduction to `renv`](https://rstudio.github.io/renv/articles/renv.html)
 

@@ -1,75 +1,19 @@
-# Software on Greene
+# Licensed Software
 
-## Software Overview
-There are different types of software packages available
-
--   Use `module avail` command to see preinstalled software.
-    -   This includes the licensed software listed below
--   Singularity Containers
-    -   You can find those already built and ready to use, at location `/scratch/work/public/singularity/`
-    -   For more information on running software with Singularity, See our [Containers Intro](../07_containers/01_intro.md).
--   Python/R/Julia packages can be installed by a user 
-
-If you need another linux program installed, please contact us at [hpc@nyu.edu](mailto:hpc@nyu.edu) 
-
-## Software and Environment Modules
-Lmod, an Environment Module system, is a tool for managing multiple versions and configurations of software packages and is used by many HPC centers around the world. With Environment Modules, software packages are installed away from the base system directories, and for each package, an associated modulefile describes what must be altered in a user's shell environment - such as the $PATH environment variable - in order to use the software package. The modulefile also describes dependencies and conflicts between this software package and other packages and versions.
-
-To use a given software package, you load the corresponding module. Unloading the module afterwards cleanly undoes the changes that loading the module made to your environment, thus freeing you to use other software packages that might have conflicted with the first one.
-
-Below is a list of modules and their associated functions:
-
-| Command                           | Function                                                              |
-|-----------------------------------|-----------------------------------------------------------------------|
-| module unload `<module-name>`     | unload a module                                                       |
-| module show `<module-name>`       | see exactly what effect loading the module will have                  |
-| module purge                      | remove all loaded modules from your environment                       |
-| module load `<module-name>`       | load a module                                                         |
-| module whatis `<module-name>`     | find out more about a software package                                |
-| module list                       | check which modules are currently loaded in your environment          |
-| module avail                      | check what software packages are available                            |
-| module help `<module-name>`         | A module file may include more detailed help for the software package |
-
-
-## Package Management for R, Python, & Julia, and Conda in general
--   [Conda environments (Python, R)](../06_tools_and_software/04_conda_environments.mdx)
--   [Using virtual environments for Python](../06_tools_and_software/02_python_packages_with_virtual_environments.mdx)
--   [Managing R packages with renv](../06_tools_and_software/03_r_packages_with_renv.mdx)
-
-## Examples of software usage on Greene 
-Examples can be found under `/scratch/work/public/examples/` and include the following
-
-|                   |                       |                       |
-|-------------------|-----------------------|-----------------------|
-| alphafold         | knitro                | Singularity           |
-| amd GPUs          | lammps                | slurm                 |
-| comsol            | matlab                | spark                 |
-| c-sharp           | mathematica           | stata                 |
-| crystal17         | namd                  | squashfs              |
-| fluent            | orca                  | trinity               |
-| gaussian          | quantum-espresso      | vnc                   |
-| hadoop-streaming  | R                     | vscode                |
-| julia             | sas                   | xvfb                  |
-| jupyter notebooks | schrodinger           |                       |
-
-## Accessing Datasets with Singularity
--   [Singularity for Datasets](../07_containers/04_squash_file_system_and_singularity.md)
-
-## Licensed Software
-### SCHRODINGER
+## SCHRODINGER
 Schrödinger provides a complete suite of software solutions with the latest advances in pharmaceutical research and computational chemistry. The NYU New York campus has a limited number of licenses for the Biologics Suite (ConfGen, Epik, Jaguar, Jaguar pKa, MacroModel, Prime, QSite, SiteMap), BioLuminate and the Basic Docking Suite.
 
 :::note
 Schrödinger can be used for non-commercial, academic purposes ONLY.
 :::
 
-#### Using SCHRODINGER on HPC Cluster
+### Using SCHRODINGER on HPC Cluster
 
 To load Schrodinger module execute
 ```sh
 $ module load schrodinger/2024.4
 ```
-#### Using SCHRODINGER on NYU Lab Computers
+### Using SCHRODINGER on NYU Lab Computers
 
 1.  Request your account at: [https://www.schrodinger.com/request-account](https://www.schrodinger.com/request-account)
 2.  Download the software at: [https://www.schrodinger.com/downloads/releases](https://www.schrodinger.com/downloads/releases)
@@ -139,13 +83,13 @@ QSITE                                            5
 SITEMAP                                         10
 ```
 
-#### Schrodinger Example Files
+### Schrodinger Example Files
 Example SBATCH jobs and outputs are available to review here: 
 ```sh
 /scratch/work/public/examples/schrodinger/
 ```
 
-### COMSOL
+## COMSOL
 COMSOL is a problem-solving simulation environment, enforcing compatibility guarantees consistent multiphysics models. COMSOL Multiphysics is a general-purpose software platform, based on advanced numerical methods, for modeling and simulating physics-based problems. The package is cross-platform (Windows, Mac, Linux). The COMSOL Desktop helps you organize your simulation by presenting a clear overview of your model at any point. It uses functional form, structure, and aesthetics as the means to achieve simplicity for modeling complex realities.
 
 :::note
@@ -176,7 +120,7 @@ cp /scratch/work/public/examples/comsol/test-input.mph /scratch/<net_id>/example
 sbatch run-comsol.sbatch
 ```
 
-### MATHEMATICA
+## MATHEMATICA
 Mathematica is a general computing environment with organizing algorithmic, visualization, and user interface capabilities. The many mathematical algorithms included in Mathematica make computation easy and fast.
 
 To run Mathematica on the Greene HPC cluster, please load the relevant module in your batch job submission script:
@@ -204,7 +148,7 @@ cp /scratch/work/public/examples/mathematica/basic/run-mathematica.sbatch /scrat
 sbatch run-mathematica.sbatch
 ```
 
-### SAS
+## SAS
 SAS is a software package which enables programmers to perform many tasks, including:
 -   Information retrieval
 -   Data management
@@ -220,7 +164,7 @@ SAS is a software package which enables programmers to perform many tasks, inclu
 
 There are licenses for 2 CPUs on the HPC Cluster.
 
-#### Running a parallel SAS job on HPC cluster (Greene):
+### Running a parallel SAS job on HPC cluster (Greene):
 
 To submit a SAS job for running on multiple processing elements, follow below steps:
 
@@ -240,10 +184,10 @@ cp /scratch/work/public/examples/sas/run-sas.sbatch  /scratch/<net_id>/example/
 sbatch run-sas.sbatch
 ```
 
-### MATLAB
+## MATLAB
 [MATLAB](https://www.mathworks.com/products/matlab.html) is a technical computing environment for high performance numeric computation and visualization. MATLAB integrates numerical analysis, matrix computation, signal processing, and graphics in an easy to use environment without using traditional programming.
 
-#### MATLAB on personal computers and laptops
+### MATLAB on personal computers and laptops
 
 NYU has a Total Academic Headcount (TAH) license which provides campus-wide access to MATLAB, Simulink, and a variety of add-on products. All faculty, researchers, and students (on any NYU campus) can use MATLAB on their personal computers and laptops and may go to the following site to download the NYU site license software free of charge.
 
@@ -259,10 +203,10 @@ In order to run MATLAB interactively on the cluster, [start an interactive slurm
 
 Mathworks has provided a [Greene Matlab User Guide](https://drive.google.com/file/d/1lNNzf4lsFuH9a4bbsO18roCGhT3DwUq2/view) that presents useful tips and practices for using Matlab on the cluster.
 
-### STATA
+## STATA
 Stata is a command and menu-driven software package for statistical analysis. It is available for Windows, Mac, and Linux operating systems. Most of its users work in research. Stata's capabilities include data management, statistical analysis, graphics, simulations, regression and custom programming. 
 
-#### Running a parallel STATA job on HPC cluster (Greene):
+### Running a parallel STATA job on HPC cluster (Greene):
 
 To submit a STATA job for running on multiple processing elements, follow below steps.
 
@@ -281,12 +225,12 @@ cp /scratch/work/public/examples/stata/stata-test.do  /scratch/<net_id>/example/
 sbatch run-stata.sbatch
 ```
 
-### GAUSSIAN
+## GAUSSIAN
 Gaussian uses basic quantum mechanic electronic structure programs. This software is capable of handling proteins and large molecules using semi-empirical, ab initio molecular orbital (MO), density functional, and molecular mechanics calculations.
 
 The NYU Gaussian license only covers PIs at the Washington Square Park campus. We will grant access to you after verifying your WSP affiliation. For access, please email [hpc@nyu.edu](mailto:hpc.nyu.edu).
 
-#### Running a parallel Gaussian job on HPC cluster (Greene):
+### Running a parallel Gaussian job on HPC cluster (Greene):
 
 To submit a Gaussian job for running on multiple processing elements, follow below steps.
 
@@ -302,10 +246,10 @@ cp /scratch/work/public/examples/gaussian/basic/run-gaussian.sbatch  /scratch/<n
 sbatch run-gaussian.sbatch
 ```
 
-### Knitro
+## Knitro
 Knitro is a commercial software package for solving large scale mathematical optimization problems. Knitro is specialized for nonlinear optimization, but also solves linear programming problems, quadratic programming problems, systems of nonlinear equations, and problems with equilibrium constraints. The unknowns in these problems must be continuous variables in continuous functions; however, functions can be convex or nonconvex. Knitro computes a numerical solution to the problem—it does not find a symbolic mathematical solution. Knitro versions 9.0.1 and 10.1.1 are available.
 
-#### Running a parallel Knitro job on HPC cluster (Greene):
+### Running a parallel Knitro job on HPC cluster (Greene):
 
 To submit a Knitro job for running on multiple processing elements, follow below steps.
 

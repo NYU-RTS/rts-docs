@@ -120,7 +120,7 @@ trino --catalog=hive
 
 ## Using Conda
 
-NYU Dataproc comes with `miniconda3` by default. This can be used to manage Python packages within your filesystem home directory. See [here](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html) or [here](../../hpc/06_tools_and_software/04_conda_environments.mdx) for more information on the conda command.
+NYU Dataproc comes with `miniconda3` by default. This can be used to manage Python packages within your filesystem home directory. See [here](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html) or [here](../../hpc/06_tools_and_software/06_conda_environments.mdx) for more information on the conda command.
 
 ## Using Jupyter Notebooks
 
