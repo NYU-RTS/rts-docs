@@ -18,7 +18,7 @@ Under the **clusters** menu you can select the **Greene Shell Access** option to
 
 ![img](./static/open_ondemand_gif.gif)
 
-Please see our documentation on [Submitting Jobs](http://localhost:3000/rts-docs-dev/docs/hpc/submitting_jobs/slurm_submitting_jobs/) if you'd like detailed instructions.
+Please see our documentation on [Submitting Jobs](../05_submitting_jobs/01_slurm_submitting_jobs.md) if you'd like detailed instructions.
 
 **Interactive Applications**
 
@@ -63,4 +63,4 @@ Just click on the `Session ID` link and a tab will open with the contents of the
 
 #### From terminal
 
-If your session is no longer visible from within OOD you may still be able to find your logs via the terminal.  Simply [log into Greene](https://sites.google.com/nyu.edu/nyu-hpc/accessing-hpc) and `cd` to `/home/$USER/ondemand/data/sys/dashboard/batch_connect/sys/` and then `cd` into the directory for the app that you're interested in.  You should find the file `output.log` there.
+If your session is no longer visible from within OOD you may still be able to find your logs via the terminal.  Simply [log into Greene](../02_connecting_to_hpc/01_connecting_to_hpc.mdx) and `cd` to `/home/$USER/ondemand/data/sys/dashboard/batch_connect/sys/` and then `cd` into the directory for the app that you're interested in.  You should find the file `output.log` there.
