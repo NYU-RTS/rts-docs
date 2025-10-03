@@ -5,7 +5,7 @@ Globus is the recommended tool to use for large-volume data transfers due to the
 :::
 
 ## Data-Transfer nodes
-Attached to the NYU HPC cluster Greene, the Greene Data Transfer Node (gDTN) are  nodes optimized for transferring data between cluster file systems (e.g. scratch)  and other endpoints outside the NYU HPC clusters, including user laptops and desktops. The gDTNs have 100-Gb/s Ethernet connections to the High Speed Research Network (HSRN) and are connected to the HDR Infiniband fabric of the HPC clusters. More information on the hardware characteristics is available at [Greene spec sheet](../10_spec_sheet.mdx).
+Attached to the NYU HPC cluster Greene, the Greene Data Transfer Node (gDTN) are  nodes optimized for transferring data between cluster file systems (e.g. scratch)  and other endpoints outside the NYU HPC clusters, including user laptops and desktops. The gDTNs have 100-Gb/s Ethernet connections to the High Speed Research Network (HSRN) and are connected to the HDR Infiniband fabric of the HPC clusters. More information on the hardware characteristics is available at [Greene spec sheet](../10_spec_sheet.md).
 
 ### Data Transfer Node Access
 The HPC cluster filesystems include `/home`, `/scratch`, `/archive` and the [HPC Research Project Space](./05_research_project_space.mdx) are available on the gDTN. The Data-Transfer Node (DTN) can be accessed in a variety of ways
