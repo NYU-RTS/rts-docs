@@ -1,11 +1,14 @@
 # Conda Environments (Python, R)
 
+:::tip
+This page describes how you can create conda environments without containers in `$SCRATCH`/`/home/$USER`. We strongly encourage you to create conda environments within Overlay files attached to Apptainer containers [as described in this section](../07_containers/03_singularity_with_conda.md). Please note that creating both kinds of conda environments is strongly discouraged as it leads to packages from one environment being accidentally used in another.
+:::
+
+
 ## What is Conda?
-Package, dependency and environment management for any language—Python, R, Ruby, Lua, Scala, Java, JavaScript, C/ C++, FORTRAN, and more.
+Package, dependency and environment management for any language—Python, R, Ruby, Lua, Scala, Java, JavaScript, C/ C++, FORTRAN, and more. Please find more information at [the official documentation page](https://docs.conda.io/en/latest/)
 
-Please find more information at [the official documentation page](https://docs.conda.io/en/latest/)
-
-Conda provides a great way to install packages that are already compiled, so you don't need to go over the long compilation process. If a package you need is not available, you can install it (and compile it when needed) using pip (Python) or install.packages (R).
+Conda provides a great way to install packages that are already compiled, so you don't need to go over the long compilation process. If a package you need is not available, you can install it (and compile it when needed) using `pip` (Python) or `install.packages` (R).
 
 :::note
 **Reproducibility**:
@@ -24,24 +27,25 @@ However, Conda has a significantly larger number of pre-compiled packages.
 
 ### Disadvantages
 
--   Conda does not take advantage of packages already installed in the system (while [virtualenv and venv](./02_python_packages_with_virtual_environments.mdx) do)
+-   Conda does not take advantage of packages already installed in the system (while [virtualenv and venv](./04_python_packages_with_virtual_environments.mdx) do)
 -   As you will see below, you may need to do additional steps to keep track of all installed packages (including those installed by pip and/or install.packages)
 
-::::warning[Automatic deletion of your files]
-This page describes the installation of packages on `/scratch`. One has to remember, though, that files stored in the HPC scratch file system are subject to the HPC Scratch old file purging policy: <br />
-Files on the `/scratch` file system that have not been accessed for 60 or more days will be purged. <br />
-You can read more this in [Data Management](../03_storage/01_intro_and_data_management.mdx).
 
+<details>
+<summary>
+**Automatic deletion of your files**
+Files on the `/scratch` file system that have not been accessed for 60 or more days will be purged (see [HPC Storage](../03_storage/01_intro_and_data_management.mdx) for details). Click to see how you can work around this limitation.
+</summary>
 :::tip
 Thus you can consider the following options:
-
 -   Reinstall your packages if some of the files get deleted
     -   You can do this manually 
     -   You can do this automatically. For example, within a workflow of a pipeline software like [Nextflow](https://www.nextflow.io/)
 -   Pay for "Research Project Space" - for details see [Research Project Space](../03_storage/05_research_project_space.mdx)
--   Use Singularity and install packages within a corresponding overlay file - for details see [Singularity with Conda](../07_containers/03_singularity_with_conda.md)  
+-   Use Singularity and install packages within a corresponding overlay file - Details available at [Squash File System and Singularity](../07_containers/04_squash_file_system_and_singularity.md)
 :::
-::::
+</details>
+
 
 ## Initializing Conda
 Load anaconda module
@@ -241,7 +245,7 @@ The command `conda list --export` will not include packages installed by `instal
 
 #### `renv`
 
-Please see details of using `renv` with conda for reproducibilty on [R packages with `renv`](./03_r_packages_with_renv.mdx).
+Please see details of using `renv` with conda for reproducibilty on [R packages with `renv`](./05_r_packages_with_renv.mdx).
 
 ## Use conda env in a batch script
 The part of the batch script that will call the command should look like:
