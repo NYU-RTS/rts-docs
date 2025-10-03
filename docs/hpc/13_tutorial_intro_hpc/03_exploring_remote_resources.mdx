@@ -6,9 +6,9 @@ Questions
 -   Are all compute nodes alike?
 
 Objectives
--   Survey system resources using nproc, free, and the queuing system
+-   Survey system resources using `nproc`, `free`, and the queuing system
 -   Compare & contrast resources on the local machine, login node, and worker nodes
--   Learn about the various filesystems on the cluster using df
+-   Learn about the various filesystems on the cluster using `df`
 -   Find out who else is logged in
 -   Assess the number of idle and occupied nodes
 :::
@@ -16,7 +16,7 @@ Objectives
 ## Look Around the Remote System
 If you have not already connected to Greene, please do so now:
 ```bash
-[NetID@glogin-1 ~]$  ssh NetID@greene.hpc.nyu.edu
+[user@laptop ~]$  ssh NetID@greene.hpc.nyu.edu
 ```
 Take a look at your home directory on the remote system:
 ```bash
@@ -47,9 +47,9 @@ Most high-performance computing systems run the Linux operating system, which is
 afs      bin@  dev  gpfs  lib@    media  mnt  opt   root  sbin@    share  state  tmp  var
 archive  boot  etc  home  lib64@  misc   net  proc  run   scratch  srv    sys    usr  vast
 ```
-The `/home/NetID` directory is the one where we generally want to keep all of our files. Other folders on a UNIX OS contain system files and change as you install new software or upgrade your OS.
+The `/home/NetID`, `/scratch/NetID`, `/archive/NetID`, and `/vast/NetID` directories are created for you by default and they are where you'll probably store most of your files, but there are other options as well. Please see the tip below and our [storage documentation](../03_storage/01_intro_and_data_management.mdx) for details about how these direcories differ, as well as other storage options available.  Other folders on a UNIX OS contain system files and change as you install new software or upgrade your OS.
 
-:::tip[Using HPC filesystems]
+:::tip[Using the HPC filesystems]
 On Geene, you have a number of places where you can store your files. These differ in both the amount of space allocated and whether or not they are backed up.
 
 -   **Home** – data stored here is available throughout the HPC system, and often backed up periodically. Please note the limit on the number of files (inodes) which can get used up easily. Use the `myquota` command to ensure that you are not running out of inodes!
