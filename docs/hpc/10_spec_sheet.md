@@ -1,7 +1,7 @@
 
 # Torch Spec Sheet
 
-The Torch cluster has [Intel "Xeon Platinum 8592+ 64C"](https://www.intel.com/content/www/us/en/products/sku/237261/intel-xeon-platinum-8592-processor-320m-cache-1-90-ghz/specifications.html) CPUs and NVIDIA [H200](https://nvdam.widen.net/s/nb5zzzsjdf/hpc-datasheet-sc23-h200-datasheet-3002446) & [L40S](https://resources.nvidia.com/en-us-l40s/l40s-datasheet-28413) GPUs connected together via Infiniband NDR400 interconnect. The breakdown for the various kinds of nodes in the cluster is listed below.
+The Torch cluster has 518 [Intel "Xeon Platinum 8592+ 64C"](https://www.intel.com/content/www/us/en/products/sku/237261/intel-xeon-platinum-8592-processor-320m-cache-1-90-ghz/specifications.html) CPUs, 29 NVIDIA [H200](https://nvdam.widen.net/s/nb5zzzsjdf/hpc-datasheet-sc23-h200-datasheet-3002446) GPUs & 68 NVIDIA [L40S](https://resources.nvidia.com/en-us-l40s/l40s-datasheet-28413) GPUs connected together via Infiniband NDR400 interconnect. Further details on each kind of node is provided in the table below.
 
 | Type | Nodes  | CPU Cores  | GPUs  | Memory (GB) |
 |---|---|---|---|---|
