@@ -25,15 +25,23 @@ With the Amdahl source code on the cluster, we can install it, which will provid
 
 The Amdahl code has one dependency: `mpi4py`. Package Installer for Python (pip) will collect `mpi4py` from the Internet and install it for you, but it needs an active `mpi` module. Here we will load `openmpi/gcc/4.1.6` to build `mpi4py`.
 
-Move into the extracted directory, the use pip, to install it in your (“user”) home directory:
+Let's start by moving the `amdahl` directory form our home directory to our scratch directory to save our valuable home directory space:
 ```bash
-[NetID@log-1 ~]$ cd amdahl
-[NetID@log-1 ~]$ module load python/intel/3.8.6
-[NetID@log-1 ~]$ python -m venv ./test_venv
-[NetID@log-1 ~]$ source ./test_venv/bin/activate
-[NetID@log-1 ~]$ module load openmpi/gcc/4.1.6
-[NetID@log-1 ~]$ python -m pip install .
-Processing /home/NetID/packages/temp/hpc-carpentry-amdahl-46c9b4b
+[NetID@log-1 ~]$ mv amdahl /scratch/$USER
+```
+:::tip
+For more information about storage options on Greene please see [HPC Storage](../03_storage/01_intro_and_data_management.mdx).
+:::
+
+Move into the extracted directory, then use pip, to install it in your (“user”) scratch directory:
+```bash
+[NetID@log-1 ~]$ cd /scratch/$USER/amdahl
+[NetID@log-1 amdahl]$ module load python/intel/3.8.6
+[NetID@log-1 amdahl]$ python -m venv ./test_venv
+[NetID@log-1 amdahl]$ source ./test_venv/bin/activate
+[NetID@log-1 amdahl]$ module load openmpi/gcc/4.1.6
+[NetID@log-1 amdahl]$ python -m pip install .
+Processing /scratch/NetID/packages/temp/hpc-carpentry-amdahl-46c9b4b
 Collecting mpi4py
   Using cached mpi4py-4.0.0.tar.gz (464 kB)
   Installing build dependencies ... done
@@ -43,15 +51,13 @@ Collecting mpi4py
 Building wheels for collected packages: amdahl, mpi4py
   Building wheel for amdahl (setup.py) ... done
   Created wheel for amdahl: filename=amdahl-0.3.1-py3-none-any.whl size=6996 sha256=13a95c3e6fbc53fde1c90a4a9bbb3fd3179d5e3afa3e19b4131a05d9ac798981
-  Stored in directory: /home/NetID/.cache/pip/wheels/2c/53/fc/19c3053b3a1d3625ac26158b28f263783f66ec258df97aefcf
+  Stored in directory: /scratch/NetID/.cache/pip/wheels/2c/53/fc/19c3053b3a1d3625ac26158b28f263783f66ec258df97aefcf
   Building wheel for mpi4py (PEP 517) ... done
   Created wheel for mpi4py: filename=mpi4py-4.0.0-cp38-cp38-linux_x86_64.whl size=5169079 sha256=9afceb56e22608a7de33442a60bbde3cbd4aa06947d48de5f6dc63932d34bc9f
-  Stored in directory: /home/NetID/.cache/pip/wheels/31/3b/6f/dc579e9ff3e2273078596b0cbc1e8d6cbf5a3a05cfad4a380a
+  Stored in directory: /scratch/NetID/.cache/pip/wheels/31/3b/6f/dc579e9ff3e2273078596b0cbc1e8d6cbf5a3a05cfad4a380a
 Successfully built amdahl mpi4py
 Installing collected packages: mpi4py, amdahl
 Successfully installed amdahl-0.3.1 mpi4py-4.0.0
-WARNING: You are using pip version 20.2.3; however, version 24.2 is available.
-You should consider upgrading via the '/home/NetID/packages/temp/hpc-carpentry-amdahl-46c9b4b/test_venv/bin/python3 -m pip install --upgrade pip' command.
 ```
 
 :::note[Amdahl is Python Code]
@@ -61,7 +67,7 @@ The Amdahl program is written in Python, and installing or using it requires loc
 ## Help!
 Many command-line programs include a “help” message. Try it with `amdahl`:
 ```bash
-[NetID@log-1 ~]$ amdahl --help
+[NetID@log-1 amdahl]$ amdahl --help
 usage: amdahl [-h] [-p [PARALLEL_PROPORTION]] [-w [WORK_SECONDS]] [-t] [-e] [-j [JITTER_PROPORTION]]
 
 optional arguments:
@@ -80,8 +86,8 @@ This message doesn’t tell us much about what the program does, but it does tel
 ## Running the Job on a Compute Node
 Create a submission file, requesting one task on a single node, then launch it.
 ```bash
-[NetID@log-1 ~]$ nano serial-job.sh
-[NetID@log-1 ~]$ cat serial-job.sh
+[NetID@log-1 amdahl]$ nano serial-job.sh
+[NetID@log-1 amdahl]$ cat serial-job.sh
 ```
 ```bash
 #!/bin/bash
@@ -93,17 +99,17 @@ Create a submission file, requesting one task on a single node, then launch it.
 # Load the computing environment we need
 module load python/intel/3.8.6
 module load openmpi/gcc/4.1.6
-source /home/yourUsername/amdahl/test_venv/bin/activate
+source /scratch/NetID/amdahl/test_venv/bin/activate
 
 # Execute the task
 srun amdahl
 ```
 ```bash
-[NetID@log-1 ~]$ sbatch serial-job.sh
+[NetID@log-1 amdahl]$ sbatch serial-job.sh
 ```
 As before, use the Slurm status commands to check whether your job is running and when it ends:
 ```bash
-[NetID@log-1 ~]$ squeue -u NetID
+[NetID@log-1 amdahl]$ squeue -u NetID
 ```
 Use `ls` to locate the output file. The `-t` flag sorts in reverse-chronological order: newest first. What was the output?
 
@@ -116,9 +122,9 @@ Use `ls` to locate the output file. The `-t` flag sorts in reverse-chronological
 :::tip[Output]
 The cluster output should be written to a file in the folder you launched the job from. For example,
 ```bash
-[NetID@log-1 ~]$ ls -t
+[NetID@log-1 amdahl]$ ls -t
 slurm-347087.out  serial-job.sh  amdahl  README.md  LICENSE.txt
-[NetID@log-1 ~]$ cat slurm-347087.out
+[NetID@log-1 amdahl]$ cat slurm-347087.out
 Doing 30.000 seconds of 'work' on 1 processor,
 which should take 30.000 seconds with 0.850 parallel proportion of the workload.
 
@@ -168,14 +174,14 @@ srun amdahl
 
 Then submit your job. Note that the submission command has not really changed from how we submitted the serial job: all the parallel settings are in the batch file rather than the command line.
 ```bash
-[NetID@log-1 ~]$ sbatch parallel-job.sh
+[NetID@log-1 amdahl]$ sbatch parallel-job.sh
 ```
 
 As before, use the status commands to check when your job runs.
 ```bash
-[NetID@log-1 ~]$ ls -t
+[NetID@log-1 amdahl]$ ls -t
 slurm-347178.out  parallel-job.sh  slurm-347087.out  serial-job.sh  amdahl  README.md  LICENSE.txt
-[NetID@log-1 ~]$ cat slurm-347178.out
+[NetID@log-1 amdahl]$ cat slurm-347178.out
 Doing 30.000 seconds of 'work' on 4 processors,
 which should take 10.875 seconds with 0.850 parallel proportion of the workload.
 
@@ -222,8 +228,8 @@ Since “more is better” – improvement is easier to interpret from increases
 
 Let’s run one more job, so we can see how close to a straight line our amdahl code gets.
 ```bash
-[NetID@log-1 ~]$ nano parallel-job.sh
-[NetID@log-1 ~]$ cat parallel-job.sh
+[NetID@log-1 amdahl]$ nano parallel-job.sh
+[NetID@log-1 amdahl]$ cat parallel-job.sh
 #!/bin/bash
 #SBATCH -J parallel-pi
 #SBATCH --nodes=8
@@ -241,13 +247,13 @@ srun amdahl
 
 Then submit your job. Note that the submission command has not really changed from how we submitted the serial job: all the parallel settings are in the batch file rather than the command line.
 ```bash
-[NetID@log-1 ~]$ sbatch parallel-job.sh
+[NetID@log-1 amdahl]$ sbatch parallel-job.sh
 ```
 As before, use the status commands to check when your job runs.
 ```bash
-[NetID@log-1 ~]$ ls -t
+[NetID@log-1 amdahl]$ ls -t
 slurm-347271.out  parallel-job.sh  slurm-347178.out  slurm-347087.out  serial-job.sh  amdahl  README.md  LICENSE.txt
-[NetID@log-1 ~]$ cat slurm-347178.out
+[NetID@log-1 amdahl]$ cat slurm-347178.out
 which should take 7.688 seconds with 0.850 parallel proportion of the workload.
 
   Hello, World! I am process 4 of 8 on cs. I will do parallel 'work' for 3.188 seconds.
@@ -279,7 +285,7 @@ Now, let’s summarize the amount of time it took each job to run:
 
 Then, use the first row to compute speedups S, using Python as a command-line calculator:
 ```bash
-[NetID@log-1 ~]$ for n in 30.033 10.888 7.697; do python3 -c "print(30.033 / $n)"; done
+[NetID@log-1 amdahl]$ for n in 30.033 10.888 7.697; do python3 -c "print(30.033 / $n)"; done
 ```
 | Number of CPUs | Speedup | Ideal |
 | -------------- | ------- | ----- |
