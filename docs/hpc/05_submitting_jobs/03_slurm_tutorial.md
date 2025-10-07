@@ -16,7 +16,7 @@ The Slurm software system is a resource manager and a job scheduler, which is de
 
 -   It also assumes you are comfortable with Linux command-line environment. To learn about linux please read our [Linux Tutorial](../12_tutorial_intro_shell_hpc/01_intro.mdx).
 
--   Please review the [Hardware Specs page](../10_spec_sheet.mdx) for more information on Greene's hardware specifications.
+-   Please review the [Hardware Specs page](../10_spec_sheet.md) for more information on Greene's hardware specifications.
 
 ## Slurm Commands
 
