@@ -75,13 +75,10 @@ To add a new question to the storage finder:
    }
    ```
 
-   > [!IMPORTANT]
-   > All `id` values (for both facets and choices) must be globally unique across the entire `facet-tree.json` file. Using duplicate IDs will cause filtering errors.
-
 2. **Update existing services** in `service-list.json` by adding the appropriate choice IDs to their `facet_matches` arrays.
 
-   > [!WARNING]
-   > When you add a new question, **all existing services** must be updated to include at least one choice ID from the new question in their `facet_matches` arrays. Otherwise, those services will be filtered out and hidden when users answer the new question.
+> [!WARNING]
+> When you add a new question, **all existing services** must be updated to include at least one choice ID from the new question in their `facet_matches` arrays. Otherwise, those services will be filtered out and hidden when users answer the new question.
 
 #### Control Types
 
@@ -152,10 +149,10 @@ To add a new storage service:
 
 2. **Ensure facet_matches accuracy**: The `facet_matches` array must contain at least one choice ID from each question the user answers.
 
-   > [!WARNING]
-   > For each question in `facet-tree.json`, you must include at least one matching choice ID in `facet_matches`, otherwise the service will be filtered out and hidden when users answer that question.
-
    **Example**: If a service is for "Public/Low Risk" data (ID "5"), "Faculty" users (ID "28"), and can be used for any purpose from "For what purpose will you be using this storage?" (IDs "33", "32", "35", "34", "36"), then include: `["5", "28", "33", "32", "35", "34", "36"]`. This example is not comprehensive—you must also add choice IDs from all other questions in `facet-tree.json` to ensure the service remains available regardless of what users select.
+
+> [!WARNING]
+> For each question in `facet-tree.json`, you must include at least one matching choice ID in `facet_matches`, otherwise the service will be filtered out and hidden when users answer that question.
 
 ### Modifying Service Fields
 
