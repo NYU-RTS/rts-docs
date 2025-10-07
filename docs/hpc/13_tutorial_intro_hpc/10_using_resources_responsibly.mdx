@@ -20,7 +20,7 @@ The widespread usage of scheduling systems where users submit jobs on HPC resour
 ## Be Kind to the Login Nodes
 The login node is often busy managing all of the logged in users, creating and editing files and compiling software. If the machine runs out of memory or processing capacity, it will become very slow and unusable for everyone. While the machine is meant to be used, be sure to do so responsibly – in ways that will not adversely impact other users’ experience.
 
-Login nodes are always the right place to launch jobs. Cluster policies vary, but they may also be used for proving out workflows, and in some cases, may host advanced cluster-specific debugging or development tools. The cluster may have modules that need to be loaded, possibly in a certain order, and paths or library versions that differ from your laptop, and doing an interactive test run on the head node is a quick and reliable way to discover and fix these issues.
+Login nodes are always the right place to launch jobs, but data transfers should be done on the Greene Data Transfer Nodes (gDTNs).  Please see more about gDTNs at [Data Transfers](../03_storage/03_data_transfers.md). Similarly, computationally intensive tasks should all be done on compute nodes.  This refers to not just computational analysis/research tasks, but also to computationally intensive software installations and similar tasks.
 
 :::warning[Login Nodes Are a Shared Resource]
 Remember, the login node is shared with all other users and your actions could cause issues for other people. Think carefully about the potential implications of issuing commands that may use large amounts of resource.
@@ -58,24 +58,19 @@ If you experience performance issues with a login node you should report it to t
 ## Test Before Scaling
 Remember that you are generally charged for usage on shared systems. A simple mistake in a job script can end up costing a large amount of resource budget. Imagine a job script with a mistake that makes it sit doing nothing for 24 hours on 1000 cores or one where you have requested 2000 cores by mistake and only use 100 of them! This problem can be compounded when people write scripts that automate job submission (for example, when running the same calculation or analysis over lots of different parameters or files). When this happens it hurts both you (as you waste lots of charged resource) and other users (who are blocked from accessing the idle compute nodes). On very busy resources you may wait many days in a queue for your job to fail within 10 seconds of starting due to a trivial typo in the job script. **This is extremely frustrating!**
 
-Most systems provide dedicated resources for testing that have short wait times to help you avoid this issue.
 
 :::tip[Test Job Submission Scripts That Use Large Amounts of Resources]
-Before submitting a large run of jobs, submit one as a test first to make sure everything works as expected.
+We suggest that you test a subset of you data or analysis on an interactive node prior to running full batch jobs.  This way you can request a smaller set of resources and time which should decrease your time waiting in the queue, and you'll be able to quickly iterate code refactoring in interactive mode.  When you've got everything working well on smaller problems you can submit batch jobs for larger ones.
 
-Before submitting a very large or very long job submit a short truncated test to ensure that the job starts as expected.
+Even after doing the above it's often wise to start with a small batch job first to make sure that you don't have any errors in your batch script.
 :::
 
 ## Have a Backup Plan
-Although many HPC systems keep backups, it does not always cover all the file systems available and may only be for disaster recovery purposes (i.e. for restoring the whole file system if lost rather than an individual file or directory you have deleted by mistake). Please see the [available storage options on Greene](../03_storage/01_intro_and_data_management.mdx) for specific information about Greene, but remember that rotecting critical data from corruption or deletion is primarily your responsibility: keep your own backup copies.
+Version control systems (such as Git) often have free, cloud-based offerings (e.g., [GitHub](http://github.com) and [GitLab](http://gitlab.com)) that are generally used for storing source code. Even if you are not writing your own programs, these can be very useful for storing job scripts, analysis scripts and small input files.  This can provide a layer of redundant protection for some of your files.
 
-Version control systems (such as Git) often have free, cloud-based offerings (e.g., GitHub and GitLab) that are generally used for storing source code. Even if you are not writing your own programs, these can be very useful for storing job scripts, analysis scripts and small input files.
+While the Greene HPC system does offer some backups, it is important to understand which storage options are backed up and what the limitations of those backups are.  Please see [HPC Storage](../03_storage/01_intro_and_data_management.mdx) for details.
 
-If you are building software, you may have a large amount of source code that you compile to build your executable. Since this data can generally be recovered by re-downloading the code, or re-running the checkout operation from the source code repository, this data is also less critical to protect.
-
-For larger amounts of data, especially important results from your runs, which may be irreplaceable, you should make sure you have a robust system in place for taking copies of data off the HPC system wherever possible to backed-up storage. Tools such as rsync can be very useful for this.
-
-Your access to the shared HPC system will generally be time-limited so you should ensure you have a plan for transferring your data off the system before your access finishes. The time required to transfer large amounts of data should not be underestimated and you should ensure you have planned for this early enough (ideally, before you even start using the system for your research).
+It is also important to remember that your access to the shared HPC system will generally be time-limited, so you should ensure you have a plan for transferring your data off the system before your access finishes. The time required to transfer large amounts of data should not be underestimated and you should ensure you have planned for this early enough (ideally, before you even start using the system for your research).
 
 In all these cases,  please contact [hpc@nyu.edu](mailto:hpc@nyu.edu) if you have questions about data transfer and storage for the volumes of data you will be using.
 
@@ -84,7 +79,9 @@ Make sure you understand what the backup policy is on the file systems on the sy
 :::
 
 ## Transferring Data
-As mentioned above, many users run into the challenge of transferring large amounts of data off HPC systems at some point (this is more often in transferring data off than onto systems but the advice below applies in either case). Data transfer speed may be limited by many different factors so the best data transfer mechanism to use depends on the type of data being transferred and where the data is going.
+The most important point about transferring data responsibly on Green is to be sure to use Greene Date Transfer Nodes (gDTNs) or other options like [Globus](../03_storage/04_globus.md).  Please see [Data Transfers](../03_storage/03_data_transfers.md) for details.  By doing this you'll help to keep the login nodes responsive for all users.
+
+Being efficient in *how* you transfer data on the gDTNs is also important.  It will not only reduce the load on the gDTNs, but also save your time.  Data transfer speed may be limited by many different factors so the best data transfer mechanism to use depends on the type of data being transferred and where the data is going.
 
 The components between your data’s source and destination have varying levels of performance, and in particular, may have different capabilities with respect to bandwidth and latency.
 
