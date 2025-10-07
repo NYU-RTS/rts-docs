@@ -20,7 +20,7 @@ The widespread usage of scheduling systems where users submit jobs on HPC resour
 ## Be Kind to the Login Nodes
 The login node is often busy managing all of the logged in users, creating and editing files and compiling software. If the machine runs out of memory or processing capacity, it will become very slow and unusable for everyone. While the machine is meant to be used, be sure to do so responsibly – in ways that will not adversely impact other users’ experience.
 
-Login nodes are always the right place to launch jobs, but data transfers should be done on the Greene Data Transfer Nodes (gDTNs).  Please see more about gDTNs at [Data Transfers](../03_storage/03_data_transfers.md). Similarly, computationally intensive tasks should all be done on compute nodes.  This refers to not just computational analysis/research tasks, but also to computationally intensive software installations and similar tasks.
+Login nodes are always the right place to launch jobs, but data transfers should be done on the Greene Data Transfer Nodes (gDTNs).  Please see more about gDTNs at [Data Transfers](../03_storage/03_data_transfers.md). Similarly, computationally intensive tasks should all be done on compute nodes.  This refers to not just computational analysis/research tasks, but also to processor intensive software installations and similar tasks.
 
 :::warning[Login Nodes Are a Shared Resource]
 Remember, the login node is shared with all other users and your actions could cause issues for other people. Think carefully about the potential implications of issuing commands that may use large amounts of resource.
@@ -60,9 +60,7 @@ Remember that you are generally charged for usage on shared systems. A simple mi
 
 
 :::tip[Test Job Submission Scripts That Use Large Amounts of Resources]
-We suggest that you test a subset of you data or analysis on an interactive node prior to running full batch jobs.  This way you can request a smaller set of resources and time which should decrease your time waiting in the queue, and you'll be able to quickly iterate code refactoring in interactive mode.  When you've got everything working well on smaller problems you can submit batch jobs for larger ones.
-
-Even after doing the above it's often wise to start with a small batch job first to make sure that you don't have any errors in your batch script.
+We suggest that you test a subset of you data or analysis on an interactive node prior to running full batch jobs.  This way you can request a smaller set of resources and time which should decrease your wait time in the queue, and you'll be able to quickly iterate code refactoring in interactive mode.  When you've got everything working well on smaller problems you can submit batch jobs for larger ones.  Even after doing the above it's often wise to start with a small batch job first to make sure that you don't have any errors in your batch script.
 :::
 
 ## Have a Backup Plan
@@ -75,76 +73,17 @@ It is also important to remember that your access to the shared HPC system will 
 In all these cases,  please contact [hpc@nyu.edu](mailto:hpc@nyu.edu) if you have questions about data transfer and storage for the volumes of data you will be using.
 
 :::warning[Your Data Is Your Responsibility]
-Make sure you understand what the backup policy is on the file systems on the system you are using and what implications this has for your work if you lose your data on the system. Plan your backups of critical data and how you will transfer data off the system throughout the project.
+Make sure you understand what the backup policy is on the system you are using and what implications this has for your work if you lose your data on the system. Plan your own personal backups of critical data and how you will transfer data off the system throughout the project.
 :::
 
 ## Transferring Data
-The most important point about transferring data responsibly on Green is to be sure to use Greene Date Transfer Nodes (gDTNs) or other options like [Globus](../03_storage/04_globus.md).  Please see [Data Transfers](../03_storage/03_data_transfers.md) for details.  By doing this you'll help to keep the login nodes responsive for all users.
+The most important point about transferring data responsibly on Green is to be sure to use Greene Data Transfer Nodes (gDTNs) or other options like [Globus](../03_storage/04_globus.md).  Please see [Data Transfers](../03_storage/03_data_transfers.md) for details.  By doing this you'll help to keep the login nodes responsive for all users.
 
-Being efficient in *how* you transfer data on the gDTNs is also important.  It will not only reduce the load on the gDTNs, but also save your time.  Data transfer speed may be limited by many different factors so the best data transfer mechanism to use depends on the type of data being transferred and where the data is going.
-
-The components between your data’s source and destination have varying levels of performance, and in particular, may have different capabilities with respect to bandwidth and latency.
-
-**Bandwidth** is generally the raw amount of data per unit time a device is capable of transmitting or receiving. It’s a common and generally well-understood metric.
-
-**Latency** is a bit more subtle. For data transfers, it may be thought of as the amount of time it takes to get data out of storage and into a transmittable form. Latency issues are the reason it’s advisable to execute data transfers by moving a small number of large files, rather than the converse.
-
-Some of the key components and their associated issues are:
-
--   **Disk speed**: File systems on HPC systems are often highly parallel, consisting of a very large number of high performance disk drives. This allows them to support a very high data bandwidth. Unless the remote system has a similar parallel file system you may find your transfer speed limited by disk performance at that end.
--   **Meta-data performance**: Meta-data operations such as opening and closing files or listing the owner or size of a file are much less parallel than read/write operations. If your data consists of a very large number of small files you may find your transfer speed is limited by meta-data operations. Meta-data operations performed by other users of the system can also interact strongly with those you perform so reducing the number of such operations you use (by combining multiple files into a single file) may reduce variability in your transfer rates and increase transfer speeds.
--   **Network speed**: Data transfer performance can be limited by network speed. More importantly it is limited by the slowest section of the network between source and destination. If you are transferring to your laptop/workstation, this is likely to be its connection (either via LAN or WiFi).
--   **Firewall speed**: Most modern networks are protected by some form of firewall that filters out malicious traffic. This filtering has some overhead and can result in a reduction in data transfer performance. The needs of a general purpose network that hosts email/web-servers and desktop machines are quite different from a research network that needs to support high volume data transfers. If you are trying to transfer data to or from a host on a general purpose network you may find the firewall for that network will limit the transfer rate you can achieve.
-
-As mentioned above, if you have related data that consists of a large number of small files it is strongly recommended to pack the files into a larger *archive* file for long term storage and transfer. A single large file makes more efficient use of the file system and is easier to move, copy and transfer because significantly fewer metadata operations are required. Archive files can be created using tools like `tar` and `zip`. We have already met `tar` when we talked about data transfer earlier.
-
-<div style={{textAlign: 'center'}}>
-![Schematic of Network Bandwidth](./static/schematic_network_bandwidth.svg)
-
-*Schematic diagram of bandwidth and latency for disk and network I/O. Each of the components on the figure is connected by a blue line of width proportional to the interface bandwidth.<br />The small mazes at the link points illustrate the latency of the link, with more tortuous mazes indicating higher latency.*
-</div>
-
-<details>
-<summary>
-:::info[Consider the Best Way to Transfer Data]
-If you are transferring large amounts of data you will need to think about what may affect your transfer performance. It is always useful to run some tests that you can use to extrapolate how long it will take to transfer your data.
-
-Say you have a “data” folder containing 10,000 or so files, a healthy mix of small and large ASCII and binary data. Which of the following would be the best way to transfer them to Greene?
-```bash
-[user@laptop ~]$ scp -r data NYUNetID@greene.hpc.nyu.edu:~/
-```
-```bash
-[user@laptop ~]$ rsync -ra data NYUNetID@greene.hpc.nyu.edu:~/
-```
-```bash
-[user@laptop ~]$ rsync -raz data NYUNetID@greene.hpc.nyu.edu:~/
-```
-```bash
-[user@laptop ~]$ tar -cvf data.tar data
-```
-```bash
-[user@laptop ~]$ rsync -raz data.tar NYUNetID@greene.hpc.nyu.edu:~/
-```
-```bash
-[user@laptop ~]$ tar -cvzf data.tar.gz data
-```
-```bash
-[user@laptop ~]$ rsync -ra data.tar.gz NYUNetID@greene.hpc.nyu.edu:~/
-```
-**[Click for Solution]**
-:::
-</summary>
-:::tip[Solution]
-1.   `scp` will recursively copy the directory. This works, but without compression.
-1.   `rsync -ra` works like `scp -r`, but preserves file information like creation times. This is marginally better.
-1.   `rsync -raz` adds compression, which will save some bandwidth. If you have a strong CPU at both ends of the line, and you’re on a slow network, this is a good choice.
-1.   This command first uses `tar` to merge everything into a single file, then `rsync -z` to transfer it with compression. If you have a large number of files, metadata overhead can hamper your transfer, so this is a good idea.
-1.   This command uses `tar -z` to compress the archive, then `rsync` to transfer it. This may perform similarly to the command directly above, but in most cases (for large datasets), it’s the best combination of high throughput and low latency (making the most of your time and network connection).
-:::
-</details>
+Being efficient in *how* you transfer data on the gDTNs is also important.  It will not only reduce the load on the gDTNs, but also save your time.  Be sure to archive and compress you files if possible with `tar` and `gzip`.  This will remove the overhead of trying to transfer many files and shrink the size of transfer.  Please see [Transferring Files with Remote Computers](./07_transferring_files_remote.mdx) for details.
 
 :::tip[Key Points]
 -   Be careful how you use the login node.
 -   Your data on the system is your responsibility.
+-   Always use Greene Data Transfer Nodes (gDTNs) for large data transfers.
 -   Plan and test large data transfers.
 -   It is often best to convert many files to a single archive file before transferring.
