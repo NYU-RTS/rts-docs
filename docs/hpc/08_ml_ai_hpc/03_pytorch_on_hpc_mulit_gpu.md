@@ -135,33 +135,28 @@ Below is a full Slurm script for using DDP for Della (GPU) where there are 2 GPU
 
 ```bash
 #!/bin/bash
-#SBATCH --job-name=ddp-torch     # create a short name for your job
-#SBATCH --nodes=2                # node count
-#SBATCH --ntasks-per-node=2      # total number of tasks per node
-#SBATCH --cpus-per-task=8        # cpu-cores per task (>1 if multi-threaded tasks)
-#SBATCH --mem=32G                # total memory per node (4 GB per cpu-core is default)
-#SBATCH --gres=gpu:2             # number of gpus per node
-#SBATCH --time=00:01:00          # total run time limit (HH:MM:SS)
-#SBATCH --mail-type=begin        # send email when job begins
-#SBATCH --mail-type=end          # send email when job ends
-#SBATCH --mail-user=<YourNetID>@princeton.edu
 
-export MASTER_PORT=$(expr 10000 + $(echo -n $SLURM_JOBID | tail -c 4))
-export WORLD_SIZE=$(($SLURM_NNODES * $SLURM_NTASKS_PER_NODE))
-echo "WORLD_SIZE="$WORLD_SIZE
-
-master_addr=$(scontrol show hostnames "$SLURM_JOB_NODELIST" | head -n 1)
-export MASTER_ADDR=$master_addr
-echo "MASTER_ADDR="$MASTER_ADDR
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=2
+#SBATCH --time=1:00:00
+#SBATCH --mem=2GB
+#SBATCH --gres=gpu:2
+#SBATCH --job-name=torch
 
 module purge
-module load anaconda3/2021.11
-conda activate torch-env
 
-srun python myscript.py
+export MASTER_ADDR=$(hostname)
+export MASTER_PORT=12345
+export WORLD_SIZE=$SLURM_NTASKS
+export RANK=$SLURM_PROCID
+
+srun singularity exec --nv \
+	    --overlay /scratch/NetID/pytorch-example/my_pytorch.ext3:ro \
+	    /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif\
+	    /bin/bash -c "source /ext3/env.sh; python simple_ddp.py"
 ```
 
-In the script above, `MASTER_PORT`, `MASTER_ADDR` and `WORLD_SIZE` are set. The three are later used to create the DDP process group. The total number of GPUs allocated to the job must be equal to `WORLD_SIZE` -- this is satisfied above since nodes times ntasks-per-node is `2 x 2 = 4` and number of GPUs allocated is nodes times gpus_per_node which is also `2 x 2 = 4`.
+In the script above, `MASTER_PORT`, `MASTER_ADDR` and `WORLD_SIZE` are set. The three are later used to create the DDP process group. The total number of GPUs allocated to the job must be equal to `WORLD_SIZE` -- this is satisfied above since nodes times ntasks-per-node is `1 x 2 = 2` and number of GPUs allocated is nodes times gpus_per_node which is also `1 x 2 = 2`.
 
 ### Job Arrays
 
