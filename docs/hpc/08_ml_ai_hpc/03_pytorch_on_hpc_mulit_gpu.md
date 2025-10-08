@@ -1,5 +1,9 @@
 # Multi-GPU Training with PyTorch: Distributed Data Parallel (DDP)
 
+:::info
+This was adaped from [Princeton University Multi-GPU Training with PyTorch](https://github.com/PrincetonUniversity/multi_gpu_training)
+:::
+
 One should always first try to use only a single GPU for training. This maximizes efficiency. There are two common reasons for using multiple GPUs when training neural networks:
 -   the execution time is too long with a single GPU
 -   the model is too large to fit on a single GPU
@@ -157,6 +161,8 @@ srun singularity exec --nv \
 ```
 
 In the script above, `MASTER_PORT`, `MASTER_ADDR` and `WORLD_SIZE` are set. The three are later used to create the DDP process group. The total number of GPUs allocated to the job must be equal to `WORLD_SIZE` -- this is satisfied above since nodes times ntasks-per-node is `1 x 2 = 2` and number of GPUs allocated is nodes times gpus_per_node which is also `1 x 2 = 2`.
+
+This uses the overlay file for PyTorch we created in [Singularity with Conda](../07_containers/03_singularity_with_conda.md)
 
 ### Job Arrays
 
