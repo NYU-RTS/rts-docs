@@ -140,7 +140,7 @@ Below is a full Slurm script for using DDP for Della (GPU) where there are 2 GPU
 ```bash
 #!/bin/bash
 
-#SBATCH --nodes=1
+#SBATCH --nodes=2
 #SBATCH --ntasks-per-node=2
 #SBATCH --time=1:00:00
 #SBATCH --mem=2GB
@@ -160,7 +160,7 @@ srun singularity exec --nv \
 	    /bin/bash -c "source /ext3/env.sh; python simple_ddp.py"
 ```
 
-In the script above, `MASTER_PORT`, `MASTER_ADDR` and `WORLD_SIZE` are set. The three are later used to create the DDP process group. The total number of GPUs allocated to the job must be equal to `WORLD_SIZE` -- this is satisfied above since nodes times ntasks-per-node is `1 x 2 = 2` and number of GPUs allocated is nodes times gpus_per_node which is also `1 x 2 = 2`.
+In the script above, `MASTER_PORT`, `MASTER_ADDR` and `WORLD_SIZE` are set. The three are later used to create the DDP process group. The total number of GPUs allocated to the job must be equal to `WORLD_SIZE` -- this is satisfied above since nodes times ntasks-per-node is `2 x 2 = 4` and number of GPUs allocated is nodes times gpus_per_node which is also `2 x 2 = 4`.
 
 This uses the overlay file for PyTorch we created in [Singularity with Conda](../07_containers/03_singularity_with_conda.md)
 
