@@ -50,7 +50,7 @@ const FeatureList: FeatureItem[] = [
       <>
         The Pythia GenAI Platform is a suite of tools for researchers to harness
         generative AI including a secure access to a chat portal, API access to
-        LLMs and an on-prem vector database.
+        LLMs. Currently in pilot phase, expect breaking changes.
       </>
     ),
     to: "/docs/genai/getting_started/intro/",
@@ -116,9 +116,10 @@ export default function HomepageFeatures() {
     <section className={styles.features}>
       <div className="container">
         <div className="row">
-          {FeatureList.map((props, index) => (
-            <Feature key={index} {...props} />
-          ))}
+          {FeatureList.map((props, index) => <Feature
+            key={index}
+            {...props}
+          />)}
         </div>
       </div>
     </section>
