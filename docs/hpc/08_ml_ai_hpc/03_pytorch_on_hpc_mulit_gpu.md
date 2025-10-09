@@ -1,7 +1,7 @@
 # Multi-GPU Training with PyTorch: Distributed Data Parallel (DDP)
 
 :::info
-This was adaped from [Princeton University Multi-GPU Training with PyTorch](https://github.com/PrincetonUniversity/multi_gpu_training)
+This was adapted from [Princeton University Multi-GPU Training with PyTorch](https://github.com/PrincetonUniversity/multi_gpu_training)
 :::
 
 One should always first try to use only a single GPU for training. This maximizes efficiency. There are two common reasons for using multiple GPUs when training neural networks:
