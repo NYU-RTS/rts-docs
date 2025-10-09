@@ -137,6 +137,7 @@ The Python interpreter will be launched 8 times (2 x 4) and each of the 8 tasks 
 
 Below is a full Slurm script for using DDP for Della (GPU) where there are 2 GPUs per node:
 
+**run-full.SBATCH:**
 ```bash
 #!/bin/bash
 
@@ -220,9 +221,6 @@ Below is an example Slurm script for DDP:
 #SBATCH --mem=32G                # total memory per node (4 GB per cpu-core is default)
 #SBATCH --gres=gpu:2             # number of gpus per node
 #SBATCH --time=00:05:00          # total run time limit (HH:MM:SS)
-#SBATCH --mail-type=begin        # send email when job begins
-#SBATCH --mail-type=end          # send email when job ends
-#SBATCH --mail-user=<YourNetID>@princeton.edu
 
 export MASTER_PORT=$(expr 10000 + $(echo -n $SLURM_JOBID | tail -c 4))
 export WORLD_SIZE=$(($SLURM_NNODES * $SLURM_NTASKS_PER_NODE))
@@ -232,11 +230,11 @@ master_addr=$(scontrol show hostnames "$SLURM_JOB_NODELIST" | head -n 1)
 export MASTER_ADDR=$master_addr
 echo "MASTER_ADDR="$MASTER_ADDR
 
-module purge
-module load anaconda3/2021.11
-conda activate torch-env
-
-srun python mnist_classify_ddp.py --epochs=2
+srun singularity exec --nv \
+	    --overlay /scratch/NetID/pytorch-example/my_pytorch.ext3:ro \
+	    /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif\
+	    /bin/bash -c "source /ext3/env.sh; python download_data.py; python mnist_classify_ddp.py --epoch
+s=2"
 ```
 
 The script above uses 2 nodes with 2 tasks per node and therefore 2 GPUs per node. This yields a total of 4 processes and each process can use 8 CPU-cores for data loading. An allocation of 4 GPUs is substantial so the queue time may be long. In all cases make sure that the GPUs are being used efficiently by monitoring the [GPU utilization](https://researchcomputing.princeton.edu/support/knowledge-base/gpu-computing).
@@ -411,29 +409,26 @@ In the script above the number of workers is taken directly from the value of `-
 cuda_kwargs = {'num_workers': int(os.environ["SLURM_CPUS_PER_TASK"]), 'pin_memory': True, 'shuffle': True}
 ```
 
-Execute the commands below to run the example above:
+It also relies on the script [download_data.py](https://github.com/PrincetonUniversity/multi_gpu_training/blob/main/01_single_gpu/download_data.py):
+```python
+import torchvision
+import warnings
+warnings.simplefilter("ignore")
 
+# compute nodes do not have internet so download the data in advance
+
+_ = torchvision.datasets.MNIST(root='data',
+                               train=True,
+                               transform=None,
+                               target_transform=None,
+                               download=True)
+```
+
+Execute the commands below to run the example above:
 ```bash
-$ git clone https://github.com/PrincetonUniversity/multi_gpu_training.git
-$ cd multi_gpu_training/02_pytorch_ddp
-$ module load anaconda3/2021.11
-$ conda activate torch-env  # see 01_single_gpu in this repo for installation directions
-(torch-env) $ python download_data.py
-(torch-env) $ sbatch job.slurm  # edit your email address in job.slurm before submitting
+[NetID@log-1 full-ddp-test]$ sbatch run-full.SBATCH
 ```
 
 ## Memory issues
 
 Use `gradient_as_bucket_view=True` when making the DDP model to decrease the required memory by 1/3.
-
-## NGC Container
-
-If you are using the [PyTorch container](https://researchcomputing.princeton.edu/support/knowledge-base/pytorch#containers) then the last line of your Slurm script will look like:
-
-```
-srun singularity exec --nv $HOME/software/pytorch_22.01-py3.sif python mnist_classify_ddp.py --epochs=3
-```
-
-## Notes on Traverse
-
-Be sure to use the example above for DDP. Do not use the file-based method for initializing the process group. Be sure to follow the [installation directions](https://researchcomputing.princeton.edu/support/knowledge-base/tensorflow#install) using the MIT Conda channel.
