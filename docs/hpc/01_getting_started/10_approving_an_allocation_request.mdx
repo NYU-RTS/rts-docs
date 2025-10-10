@@ -1,5 +1,9 @@
 # How to approve an allocation request
 
+:::info[VPN Needed]
+You need to be connected to the NYU VPN to access the Coldfront HPC project management portal.
+:::
+
 If you are an approver for your school, first login to the coldfront page and you'll see "staff" in the navigation bar.
 Click the "staff" navigation bar and click "Allocation Requests" to see a list of requests waiting for your approval.
 !["Staff Allocation Requests" section](./static/approver_staff.png)
