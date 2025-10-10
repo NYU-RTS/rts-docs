@@ -16,7 +16,7 @@ Objectives
 ## Job Scheduler
 An HPC system might have thousands of nodes and thousands of users. How do we decide who gets what and when? How do we ensure that a task is run with the resources it needs? This job is handled by a special piece of software called the *scheduler*. On an HPC system, the scheduler manages which jobs run where and when.
 
-The following illustration compares these tasks of a job scheduler to a waiter in a restaurant. If you can relate to an instance where you had to wait for a while in a queue to get in to a popular restaurant, then you may now understand why sometimes your job do not start instantly as in your laptop.
+The following illustration compares these tasks of a job scheduler to a waiter in a restaurant. If you can relate to an instance where you had to wait for a while in a queue to get in to a popular restaurant, then you may now understand why your job might not start instantly as it does on your laptop.
 
 ![Job Scheduler to Waiter in Restaurant](./static/restaurant_queue_manager.svg)
 
@@ -184,7 +184,7 @@ JOBID  USER  ACCOUNT  NAME  ST  REASON  START_TIME  TIME  TIME_LEFT  NODES CPUS
 ```
 
 :::tip[Cancelling multiple jobs]
-We can also all of our jobs at once using the `-u` option. This will delete all jobs for a specific user (in this case us). Note that you can only delete your own jobs.
+We can also cancel all of our jobs at once using the `-u` option. This will delete all jobs for a specific user (in this case us). Note that you can only delete your own jobs.
 
 Try submitting multiple jobs and then cancelling them all with `scancel -u NetID`.
 :::
@@ -212,7 +212,7 @@ Sometimes, you will need a lot of resource for interactive use. Perhaps it’s o
 ```bash
 srun --pty bash
 ```
-You should be presented with a bash prompt. Note that the prompt will likely change to reflect your new location, in this case the compute node we are logged on. You can also verify this with `hostname`.
+You should be presented with a bash prompt. Note that the prompt will likely change to reflect your new location, in this case the compute node we are logged onto. You can also verify this with `hostname`.
 
 :::tip[Creating remote graphics]
 To see graphical output inside your jobs, you need to use X11 forwarding. To connect with this feature enabled, use the `-Y` option when you login with `ssh` with the command `ssh -Y username@host`.

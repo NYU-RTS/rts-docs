@@ -26,7 +26,7 @@ Since we already submitted amdahl to run on the cluster, we can query the schedu
 [NYUNetID@log-1 ~]$ sacct -u $USER
        JobID    JobName  Partition    Account  AllocCPUS      State ExitCode
 ------------ ---------- ---------- ---------- ---------- ---------- --------
-991167         Sxxxx     normal    nn9299k        128    COMPLETED      0:0
+991167         Sxxxx     normal        NetID    128       COMPLETED      0:0
 ```
 This shows all the jobs we ran today (note that there are multiple entries per job). To get info about a specific job (for example, 347087), we change command slightly.
 ```bash
