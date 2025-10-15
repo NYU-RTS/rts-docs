@@ -227,20 +227,12 @@ If you are using PuTTY on Windows, download and use `pageant` as the SSH agent. 
 ## Modifying your .ssh/config file
 Please add the following lines to your `~/.ssh/config` file:
 ```
-Host greene.hpc.nyu.edu dtn.hpc.nyu.edu gw.hpc.nyu.edu
+Host greene.hpc.nyu.edu dtn.hpc.nyu.edu
   StrictHostKeyChecking no
   ServerAliveInterval 60
   ForwardAgent yes
   UserKnownHostsFile /dev/null
   LogLevel ERROR
-
-Host hpcgwtunnel
-  HostName gw.hpc.nyu.edu
-  ForwardX11 no
-  StrictHostKeyChecking no
-  LocalForward 8027 greene.hpc.nyu.edu:22
-  UserKnownHostsFile /dev/null
-  User <Your NetID>
 
 Host greene
   HostName localhost
