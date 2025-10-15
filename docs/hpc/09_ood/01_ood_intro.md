@@ -63,4 +63,4 @@ Just click on the `Session ID` link and a tab will open with the contents of the
 
 #### From terminal
 
-If your session is no longer visible from within OOD you may still be able to find your logs via the terminal.  Simply [log into Greene](../02_connecting_to_hpc/01_connecting_to_hpc.mdx) and `cd` to `/home/$USER/ondemand/data/sys/dashboard/batch_connect/sys/` and then `cd` into the directory for the app that you're interested in.  You should find the file `output.log` there.
+If your session is no longer visible from within OOD you may still be able to find your logs via the terminal.  Simply [log into Greene](../02_connecting_to_hpc/01_connecting_to_hpc.md) and `cd` to `/home/$USER/ondemand/data/sys/dashboard/batch_connect/sys/` and then `cd` into the directory for the app that you're interested in.  You should find the file `output.log` there.

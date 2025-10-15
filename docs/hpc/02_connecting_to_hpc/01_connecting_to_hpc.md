@@ -4,7 +4,7 @@
 This page gives an overview of connecting to the HPC cluster, for a tutorial on this topic, head to the [this section](../12_tutorial_intro_shell_hpc/02_connecting_to_hpc.mdx)! 
 :::
 
-There are several ways to interact with the Greene HPC cluster. Similar to other Linux clusters, the most common method of connection is via a Command Line Interface (CLI). A CLI is a program that allows you to create and delete files, run programs, and navigate through directories and files via a typed prompt. On Mac, the built-in CLI application is called Terminal. While Windows 11 machines support a Linux Subsystem, which allows for similar functionality, a popular tool used to connect to a Linux server is a free application called [PuTTY][putty link]. 
+There are several ways to interact with the Greene HPC cluster. Similar to other Linux clusters, the most common method of connection is via a Command Line Interface (CLI). A CLI is a program that allows you to create and delete files, run programs, and navigate through directories and files via a typed prompt. On Mac, the built-in CLI application is called Terminal. While Windows 11 machines support a Linux Subsystem, which allows for similar functionality, a popular tool used to connect to a Linux server is a free application called [MoabXterm](https://mobaxterm.mobatek.net/documentation.html) 
 
 :::tip
 If you'd prefer to access the HPC cluster via a web gateway instead, please refer to [the section describing Open OnDemand (OOD)](../09_ood/01_ood_intro.md).
@@ -100,14 +100,14 @@ ssh <Your NetID>@greene.hpc.nyu.edu
 #### Powershell
 You can access the ssh client via Powershell, either by installing [Windows Terminal](https://apps.microsoft.com/detail/9n0dx20hk701?hl=en-US&gl=US) or [Powershell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows) directly. With powershell, you would log into the HPC systems the same way as with a Linux terminal.
 
-### Windows WSL2
+#### Windows WSL2
 
 Alternatively, you can install WSL2, and then install Ubuntu or other Linux distribution (for example, from Microsoft Store). You will have a fully functional Ubuntu with terminal and can connect to cluster using instructions provided above for Linux/Mac users. Instructions on WSL installation can be found here: [https://docs.microsoft.com/en-us/windows/wsl/install-win10][wsl installation link]
 
 With [Windowns Terminal](https://apps.microsoft.com/detail/9n0dx20hk701?hl=en-US&gl=US), you can access both the Linux WSL2 shell and the Windows Powershell from the same application.
  
 :::tip
--   If you are using WSL 2 (Windows subsystem for Linux), you may not be able to access internet when Cisco AnyConnect VPN, installed from exe file, is activated. A potential solution: uninstall Cisco AnyConnect and install AnyConnect using Microsoft Store, and then setup new VPN connection using settings described on [IT webpage][install vpn on windows link].
+-   If you are using WSL 2 (Windows subsystem for Linux 2), you may not be able to access internet when Cisco AnyConnect VPN, installed from exe file, is activated. A potential solution: uninstall Cisco AnyConnect and install AnyConnect using Microsoft Store, and then setup new VPN connection using settings described on [IT webpage][install vpn on windows link].
 :::
 
 ## Additional Tips
