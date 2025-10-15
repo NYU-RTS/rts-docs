@@ -1,7 +1,8 @@
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Connecting to the HPC Cluster
+
+:::tip
+This page gives an overview of connecting to the HPC cluster, for a tutorial on this topic, head to the [this section](../12_tutorial_intro_shell_hpc/02_connecting_to_hpc.mdx)! 
+:::
 
 There are several ways to interact with the Greene HPC cluster. Similar to other Linux clusters, the most common method of connection is via a Command Line Interface (CLI). A CLI is a program that allows you to create and delete files, run programs, and navigate through directories and files via a typed prompt. On Mac, the built-in CLI application is called Terminal. While Windows 11 machines support a Linux Subsystem, which allows for similar functionality, a popular tool used to connect to a Linux server is a free application called [PuTTY][putty link]. 
 
@@ -15,21 +16,13 @@ The following sections will outline basic ways to connect to the Greene cluster.
 ### Configuring Your SSH Client
 To connect to HPC systems, it's important to configure your machine's SSH client. For Linux and Mac machines, the configuration file is the ~/.ssh/config file on your computer. These are the basic lines that should be added to your ~/.ssh/config file:
 ```sh
-Host greene.hpc.nyu.edu dtn.hpc.nyu.edu gw.hpc.nyu.edu
+Host greene.hpc.nyu.edu dtn.hpc.nyu.edu
   StrictHostKeyChecking no
   ServerAliveInterval 60
   ForwardAgent yes
   UserKnownHostsFile /dev/null
   LogLevel ERROR
  
-Host hpcgwtunnel
-  HostName gw.hpc.nyu.edu
-  ForwardX11 no
-  StrictHostKeyChecking no
-  LocalForward 8027 greene.hpc.nyu.edu:22
-  UserKnownHostsFile /dev/null
-  User <Your NetID>
-
 Host greene
   HostName localhost
   Port 8027
@@ -74,7 +67,7 @@ To avoid this warning, you can add these lines to your SSH configuration file. O
 This segment, referenced in the recommended config above will nullify the error:
 
 ```sh
-Host greene.hpc.nyu.edu dtn.hpc.nyu.edu gw.hpc.nyu.edu
+Host greene.hpc.nyu.edu dtn.hpc.nyu.edu
   StrictHostKeyChecking no
   ServerAliveInterval 60
   ForwardAgent yes
@@ -86,17 +79,10 @@ The above will also fix SSH timeout errors by extending the `ServerAliveInterval
 :::
 
 ### Connecting to the NYU Network
-To access the HPC systems, you must either be on the NYU secure network (such as the NYU WiFi or a wired connection from an NYU office) or use a method of accessing it, such as the NYU VPN or the HPC Gateway servers.
+To access the HPC systems, you must either be on the NYU secure network (such as the NYU WiFi or a wired connection from an NYU office) or use the NYU VPN.
 
 :::info Connecting to the HPC clusters from outside NYU Network
-<Tabs>
-  <TabItem value="VPN" label="VPN (Preferred)">
-    [Set up your computer to use the NYU VPN][nyu vpn link]. Once you've created a VPN connection, you can proceed as if you were connected to the NYU net
-  </TabItem>
-  <TabItem value="Gateway" label="Gateway">
-    Go through our gateway servers (example below). Gateways are designed to support only a very minimal set of commands and their only purpose is to let users connect HPC systems without needing to first connect to the VPN
-  </TabItem>
-</Tabs>
+[Set up your computer to use the NYU VPN][nyu vpn link]. Once you've created a VPN connection, you can proceed as if you were connected to the NYU net
 :::
 
 ## Command Line Interface (with a Terminal)
@@ -110,26 +96,6 @@ If you're on the VPN or the main NYU network on campus you can SSH directly to g
 ssh <Your NetID>@greene.hpc.nyu.edu
 ```
  
-#### Gateway / SSH Tunneling Option
-
-To connect to the gateway servers, after you've configured your ~/.ssh/config file, simply open a [terminal application][apple terminal link] and follow these steps:
-
-1. Open a terminal
-2. Connect to the gateway via the ssh command:
-```sh
-ssh hpcgwtunnel
-```
-3. Authenticate with your password and Duo MFA
-
-4. Open a second terminal
-5. Connect to the Greene login nodes via the ssh command:
-```sh
-ssh greene
-```
-6. Authenticate
-
-After typing in your password you will be logged in to the cluster.
-
 ### Windows CMD
 
 Windows 11 users have several options. First, the CMD program should contain an ssh client, allowing you to log into the HPC systems the same way as with a Linux terminal.
@@ -164,30 +130,7 @@ Instead of typing your password every time you need to log in, you can also spec
 
 For additional recommendations on how to configure your SSH sessions, see the [ssh configuring and x11 forwarding page](./02_ssh_tunneling_and_x11_forwarding.md).
 
-### PuTTY (Only for Windows)
 
-There are many SSH clients for Windows OS, but we recommend using [PuTTY SSH][putty link] if you have not already. Once it is installed, launch PuTTY and configure new session "Session" category as in the screenshot below:
-
-![putty configuration image](./static/putty_config.png)
-
-Here we are instructing PuTTY to connect to host gw.hpc.nyu.edu on port 22 using SSH protocol (note, that this interface allows you to save this connection configuration for future). Just like for Linux and Mac users, if you are connecting from the outside of NYU network, you need to go through the gateway servers.
-
-Once you click "Open", a terminal window with prompt for password will pop up. Enter your NetID password and you should be authorized on the gateway server. Gateways are designed to support only a very minimal set of commands and their only purpose it to let users access HPC systems. Once you are there type in an ssh command that will let you connect to Greene cluster :
-
-```sh
-# Gateway Login
-ssh gw.hpc.nyu.edu
-```
-
-A new command line interface window will open up that prompts you for your password on the gateway server, from there you can connect to Greene by entering the following:
-
-```sh
-ssh greene.hpc.nyu.edu
-```
-
-
-
-[putty link]: https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
 
 [nyu vpn link]: https://www.nyu.edu/life/information-technology/infrastructure/network-services/vpn.html
 
