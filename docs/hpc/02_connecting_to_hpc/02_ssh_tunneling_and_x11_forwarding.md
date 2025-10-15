@@ -48,7 +48,5 @@ ssh -Y <NYU_NetID>@greene.hpc.nyu.edu
 
 However, Mac users need to install [XQuartz][xquartz], since X-server is no longer shipped with the macOS.
 
-Windows users will also need to install X server software. We recommend two options out there. We recommend installing Xming. Start Xming application and configure PuTTY to support X11 forwarding:
-
-
+Windows users will also need to install X server software. We recommend using MobaXTerm. Further instructions are provided in the [introductory HPC tutorial](../12_tutorial_intro_shell_hpc/02_connecting_to_hpc.mdx).
 

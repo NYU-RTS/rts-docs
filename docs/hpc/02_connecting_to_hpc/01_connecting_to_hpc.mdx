@@ -89,25 +89,24 @@ To access the HPC systems, you must either be on the NYU secure network (such as
 
 ### Mac & Linux Access
 
-#### VPN Connection
-If you're on the VPN or the main NYU network on campus you can SSH directly to greene like so:
+Once you're on the VPN or the main NYU network on campus you can SSH directly to greene like so:
 
 ```sh
 ssh <Your NetID>@greene.hpc.nyu.edu
 ```
  
-### Windows CMD
+### Windows
 
-Windows 11 users have several options. First, the CMD program should contain an ssh client, allowing you to log into the HPC systems the same way as with a Linux terminal.
+#### Powershell
+You can access the ssh client via Powershell, either by installing [Windows Terminal](https://apps.microsoft.com/detail/9n0dx20hk701?hl=en-US&gl=US) or [Powershell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows) directly. With powershell, you would log into the HPC systems the same way as with a Linux terminal.
 
 ### Windows WSL2
 
-If you run Windows 10, you can install WSL, and then install Ubuntu or other Linux distribution (for example, from Microsoft Store). You will have a fully functional Ubuntu with terminal and can connect to cluster using instructions provided above for Linux/Mac users.
+Alternatively, you can install WSL2, and then install Ubuntu or other Linux distribution (for example, from Microsoft Store). You will have a fully functional Ubuntu with terminal and can connect to cluster using instructions provided above for Linux/Mac users. Instructions on WSL installation can be found here: [https://docs.microsoft.com/en-us/windows/wsl/install-win10][wsl installation link]
 
-Instructions on WSL installation can be found here: [https://docs.microsoft.com/en-us/windows/wsl/install-win10][wsl installation link]
-
+With [Windowns Terminal](https://apps.microsoft.com/detail/9n0dx20hk701?hl=en-US&gl=US), you can access both the Linux WSL2 shell and the Windows Powershell from the same application.
+ 
 :::tip
--   One of many options to get terminal that support tabs, etc. is to install 'Windows Terminal' from Microsoft Store.
 -   If you are using WSL 2 (Windows subsystem for Linux), you may not be able to access internet when Cisco AnyConnect VPN, installed from exe file, is activated. A potential solution: uninstall Cisco AnyConnect and install AnyConnect using Microsoft Store, and then setup new VPN connection using settings described on [IT webpage][install vpn on windows link].
 :::
 
