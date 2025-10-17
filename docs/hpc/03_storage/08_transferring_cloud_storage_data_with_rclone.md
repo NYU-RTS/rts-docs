@@ -29,7 +29,7 @@ There are specific instruction on the [rclone web site](https://rclone.org/drive
 
 ### Step 1: Login to Greene:
 
-Follow [instructions](../02_connecting_to_hpc/01_connecting_to_hpc.mdx) to log into the Greene HPC cluster.
+Follow [instructions](../02_connecting_to_hpc/01_connecting_to_hpc.md) to log into the Greene HPC cluster.
 
 ### Step 2: Load the rclone module
 ```sh
