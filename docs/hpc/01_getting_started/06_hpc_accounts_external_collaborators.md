@@ -13,7 +13,7 @@ External (non-NYU) collaborators can access, with proper sponsorship, the NYU HP
 :::note
 Once the sponsoring faculty approves the account request, the HPC account is created within one hour.
 :::
--   Once the HPC account is created, the external collaborator can access HPC resources as described in our documentation page [Connecting to the HPC Cluster](../02_connecting_to_hpc/01_connecting_to_hpc.mdx).
+-   Once the HPC account is created, the external collaborator can access HPC resources as described in our documentation page [Connecting to the HPC Cluster](../02_connecting_to_hpc/01_connecting_to_hpc.md).
 
 :::note
 As with all sponsored accounts, HPC accounts for external collaborators are valid for a period of 12 months, at which point a renewal process is required to continue access to the NYU HPC environment.  You can find information about renewing your account on our documentation page [Getting and Renewing an HPC Account](./02_getting_and_renewing_an_account.mdx).
