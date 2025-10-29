@@ -119,10 +119,7 @@ There is an extra layer of security when accessing Torch which is described belo
 -   Return to terminal and hit Enter
 ![torch-ssh-2fa-9](static/torch-ssh-2fa-9.png)
 
-## Additional Tips for Greene
-Below are some additional options and tips for connecting to the HPC resources.
-### Setting up SSH Keys
-
+## SSH Keys for Greene
 :::warning
 SSH keys are not supported on Torch!
 :::
