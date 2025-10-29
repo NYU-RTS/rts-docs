@@ -112,7 +112,11 @@ export default function SearchPage() {
       <main className="container margin-vert--lg">
         <Heading as="h1">Search Results</Heading>
 
-        <form action="/search" method="get" style={{ marginBottom: "1.5rem" }}>
+        <form
+          action={`${siteConfig.baseUrl}search/`}
+          method="get"
+          style={{ marginBottom: "1.5rem" }}
+        >
           <input
             aria-label="Search docs"
             className="navbar__search-input"

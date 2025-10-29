@@ -50,7 +50,7 @@ const Search = (props: SearchBarProps) => {
         const query = _input.getVal();
         _input.setVal("");
         _event.target.blur();
-        history.push(`/search?q=${encodeURIComponent(query)}`);
+        history.push(`${baseUrl}search/?q=${encodeURIComponent(query)}`);
       },
       maxHits: options.maxHits,
     });
