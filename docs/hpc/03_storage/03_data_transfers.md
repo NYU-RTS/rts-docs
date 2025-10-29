@@ -45,9 +45,6 @@ where username would be your user name, project1 a directory to be copied to the
 #### File Transfer Clients
 Windows 10 machines may have the Linux Subsystem installed, which will allow for the use of Linux tools, as listed above, but generally it is recommended to use a client such as [WinSCP](https://winscp.net/eng/docs/tunneling) or [FileZilla](https://filezilla-project.org/) to transfer data. Additionally, Windows users may also take advantage of [Globus](./04_globus.md) to transfer files.
 
-### Tunneling
-[Read the detailed instructions for setting up tunnels.](../02_connecting_to_hpc/02_ssh_tunneling_and_x11_forwarding.md)
-
 ### Globus
 Globus is the recommended tool to use for large-volume data transfers. It features automatic performance tuning and automatic retries in cases of file-transfer failures. Data-transfer tasks can be submitted via a web portal. The Globus service will take care of the rest, to make sure files are copied efficiently, reliably, and securely. Globus is also a tool for you to share data with collaborators, for whom you only need to provide the email addresses.
 
