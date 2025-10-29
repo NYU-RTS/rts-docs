@@ -67,7 +67,7 @@ Do not be alarmed - this is an issue that occurs because the Greene and Torch cl
 SSH timeout errors can be fixed by extending the `ServerAliveInterval` argument.
 :::
 
-### Connecting to the NYU Network
+## Connecting to the NYU Network
 To access the HPC systems, you must either be on the NYU secure network (such as the NYU WiFi or a wired connection from an NYU office) or use the NYU VPN.
 
 :::info Connecting to the HPC clusters from outside NYU Network
