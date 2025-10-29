@@ -48,8 +48,9 @@ C:\WINDOWS\System32\notepad.exe $HOME\.ssh\config
 ```
 Configuring the file above will allow you to use the cmd terminal to connect to Greene.
 
-### Avoiding Man in the Middle Warning.
+### Common issues
 
+:::warning Man in the Middle warning
 If you see this warning:
 ```sh
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -59,10 +60,7 @@ IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
 Someone could be eavesdropping on you right now (man-in-the-middle attack)!
 It is also possible that a host key has just been changed.
 ```
-Do not be alarmed - this is an issue that occurs because the Greene and Torch clusters have multiple login nodes. For instance, `greene.hpc.nyu.edu` resolves to one of three possible login nodes (`log-1`, `log-2`, and `log-3`). 
-
-:::tip
-The configuration directive `StrictHostKeyChecking no` referenced in the recommended config above will prevent this error.
+Do not be alarmed - this is an issue that occurs because the Greene and Torch clusters have multiple login nodes. For instance, `greene.hpc.nyu.edu` resolves to one of three possible login nodes (`log-1`, `log-2`, and `log-3`). The configuration directive `StrictHostKeyChecking no` referenced in the recommended config above will prevent this error. Ensure that you have not missed adding it.
 :::
 
 :::info SSH Timeout errors
