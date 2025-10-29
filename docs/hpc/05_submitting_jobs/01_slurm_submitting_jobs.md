@@ -564,7 +564,7 @@ To use any GUI-based program within the interactive batch session you will need 
 [NetID@log-1 ~]$ gnuplot
 gnuplot> test
 ```
-If a window opens on your display with a gnuplot test window, you know that Xforwarding is working.  Please see [SSH Tunneling and X11 Forwarding](../02_connecting_to_hpc/02_ssh_tunneling_and_x11_forwarding.md) for details.
+If a window opens on your display with a gnuplot test window, you know that Xforwarding is working.  Please see the [X11 Forwarding](../02_connecting_to_hpc/02_x11_forwarding.md) section for details.
 
 ### Request Resources
 

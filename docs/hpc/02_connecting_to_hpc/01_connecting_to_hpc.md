@@ -17,20 +17,21 @@ The following sections will outline basic ways to connect to the Greene cluster.
 To connect to HPC systems, it's important to configure your machine's SSH client. For Linux and Mac machines, the configuration file is the ~/.ssh/config file on your computer. These are the basic lines that should be added to your ~/.ssh/config file:
 ```sh
 Host greene.hpc.nyu.edu dtn.hpc.nyu.edu
+  User <NetID>
   StrictHostKeyChecking no
   ServerAliveInterval 60
   ForwardAgent yes
   UserKnownHostsFile /dev/null
   LogLevel ERROR
- 
-Host greene
-  HostName localhost
-  Port 8027
-  ForwardX11 yes
+
+Host torch login.torch.hpc.nyu.edu
+  Hostname login.torch.hpc.nyu.edu
+  User <NetID>
   StrictHostKeyChecking no
+  ServerAliveInterval 60
+  ForwardAgent yes
   UserKnownHostsFile /dev/null
   LogLevel ERROR
-  User <Your NetID>
 ```
 ### Setting Up an SSH Config File on Windows
 For Windows, you can now follow a similar configuration setup. Using Powershell you can use the following to create and open a Windows SSH config file:
@@ -126,9 +127,6 @@ Instead of typing your password every time you need to log in, you can also spec
 -   Log into cluster using regular login/password and then add the content of generated public key file (the one with .pub) to `$HOME/.ssh/authorized_keys` on cluster
 
 -   Next time you will log into cluster no password will be required
-
-For additional recommendations on how to configure your SSH sessions, see the [ssh configuring and x11 forwarding page](./02_ssh_tunneling_and_x11_forwarding.md).
-
 
 
 [nyu vpn link]: https://www.nyu.edu/life/information-technology/infrastructure/network-services/vpn.html
