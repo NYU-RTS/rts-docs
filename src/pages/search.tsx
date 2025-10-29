@@ -128,6 +128,7 @@ export default function SearchPage() {
               width: "100%",
               maxWidth: 560,
               padding: "0.5rem 1rem",
+              paddingLeft: "2.5rem",
               fontSize: "1rem",
             }}
           />
