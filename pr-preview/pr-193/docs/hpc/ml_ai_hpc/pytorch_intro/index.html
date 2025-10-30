@@ -10,8 +10,8 @@
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2DXB3BDH70"></script>
 <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-2DXB3BDH70",{anonymize_ip:!0})</script><link rel="stylesheet" href="/pr-preview/pr-193/assets/css/styles.f70cced0.css">
-<script src="/pr-preview/pr-193/assets/js/runtime~main.615f442c.js" defer="defer"></script>
-<script src="/pr-preview/pr-193/assets/js/main.d6e99e98.js" defer="defer"></script>
+<script src="/pr-preview/pr-193/assets/js/runtime~main.0824a3e3.js" defer="defer"></script>
+<script src="/pr-preview/pr-193/assets/js/main.bdfd79c4.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -22,7 +22,7 @@
 <p>Here we train a CNN on the MNIST dataset using a single GPU as an example. We profile the code and make performance improvements.</p>
 <p>This tutorial uses PyTorch but the steps are similar for TensorFlow. See our <a href="/pr-preview/pr-193/docs/hpc/ml_ai_hpc/tensorflow/">TensorFlow</a> page for details.</p>
 <h2 class="anchor anchorWithStickyNavbar_nzaP" id="step-1-activate-the-environment">Step 1: Activate the Environment<a href="#step-1-activate-the-environment" class="hash-link" aria-label="Direct link to Step 1: Activate the Environment" title="Direct link to Step 1: Activate the Environment" translate="no">​</a></h2>
-<p>For simplicity we will use a pre-installed Conda environmnet. Run these commands to activate the environment:</p>
+<p>For simplicity we will use a pre-installed Conda environment. Run these commands to activate the environment:</p>
 <div class="language-bash codeBlockContainer_Gtvh theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_q3dc"><pre tabindex="0" class="prism-code language-bash codeBlock_ggay thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_Y19p"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ </span><span class="token function" style="color:hsl(221, 87%, 60%)">ssh</span><span class="token plain"> </span><span class="token operator" style="color:hsl(221, 87%, 60%)">&lt;</span><span class="token plain">YourNetID</span><span class="token operator" style="color:hsl(221, 87%, 60%)">&gt;</span><span class="token plain">@adroit.princeton.edu</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ module load anaconda3/2023.9</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ conda activate /home/jdh4/.conda/envs/torch-env</span><br></span></code></pre></div></div>
 <p>Watch a <a href="https://www.youtube.com/watch?v=wqTgM-Wq4YY&amp;t=296s" target="_blank" rel="noopener noreferrer">video</a> that covers everything on this page for single-GPU training with <a href="https://researchcomputing.princeton.edu/python-profiling" target="_blank" rel="noopener noreferrer">profiling Python</a> using <code>line_profiler</code>.</p>
 <h2 class="anchor anchorWithStickyNavbar_nzaP" id="step-2-run-and-profile-the-script">Step 2: Run and Profile the Script<a href="#step-2-run-and-profile-the-script" class="hash-link" aria-label="Direct link to Step 2: Run and Profile the Script" title="Direct link to Step 2: Run and Profile the Script" translate="no">​</a></h2>
