@@ -45,7 +45,7 @@ This option may require a lot of RAM - thus you may have to wait a long time for
 Special containers, which allow to either load data fast fully or access chosen elements without loading the whole dataset into RAM.
 
 ### SQLite
-If you have structured data, a good option would be to use SQLite.  Please see [SQLite: Handling Large Structured Data](../06_tools_and_software/05_sqlite_handling_large_structured_data.md) for more information.
+If you have structured data, a good option would be to use SQLite.  Please see [SQLite: Handling Large Structured Data](../06_tools_and_software/07_sqlite_handling_large_structured_data.md) for more information.
 
 ### HDF5
 One can think about HDF5 file as a "container file" (database of a sort), which holds a lot of objects inside.

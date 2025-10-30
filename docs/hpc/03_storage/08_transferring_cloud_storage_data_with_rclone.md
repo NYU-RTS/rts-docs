@@ -29,7 +29,7 @@ There are specific instruction on the [rclone web site](https://rclone.org/drive
 
 ### Step 1: Login to Greene:
 
-Follow [instructions](../02_connecting_to_hpc/01_connecting_to_hpc.mdx) to log into the Greene HPC cluster.
+Follow [instructions](../02_connecting_to_hpc/01_connecting_to_hpc.md) to log into the Greene HPC cluster.
 
 ### Step 2: Load the rclone module
 ```sh
@@ -344,7 +344,7 @@ Please enter 'q' and we're done with configuration.
 
 ### Step 4: Transfer
 :::warning
-Please be sure to perform data transters on a data transfer node (DTN).  It can degrade performance for other users to perform transfers on other types of nodes.  For more information please see [Data Transfers](./03_data_transfers.md)
+Please be sure to perform data transfers on a data transfer node (DTN).  It can degrade performance for other users to perform transfers on other types of nodes.  For more information please see [Data Transfers](./03_data_transfers.md)
 :::
 
 Sample commands:

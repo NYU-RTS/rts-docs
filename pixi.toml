@@ -1,4 +1,4 @@
-[project]
+[workspace]
 channels = ["conda-forge"]
 description = "Add a short description here"
 name = "rts-docs-dev"
@@ -11,5 +11,5 @@ build = { cmd = ["pnpm", "build"], depends-on = ["install"] }
 start = { cmd = ["pnpm", "start"], depends-on = ["build"] }
 
 [dependencies]
-nodejs = ">=22.12.0,<22.14"
-pnpm = ">=10.3.0,<11"
+nodejs = ">=24.4.1,<24.10"
+pnpm = ">=10.18.1,<11"

@@ -1,0 +1,140 @@
+# JBrowse Genome Browser in OOD
+
+[JBrowse](https://jbrowse.org/jbrowse1.html) is a web-based genome browser for visualizing genomic features in common file formats, such as variants (VCF), genes (GFF3, BigBed) and gene expression (BigWig), and sequence alignments (BAM, CRAM, and GFF3).
+
+## Getting started
+
+### 1. Place or link all files into one data folder
+```bash
+$ cd /path/to/data_directory
+$ ls 
+alignments.sorted.bam
+alignments.sorted.bam.bai
+expression.bw
+genes.gff3     
+genes.gff3.tbi  
+reference.fa.       
+reference.fa.fai    
+tracks.conf
+variants.sorted.vcf.gz 
+variants.sorted.vcf.gz.tbi
+```
+Commonly used genomic data sets are available from the [Shared Genome Resource](https://gencore.bio.nyu.edu/explore-the-new-shared-genome-resource/).  The data is stored in a common location with the following naming convention:
+```bash
+/scratch/work/cgsb/genomes/Public/<KINGDOM>/<SPECIES>/<SOURCE>/<VERSION>/
+```
+:::tip
+There is no need to copy the reference or GFF3 to your data directory.  This would just waste space. You should link the files you'd like to your data directory as shown below:
+```bash
+$ ln -s /scratch/work/cgsb/genomes/.../reference.fa reference.fa
+$ ln -s /scratch/work/cgsb/genomes/.../reference.fai reference.fai
+$ ln -s /scratch/work/cgsb/genomes/.../genes.gff3 genes.gff3
+$ ln -s /scratch/work/cgsb/genomes/.../genes.gff3.tbi genes.gff3.tbi
+```
+:::
+
+### 2. Verify data files are in a supported format
+For the commands listed below, `bgzip` and `tabix` are provided by the `htslib` module. `samtools` and `bcftools` are provided by the module of the same name. (use `module avail htslib samtools bcftools` to list the installed versions)
+
+#### FA
+If the reference and index are not available in the [Shared Genome Resource](https://gencore.bio.nyu.edu/explore-the-new-shared-genome-resource/), it should be compressed with `bgzip` and indexed with `samtools faidx`.
+```bash
+bgzip reference.fa
+samtools faidx reference.fa.gz
+```
+
+#### GFF3
+If the GFF3 is not available in the [Shared Genome Resource](https://gencore.bio.nyu.edu/explore-the-new-shared-genome-resource/), the file should first be sorted by `seqid` (column 1) and `start` (column 4), compressed with `bgzip`, and indexed with `tabix`.
+```bash
+awk -F '\t' 'NF == 9' genes.gff3 | sort -k 1,1 -k 4n,4n | bgzip > genes.sorted.gff3.gz
+tabix -p gff genes.sorted.gff3.gz
+```
+The above command generates a GFF3 lacking directives/comments found in the original, but they not necessary for viewing in JBrowse.
+
+#### BED
+A number of BED file formats can be displayed after sorting by `chrom` (column 1) then `chromStart` (column 2), compressed with `bgzip`, and indexed with `tabix`.
+```bash
+sort -k 1,1 -k 2n,2n peaks.bed | bgzip > peaks.sorted.bed.gz
+tabix -p bed peaks.sorted.bed.gz
+```
+
+#### BAM/CRAM
+BAM and CRAM files must be sorted with `samtools sort` and indexed with `samtools index`.
+```bash
+samtools sort -o alignments.sorted.bam my.bam
+samtools index alignments.sorted.bam
+```
+
+For large BAM files, use the `--threads` option to set the number of threads for sorting, the `-m` option to specify the amount of memory per thread, and the `-l` option to set compression level for the resulting BAM file.
+
+#### VCF
+VCF files should be sorted with `bcftools` and indexed with `tabix`.
+```bash
+bcftools sort --output-type=z --output-file=variants.sorted.vcf.gz variants.vcf
+tabix -p vcf variants.sorted.vcf.gz
+```
+
+For large VCF files (above ~768M), the bcftools `--max-mem` option may be used to allocate extra memory for sorting VCF records, avoiding the use of the file system for an [external merge sort](https://en.wikipedia.org/wiki/External_sorting#External_merge_sort).
+
+### 3. Create the configuration file, tracks.conf
+
+An example of a [minimal configuration](https://jbrowse.org/docs/minimal.html)
+```ini
+[GENERAL]
+refSeqs=reference.fa.gz.fai
+# reference sequence compressed with bgzip & indexed with "samtools faidx"
+## If using Shared Genome Resource where file is uncompressed
+## refSeqs=reference.fa.fai
+
+[tracks.reference]
+urlTemplate=reference.fa.gz
+# file specified as the refSeqs value without the ".fai" suffix
+## If using Shared Genome Resource where file is uncompressed
+## urlTemplate=reference.fa.
+
+[tracks.alignments]
+urlTemplate=alignments.sorted.bam
+# my.sorted.bam.bai (created by "samtools index") is assumed to exist
+## baiUrlTemplate=alignments.sorted.bai
+# custom name if corresponding .bai file isn't suffixed with .bam.bai
+
+[tracks.variants]
+urlTemplate=variants.sorted.vcf.gz
+# variants.sorted.vcf.gz.tbi assumed to exist
+
+[tracks.genes]
+urlTemplate=genes.sorted.gff3.gz
+# genes.sorted.gff3.gz.tbi assumed to exist
+## If using Shared Genome Resource where file is uncompressed
+## you must create the tbi index with tabix.
+## urlTemplate=genes.sorted.gff3
+
+[tracks.expression]
+urlTemplate=expression.bw
+
+[tracks.peaks]
+urlTemplate=peaks.bed.gz
+# peaks.bed.gz.tbi assumed to exist
+```
+Customizing Tracks:
+-   [Reference Sequence Configuration](https://jbrowse.org/docs/reference_sequence.html)
+-   [Alignment Tracks](https://jbrowse.org/docs/alignments.html)
+-   [Wiggle/BigWig Tracks](https://jbrowse.org/docs/bigwig.html)
+-   [VCF Tracks](https://jbrowse.org/docs/variants.html)
+
+### 4. Making feature names searchable in JBrowse (Optional)
+
+The JBrowse `generate-names.pl` script generates an index of feature names for searching and autocompletion when typed into the JBrowse search box, or the `View > search for features` menu option.
+```bash
+module load jbrowse/web/1.16.0
+generate-names.pl --compress --out .
+```
+
+## Configuration
+
+Enter the full path to the directory you created above in the `Data Folder Path` input, add any optional Slurm options and press the `Launch` button.
+
+
+## JBrowse running in OOD
+
+After a short pause while your job is in the Greene queue and then starts up, you'll see the JBrowse application.

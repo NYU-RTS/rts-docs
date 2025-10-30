@@ -3,14 +3,14 @@
 
 ## Batch vs Interactive Jobs
 
--   HPC workloads are usually better suited to *batch processing* than *interactive* working.
+-   HPC workloads are usually better suited to *batch processing* than *interactive* workflows.
 -   A batch job is sent to the system when submitted with an **sbatch** command. 
 -   The working pattern we are all familiar with is *interactive* - where we type ( or click ) something interactively, and the computer performs the associated action. Then we type ( or click ) the next thing.
 -   Comments at the start of the script, which match a special pattern ( `#SBATCH` ) are read as Slurm options.
 
-### The trouble with interactive environments
+### Challenges of Interactive Work
 
-There is a reason why GUIs are less common in HPC environments: **point-and-click** is **necessarily interactive**. In HPC environments (*as we'll see in session 3*) work is scheduled in order to allow exclusive use of the shared resources. On a busy system there may be several hours wait between when you submit a job and when the resources become available, so a reliance on user interaction is not viable. In Unix, commands need not be run interactively at the prompt, you can write a sequence of commands into a file to be run as a script, either manually (for sequences you find yourself repeating frequently) or by another program such as the batch system.
+There is a reason why GUIs are less common in HPC environments: **point-and-click** is **necessarily interactive**. In HPC environments (*as we'll see in section 3*) work is scheduled in order to allow exclusive use of the shared resources. On a busy system there may be several hours wait between when you submit a job and when the resources become available, so a reliance on user interaction is not viable. In Unix, commands need not be run interactively at the prompt, you can write a sequence of commands into a file to be run as a script, either manually (for sequences you find yourself repeating frequently) or by another program such as the batch system.
 
 :::tip
 The job might not start immediately, and might take hours or days, so we prefer a *batch* approach:
@@ -21,7 +21,7 @@ You can now run the script interactively, which is a great way to save effort if
 -   Submit the script to a batch system, to run on dedicated resources when they become available.
 :::
 
-### Where does the output go ?
+### Job Output
 
 -   The batch system writes stdout and stderr from a job to a file named for example *"slurm-12345.out"*
     -   You can change either stdout or stderr using sbatch options.
@@ -34,7 +34,7 @@ There are two aspects to a batch job script:
 -   A set of *SBATCH* directives describing the resources required and other information about the job.
 -   The script itself, comprised of commands to set up and perform the computations without additional user interaction.
 
-### A simple example
+### A Simple Job Example
 
 A typical batch script on an NYU HPC cluster looks something like these two examples:
 
@@ -227,7 +227,7 @@ or as a command-line option to sbatch when you submit the job:
 [NetID@log-1 ~]$ sbatch --nodes=2 --ntasks-per-node=4 my_script.sh
 ```
 
-### Options to manage job output
+### Job Output Options
 
 -   `-J jobname`
     -   Give the job a name. The default is the filename of the job script. Within the job, `$SLURM_JOB_NAME` expands to the job name.
@@ -244,7 +244,7 @@ or as a command-line option to sbatch when you submit the job:
 -   `--mail-type=type`
     -   Valid type values are NONE, BEGIN, END, FAIL, REQUIRE, ALL.
 
-### Options to set the job environment: 
+### Job Environment Options
 
 -   `--export=VAR1,VAR2="some value",VAR3`
     -   Pass variables to the job, either with a specific value (the `VAR=` form) or from the submitting environment ( without "`=`" )
@@ -252,7 +252,7 @@ or as a command-line option to sbatch when you submit the job:
     -   `--get-user-env`\[=timeout]\[mode]
     -   Run something like "su `-` \<username\> -c /usr/bin/env" and parse the output. Default timeout is 8 seconds. The mode value can be "S", or "L" in which case "su" is executed with "`-`" option.
 
-### Options to request compute resources
+### Resource Request Options
 
 -   `-t, --time=time`
     -   `Set a limit on the total run time. Acceptable formats include "minutes", "minutes:seconds", "hours:minutes:seconds", "days-hours", "days-hours:minutes" and "days-hours:minutes:seconds"`.
@@ -273,7 +273,7 @@ or as a command-line option to sbatch when you submit the job:
     -   Require ncpus number of CPU cores per task. Without this option, allocate one core per task.
         -   Requesting the resources you need, as accurately as possible, allows your job to be started at the earliest opportunity as well as helping the system to schedule work efficiently to everyone's benefit.
 
-### Options for running interactively on the compute nodes with srun
+### srun & Interactive Job Options
 
 -   `-nnum`
     -   `Specify the number of tasks to run, eg. -n4. Default is one CPU core per task.` Don't just submit the job, but also wait for it to start and connect `stdout`, `stderr`and `stdin` to the current terminal.
@@ -290,7 +290,7 @@ or as a command-line option to sbatch when you submit the job:
     -   Enable X forwarding, so programs using a GUI can be used during the session (provided you have X forwarding to your workstation set up)
     -   To leave an interactive batch session, type `exit` at the command prompt
 
-### Options for delaying starting a job
+### Delaying Jobs
 
 -   `--begin=time`
     -   Delay starting this job until after the specified date and time, eg. `--begin=9:42:00`, to start the job at 9:42:00 am
@@ -308,7 +308,7 @@ or as a command-line option to sbatch when you submit the job:
         -   Schedule second jobs to start when the first one ends
         -   `sbatch job2.sh`
 
-### Options for running many similar jobs
+### Submitting Similar Jobs
 
 -   `-a, --array=indexes`
     -   Submit an array of jobs with array ids as specified. Array ids can be specified as a numerical range, a comma-separated list of numbers, or as some combination of the two. Each job instance will have an environment variable `SLURM_ARRAY_JOB_ID` and `SLURM_ARRAY_TASK_ID`. For example:
@@ -406,7 +406,7 @@ Job array submission introduces an environment variable, `SLURM_ARRAY_TASK_ID`, 
 
 Also as shown above: two additional options `%A` and `%a`, denoting the job ID and the task ID ( i.e. job array index ) respectively, are available for specifying a job's stdout, and stderr file names.
 
-## More examples
+## Additional Examples
 
 You can find more examples in the slurm jobarray examples directory:
 
@@ -564,7 +564,7 @@ To use any GUI-based program within the interactive batch session you will need 
 [NetID@log-1 ~]$ gnuplot
 gnuplot> test
 ```
-If a window opens on your display with a gnuplot test window, you know that Xforwarding is working.  Please see [SSH Tunneling and X11 Forwarding](../02_connecting_to_hpc/02_ssh_tunneling_and_x11_forwarding.md) for details.
+If a window opens on your display with a gnuplot test window, you know that Xforwarding is working.  Please see the [X11 Forwarding](../02_connecting_to_hpc/02_x11_forwarding.md) section for details.
 
 ### Request Resources
 
