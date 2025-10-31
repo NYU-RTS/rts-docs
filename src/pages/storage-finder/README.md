@@ -10,27 +10,27 @@ The Storage Finder is an interactive web application that helps users choose the
 
 The storage finder uses static JSON files located in `src/data/storage-finder/`:
 
-- `facet-tree.json` - Contains the questions (facets) and their answer choices
-- `service-list.json` - Contains the storage services and their characteristics
+-   `facet-tree.json` - Contains the questions (facets) and their answer choices
+-   `service-list.json` - Contains the storage services and their characteristics
 
 ### Original Data Source
 
 The data structure is designed to be compatible with Drupal-based content management systems. Ideally, this data would be downloaded from a Drupal endpoint that provides:
 
-- **Facets taxonomy** - A two-level hierarchy representing questions and answer choices
-- **Services content type** - Storage services with their matching criteria and detailed information
-- **Service paragraphs** - Structured data fields for service comparison
+-   **Facets taxonomy** - A two-level hierarchy representing questions and answer choices
+-   **Services content type** - Storage services with their matching criteria and detailed information
+-   **Service paragraphs** - Structured data fields for service comparison
 
 For organizations wanting to use a Drupal instance to manage this data:
 
 1. Set up the Finder module in Drupal following the original Cornell documentation
 2. Configure your questions, answer choices, and services through the Drupal admin interface
 3. Download the data from the Drupal REST API endpoints:
-   - **Facet Tree**: `http://your-drupal-site.com/rest/facettree`
-   - **Service List**: `http://your-drupal-site.com/rest/servicelist`
+   -   **Facet Tree**: `http://your-drupal-site.com/rest/facettree`
+   -   **Service List**: `http://your-drupal-site.com/rest/servicelist`
 4. Save the downloaded JSON files to `src/data/storage-finder/`:
-   - Save facet tree data as `facet-tree.json`
-   - Save service list data as `service-list.json`
+   -   Save facet tree data as `facet-tree.json`
+   -   Save service list data as `service-list.json`
 
 ## Adding or Modifying Data
 
@@ -82,8 +82,8 @@ To add a new question to the storage finder:
 
 #### Control Types
 
-- **`radio`** - Only one choice can be selected (exclusive). Users can select a different option by clicking it.
-- **`checkbox`** - Multiple choices can be selected (inclusive). Users can select multiple options from the same question.
+-   **`radio`** - Only one choice can be selected (exclusive). Users can select a different option by clicking it.
+-   **`checkbox`** - Multiple choices can be selected (inclusive). Users can select multiple options from the same question.
 
 ### Adding a New Storage Service
 
@@ -176,27 +176,27 @@ To add, remove, or modify the fields shown in the service comparison table:
 
 #### Facet Structure
 
-- **id**: Unique identifier for the question
-- **name**: The question text displayed to users
-- **control_type**: "radio" or "checkbox"
-- **parent**: "0" for top-level questions
-- **weight**: Controls display order
-- **description**: Optional HTML help text
-- **choices**: Array of possible answers
+-   **id**: Unique identifier for the question
+-   **name**: The question text displayed to users
+-   **control_type**: "radio" or "checkbox"
+-   **parent**: "0" for top-level questions
+-   **weight**: Controls display order
+-   **description**: Optional HTML help text
+-   **choices**: Array of possible answers
 
 #### Choice Structure
 
-- **id**: Unique identifier for the choice
-- **name**: Answer text displayed to users
-- **parent**: ID of the parent question
-- **weight**: Controls display order within the question
+-   **id**: Unique identifier for the choice
+-   **name**: Answer text displayed to users
+-   **parent**: ID of the parent question
+-   **weight**: Controls display order within the question
 
 #### Service Structure
 
-- **id**: Unique identifier for the service
-- **title**: Service name
-- **facet_matches**: Array of choice IDs this service is compatible with
-- **field_data**: Object containing service details for comparison table
+-   **id**: Unique identifier for the service
+-   **title**: Service name
+-   **facet_matches**: Array of choice IDs this service is compatible with
+-   **field_data**: Object containing service details for comparison table
 
 ## Troubleshooting
 
@@ -204,20 +204,20 @@ To add, remove, or modify the fields shown in the service comparison table:
 
 **Services not filtering correctly:**
 
-- Verify `facet_matches` arrays contain correct choice IDs
-- Check that choice IDs in questions match those referenced in services
+-   Verify `facet_matches` arrays contain correct choice IDs
+-   Check that choice IDs in questions match those referenced in services
 
 **New questions not appearing:**
 
-- Ensure the question has a unique ID
-- Verify `parent` is set to "0" for top-level questions
-- Check `weight` for proper ordering
+-   Ensure the question has a unique ID
+-   Verify `parent` is set to "0" for top-level questions
+-   Check `weight` for proper ordering
 
 **Comparison table missing data:**
 
-- Confirm all services have the same `field_data` structure
-- Verify field names match the TypeScript interfaces
-- Check for JSON syntax errors
+-   Confirm all services have the same `field_data` structure
+-   Verify field names match the TypeScript interfaces
+-   Check for JSON syntax errors
 
 ## Inspiration
 
