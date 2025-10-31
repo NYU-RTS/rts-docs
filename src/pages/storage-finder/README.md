@@ -23,18 +23,18 @@ The data structure is designed to be compatible with Drupal-based content manage
 
 For organizations wanting to use a Drupal instance to manage this data:
 
-1. Set up the Finder module in Drupal following the original Cornell documentation
-2. Configure your questions, answer choices, and services through the Drupal admin interface
-3. Download the data from the Drupal REST API endpoints:
+1.  Set up the Finder module in Drupal following the original Cornell documentation
+2.  Configure your questions, answer choices, and services through the Drupal admin interface
+3.  Download the data from the Drupal REST API endpoints:
    -   **Facet Tree**: `http://your-drupal-site.com/rest/facettree`
    -   **Service List**: `http://your-drupal-site.com/rest/servicelist`
-4. Save the downloaded JSON files to `src/data/storage-finder/`:
+4.  Save the downloaded JSON files to `src/data/storage-finder/`:
    -   Save facet tree data as `facet-tree.json`
    -   Save service list data as `service-list.json`
 
 ## Adding or Modifying Data
 
-> [!IMPORTANT]
+> [!IMPORTANT][]
 > Adding services and questions through the Drupal interface may be easier and provides a better user experience. If you have access to a Drupal instance with the Finder module, it is recommended to manage your data there. However, if you must modify the JSON files directly, follow the steps below carefully.
 
 ### Adding a New Question (Facet)
