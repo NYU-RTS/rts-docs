@@ -42,6 +42,7 @@
     "@docusaurus/tsconfig": "^3.9.1",
     "@docusaurus/types": "^3.9.1",
     "@eslint/compat": "^1.4.0",
+    "@types/lunr": "^2.3.7",
     "@types/react": "^19.2.2",
     "eslint": "^9.37.0",
     "eslint-config-prettier": "^10.1.8",

@@ -4,6 +4,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { usePluginData } from "@docusaurus/useGlobalData";
 import Heading from "@theme/Heading";
 import Layout from "@theme/Layout";
+import lunr from "lunr";
 import { useEffect, useMemo, useState } from "react";
 
 interface SearchDocument {
@@ -18,11 +19,67 @@ interface SearchResult {
   title: string;
   route: string;
   excerpt: string;
+  score: number;
+}
+
+interface LunrSearchResult {
+  ref: string;
+  score: number;
+  matchData: {
+    metadata: Record<
+      string,
+      {
+        title?: { position: number[][] };
+        content?: { position: number[][] };
+        pageTitle?: { position: number[][] };
+      }
+    >;
+  };
 }
 
 function useQuery(): URLSearchParams {
   const { search } = useLocation();
   return useMemo(() => new URLSearchParams(search), [search]);
+}
+
+function extractExcerpt(
+  content: string,
+  matchPositions?: number[][],
+  maxLength = 220,
+): string {
+  if (!content) return "";
+
+  if (matchPositions && matchPositions.length > 0) {
+    const firstMatch = matchPositions[0];
+    const matchStart = firstMatch[0];
+    const matchEnd = matchStart + firstMatch[1];
+
+    const halfWindow = Math.floor((maxLength - firstMatch[1]) / 2);
+    let excerptStart = Math.max(0, matchStart - halfWindow);
+    let excerptEnd = Math.min(content.length, matchEnd + halfWindow);
+
+    if (excerptStart > 0) {
+      const spaceIndex = content.lastIndexOf(" ", excerptStart);
+      if (spaceIndex > excerptStart - 20) {
+        excerptStart = spaceIndex + 1;
+      }
+    }
+
+    if (excerptEnd < content.length) {
+      const spaceIndex = content.indexOf(" ", excerptEnd);
+      if (spaceIndex > 0 && spaceIndex < excerptEnd + 20) {
+        excerptEnd = spaceIndex;
+      }
+    }
+
+    const excerpt = content.slice(excerptStart, excerptEnd);
+    const prefix = excerptStart > 0 ? "…" : "";
+    const suffix = excerptEnd < content.length ? "…" : "";
+
+    return prefix + excerpt + suffix;
+  }
+
+  return content.slice(0, maxLength) + (content.length > maxLength ? "…" : "");
 }
 
 export default function SearchPage() {
@@ -32,7 +89,7 @@ export default function SearchPage() {
 
   const { siteConfig } = useDocusaurusContext();
   const pluginData = usePluginData("docusaurus-lunr-search") as {
-    fileNames?: { searchDoc?: string };
+    fileNames?: { searchDoc?: string; lunrIndex?: string };
   };
 
   const [isReady, setIsReady] = useState(false);
@@ -56,48 +113,82 @@ export default function SearchPage() {
 
     const searchDocumentPath =
       pluginData?.fileNames?.searchDoc ?? "search-doc.json";
+    const lunrIndexPath = pluginData?.fileNames?.lunrIndex ?? "lunr-index.json";
 
-    fetch(`${siteConfig.baseUrl}${searchDocumentPath}`)
-      .then((response) => {
+    Promise.all([
+      fetch(`${siteConfig.baseUrl}${searchDocumentPath}`).then((response) => {
         if (!response.ok) {
           throw new Error(`Failed to load search index (${response.status})`);
         }
         return response.json() as Promise<{
           searchDocs?: SearchDocument[];
         }>;
-      })
-      .then((searchData) => {
+      }),
+      fetch(`${siteConfig.baseUrl}${lunrIndexPath}`).then((response) => {
+        if (!response.ok) {
+          throw new Error(`Failed to load lunr index (${response.status})`);
+        }
+        return response.json() as Promise<lunr.Index>;
+      }),
+    ])
+      .then(([searchData, lunrIndexData]) => {
         const documents: SearchDocument[] = searchData.searchDocs ?? [];
 
         if (documents.length === 0) {
           throw new Error("No documents found in search index");
         }
 
-        const filtered = documents
-          .filter((document: SearchDocument) => {
-            const searchText = (
-              (document.title ?? "") +
-              " " +
-              (document.pageTitle ?? "") +
-              " " +
-              (document.content ?? "")
-            ).toLowerCase();
-            return searchText.includes(query.toLowerCase());
-          })
+        const index = lunr.Index.load(lunrIndexData);
+
+        let lunrResults: LunrSearchResult[];
+        try {
+          lunrResults = index.query((q) => {
+            const tokens = lunr.tokenizer(query);
+            q.term(tokens, { boost: 10 });
+            q.term(tokens, {
+              wildcard: lunr.Query.wildcard.TRAILING,
+            });
+          }) as LunrSearchResult[];
+        } catch {
+          try {
+            lunrResults = index.search(query) as LunrSearchResult[];
+          } catch {
+            lunrResults = [];
+          }
+        }
+
+        const searchResults: SearchResult[] = lunrResults
           .slice(0, 50)
-          .map((document: SearchDocument) => {
-            const excerpt =
-              (document.content ?? "").slice(0, 220) +
-              ((document.content ?? "").length > 220 ? "…" : "");
+          .map((lunrResult) => {
+            const documentIndex = Number.parseInt(lunrResult.ref, 10);
+            const document = documents[documentIndex];
+            if (!document) return null;
+
+            let contentMatchPositions: number[][] | undefined;
+
+            for (const term in lunrResult.matchData.metadata) {
+              const termData = lunrResult.matchData.metadata[term];
+              if (termData.content?.position) {
+                contentMatchPositions = termData.content.position;
+                break;
+              }
+            }
+
+            const excerpt = extractExcerpt(
+              document.content ?? "",
+              contentMatchPositions,
+            );
 
             return {
               title: document.pageTitle ?? document.title ?? document.url,
               route: document.url,
               excerpt,
+              score: lunrResult.score,
             };
-          });
+          })
+          .filter((result): result is SearchResult => result !== null);
 
-        setResults(filtered);
+        setResults(searchResults);
         setIsReady(true);
       })
       .catch((error_: Error) => {
