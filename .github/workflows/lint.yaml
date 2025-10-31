@@ -34,4 +34,5 @@ jobs:
           reporter: github-pr-check
           fail_level: "warning"
           level: "warning"
+          workdir: "docs/"
           remark_args: "--use=remark-preset-lint-recommended --use=remark-mdx"
