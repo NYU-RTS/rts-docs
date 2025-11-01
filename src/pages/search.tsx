@@ -95,6 +95,11 @@ export default function SearchPage() {
   const [isReady, setIsReady] = useState(false);
   const [results, setResults] = useState<SearchResult[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [searchInput, setSearchInput] = useState(rawQuery);
+
+  useEffect(() => {
+    setSearchInput(rawQuery);
+  }, [rawQuery]);
 
   useEffect(() => {
     if (!query) {
@@ -211,10 +216,10 @@ export default function SearchPage() {
           <input
             aria-label="Search docs"
             className="navbar__search-input"
-            defaultValue={rawQuery}
             name="q"
             placeholder="Search docs"
             type="search"
+            value={searchInput}
             style={{
               width: "100%",
               maxWidth: 560,
@@ -222,6 +227,7 @@ export default function SearchPage() {
               paddingLeft: "2.5rem",
               fontSize: "1rem",
             }}
+            onChange={(e) => setSearchInput(e.target.value)}
           />
         </form>
 
