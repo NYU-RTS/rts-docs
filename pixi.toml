@@ -12,4 +12,4 @@ start = { cmd = ["pnpm", "start"], depends-on = ["build"] }
 
 [dependencies]
 nodejs = ">=24.4.1,<24.10"
-pnpm = ">=10.18.1,<11"
+pnpm = ">=10.20.0,<11"
