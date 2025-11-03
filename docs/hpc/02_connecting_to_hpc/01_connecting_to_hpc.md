@@ -127,7 +127,7 @@ SSH keys are not supported on Torch!
 Instead of typing your password every time you need to log in, you can also specify an ssh key.
 
 -   Only do that on the computer you trust
--   Generate ssh key pair (terminal in Linux/Mac or cmd/WSL in Windows): [https://www.ssh.com/ssh/keygen/][ssh instructions keygen link]
+-   Generate ssh key pair (terminal in Linux/Mac or cmd/WSL in Windows) [using ssh keygen](https://www.ssh.com/ssh/keygen/)
 -   Note the path to ssh key files. Don't share key files with anybody - anybody with this key file can login to your account
 -   Log into cluster using regular login/password and then add the content of generated public key file (the one with .pub) to `$HOME/.ssh/authorized_keys` on cluster
 -   Next time you will log into cluster no password will be required
@@ -137,8 +137,4 @@ Instead of typing your password every time you need to log in, you can also spec
 
 [install vpn on windows link]: https://nyu.service-now.com/sp?sys_kb_id=6177d7031c811904bbcf4dc2835ec340&id=kb_article_view&sysparm_rank=3&sysparm_tsqueryId=9a07fee81b146410a54ffdd51a4bcb8e
 
-[apple terminal link]: https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac#:~:text=Open%20Terminal,%2C%20then%20double%2Dclick%20Terminal.
-
 [wsl installation link]: https://docs.microsoft.com/en-us/windows/wsl/install-win10
-
-[ssh instructions keygen link]: https://www.ssh.com/ssh/keygen/
