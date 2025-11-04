@@ -174,7 +174,7 @@ Here is one possibility:
 export MASTER_PORT=$(expr 10000 + $(echo -n $SLURM_JOBID | tail -c 4) + $SLURM_ARRAY_TASK_ID)
 ```
 
-### --ntasks-per-node versus --ntasks
+### `--ntasks-per-node` versus `--ntasks`
 
 Be sure to use `--ntasks-per-node` and not `--ntasks` in your Slurm script.
 
