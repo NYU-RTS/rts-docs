@@ -5,7 +5,7 @@ It is important to optimize your script for the single-GPU case before moving to
 Here we train a CNN on the MNIST dataset using a single GPU as an example. We profile the code and make performance improvements.
 
 :::tip
-This tutorial uses PyTorch but the steps are similar for TensorFlow. See our [TensorFlow](./06_tensorflow.md) page for details.
+This tutorial uses PyTorch but the steps are similar for TensorFlow.
 :::
 
 :::tip
