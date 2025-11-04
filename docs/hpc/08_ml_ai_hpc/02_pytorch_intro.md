@@ -1,5 +1,9 @@
 # Single-GPU Training with PyTorch
 
+:::info
+This was adapted from [Princeton University Multi-GPU Training with PyTorch](https://github.com/PrincetonUniversity/multi_gpu_training)
+:::
+
 It is important to optimize your script for the single-GPU case before moving to multi-GPU training. This is because as you request more resources, your queue time increases. We also want to avoid wasting resources by running code that is not optimized.
 
 Here we train a CNN on the MNIST dataset using a single GPU as an example. We profile the code and make performance improvements.
