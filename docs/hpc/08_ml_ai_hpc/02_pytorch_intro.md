@@ -12,13 +12,13 @@ This tutorial uses PyTorch but the steps are similar for TensorFlow. See our [Te
 You can watch a [video](https://www.youtube.com/watch?v=wqTgM-Wq4YY&t=296s) that covers everything on this page for single-GPU training with [profiling Python](https://researchcomputing.princeton.edu/python-profiling) using `line_profiler`, for the HPC system at Princeton.  It will be a little different on the NYU HPC system because we'll be using overlay files, but it will give you a nice overview.
 :::
 
-## Step 0: Create a Working Directory
+## Step 1: Create a Working Directory
 ```bash
 [NetID@log-1 ~]$ mkdir -p /scratch/NetID/pytorych_examples/pytorch_single_gpu
 [NetID@log-1 ~]$ cd /scratch/NetID/pytorych_examples/pytorch_single_gpu
 ```
 
-## Step 1: Create PyTorch Overlay File
+## Step 2: Create PyTorch Overlay File
 
 Please follow the instructions on [Singularity with Conda](../07_containers/03_singularity_with_conda.md) to create a PyTorch overlay file in the working directory we created above.  We will use this overlay file for the PyTorch examples to follow.
 
@@ -36,7 +36,7 @@ Singularity> exit
 [NetID@log-1 ~]$
 ```
 
-## Stop 2: Get the Training Data
+## Stop 3: Get the Training Data
 Save the following as the file `download_data.py` in your working directory:
 ```python
 import torchvision
@@ -62,7 +62,7 @@ This uses the `torchvision` package, so you'll need to run it with our overlay f
 ```
 After running the command above you should see that it has created a subdirectory named `data` that contains the data we'll use in this example.
 
-## Step 3: Run and Profile the Script
+## Step 4: Run and Profile the Script
 Please save the following code as `mnist_classify.py`:
 ```python
 # November 6, 2023
@@ -267,7 +267,7 @@ Memory Efficiency: 7.24% of 8.00 GB
 
 Some variation in the run time is expected when multiple users are running on the same node.
 
-## Step 4: Analyze the Profiling Data
+## Step 5: Analyze the Profiling Data
 
 We installed [line_profiler](https://researchcomputing.princeton.edu/python-profiling) into the Conda environment and profiled the code. To analyze the profiling data:
 
@@ -311,11 +311,11 @@ The slowest line is number 42 which consumes 84.5% of the time in the training f
 
 Note that GPU utilization as measured using nvidia-smi is only a measure of the fraction of the time that a GPU kernel is running on the GPU. It says nothing about how many CUDA cores are being used or how efficiently the GPU kernels have been written. However, for codes used by large communities, one can generally associate GPU utilization with overall GPU efficiency. For a more accurate measure of GPU utilization, use [Nsight Systems or Nsight Compute](https://researchcomputing.princeton.edu/support/knowledge-base/gpu-computing#profiling) to measure the occupancy.
 
-## Step 4: Work through the Performance Tuning Guide from Princeton
+## Step 6: Work through the Performance Tuning Guide from Princeton
 
 Make sure you optimize the single GPU case before going to multiple GPUs by working through the [Performance Tuning Guide](https://pytorch.org/tutorials/recipes/recipes/tuning_guide.html).
 
-## Step 5: Optimize Your Script
+## Step 7: Optimize Your Script
 
 One technique that was discussed in the [Princeton Performance Tuning Guide](https://pytorch.org/tutorials/recipes/recipes/tuning_guide.html) was using multiple CPU-cores to speed-up [ETL](https://en.wikipedia.org/wiki/Extract,_transform,_load). Let's put this into practice.
 
