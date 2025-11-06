@@ -1,4 +1,4 @@
-# Slurm: Main Commands
+# Slurm: Command reference
 
 Slurm offers many utility commands to work with, some of the most popularly used commands are:
 
