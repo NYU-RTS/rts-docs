@@ -5,7 +5,7 @@ import { usePluginData } from "@docusaurus/useGlobalData";
 import Heading from "@theme/Heading";
 import Layout from "@theme/Layout";
 import lunr from "lunr";
-import { useEffect, useMemo, useState } from "react";
+import { type ReactElement, useEffect, useMemo, useState } from "react";
 
 interface SearchDocument {
   url: string;
@@ -80,6 +80,60 @@ function extractExcerpt(
   }
 
   return content.slice(0, maxLength) + (content.length > maxLength ? "…" : "");
+}
+
+function highlightText(text: string, query: string): ReactElement {
+  if (!query || !text) {
+    return <>{text}</>;
+  }
+
+  const queryTerms = query
+    .trim()
+    .split(/\s+/)
+    .filter((term) => term.length > 0)
+    .map((term) => term.toLowerCase());
+
+  if (queryTerms.length === 0) {
+    return <>{text}</>;
+  }
+
+  const escapedTerms = queryTerms.map((term) =>
+    term.replaceAll(/[.*+?^${}()|[\]\\]/g, String.raw`\$&`),
+  );
+  const pattern = new RegExp(`(${escapedTerms.join("|")})`, "gi");
+
+  const parts: (string | ReactElement)[] = [];
+  let lastIndex = 0;
+  let match;
+
+  const regex = new RegExp(pattern.source, pattern.flags);
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+
+    parts.push(
+      <mark key={`highlight-${match.index}`} className="search-highlight">
+        {match[0]}
+      </mark>,
+    );
+
+    lastIndex = regex.lastIndex;
+
+    if (match[0].length === 0) {
+      regex.lastIndex++;
+    }
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+
+  if (parts.length === 0) {
+    return <>{text}</>;
+  }
+
+  return <>{parts}</>;
 }
 
 export default function SearchPage() {
@@ -285,7 +339,7 @@ export default function SearchPage() {
                       textDecoration: "none",
                     }}
                   >
-                    {result.title}
+                    {highlightText(result.title, query)}
                   </Link>
                   <div
                     style={{
@@ -303,7 +357,7 @@ export default function SearchPage() {
                         color: "var(--ifm-color-emphasis-700)",
                       }}
                     >
-                      {result.excerpt}
+                      {highlightText(result.excerpt, query)}
                     </p>
                   )}
                 </li>
