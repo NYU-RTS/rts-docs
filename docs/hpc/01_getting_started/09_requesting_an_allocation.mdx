@@ -47,5 +47,9 @@ Please select a resource and fill in justification to complete the allocation re
 Now your allocation request is created! You'll see an allocation request with "New" status.
 !["Allocation request created" section](./static/allocation_request_created.png)
 
-Once your school approver approves the request, the status will change to "Active" (and you will receive an email notifying you of the change). 
+Once your school approver approves the request, the status will change to "Active" (and you will receive an email notifying you of the change). An active allocation now allows you to submit jobs on Torch.
 
+## `SLURM` account association
+Within the "Allocations" section in the project, you'll see the `slurm_account_name` listed as shown below:
+!["SLURM account association"](./static/allocation_slurm_account_name.png)
+This account name needs to be specified via the `--account` flag to `srun` and `sbatch`.  

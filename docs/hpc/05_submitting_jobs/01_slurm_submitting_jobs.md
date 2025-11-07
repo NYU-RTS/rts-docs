@@ -4,6 +4,10 @@
 If you are new to using HPC resources and would like to learn about the principles of using the `SLURM` scheduler for submitting batch jobs, please refer to [this section](../13_tutorial_intro_hpc/04_scheduler_fundamentals.mdx). This section focuses on the specifics of the Torch cluster and assumes familiarity with the tutorial.
 :::
 
+:::warning Active allocation in the HPC projects portal
+An active allocation in the HPC projects portal is needed to submit any jobs on Torch. For more information on how to get one, please refer to [this section](../01_getting_started/07_hpc_project_management_portal.mdx). All job submissions must include the `--account` parameter.
+::: 
+
 ## Partitions
 
 `SLURM` partitions on Torch control stakeholder resource access. No physical nodes are tied to partitions — instead, equivalent compute resources are allocated via partition `QoS`([QualityOfService](https://slurm.schedmd.com/qos.html)).
