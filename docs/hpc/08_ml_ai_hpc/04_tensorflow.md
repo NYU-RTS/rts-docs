@@ -176,26 +176,27 @@ Below is a sample Slurm script:
 #SBATCH --mem=64G                # total memory per node (4G per cpu-core is default)
 #SBATCH --gres=gpu:2             # number of gpus per node
 #SBATCH --time=00:20:00          # total run time limit (HH:MM:SS)
-#SBATCH --mail-type=begin        # send email when job begins
-#SBATCH --mail-type=end          # send email when job ends
-#SBATCH --mail-user=<YourNetID>@princeton.edu
 
 module purge
-module load anaconda3/2021.11
-conda activate tf2-v100
 
-python cassava_classify.py --batch-size-per-replica=32 --epochs=15
+srun singularity exec --nv \
+	    --overlay /scratch/NetID/pytorch_examples_new/tensorflow-example/tensorflow.ext3:ro \
+	    /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif\
+	    /bin/bash -c "source /ext3/env.sh; python mnist_classify.py --batch-size-per-replica=32 --epochs=15"
 ```
+:::note
+Be sure to change `NetID` in the above scipt to your NetID.
+:::
 
-Note that `srun` is not called and there is only one task. Submit the job as follows:
+Submit the job as follows:
 
-```
-(tf2-v100) $ sbatch job.slurm
+```bash
+[NetID@log-1 tensorflow_example]$ sbatch job.slurm
 ```
 
 ### Performance
 
-The training time is shown below for different choices of `cpus-per-task` and the number of GPUs:
+The training time is shown below for different choices of `cpus-per-task` and the number of GPUs on a test system (your results will vary depending on your system specs):
 
 | nodes         | ntasks        | cpus-per-task | GPUs    | Training Time (s) |  Mean GPU Utilization (%) |
 |:-------------:|:-------------:|:------------:|:--------:|:-----------------:|:-------------------------:|
@@ -218,21 +219,12 @@ The training time is shown below for different choices of `cpus-per-task` and th
 
 The figure below shows the speed-up as a function of the number of GPUs. The dashed line shows the maximum possible speed-up.
 
-<img src="speedup_vs_gpus.png" alt="speed-up" width="700"/>
+![speedup vs gpus plot](./static/speedup_vs_gpus.png)
 
 We see that linear scaling is not observed. That is, the training time when using 2 GPUs is not 1/2 of the training time when using one. To improve on this one would profile the script and identify the performance bottleneck. Some of the training images are 500 pixels wide. It could be that the preprocessing step is the slowest.
 
-All runs were done on adroit-h11g1 while making certain that no other jobs were running on the node:
-
-```
-#SBATCH --mem=770000M
-#SBATCH --nodelist=adroit-h11g1
-```
-
 ## Multi-node Training
 
-Look to [MultiWorkerMirroredStrategy](https://www.tensorflow.org/guide/distributed_training#multiworkermirroredstrategy) for using the GPUs on more than one compute node. There is an example for the [Keras API](https://www.tensorflow.org/tutorials/distribute/multi_worker_with_keras). Consider using Horovod instead of this approach (see below).
-
-## Horovod
-
-[Horovod](https://horovod.ai/) is a distributed deep learning training framework for TensorFlow, Keras, PyTorch, and Apache MXNet. It is based on MPI.
+-   [MultiWorkerMirroredStrategy](https://www.tensorflow.org/guide/distributed_training#multiworkermirroredstrategy) for using the GPUs on more than one compute node. 
+-   [Keras API](https://www.tensorflow.org/tutorials/distribute/multi_worker_with_keras).
+-   [Horovod](https://horovod.ai/) is a distributed deep learning training framework for TensorFlow, Keras, PyTorch, and Apache MXNet. It is based on MPI.
