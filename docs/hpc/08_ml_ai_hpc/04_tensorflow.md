@@ -185,7 +185,7 @@ srun singularity exec --nv \
 	    /bin/bash -c "source /ext3/env.sh; python mnist_classify.py --batch-size-per-replica=32 --epochs=15"
 ```
 :::note
-Be sure to change `NetID` in the above scipt to your NetID.
+Be sure to change `NetID` in the above script to your NetID.
 :::
 
 Submit the job as follows:
