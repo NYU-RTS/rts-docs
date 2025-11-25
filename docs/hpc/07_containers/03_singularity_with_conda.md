@@ -3,7 +3,7 @@
 ## Using Singularity Overlays for Miniforge (Python & Julia)
 ### Preinstallation Warning
 :::warning
-If you have initialized Conda in your base environment, your prompt on Greene may show something like: 
+If you have initialized Conda in your base environment, your prompt on Torch may show something like: 
 ```sh
 (base) [NetID@log-1 ~]$
 ```
@@ -53,7 +53,7 @@ Choose a corresponding Singularity image. For this example we will use the follo
 /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif 
 ```
 
-For Singularity image available on nyu HPC Greene, please check the singularity images folder:
+For Singularity image available on nyu HPC Torch, please check the singularity images folder:
 ```sh
 [NetID@log-1 pytorch-example]$ ls /scratch/work/public/singularity/
 ```
@@ -474,7 +474,7 @@ Time spent in evaluations (secs)    =       0.00000
 ```
 
 ### Using CentOS 8 for Julia (for Module Compatibility)
-Building on the previous Julia example, this will demonstrate how to set up a similar environment using the Singularity CentOS 8 image for additional customization. Using the CentOS 8 overlay allows for the loading of modules installed on Greene, such as Knitro 12.3.0
+Building on the previous Julia example, this will demonstrate how to set up a similar environment using the Singularity CentOS 8 image for additional customization. Using the CentOS 8 overlay allows for the loading of modules installed on Torch, such as Knitro 12.3.0
 
 Copy overlay image:
 ```sh

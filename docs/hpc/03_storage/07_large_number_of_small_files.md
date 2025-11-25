@@ -75,7 +75,7 @@ Essentially, this is a large file sitting on the disk that contains a lot of sma
 
 This is a memory-mapped database meaning, file can be larger than RAM. OS is responsible for managing the pages (like caching frequently uses pages).
 
-For practical use it means: say you have 10 GB of RAM, and LMDB file of 100 GB. When you connect to this file, OS may decide to load 5GB to RAM, and the rest 95GB will be attached as virtual memory. Greene does not have a limit for virtual memory. Of course, if your RAM is larger than LMDB file, this database will perform the best, as OS will have enough resources to keep what is needed directly in RAM.
+For practical use it means: say you have 10 GB of RAM, and LMDB file of 100 GB. When you connect to this file, OS may decide to load 5GB to RAM, and the rest 95GB will be attached as virtual memory. Torch does not have a limit for virtual memory. Of course, if your RAM is larger than LMDB file, this database will perform the best, as OS will have enough resources to keep what is needed directly in RAM.
 
 :::tip
 when you write key-value pairs to LMDB they have to be byte-encoded. For example, if you use Python you can use: for string `st.encode()`, for np.array use `ar.tobytes()`, or in general `pickle.dumps()`

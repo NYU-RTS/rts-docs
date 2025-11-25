@@ -20,7 +20,7 @@ The widespread usage of scheduling systems where users submit jobs on HPC resour
 ## Be Kind to the Login Nodes
 The login node is often busy managing all of the logged in users, creating and editing files and compiling software. If the machine runs out of memory or processing capacity, it will become very slow and unusable for everyone. While the machine is meant to be used, be sure to do so responsibly – in ways that will not adversely impact other users’ experience.
 
-Login nodes are always the right place to launch jobs, but data transfers should be done on the Greene Data Transfer Nodes (gDTNs).  Please see more about gDTNs at [Data Transfers](../03_storage/03_data_transfers.md). Similarly, computationally intensive tasks should all be done on compute nodes.  This refers to not just computational analysis/research tasks, but also to processor intensive software installations and similar tasks.
+Login nodes are always the right place to launch jobs, but data transfers should be done on the Torch Data Transfer Nodes (gDTNs).  Please see more about gDTNs at [Data Transfers](../03_storage/03_data_transfers.md). Similarly, computationally intensive tasks should all be done on compute nodes.  This refers to not just computational analysis/research tasks, but also to processor intensive software installations and similar tasks.
 
 :::warning[Login Nodes Are a Shared Resource]
 Remember, the login node is shared with all other users and your actions could cause issues for other people. Think carefully about the potential implications of issuing commands that may use large amounts of resource.
@@ -66,7 +66,7 @@ We suggest that you test a subset of you data or analysis on an interactive node
 ## Have a Backup Plan
 Version control systems (such as Git) often have free, cloud-based offerings (e.g., [GitHub](http://github.com) and [GitLab](http://gitlab.com)) that are generally used for storing source code. Even if you are not writing your own programs, these can be very useful for storing job scripts, analysis scripts and small input files.  This can provide a layer of redundant protection for some of your files.
 
-While the Greene HPC system does offer some backups, it is important to understand which storage options are backed up and what the limitations of those backups are.  Please see [HPC Storage](../03_storage/01_intro_and_data_management.mdx) for details.
+While the Torch HPC system does offer some backups, it is important to understand which storage options are backed up and what the limitations of those backups are.  Please see [HPC Storage](../03_storage/01_intro_and_data_management.mdx) for details.
 
 It is also important to remember that your access to the shared HPC system will generally be time-limited, so you should ensure you have a plan for transferring your data off the system before your access finishes. The time required to transfer large amounts of data should not be underestimated and you should ensure you have planned for this early enough (ideally, before you even start using the system for your research).
 
@@ -77,13 +77,13 @@ Make sure you understand what the backup policy is on the system you are using a
 :::
 
 ## Transferring Data
-The most important point about transferring data responsibly on Green is to be sure to use Greene Data Transfer Nodes (gDTNs) or other options like [Globus](../03_storage/04_globus.md).  Please see [Data Transfers](../03_storage/03_data_transfers.md) for details.  By doing this you'll help to keep the login nodes responsive for all users.
+The most important point about transferring data responsibly on Green is to be sure to use Torch Data Transfer Nodes (gDTNs) or other options like [Globus](../03_storage/04_globus.md).  Please see [Data Transfers](../03_storage/03_data_transfers.md) for details.  By doing this you'll help to keep the login nodes responsive for all users.
 
 Being efficient in *how* you transfer data on the gDTNs is also important.  It will not only reduce the load on the gDTNs, but also save your time.  Be sure to archive and compress you files if possible with `tar` and `gzip`.  This will remove the overhead of trying to transfer many files and shrink the size of transfer.  Please see [Transferring Files with Remote Computers](./07_transferring_files_remote.mdx) for details.
 
 :::tip[Key Points]
 -   Be careful how you use the login node.
 -   Your data on the system is your responsibility.
--   Always use Greene Data Transfer Nodes (gDTNs) for large data transfers.
+-   Always use Torch Data Transfer Nodes (gDTNs) for large data transfers.
 -   Plan and test large data transfers.
 -   It is often best to convert many files to a single archive file before transferring.

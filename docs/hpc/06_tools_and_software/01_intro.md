@@ -11,7 +11,7 @@ We strongly advise that you setup your own computational enviromments via Apptai
 -   [Using virtual environments for Python](../06_tools_and_software/04_python_packages_with_virtual_environments.mdx)
 -   [Managing R packages with renv](../06_tools_and_software/05_r_packages_with_renv.mdx)
 
-## Examples of software usage on Greene 
+## Examples of software usage on Torch 
 Examples can be found under `/scratch/work/public/examples/` and include the following
 
 |                   |                       |                       |

@@ -55,11 +55,11 @@ More information about **Globus Connect Personal** and download links for Linux,
 ![Globus Connect Personal](./static/globus_connect_personal.png)
 
 ### Transfer files between your Personal Endpoint and NYU nyu#torch
-To transfer files you need to specify two collections (endpoints). Specify one of them as **Greene scratch directory**, or **Greene archive directory** or **Greene home directory**. The other endpoint is the one created for your personal computer (e.g. My Mac Laptop) if it is involved in the transfer. When you first use the Greene directory collection, authentication/consent is required for the Globus web app to manage collections on this endpoint on your behalf.
+To transfer files you need to specify two collections (endpoints). Specify one of them as **Torch scratch directory**, or **Torch archive directory** or **Torch home directory**. The other endpoint is the one created for your personal computer (e.g. My Mac Laptop) if it is involved in the transfer. When you first use the Torch directory collection, authentication/consent is required for the Globus web app to manage collections on this endpoint on your behalf.
 
 ![Globus Start Transfer](./static/globus_start_transfer.png)
 
-When writing to your Greene archive directory, please pay attention that there is a default inode limit of 20K per user.  
+When writing to your Torch archive directory, please pay attention that there is a default inode limit of 20K per user.  
 
 When the second Endpoint is chosen to be your personal computer, your computer home directory content will show up. Now select directory and files (you may select multiple files when clicking on file names while pressing down "shift" key), click one of the two blue Start buttons to indicate the transfer direction. After clicking the blue Start button, you should see a message indicating a transfer request has been submitted successfully, and a transfer ID is generated. Globus file transfer service takes care of the actual copying.
 

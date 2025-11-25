@@ -5,14 +5,14 @@ Globus is the recommended tool to use for large-volume data transfers due to the
 :::
 
 ## Data-Transfer nodes
-Attached to the NYU HPC cluster Greene, the Greene Data Transfer Node (gDTN) are  nodes optimized for transferring data between cluster file systems (e.g. scratch)  and other endpoints outside the NYU HPC clusters, including user laptops and desktops. The gDTNs have 100-Gb/s Ethernet connections to the High Speed Research Network (HSRN) and are connected to the HDR Infiniband fabric of the HPC clusters. More information on the hardware characteristics is available at [Greene spec sheet](../10_spec_sheet.md).
+Attached to the NYU HPC cluster Torch, the Torch Data Transfer Node (gDTN) are  nodes optimized for transferring data between cluster file systems (e.g. scratch)  and other endpoints outside the NYU HPC clusters, including user laptops and desktops. The gDTNs have 100-Gb/s Ethernet connections to the High Speed Research Network (HSRN) and are connected to the HDR Infiniband fabric of the HPC clusters. More information on the hardware characteristics is available at [Torch spec sheet](../10_spec_sheet.md).
 
 ### Data Transfer Node Access
 The HPC cluster filesystems include `/home`, `/scratch`, `/archive` and the [HPC Research Project Space](./05_research_project_space.mdx) are available on the gDTN. The Data-Transfer Node (DTN) can be accessed in a variety of ways
 -   From NYU-net and the High Speed Research Network: use SSH to the DTN hostname `gdtn.hpc.nyu.edu`
--   From the Greene cluster (e.g., the login nodes): the hostname can be shortened to `gdtn`
+-   From the Torch cluster (e.g., the login nodes): the hostname can be shortened to `gdtn`
 :::info
-For example, to log in to a DTN from the Greene cluster, to carry out some copy operation, and to log back out, you can use a command sequence like:
+For example, to log in to a DTN from the Torch cluster, to carry out some copy operation, and to log back out, you can use a command sequence like:
 ```sh
 ssh gdtn
 rsync ...
@@ -48,7 +48,7 @@ Windows 10 machines may have the Linux Subsystem installed, which will allow for
 ### Globus
 Globus is the recommended tool to use for large-volume data transfers. It features automatic performance tuning and automatic retries in cases of file-transfer failures. Data-transfer tasks can be submitted via a web portal. The Globus service will take care of the rest, to make sure files are copied efficiently, reliably, and securely. Globus is also a tool for you to share data with collaborators, for whom you only need to provide the email addresses.
 
-The Globus endpoint for Greene is available at `nyu#torch`. The endpoint `nyu#prince` has been retired. Detailed instructions available at [Globus](./04_globus.md)
+The Globus endpoint for Torch is available at `nyu#torch`. The endpoint `nyu#prince` has been retired. Detailed instructions available at [Globus](./04_globus.md)
 
 ### rclone
 rclone - rsync for cloud storage, is a command line program to sync files and directories to and from cloud storage systems such as Google Drive, Amazon Drive, S3, B2 etc. rclone is available on DTNs. [Please see the documentation for how to use it.](https://rclone.org/)

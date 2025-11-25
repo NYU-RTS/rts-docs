@@ -39,7 +39,7 @@ Every individual user has a home directory (under **`/home/$USER`**, environment
 
 User home directories are backed up daily and old files under **`$HOME`** are not purged.
 
-The User home directories are available on all HPC clusters (Greene) and on every cluster node (login nodes, compute nodes) as well as and Data Transfer Node (gDTN). 
+The User home directories are available on all HPC clusters (Torch) and on every cluster node (login nodes, compute nodes) as well as and Data Transfer Node (gDTN). 
 
 :::warning
 Avoid changing file and directory permissions in your home directory to allow other users to access files.
@@ -62,7 +62,7 @@ Files stored in the HPC scratch file system are subject to the <ins>**HPC Scratc
 
 Every user has a dedicated scratch directory (**/scratch/$USER**) with **5 TB** disk quota and **1,000,000 inodes** (files) limit per user. 
 
-The scratch file system is available on all nodes (compute, login, etc.) on Greene as well as Data Transfer Node (gDTN).
+The scratch file system is available on all nodes (compute, login, etc.) on Torch as well as Data Transfer Node (gDTN).
 
 :::warning
 There are **No Back ups of the scratch file system.** ***Files that were deleted accidentally or removed due to storage system failures CAN NOT be recovered.***
@@ -83,7 +83,7 @@ Files stored in the HPC vast file system are subject to the <ins>***HPC Vast old
 
 Every user has a dedicated vast directory (**`/vast/$USER`**) with **2 TB** disk quota and **5,000,000 inodes** (files) limit per user. 
 
-The vast file system is available on all nodes (compute, login, etc.) on Greene as well as Data Transfer Node (gDTN).
+The vast file system is available on all nodes (compute, login, etc.) on Torch as well as Data Transfer Node (gDTN).
 
 :::warning
 There are **No Back ups** of the vastsc file system. ***Files that were deleted accidentally or removed due to storage system failures CAN NOT be recovered.***
@@ -108,7 +108,7 @@ For some of the datasets users must provide a signed usage agreement before acce
 Public datasets available on the HPC clusters can be viewed on the [Datasets page](../04_datasets/01_intro.md).
 
 #### HPC Archive
-Once the Analysis stage of the research data lifecycle has completed, <ins>_HPC users should **tar** their data and code into a single tar.gz file and then copy the  file to their archive directory (**`/archive/$USER`**_).</ins> The HPC Archive file system is not accessible by running jobs; it is suitable for long-term data storage. Each user has access to a default disk quota of **2TB** and ***20,000 inode (files) limit***. The rather low limit on the number of inodes per user is intentional.  The archive file system is available only ***on login nodes*** of Greene. The archive file system is backed up daily.
+Once the Analysis stage of the research data lifecycle has completed, <ins>_HPC users should **tar** their data and code into a single tar.gz file and then copy the  file to their archive directory (**`/archive/$USER`**_).</ins> The HPC Archive file system is not accessible by running jobs; it is suitable for long-term data storage. Each user has access to a default disk quota of **2TB** and ***20,000 inode (files) limit***. The rather low limit on the number of inodes per user is intentional.  The archive file system is available only ***on login nodes*** of Torch. The archive file system is backed up daily.
 
 -   Here is an example ***tar*** command that combines the data in a directory named ***my_run_dir*** under ***`$SCRATCH`*** and outputs the tar file in the user's ***`$ARCHIVE`***: 
 ```sh

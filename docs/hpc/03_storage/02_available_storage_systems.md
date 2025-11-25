@@ -20,7 +20,7 @@ The NYU HPC cluster storage runs on Lenovo Distributed Storage Solution DSS-G ha
 -   I/O Performance: up to 650k input/output operations per second (IOPS)
 
 ## Flash Tier Storage (VAST)
-An all flash file system, using [VAST Flash storage](https://www.vastdata.com/), is now available on Greene. Flash storage is optimal for computational workloads with high I/O rates. For example, If you have jobs to run with huge amount of tiny files, VAST may be a good candidate.  If you and your lab members are interested, please reach out to [hpc@nyu.edu](mailto:hpc@nyu.edu) for more information.
+An all flash file system, using [VAST Flash storage](https://www.vastdata.com/), is now available on Torch. Flash storage is optimal for computational workloads with high I/O rates. For example, If you have jobs to run with huge amount of tiny files, VAST may be a good candidate.  If you and your lab members are interested, please reach out to [hpc@nyu.edu](mailto:hpc@nyu.edu) for more information.
 -   NVMe interface
 -   Total size: 778 TB
 :::note
@@ -29,7 +29,7 @@ An all flash file system, using [VAST Flash storage](https://www.vastdata.com/),
 
 ## Research Project Space (RPS)
 [Research Project Space (RPS)](./05_research_project_space.mdx) volumes provide working spaces for sharing data and code amongst project or lab members.
--   RPS directories are available on the Greene HPC cluster.
+-   RPS directories are available on the Torch HPC cluster.
 -   There is no old-file purging policy on RPS.
 -   RPS is backed up. 
 -   There is a cost per TB per year and inodes per year for RPS volumes.

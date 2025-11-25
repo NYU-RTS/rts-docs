@@ -1,4 +1,4 @@
-# Connecting to the remote HPC system Greene
+# Connecting to the remote HPC system Torch
 
 :::note[Overview]
 Questions:
@@ -11,7 +11,7 @@ Objectives:
 :::
 
 :::warning[Prerequisites]
-To access the Greene HPC cluster, you must be connected to the NYU network. If you are physically on campus and connected via a wired connection in your office or through NYU’s WiFi, you can directly SSH into the clusters without any additional steps.
+To access the Torch HPC cluster, you must be connected to the NYU network. If you are physically on campus and connected via a wired connection in your office or through NYU’s WiFi, you can directly SSH into the clusters without any additional steps.
 :::
 
 ## Secure Connections
@@ -23,7 +23,7 @@ If you have ever opened the Windows Command Prompt or macOS Terminal, you have s
 
 SSH clients are usually command-line tools, where you provide the remote machine address as the only required argument. If your username on the remote system differs from what you use locally, you must provide that as well. If your SSH client has a graphical front-end, such as PuTTY or MobaXterm, you will set these arguments before clicking “connect.” From the terminal, you’ll write something like ssh userName@hostname, where the argument is just like an email address: the “@” symbol is used to separate the personal ID from the address of the remote machine.
 
-When logging in to a laptop, tablet, or other personal device, a username, password, or pattern are normally required to prevent unauthorized access. In these situations, the likelihood of somebody else intercepting your password is low, since logging your keystrokes requires a malicious exploit or physical access. For systems like log-1 running an SSH server, anybody on the network can log in, or try to. Since usernames are often public or easy to guess, your password is often the weakest link in the security chain. Many clusters therefore forbid password-based login, requiring instead that you generate and configure a public-private key pair with a much stronger password. Even though Greene does not require the use SSH keys to login, please consider using the instructions below to use them.  It will make for quicker and more secure connections with Greene.
+When logging in to a laptop, tablet, or other personal device, a username, password, or pattern are normally required to prevent unauthorized access. In these situations, the likelihood of somebody else intercepting your password is low, since logging your keystrokes requires a malicious exploit or physical access. For systems like log-1 running an SSH server, anybody on the network can log in, or try to. Since usernames are often public or easy to guess, your password is often the weakest link in the security chain. Many clusters therefore forbid password-based login, requiring instead that you generate and configure a public-private key pair with a much stronger password. Even though Torch does not require the use SSH keys to login, please consider using the instructions below to use them.  It will make for quicker and more secure connections with Torch.
 
 ## Remote Connections with the NYU VPN
 If you are connecting from a remote location that is not on the NYU network (your home for example), you have have to set up your computer to use the NYU VPN. Once you’ve created a VPN connection, you can proceed as if you were connected to the NYU net.
@@ -31,12 +31,12 @@ If you are connecting from a remote location that is not on the NYU network (you
 ## Connect to the NYU VPN
 To connect to VPN, please see the [NYU instructions](https://www.nyu.edu/life/information-technology/infrastructure/network-services/vpn.html).
 
-## Log into the Greene Cluster
+## Log into the Torch Cluster
 
 ### Inside the NYU network (non-Windows)
 From within the NYU network, that is, from an on-campus location, or after you VPN inside NYU’s network, you can log in to the HPC clusters directly.
 
-To log in to the HPC cluster (Greene), simply use:
+To log in to the HPC cluster (Torch), simply use:
 ```bash
 ssh <NetID>@login.torch.hpc.nyu.edu
 ```
@@ -46,7 +46,7 @@ Windows users will need to use PuTTY, please see the [NYU instructions](https://
 
 
 ## Opening a Terminal
-Accessing the Greene HPC cluster is primarily done through the Command Line Interface (CLI). A CLI provides a text-based environment that allows users to manage files, run programs, and navigate directories via command input. On macOS, the built-in CLI tool is Terminal, while Windows 10 users can leverage the Windows Subsystem for Linux (WSL) for similar functionality. Additionally, a popular tool for connecting to Linux servers from Windows is PuTTY, a free SSH client.
+Accessing the Torch HPC cluster is primarily done through the Command Line Interface (CLI). A CLI provides a text-based environment that allows users to manage files, run programs, and navigate directories via command input. On macOS, the built-in CLI tool is Terminal, while Windows 10 users can leverage the Windows Subsystem for Linux (WSL) for similar functionality. Additionally, a popular tool for connecting to Linux servers from Windows is PuTTY, a free SSH client.
 
 Connecting to an HPC system is most often done through a tool known as “SSH” (Secure SHell) and usually SSH is run through a terminal. So, to begin using an HPC system we need to begin by opening a terminal. Different operating systems have different terminals, none of which are exactly the same in terms of their features and abilities while working on the operating system. When connected to the remote system the experience between terminals will be identical as each will faithfully present the same experience of using that system.
 
@@ -57,16 +57,16 @@ There are many different versions (aka “flavours”) of Linux and how to open 
 
 Open a terminal application and enter the following to connect to one of the HPC clusters:
 ```bash
-# this will connect you to Greene HPC cluster
+# this will connect you to Torch HPC cluster
 ssh <NetID>@login.torch.hpc.nyu.edu
 ```
 
 ### Mac
 Macs have had a terminal built in since the first version of OS X, since it is built on a UNIX-like operating system, leveraging many parts from BSD (Berkeley Software Distribution). The terminal can be quickly opened through the use of the Searchlight tool. Hold down the command key and press the spacebar. In the search bar that shows up type “terminal”, choose the terminal app from the list of results (it will look like a tiny, black computer screen) and you will be presented with a terminal window. Alternatively, you can find Terminal under “Utilities” in the Applications menu in the Finder.
 
-Open a terminal application and enter the following to connect to Greene:
+Open a terminal application and enter the following to connect to Torch:
 ```bash
-# this will connect you to Greene HPC cluster
+# this will connect you to Torch HPC cluster
 ssh <NetID>@login.torch.hpc.nyu.edu
 ```
 
@@ -105,7 +105,7 @@ Note that you may want to paste in your password rather than typing it. Use Ctrl
 For those logging in with PuTTY it would likely be best to cover the terminal basics already mentioned above before moving on to navigating the remote system.
 
 ## Open OnDemand (Web-based Graphical User Interface)
-Open OnDemand (OOD) is an open source project funded by the National Science Foundation (NSF). OOD is designed to create easier access for users to interface with HPC systems. Originally developed by Ohio Supercomputer Center (OSC), used by many universities around the world, and now servicing the NYU Greene HPC cluster.
+Open OnDemand (OOD) is an open source project funded by the National Science Foundation (NSF). OOD is designed to create easier access for users to interface with HPC systems. Originally developed by Ohio Supercomputer Center (OSC), used by many universities around the world, and now servicing the NYU Torch HPC cluster.
 
 OOD has a variety of convenient tools to manage files, access the command line, manage and monitor jobs, and launch interactive applications, such as Jupyter Notebooks, RStudio sessions, and even full Linux Desktops.
 
@@ -121,7 +121,7 @@ OOD is accessible to all users with a valid NYU HPC account while on-campus netw
 To access OOD visit: [https://ood.hpc.nyu.edu](https://ood.hpc.nyu.edu) (VPN Required)
 
 ### Access the Shell
-Under the clusters menu you can select the Greene Shell Access option to access the Linux shell. No local SSH client is required.
+Under the clusters menu you can select the Torch Shell Access option to access the Linux shell. No local SSH client is required.
 
 ### Interactive Applications
 GUI based applications are accessible without the need for port or X11 forwarding. Select the Interactive Apps menu, select the desired application, and submit the job based on required resources and options.
@@ -151,7 +151,7 @@ $ ls ~/.ssh/
 ```
 then generate a new public-private key pair:
 ```bash
-$ ssh-keygen -o -a 100 -t rsa -b 4096 -f ~/.ssh/id_Greene_rsa
+$ ssh-keygen -o -a 100 -t rsa -b 4096 -f ~/.ssh/id_Torch_rsa
 ```
 -   `-o` (no default): use the OpenSSH key format, rather than PEM.
 -   `-a` (default is 16): number of rounds of passphrase derivation; increase to slow down brute force attacks.
@@ -161,7 +161,7 @@ $ ssh-keygen -o -a 100 -t rsa -b 4096 -f ~/.ssh/id_Greene_rsa
 
 When prompted, enter a strong password that you will remember. Cryptography is only as good as the weakest link, and this will be used to connect to a powerful, precious, computational resource.
 
-Take a look in `~/.ssh` (use `ls ~/.ssh`). You should see the two new files: your private key (`~/.ssh/key_Greene_rsa`) and the public key (`~/.ssh/key_Greene_rsa.pub`). If a key is requested by the system administrators, the _public_ key is the one to provide.
+Take a look in `~/.ssh` (use `ls ~/.ssh`). You should see the two new files: your private key (`~/.ssh/key_Torch_rsa`) and the public key (`~/.ssh/key_Torch_rsa.pub`). If a key is requested by the system administrators, the _public_ key is the one to provide.
 
 :::danger
 Private keys are your private identity
@@ -246,7 +246,7 @@ Host torch
 You'll need to replace the sections above labelled `<Your NetID>` with your NetID.  You can find more details about this at the [Quickstart section of Accessing HPC at NYU](https://sites.google.com/nyu.edu/nyu-hpc/accessing-hpc#h.7t97br4zzvip)
 
 ## Logging onto the system
-With all of this in mind, let’s connect to our remote HPC system. In this tutorial, we will connect to Greene — an HPC system located at New York University. Although it’s unlikely that every system will be exactly like Greene, it’s a very good example of what you can expect from an HPC installation. To connect to Greene we will use SSH (if you are using PuTTY see [details above](./02_connecting_to_hpc.mdx#opening-a-terminal)).
+With all of this in mind, let’s connect to our remote HPC system. In this tutorial, we will connect to Torch — an HPC system located at New York University. Although it’s unlikely that every system will be exactly like Torch, it’s a very good example of what you can expect from an HPC installation. To connect to Torch we will use SSH (if you are using PuTTY see [details above](./02_connecting_to_hpc.mdx#opening-a-terminal)).
 
 SSH allows us to connect to UNIX computers remotely, and use them as if they were our own. The general syntax of the connection command follows the format:
 ```bash
@@ -257,7 +257,7 @@ Let’s attempt to connect to the HPC system now:
 
 If you'd like to connect without typing your password you'll need to copy your public key file to torch first:
 ```bash
-scp ~/.ssh/id_Greene_rsa.pub <NetID>@login.torch.hpc.nyu.edu:/home/<NetID>
+scp ~/.ssh/id_Torch_rsa.pub <NetID>@login.torch.hpc.nyu.edu:/home/<NetID>
 ```
 
 You'll need to log in with your password at least once even if you plan to use SSH keys in the future because we'll need to set up your keys.
@@ -285,7 +285,7 @@ Space        Variable      /Flushed?    Space / Files    Space(%) / Files(%)
 [NetID@log-1 ~]$
 ```
 
-By looking at the information after *Hostname:* and in the prompt you'll notice that the machine you're currently logged into is not Greene.  This is expected.  You've just logged into a _login node_ that is connected to Greene.  It is from the login nodes that you will submit jobs to Greene.
+By looking at the information after *Hostname:* and in the prompt you'll notice that the machine you're currently logged into is not Torch.  This is expected.  You've just logged into a _login node_ that is connected to Torch.  It is from the login nodes that you will submit jobs to Torch.
 
 If you logged in using PuTTY this will not apply because it does not offer a local terminal.
 
@@ -294,7 +294,7 @@ If you logged in using PuTTY this will not apply because it does not offer a loc
 If you copied your SSH keys to your home directory in an earlier step, we'll guide you through setting them up for use now.
 1.   If you do not have a directory name `.ssh` in your home directory create one now with the command: `mkdir ~/.ssh`
     - Remember you can list the hidden (dot) files by running the command: `ls -a`
-2. add your key to the list of `authorized_keys` with the command: `cat ~/id_Greene_rsa.pub >> ~/.ssh/authorized_keys`
+2. add your key to the list of `authorized_keys` with the command: `cat ~/id_Torch_rsa.pub >> ~/.ssh/authorized_keys`
 
 That’s all! Disconnect, then try to log back into the remote: if your key and agent have been configured correctly, you should not be prompted for the password.
 
