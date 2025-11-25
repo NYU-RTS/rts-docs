@@ -9,7 +9,7 @@ Attached to the NYU HPC cluster Torch, the Torch Data Transfer Node (gDTN) are  
 
 ### Data Transfer Node Access
 The HPC cluster filesystems include `/home`, `/scratch`, `/archive` and the [HPC Research Project Space](./05_research_project_space.mdx) are available on the gDTN. The Data-Transfer Node (DTN) can be accessed in a variety of ways
--   From NYU-net and the High Speed Research Network: use SSH to the DTN hostname `gdtn.hpc.nyu.edu`
+-   From NYU-net and the High Speed Research Network: use SSH to the DTN hostname `gdtn.torch.hpc.nyu.edu`
 -   From the Torch cluster (e.g., the login nodes): the hostname can be shortened to `gdtn`
 :::info
 For example, to log in to a DTN from the Torch cluster, to carry out some copy operation, and to log back out, you can use a command sequence like:
@@ -30,10 +30,10 @@ logout
 Please use Data Transfer Nodes (DTNs) with these tools. While one can transfer data while on login nodes, it is  considered a bad practice because it can degrade the node's performance.
 :::
 
-Sometimes these two tools are convenient for transferring small files. Using the DTNs does not require to set up an SSH tunnel; use the hostname `dtn.hpc.nyu.edu` for one-step copying. See below for examples of commands invoked on the command line on a laptop running a Unix-like operating system:
+Sometimes these two tools are convenient for transferring small files. Using the DTNs does not require to set up an SSH tunnel; use the hostname `dtn.torch.hpc.nyu.edu` for one-step copying. See below for examples of commands invoked on the command line on a laptop running a Unix-like operating system:
 ```sh
-scp HMLHWBGX7_n01_HK16.fastq.gz jdoe55@dtn.hpc.nyu.edu:/scratch/jdoe55/
-rsync -av HMLHWBGX7_n01_HK16.fastq.gz jdoe55@dtn.hpc.nyu.edu:/scratch/jdoe55/ 
+scp HMLHWBGX7_n01_HK16.fastq.gz jdoe55@dtn.torch.hpc.nyu.edu:/scratch/jdoe55/
+rsync -av HMLHWBGX7_n01_HK16.fastq.gz jdoe55@dtn.torch.hpc.nyu.edu:/scratch/jdoe55/ 
 ```
 In particular, rsync can also be used on the DTNs to copy directories recursively between filesystems, e.g. (assuming that you are logged in to a DTN),
 ```sh

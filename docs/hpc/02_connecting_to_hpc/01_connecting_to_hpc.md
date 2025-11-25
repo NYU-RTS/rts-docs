@@ -16,7 +16,7 @@ The following sections will outline basic ways to connect to the Torch cluster. 
 
 To connect to HPC systems, you have to configure the SSH client on your machine. We recommend the following configuration:
 ```sh
-Host dtn.hpc.nyu.edu
+Host dtn.torch.hpc.nyu.edu
   User <NetID>
   StrictHostKeyChecking no
   ServerAliveInterval 60

@@ -52,7 +52,7 @@ The file systems are independent, so you must copy data to the GCP location.
 
 To copy data, you must first start an interactive job. Once started, you can copy your data using scp from the HPC Data Transfer Nodes (torch-dtn). Below is the basic setup to copy files from Torch to your home directory while you are in an interactive bursting job:
 ```sh
-scp <NetID>@torch-dtn.hpc.nyu.edu:/path/to/files /home/<NetID>/
+scp <NetID>@dtn.torch.hpc.nyu.edu:/path/to/files /home/<NetID>/
 ```
 
 
