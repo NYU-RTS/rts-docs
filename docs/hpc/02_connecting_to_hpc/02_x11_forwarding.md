@@ -5,7 +5,7 @@
 In rare cases when you need to interact with GUI applications on HPC clusters, you need to enable X11 forwarding for your SSH connection. Mac and Linux users will need to run the ssh commands described above with an additional flag:
 
 ```sh
-ssh -Y <NYU_NetID>@torch.hpc.nyu.edu
+ssh -Y <NYU_NetID>@login.torch.hpc.nyu.edu
 ```
 
 However, Mac users need to install [XQuartz][xquartz], since X-server is no longer shipped with the macOS.

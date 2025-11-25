@@ -16,7 +16,7 @@ To request access to the HPC Bursting capabilities, [please complete this form][
 This is not public, only per request of eligible classes or researchers
 :::
 ```sh
-ssh <NetID>@torch.hpc.nyu.edu
+ssh <NetID>@login.torch.hpc.nyu.edu
 ```
 ssh to the class on GCP (burst login node) - anyone can login but you can only submit jobs if you have approval
 ```sh

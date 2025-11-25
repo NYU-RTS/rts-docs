@@ -38,7 +38,7 @@ From within the NYU network, that is, from an on-campus location, or after you V
 
 To log in to the HPC cluster (Greene), simply use:
 ```bash
-ssh <NetID>@torch.hpc.nyu.edu
+ssh <NetID>@login.torch.hpc.nyu.edu
 ```
 
 ### From Windows
@@ -58,7 +58,7 @@ There are many different versions (aka “flavours”) of Linux and how to open 
 Open a terminal application and enter the following to connect to one of the HPC clusters:
 ```bash
 # this will connect you to Greene HPC cluster
-ssh <NetID>@torch.hpc.nyu.edu
+ssh <NetID>@login.torch.hpc.nyu.edu
 ```
 
 ### Mac
@@ -67,7 +67,7 @@ Macs have had a terminal built in since the first version of OS X, since it is b
 Open a terminal application and enter the following to connect to Greene:
 ```bash
 # this will connect you to Greene HPC cluster
-ssh <NetID>@torch.hpc.nyu.edu
+ssh <NetID>@login.torch.hpc.nyu.edu
 ```
 
 ### Windows
@@ -227,7 +227,7 @@ If you are using PuTTY on Windows, download and use `pageant` as the SSH agent. 
 ## Modifying your .ssh/config file
 Please add the following lines to your `~/.ssh/config` file:
 ```
-Host torch.hpc.nyu.edu dtn.hpc.nyu.edu
+Host login.torch.hpc.nyu.edu dtn.hpc.nyu.edu
   StrictHostKeyChecking no
   ServerAliveInterval 60
   ForwardAgent yes
@@ -257,14 +257,14 @@ Let’s attempt to connect to the HPC system now:
 
 If you'd like to connect without typing your password you'll need to copy your public key file to torch first:
 ```bash
-scp ~/.ssh/id_Greene_rsa.pub <NetID>@torch.hpc.nyu.edu:/home/<NetID>
+scp ~/.ssh/id_Greene_rsa.pub <NetID>@login.torch.hpc.nyu.edu:/home/<NetID>
 ```
 
 You'll need to log in with your password at least once even if you plan to use SSH keys in the future because we'll need to set up your keys.
 
 Once you are on the NYU WiFi or VPN you can connect with:
 ```bash
-ssh <NetID>@torch.hpc.nyu.edu
+ssh <NetID>@login.torch.hpc.nyu.edu
 ```
 
 When you are logged in you will see information about your last login, the host you've connected to, and your storage quota.  It should look something like this:
