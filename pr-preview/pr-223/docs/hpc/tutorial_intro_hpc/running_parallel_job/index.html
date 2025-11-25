@@ -10,8 +10,8 @@
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2DXB3BDH70"></script>
 <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-2DXB3BDH70",{anonymize_ip:!0})</script><link rel="stylesheet" href="/pr-preview/pr-223/assets/css/styles.e184c1bb.css">
-<script src="/pr-preview/pr-223/assets/js/runtime~main.0b81bbaf.js" defer="defer"></script>
-<script src="/pr-preview/pr-223/assets/js/main.83ebe517.js" defer="defer"></script>
+<script src="/pr-preview/pr-223/assets/js/runtime~main.23338d3f.js" defer="defer"></script>
+<script src="/pr-preview/pr-223/assets/js/main.47aef584.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -31,7 +31,7 @@
 </ul></div></div>
 <p>We now have the tools we need to run a multi-processor job. This is a very important aspect of HPC systems, as parallelism is one of the primary tools we have to improve the performance of computational tasks.</p>
 <p>If you disconnected, log back in to the cluster.</p>
-<div class="language-bash codeBlockContainer_foFG theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_oOJy"><pre tabindex="0" class="prism-code language-bash codeBlock_EAWu thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_TxFa"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token punctuation" style="color:hsl(119, 34%, 47%)">[</span><span class="token plain">user@laptop ~</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">]</span><span class="token plain">$ </span><span class="token function" style="color:hsl(221, 87%, 60%)">ssh</span><span class="token plain"> NetID@torch.hpc.nyu.edu</span><br></span></code></pre></div></div>
+<div class="language-bash codeBlockContainer_foFG theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_oOJy"><pre tabindex="0" class="prism-code language-bash codeBlock_EAWu thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_TxFa"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token punctuation" style="color:hsl(119, 34%, 47%)">[</span><span class="token plain">user@laptop ~</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">]</span><span class="token plain">$ </span><span class="token function" style="color:hsl(221, 87%, 60%)">ssh</span><span class="token plain"> NetID@login.torch.hpc.nyu.edu</span><br></span></code></pre></div></div>
 <h2 class="anchor anchorTargetStickyNavbar_eh83" id="install-the-amdahl-program">Install the Amdahl Program<a href="#install-the-amdahl-program" class="hash-link" aria-label="Direct link to Install the Amdahl Program" title="Direct link to Install the Amdahl Program" translate="no">​</a></h2>
 <p>With the Amdahl source code on the cluster, we can install it, which will provide access to the amdahl executable.</p>
 <p>The Amdahl code has one dependency: <code>mpi4py</code>. Package Installer for Python (pip) will collect <code>mpi4py</code> from the Internet and install it for you, but it needs an active <code>mpi</code> module. Here we will load <code>openmpi/gcc/4.1.6</code> to build <code>mpi4py</code>.</p>
