@@ -48,7 +48,7 @@ Windows 10 machines may have the Linux Subsystem installed, which will allow for
 ### Globus
 Globus is the recommended tool to use for large-volume data transfers. It features automatic performance tuning and automatic retries in cases of file-transfer failures. Data-transfer tasks can be submitted via a web portal. The Globus service will take care of the rest, to make sure files are copied efficiently, reliably, and securely. Globus is also a tool for you to share data with collaborators, for whom you only need to provide the email addresses.
 
-The Globus endpoint for Greene is available at `nyu#greene`. The endpoint `nyu#prince` has been retired. Detailed instructions available at [Globus](./04_globus.md)
+The Globus endpoint for Greene is available at `nyu#torch`. The endpoint `nyu#prince` has been retired. Detailed instructions available at [Globus](./04_globus.md)
 
 ### rclone
 rclone - rsync for cloud storage, is a command line program to sync files and directories to and from cloud storage systems such as Google Drive, Amazon Drive, S3, B2 etc. rclone is available on DTNs. [Please see the documentation for how to use it.](https://rclone.org/)

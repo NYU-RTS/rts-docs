@@ -16,7 +16,7 @@ To request access to the HPC Bursting capabilities, [please complete this form][
 This is not public, only per request of eligible classes or researchers
 :::
 ```sh
-ssh <NetID>@greene.hpc.nyu.edu
+ssh <NetID>@torch.hpc.nyu.edu
 ```
 ssh to the class on GCP (burst login node) - anyone can login but you can only submit jobs if you have approval
 ```sh
@@ -50,9 +50,9 @@ When you run a bursting job the compute nodes will not see those file mounts. Th
 
 The file systems are independent, so you must copy data to the GCP location.
 
-To copy data, you must first start an interactive job. Once started, you can copy your data using scp from the HPC Data Transfer Nodes (greene-dtn). Below is the basic setup to copy files from Torch to your home directory while you are in an interactive bursting job:
+To copy data, you must first start an interactive job. Once started, you can copy your data using scp from the HPC Data Transfer Nodes (torch-dtn). Below is the basic setup to copy files from Torch to your home directory while you are in an interactive bursting job:
 ```sh
-scp <NetID>@greene-dtn.hpc.nyu.edu:/path/to/files /home/<NetID>/
+scp <NetID>@torch-dtn.hpc.nyu.edu:/path/to/files /home/<NetID>/
 ```
 
 

@@ -38,7 +38,7 @@ From within the NYU network, that is, from an on-campus location, or after you V
 
 To log in to the HPC cluster (Greene), simply use:
 ```bash
-ssh <NetID>@greene.hpc.nyu.edu
+ssh <NetID>@torch.hpc.nyu.edu
 ```
 
 ### From Windows
@@ -58,7 +58,7 @@ There are many different versions (aka “flavours”) of Linux and how to open 
 Open a terminal application and enter the following to connect to one of the HPC clusters:
 ```bash
 # this will connect you to Greene HPC cluster
-ssh <NetID>@greene.hpc.nyu.edu
+ssh <NetID>@torch.hpc.nyu.edu
 ```
 
 ### Mac
@@ -67,7 +67,7 @@ Macs have had a terminal built in since the first version of OS X, since it is b
 Open a terminal application and enter the following to connect to Greene:
 ```bash
 # this will connect you to Greene HPC cluster
-ssh <NetID>@greene.hpc.nyu.edu
+ssh <NetID>@torch.hpc.nyu.edu
 ```
 
 ### Windows
@@ -92,9 +92,9 @@ Once the MobaXterm window is open you should see a large button in the middle of
 
 It is strictly speaking not necessary to have a terminal running on your local computer in order to access and use a remote system, only a window into the remote system once connected. PuTTY is likely the oldest, most well-known, and widely used software solution to take this approach.
 
-PuTTY is available for [free download](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html). Download the version that is correct for your operating system and install it as you would other software on your Windows system. Once installed it will be available through the start menu or similar.
+PuTTY is available for [free download](https://www.chiark.torchnd.org.uk/~sgtatham/putty/latest.html). Download the version that is correct for your operating system and install it as you would other software on your Windows system. Once installed it will be available through the start menu or similar.
 
-You can use puttygen to create ssh keys if you are using PuTTY.  Please see the [puttygen page](https://www.chiark.greenend.org.uk/~sgtatham/putty/docs.html) in the [PuTTY documentation](https://the.earth.li/~sgtatham/putty/0.83/htmldoc/) for details.
+You can use puttygen to create ssh keys if you are using PuTTY.  Please see the [puttygen page](https://www.chiark.torchnd.org.uk/~sgtatham/putty/docs.html) in the [PuTTY documentation](https://the.earth.li/~sgtatham/putty/0.83/htmldoc/) for details.
 
 Running PuTTY will not initially produce a terminal but instead a window full of connection options. Putting the address of the remote system in the “Host Name (or IP Address)” box and either pressing enter or clicking the “Open” button should begin the connection process.
 
@@ -227,14 +227,14 @@ If you are using PuTTY on Windows, download and use `pageant` as the SSH agent. 
 ## Modifying your .ssh/config file
 Please add the following lines to your `~/.ssh/config` file:
 ```
-Host greene.hpc.nyu.edu dtn.hpc.nyu.edu
+Host torch.hpc.nyu.edu dtn.hpc.nyu.edu
   StrictHostKeyChecking no
   ServerAliveInterval 60
   ForwardAgent yes
   UserKnownHostsFile /dev/null
   LogLevel ERROR
 
-Host greene
+Host torch
   HostName localhost
   Port 8027
   ForwardX11 yes
@@ -255,16 +255,16 @@ ssh yourUsername@some.computer.address
 
 Let’s attempt to connect to the HPC system now:
 
-If you'd like to connect without typing your password you'll need to copy your public key file to greene first:
+If you'd like to connect without typing your password you'll need to copy your public key file to torch first:
 ```bash
-scp ~/.ssh/id_Greene_rsa.pub <NetID>@greene.hpc.nyu.edu:/home/<NetID>
+scp ~/.ssh/id_Greene_rsa.pub <NetID>@torch.hpc.nyu.edu:/home/<NetID>
 ```
 
 You'll need to log in with your password at least once even if you plan to use SSH keys in the future because we'll need to set up your keys.
 
 Once you are on the NYU WiFi or VPN you can connect with:
 ```bash
-ssh <NetID>@greene.hpc.nyu.edu
+ssh <NetID>@torch.hpc.nyu.edu
 ```
 
 When you are logged in you will see information about your last login, the host you've connected to, and your storage quota.  It should look something like this:

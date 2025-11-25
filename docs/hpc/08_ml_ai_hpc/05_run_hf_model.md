@@ -70,7 +70,7 @@ Singularity> exit
 ```
 
 :::tip
-You can find more information about using Singularity and Conda on our HPC systems in our documentation [Singularity with Conda](https://sites.google.com/nyu.edu/nyu-hpc/hpc-systems/greene/software/singularity-with-miniconda).
+You can find more information about using Singularity and Conda on our HPC systems in our documentation [Singularity with Conda](https://sites.google.com/nyu.edu/nyu-hpc/hpc-systems/torch/software/singularity-with-miniconda).
 :::
 
 ## Prepare script

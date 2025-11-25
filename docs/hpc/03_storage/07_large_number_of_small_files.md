@@ -16,7 +16,7 @@ An issue with this approach, is that many linux file system can hold only a limi
 :::
 
 ```sh
-# One can open greene cluster and run the following command
+# One can open torch cluster and run the following command
 $ df -ih /scratch/
 Filesystem                               Inodes IUsed IFree IUse% Mounted on
 10.0.0.40@o2ib:10.0.0.41@o2ib:/scratch1   1.6G  209M  1.4G   14% /scratch

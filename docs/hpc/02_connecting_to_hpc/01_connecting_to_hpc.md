@@ -16,7 +16,7 @@ The following sections will outline basic ways to connect to the Greene cluster.
 
 To connect to HPC systems, you have to configure the SSH client on your machine. We recommend the following configuration:
 ```sh
-Host greene.hpc.nyu.edu dtn.hpc.nyu.edu
+Host torch.hpc.nyu.edu dtn.hpc.nyu.edu
   User <NetID>
   StrictHostKeyChecking no
   ServerAliveInterval 60
@@ -60,7 +60,7 @@ IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
 Someone could be eavesdropping on you right now (man-in-the-middle attack)!
 It is also possible that a host key has just been changed.
 ```
-Do not be alarmed - this is an issue that occurs because the Greene and Torch clusters have multiple login nodes. For instance, `greene.hpc.nyu.edu` resolves to one of three possible login nodes (`log-1`, `log-2`, and `log-3`). The configuration directive `StrictHostKeyChecking no` referenced in the recommended config above will prevent this error. Ensure that you have not missed adding it.
+Do not be alarmed - this is an issue that occurs because the Greene and Torch clusters have multiple login nodes. For instance, `torch.hpc.nyu.edu` resolves to one of three possible login nodes (`log-1`, `log-2`, and `log-3`). The configuration directive `StrictHostKeyChecking no` referenced in the recommended config above will prevent this error. Ensure that you have not missed adding it.
 :::
 
 :::info SSH Timeout errors
@@ -78,10 +78,10 @@ To access the HPC systems, you must either be on the NYU secure network (such as
 
 ### Mac & Linux Access
 
-Once you're on the VPN or the main NYU network on campus you can SSH directly to greene like so:
+Once you're on the VPN or the main NYU network on campus you can SSH directly to torch like so:
 
 ```sh
-ssh <Your NetID>@greene.hpc.nyu.edu
+ssh <Your NetID>@torch.hpc.nyu.edu
 ```
  
 ### Windows

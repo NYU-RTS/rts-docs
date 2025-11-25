@@ -507,7 +507,7 @@ Launch Singularity with overlay images in writable mode to install packages:
         --bind /share/apps \
         --bind /scratch/<NetID>/julia/julia-compiled:/ext3/pkgs/compiled \
         --bind /scratch/<NetID>/julia/julia-logs:/ext3/pkgs/logs  \
-        /scratch/work/public/apps/greene/centos-8.2.2004.sif \
+        /scratch/work/public/apps/torch/centos-8.2.2004.sif \
         /bin/bash
 ```
 
@@ -569,7 +569,7 @@ singularity exec \
         --bind /share/apps \
         --bind /scratch/<NetID>/julia/julia-compiled:/ext3/pkgs/compiled \
         --bind /scratch/<NetID>/julia/julia-logs:/ext3/pkgs/logs  \
-        /scratch/work/public/apps/greene/centos-8.2.2004.sif \
+        /scratch/work/public/apps/torch/centos-8.2.2004.sif \
         /bin/bash -c "
 source /ext3/env.sh
 julia $args
@@ -629,7 +629,7 @@ singularity exec \
         --bind /share/apps \
         --bind /scratch/<NetID>/julia/julia-compiled:/ext3/pkgs/compiled \
         --bind /scratch/<NetID>/julia/julia-logs:/ext3/pkgs/logs  \
-        /scratch/work/public/apps/greene/centos-8.2.2004.sif \
+        /scratch/work/public/apps/torch/centos-8.2.2004.sif \
         /bin/bash -c "
 source /ext3/env.sh
 julia $args
