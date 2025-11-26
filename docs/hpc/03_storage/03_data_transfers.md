@@ -5,7 +5,17 @@ Globus is the recommended tool to use for large-volume data transfers due to the
 :::
 
 ## Data-Transfer nodes
-Attached to the NYU HPC cluster Torch, the Torch Data Transfer Node (gDTN) are  nodes optimized for transferring data between cluster file systems (e.g. scratch)  and other endpoints outside the NYU HPC clusters, including user laptops and desktops. The gDTNs have 100-Gb/s Ethernet connections to the High Speed Research Network (HSRN) and are connected to the HDR Infiniband fabric of the HPC clusters. More information on the hardware characteristics is available at [Torch spec sheet](../10_spec_sheet.md).
+Attached to the NYU HPC clusters are Data Transfer Nodes, which are nodes optimized for transferring data between cluster file systems (e.g. scratch) and other endpoints outside the NYU HPC clusters, including user laptops and desktops. The DTNs have 100-Gb/s Ethernet connections to the High Speed Research Network (HSRN) and are connected to the HDR Infiniband fabric of the HPC clusters. More information on the hardware characteristics is available at [Torch spec sheet](../10_spec_sheet.md).
+
+### Copying Data to Torch via the Command Line
+Torch currently has one available data transfer node (dtn012) that can be used to upload data. Please note this requires logging in using EntraID, please see the Connecting to HPC page for more details.
+
+```sh
+netid@localpc ~ $ rsync -avz -e ssh ~/testfile.txt netid@dtn012.hpc.nyu.edu:/scratch/netid/testfile.txt
+(netid@dtn012.hpc.nyu.edu) Authenticate with PIN BUUM5YHJX at https://microsoft.com/devicelogin and press ENTER.
+testfile.txt                      100%    0     0.0KB/s   00:00
+netid@localpc ~ $
+```
 
 ### Data Transfer Node Access
 The HPC cluster filesystems include `/home`, `/scratch`, `/archive` and the [HPC Research Project Space](./05_research_project_space.mdx) are available on the gDTN. The Data-Transfer Node (DTN) can be accessed in a variety of ways
@@ -25,14 +35,13 @@ logout
 ## Tools for Data Transfer
 
 ### Linux & Mac Tools
-#### scp and rsync
+#### rsync
 :::warning
 Please use Data Transfer Nodes (DTNs) with these tools. While one can transfer data while on login nodes, it is  considered a bad practice because it can degrade the node's performance.
 :::
 
 Sometimes these two tools are convenient for transferring small files. Using the DTNs does not require to set up an SSH tunnel; use the hostname `dtn.torch.hpc.nyu.edu` for one-step copying. See below for examples of commands invoked on the command line on a laptop running a Unix-like operating system:
 ```sh
-scp HMLHWBGX7_n01_HK16.fastq.gz jdoe55@dtn.torch.hpc.nyu.edu:/scratch/jdoe55/
 rsync -av HMLHWBGX7_n01_HK16.fastq.gz jdoe55@dtn.torch.hpc.nyu.edu:/scratch/jdoe55/ 
 ```
 In particular, rsync can also be used on the DTNs to copy directories recursively between filesystems, e.g. (assuming that you are logged in to a DTN),
