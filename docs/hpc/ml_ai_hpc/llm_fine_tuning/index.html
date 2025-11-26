@@ -10,8 +10,8 @@
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2DXB3BDH70"></script>
 <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-2DXB3BDH70",{anonymize_ip:!0})</script><link rel="stylesheet" href="/assets/css/styles.e184c1bb.css">
-<script src="/assets/js/runtime~main.ece1b613.js" defer="defer"></script>
-<script src="/assets/js/main.0c65e34e.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.70f332fb.js" defer="defer"></script>
+<script src="/assets/js/main.341a38d4.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -62,7 +62,7 @@
 <p>Ensure this is set both interactively and within sbatch scripts.</p>
 <hr>
 <h2 class="anchor anchorTargetStickyNavbar_eh83" id="operational-troubleshooting-common-errors-and-recommended-fixes">Operational Troubleshooting: Common Errors and Recommended Fixes<a href="#operational-troubleshooting-common-errors-and-recommended-fixes" class="hash-link" aria-label="Direct link to Operational Troubleshooting: Common Errors and Recommended Fixes" title="Direct link to Operational Troubleshooting: Common Errors and Recommended Fixes" translate="no">​</a></h2>
-<p>This section provides a comprehensive overview of all environment-related issues encountered during the fine-tuning of <code>google/gemma-3-4b-pt</code> on the NYU Greene HPC cluster. Each entry includes the error symptom, root cause, and resolution strategy, categorized for clarity.</p>
+<p>This section provides a comprehensive overview of all environment-related issues encountered during the fine-tuning of <code>google/gemma-3-4b-pt</code> on the NYU Torch HPC cluster. Each entry includes the error symptom, root cause, and resolution strategy, categorized for clarity.</p>
 <h3 class="anchor anchorTargetStickyNavbar_eh83" id="1-filesystem-and-path-setup-issues">1. Filesystem and Path Setup Issues<a href="#1-filesystem-and-path-setup-issues" class="hash-link" aria-label="Direct link to 1. Filesystem and Path Setup Issues" title="Direct link to 1. Filesystem and Path Setup Issues" translate="no">​</a></h3>
 <table><thead><tr><th>Problem</th><th>Symptom</th><th>Cause</th><th>Resolution</th></tr></thead><tbody><tr><td>Incorrect overlay filename</td><td>No such file: <code>overlay-50GB-500K.ext3.gz</code></td><td>The filename was incorrectly assumed</td><td>Use <code>ls /scratch/work/public/overlay-fs-ext3/</code> to verify the correct file: <code>overlay-50G-10M.ext3.gz</code></td></tr><tr><td>Compressed overlay used directly</td><td><code>FATAL: while loading overlay images...</code></td><td>Attempted to use <code>.gz</code> file directly with Singularity</td><td>Run <code>gunzip overlay-50G-10M.ext3.gz</code> before using the file</td></tr><tr><td>Overlay missing in working directory</td><td>sbatch cannot find the overlay file</td><td>Overlay not copied to the training directory</td><td>Ensure the overlay file is placed in <code>/scratch/&lt;NetID&gt;/fine-tune/</code> where sbatch accesses it</td></tr><tr><td>Invalid overlay structure</td><td><code>FATAL: could not create upper dir</code></td><td>Overlay created via <code>fallocate</code> + <code>mkfs.ext3</code>, missing necessary internal structure</td><td>Always use <code>singularity overlay create --size 25000</code> to create overlays</td></tr></tbody></table>
 <h3 class="anchor anchorTargetStickyNavbar_eh83" id="2-container-runtime-and-overlay-mounting-errors">2. Container Runtime and Overlay Mounting Errors<a href="#2-container-runtime-and-overlay-mounting-errors" class="hash-link" aria-label="Direct link to 2. Container Runtime and Overlay Mounting Errors" title="Direct link to 2. Container Runtime and Overlay Mounting Errors" translate="no">​</a></h3>
