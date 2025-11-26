@@ -48,4 +48,4 @@ Your home directory has a relatively small number of inodes.
 If you create a conda or python environment in you home directory, this can eat up all the inodes. 
 :::
 
-Please review the [Package Management section](../06_tools_and_software/01_intro.md#package-management-for-r-python--julia-and-conda-in-general) of the [Greene Software Page](../06_tools_and_software/01_intro.md).
+Please review the [Package Management section](../06_tools_and_software/01_intro.md#package-management-for-r-python--julia-and-conda-in-general) of the [Torch Software Page](../06_tools_and_software/01_intro.md).

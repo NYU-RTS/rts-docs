@@ -3,7 +3,7 @@
 ## Transferring files to and from Google Drive with RCLONE
 Having access to Google Drive from the HPC environment provides an option to archive data and even share data with collaborators who have no access to the NYU HPC environment. Other options to archiving data include the HPC Archive file system and using [Globus](./04_globus.md) to share data with collaborators.
 
-Access to Google Drive is provided by [rclone](https://rclone.org/drive/) - rsync for cloud storage - a command line program to sync files and directories to and from cloud storage systems such as Google Drive, Amazon Drive, S3, B2 etc. [rclone](https://rclone.org/drive/) is available on Greene cluster as a module, the module versions currently available (March 2025) are:
+Access to Google Drive is provided by [rclone](https://rclone.org/drive/) - rsync for cloud storage - a command line program to sync files and directories to and from cloud storage systems such as Google Drive, Amazon Drive, S3, B2 etc. [rclone](https://rclone.org/drive/) is available on Torch cluster as a module, the module versions currently available (March 2025) are:
 -   **rclone/1.68.2**
 -   **rclone/1.66.0**
 -   **rclone/1.60.1**
@@ -25,11 +25,11 @@ This option works great for file sizes 1Gb+ to 250GB. Keep in mind that there is
 ## rclone Configuration
 You need to configure rclone before you will be able to move files between the HPC Environment and Google Drive
 
-There are specific instruction on the [rclone web site](https://rclone.org/drive/) and here is an example of the process for configuring rclone for use on Greene:
+There are specific instruction on the [rclone web site](https://rclone.org/drive/) and here is an example of the process for configuring rclone for use on Torch:
 
-### Step 1: Login to Greene:
+### Step 1: Login to Torch:
 
-Follow [instructions](../02_connecting_to_hpc/01_connecting_to_hpc.md) to log into the Greene HPC cluster.
+Follow [instructions](../02_connecting_to_hpc/01_connecting_to_hpc.md) to log into the Torch HPC cluster.
 
 ### Step 2: Load the rclone module
 ```sh

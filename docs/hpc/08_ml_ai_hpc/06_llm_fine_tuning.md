@@ -123,7 +123,7 @@ Ensure this is set both interactively and within sbatch scripts.
 
 ## Operational Troubleshooting: Common Errors and Recommended Fixes
 
-This section provides a comprehensive overview of all environment-related issues encountered during the fine-tuning of `google/gemma-3-4b-pt` on the NYU Greene HPC cluster. Each entry includes the error symptom, root cause, and resolution strategy, categorized for clarity.
+This section provides a comprehensive overview of all environment-related issues encountered during the fine-tuning of `google/gemma-3-4b-pt` on the NYU Torch HPC cluster. Each entry includes the error symptom, root cause, and resolution strategy, categorized for clarity.
 
 ### 1. Filesystem and Path Setup Issues
 

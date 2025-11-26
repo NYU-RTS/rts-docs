@@ -93,12 +93,12 @@ Example SBATCH jobs and outputs are available to review here:
 COMSOL is a problem-solving simulation environment, enforcing compatibility guarantees consistent multiphysics models. COMSOL Multiphysics is a general-purpose software platform, based on advanced numerical methods, for modeling and simulating physics-based problems. The package is cross-platform (Windows, Mac, Linux). The COMSOL Desktop helps you organize your simulation by presenting a clear overview of your model at any point. It uses functional form, structure, and aesthetics as the means to achieve simplicity for modeling complex realities.
 
 :::note
-This license is for academic use only with Floating Network Licensing in nature i.e., authorized users are allowed to use the software on desktops. Please contact [hpc@nyu.edu](mailto:hpc.nyu.edu) for the license. However, COMSOL is also available on NYU HPC cluster Greene.
+This license is for academic use only with Floating Network Licensing in nature i.e., authorized users are allowed to use the software on desktops. Please contact [hpc@nyu.edu](mailto:hpc.nyu.edu) for the license. However, COMSOL is also available on NYU HPC cluster Torch.
 :::
 
-In order to check what Comsol licenses are available on Greene use `comsol_licenses` command in your terminal session.
+In order to check what Comsol licenses are available on Torch use `comsol_licenses` command in your terminal session.
 
-Several versions of COMSOL are available on the HPC cluster. To use COMSOL on the Greene HPC cluster, please 
+Several versions of COMSOL are available on the HPC cluster. To use COMSOL on the Torch HPC cluster, please 
 load the relevant module in your batch job submission script:
 ```sh
 module load comsol/6.3
@@ -123,7 +123,7 @@ sbatch run-comsol.sbatch
 ## MATHEMATICA
 Mathematica is a general computing environment with organizing algorithmic, visualization, and user interface capabilities. The many mathematical algorithms included in Mathematica make computation easy and fast.
 
-To run Mathematica on the Greene HPC cluster, please load the relevant module in your batch job submission script:
+To run Mathematica on the Torch HPC cluster, please load the relevant module in your batch job submission script:
 ```sh
 module load mathematica/14.1.0
 ```
@@ -164,7 +164,7 @@ SAS is a software package which enables programmers to perform many tasks, inclu
 
 There are licenses for 2 CPUs on the HPC Cluster.
 
-### Running a parallel SAS job on HPC cluster (Greene):
+### Running a parallel SAS job on HPC cluster (Torch):
 
 To submit a SAS job for running on multiple processing elements, follow below steps:
 
@@ -201,12 +201,12 @@ module load matlab/2024b
 ```
 In order to run MATLAB interactively on the cluster, [start an interactive slurm job](../05_submitting_jobs/01_slurm_submitting_jobs.md), load the matlab module and launch an interactive matlab session in the terminal. 
 
-Mathworks has provided a [Greene Matlab User Guide](https://drive.google.com/file/d/1lNNzf4lsFuH9a4bbsO18roCGhT3DwUq2/view) that presents useful tips and practices for using Matlab on the cluster.
+Mathworks has provided a [Torch Matlab User Guide](https://drive.google.com/file/d/1lNNzf4lsFuH9a4bbsO18roCGhT3DwUq2/view) that presents useful tips and practices for using Matlab on the cluster.
 
 ## STATA
 Stata is a command and menu-driven software package for statistical analysis. It is available for Windows, Mac, and Linux operating systems. Most of its users work in research. Stata's capabilities include data management, statistical analysis, graphics, simulations, regression and custom programming. 
 
-### Running a parallel STATA job on HPC cluster (Greene):
+### Running a parallel STATA job on HPC cluster (Torch):
 
 To submit a STATA job for running on multiple processing elements, follow below steps.
 
@@ -230,7 +230,7 @@ Gaussian uses basic quantum mechanic electronic structure programs. This softwar
 
 The NYU Gaussian license only covers PIs at the Washington Square Park campus. We will grant access to you after verifying your WSP affiliation. For access, please email [hpc@nyu.edu](mailto:hpc.nyu.edu).
 
-### Running a parallel Gaussian job on HPC cluster (Greene):
+### Running a parallel Gaussian job on HPC cluster (Torch):
 
 To submit a Gaussian job for running on multiple processing elements, follow below steps.
 
@@ -249,7 +249,7 @@ sbatch run-gaussian.sbatch
 ## Knitro
 Knitro is a commercial software package for solving large scale mathematical optimization problems. Knitro is specialized for nonlinear optimization, but also solves linear programming problems, quadratic programming problems, systems of nonlinear equations, and problems with equilibrium constraints. The unknowns in these problems must be continuous variables in continuous functions; however, functions can be convex or nonconvex. Knitro computes a numerical solution to the problem—it does not find a symbolic mathematical solution. Knitro versions 9.0.1 and 10.1.1 are available.
 
-### Running a parallel Knitro job on HPC cluster (Greene):
+### Running a parallel Knitro job on HPC cluster (Torch):
 
 To submit a Knitro job for running on multiple processing elements, follow below steps.
 

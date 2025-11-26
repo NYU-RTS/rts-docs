@@ -10,7 +10,7 @@ Add the following to your SSH config file (~/.ssh/config) on your local workstat
 Host burst
   HostName burst.hpc.nyu.edu
   User <NetID>
-  ProxyJump <NetID>@greene.hpc.nyu.edu
+  ProxyJump <NetID>@login.torch.hpc.nyu.edu
   ProxyJump <NetID>@burst.hpc.nyu.edu
   StrictHostKeyChecking no
   UserKnownHostsFile /dev/null

@@ -4,19 +4,19 @@
 This page gives an overview of connecting to the HPC cluster, for a tutorial on this topic, head to the [this section](../12_tutorial_intro_shell_hpc/02_connecting_to_hpc.mdx)! 
 :::
 
-There are several ways to interact with the Greene HPC cluster. Similar to other Linux clusters, the most common method of connection is via a Command Line Interface (CLI). A CLI is a program that allows you to create and delete files, run programs, and navigate through directories and files via a typed prompt. On Mac, the built-in CLI application is called Terminal. While Windows 11 machines support a Linux Subsystem, which allows for similar functionality, a popular tool used to connect to a Linux server is a free application called [MoabXterm](https://mobaxterm.mobatek.net/documentation.html) 
+There are several ways to interact with the Torch HPC cluster. Similar to other Linux clusters, the most common method of connection is via a Command Line Interface (CLI). A CLI is a program that allows you to create and delete files, run programs, and navigate through directories and files via a typed prompt. On Mac, the built-in CLI application is called Terminal. While Windows 11 machines support a Linux Subsystem, which allows for similar functionality, a popular tool used to connect to a Linux server is a free application called [MoabXterm](https://mobaxterm.mobatek.net/documentation.html) 
 
 :::tip
 If you'd prefer to access the HPC cluster via a web gateway instead, please refer to [the section describing Open OnDemand (OOD)](../09_ood/01_ood_intro.md).
 :::
 
-The following sections will outline basic ways to connect to the Greene cluster. Access to the clusters is primarily handled via the Secure Shell Protocol, or ssh. Below we outline ways to connect via ssh on Mac, Linux, and Windows machines.
+The following sections will outline basic ways to connect to the Torch cluster. Access to the clusters is primarily handled via the Secure Shell Protocol, or ssh. Below we outline ways to connect via ssh on Mac, Linux, and Windows machines.
 
 ## Configuring Your SSH Client
 
 To connect to HPC systems, you have to configure the SSH client on your machine. We recommend the following configuration:
 ```sh
-Host greene.hpc.nyu.edu dtn.hpc.nyu.edu
+Host dtn.torch.hpc.nyu.edu
   User <NetID>
   StrictHostKeyChecking no
   ServerAliveInterval 60
@@ -46,7 +46,7 @@ New-Item -Path $HOME\.ssh\config -ItemType File
 # Open config File with Notepad
 C:\WINDOWS\System32\notepad.exe $HOME\.ssh\config
 ```
-Configuring the file above will allow you to use the cmd terminal to connect to Greene.
+Configuring the file above will allow you to use the cmd terminal to connect to Torch.
 
 ### Common issues
 
@@ -60,7 +60,7 @@ IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
 Someone could be eavesdropping on you right now (man-in-the-middle attack)!
 It is also possible that a host key has just been changed.
 ```
-Do not be alarmed - this is an issue that occurs because the Greene and Torch clusters have multiple login nodes. For instance, `greene.hpc.nyu.edu` resolves to one of three possible login nodes (`log-1`, `log-2`, and `log-3`). The configuration directive `StrictHostKeyChecking no` referenced in the recommended config above will prevent this error. Ensure that you have not missed adding it.
+Do not be alarmed - this is an issue that occurs because the Torch and Torch clusters have multiple login nodes. For instance, `login.torch.hpc.nyu.edu` resolves to one of three possible login nodes (`log-1`, `log-2`, and `log-3`). The configuration directive `StrictHostKeyChecking no` referenced in the recommended config above will prevent this error. Ensure that you have not missed adding it.
 :::
 
 :::info SSH Timeout errors
@@ -78,10 +78,10 @@ To access the HPC systems, you must either be on the NYU secure network (such as
 
 ### Mac & Linux Access
 
-Once you're on the VPN or the main NYU network on campus you can SSH directly to greene like so:
+Once you're on the VPN or the main NYU network on campus you can SSH directly to torch like so:
 
 ```sh
-ssh <Your NetID>@greene.hpc.nyu.edu
+ssh <Your NetID>@login.torch.hpc.nyu.edu
 ```
  
 ### Windows
@@ -119,7 +119,7 @@ There is an extra layer of security when accessing Torch which is described belo
 -   Return to terminal and hit Enter
 ![torch-ssh-2fa-9](static/torch-ssh-2fa-9.png)
 
-## SSH Keys for Greene
+## SSH Keys for Torch
 :::warning
 SSH keys are not supported on Torch!
 :::

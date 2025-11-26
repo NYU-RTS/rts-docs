@@ -151,19 +151,19 @@ To copy a single file to or from the cluster, we can use `scp` (“secure copy�
 
 To *upload* to another computer, the template command is
 ```bash
-[user@laptop ~]$ scp local_file NetID@greene.hpc.nyu.edu:remote_destination
+[user@laptop ~]$ scp local_file NetID@login.torch.hpc.nyu.edu:remote_destination
 ```
 in which `@` and `:` are field separators and `remote_destination` is a path relative to your remote home directory, or a new filename if you wish to change it, or both a relative path *and* a new filename. If you don’t have a specific folder in mind you can omit the `remote_destination` and the file will be copied to your home directory on the remote computer (with its original name). If you include a `remote_destination`, note that `scp` interprets this the same way `cp` does when making local copies: if it exists and is a folder, the file is copied inside the folder; if it exists and is a file, the file is overwritten with the contents of `local_file`; if it does not exist, it is assumed to be a destination filename for `local_file`.
 
 Upload the lesson material to your remote home directory like so:
 ```bash
-[user@laptop ~]$ scp amdahl.tar.gz NetID@greene.hpc.nyu.edu:
+[user@laptop ~]$ scp amdahl.tar.gz NetID@login.torch.hpc.nyu.edu:
 ```
 
 ## Transferring a Directory
 To transfer an entire directory, we add the `-r` flag for “recursive”: copy the item specified, and every item below it, and every item below those… until it reaches the bottom of the directory tree rooted at the folder name you provided.
 ```bash
-[user@laptop ~]$ scp -r amdahl NetID@greene.hpc.nyu.edu:
+[user@laptop ~]$ scp -r amdahl NetID@login.torch.hpc.nyu.edu:
 ```
 :::warning[Caution]
 For a large directory – either in size or number of files – copying with `-r` can take a long time to complete.
@@ -182,7 +182,7 @@ As you gain experience with transferring files, you may find the `scp` command l
 
 The syntax is similar to `scp`. To transfer to another computer with commonly used options:
 ```bash
-[user@laptop ~]$ rsync -avP amdahl.tar.gz NetID@greene.hpc.nyu.edu:
+[user@laptop ~]$ rsync -avP amdahl.tar.gz NetID@login.torch.hpc.nyu.edu:
 ```
 The options are:
 -   `-a` (archive) to preserve file timestamps, permissions, and folders, among other things; implies recursion
@@ -191,13 +191,13 @@ The options are:
 
 To recursively copy a directory, we can use the same options:
 ```bash
-[user@laptop ~]$ rsync -avP amdahl NetID@greene.hpc.nyu.edu:~/
+[user@laptop ~]$ rsync -avP amdahl NetID@login.torch.hpc.nyu.edu:~/
 ```
 As written, this will place the local directory and its contents under your home directory on the remote system. If a trailing slash is added to the source, a new directory corresponding to the transferred directory will not be created, and the contents of the source directory will be copied directly into the destination directory.
 
 To download a file, we simply change the source and destination:
 ```bash
-[user@laptop ~]$ rsync -avP NetID@greene.hpc.nyu.edu:amdahl ./
+[user@laptop ~]$ rsync -avP NetID@login.torch.hpc.nyu.edu:amdahl ./
 ```
 :::
 
@@ -208,7 +208,7 @@ File transfers using both `scp` and `rsync` use SSH to encrypt data sent through
 :::info[Change the Rsync Port]
 Say we have to connect `rsync` through port 768 instead of 22. How would we modify this command?
 ```bash
-[user@laptop ~]$ rsync amdahl.tar.gz NetID@greene.hpc.nyu.edu:
+[user@laptop ~]$ rsync amdahl.tar.gz NetID@login.torch.hpc.nyu.edu:
 ```
 Hint: check the `man` page or “help” for `rsync`. <br />
 **[Click for Solution]**
@@ -220,7 +220,7 @@ Hint: check the `man` page or “help” for `rsync`. <br />
 [user@laptop ~]$ rsync --help | grep port
      --port=PORT             specify double-colon alternate port number
 See http://rsync.samba.org/ for updates, bug reports, and answers
-[user@laptop ~]$ rsync --port=768 amdahl.tar.gz NetID@greene.hpc.nyu.edu:
+[user@laptop ~]$ rsync --port=768 amdahl.tar.gz NetID@login.torch.hpc.nyu.edu:
 ```
 :::note
 This command will fail, as the correct port in this case is the default: 22.
@@ -235,7 +235,7 @@ Download and install the FileZilla client from [https://filezilla-project.org](h
 
 To connect to the cluster, we’ll just need to enter our credentials at the top of the screen:
 
--   Host: `sftp://greene.hpc.nyu.edu`
+-   Host: `sftp://login.torch.hpc.nyu.edu`
 -   User: Your NetID
 -   Password: Your NetID password
 -   Port: (leave blank to use the default port)
@@ -273,27 +273,27 @@ As mentioned above, if you have related data that consists of a large number of 
 :::info[Consider the Best Way to Transfer Data]
 If you are transferring large amounts of data you will need to think about what may affect your transfer performance. It is always useful to run some tests that you can use to extrapolate how long it will take to transfer your data.
 
-Say you have a “data” folder containing 10,000 or so files, a healthy mix of small and large ASCII and binary data. Which of the following would be the best way to transfer them to Greene?
+Say you have a “data” folder containing 10,000 or so files, a healthy mix of small and large ASCII and binary data. Which of the following would be the best way to transfer them to Torch?
 ```bash
-[user@laptop ~]$ scp -r data NYUNetID@greene.hpc.nyu.edu:~/
+[user@laptop ~]$ scp -r data NYUNetID@login.torch.hpc.nyu.edu:~/
 ```
 ```bash
-[user@laptop ~]$ rsync -ra data NYUNetID@greene.hpc.nyu.edu:~/
+[user@laptop ~]$ rsync -ra data NYUNetID@login.torch.hpc.nyu.edu:~/
 ```
 ```bash
-[user@laptop ~]$ rsync -raz data NYUNetID@greene.hpc.nyu.edu:~/
+[user@laptop ~]$ rsync -raz data NYUNetID@login.torch.hpc.nyu.edu:~/
 ```
 ```bash
 [user@laptop ~]$ tar -cvf data.tar data
 ```
 ```bash
-[user@laptop ~]$ rsync -raz data.tar NYUNetID@greene.hpc.nyu.edu:~/
+[user@laptop ~]$ rsync -raz data.tar NYUNetID@login.torch.hpc.nyu.edu:~/
 ```
 ```bash
 [user@laptop ~]$ tar -cvzf data.tar.gz data
 ```
 ```bash
-[user@laptop ~]$ rsync -ra data.tar.gz NYUNetID@greene.hpc.nyu.edu:~/
+[user@laptop ~]$ rsync -ra data.tar.gz NYUNetID@login.torch.hpc.nyu.edu:~/
 ```
 **[Click for Solution]**
 :::
