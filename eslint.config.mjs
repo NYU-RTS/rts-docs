@@ -67,6 +67,14 @@ const eslintConfig = tseslint.config(
   jsxA11y.flatConfigs.recommended,
 
   {
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
+  },
+
+  {
     rules: {
       "@typescript-eslint/consistent-type-imports": [
         "warn",

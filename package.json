@@ -43,6 +43,7 @@
     "@docusaurus/types": "^3.9.2",
     "@eslint/compat": "^1.4.1",
     "@types/react": "^19.2.2",
+    "csv-parse": "^6.1.0",
     "eslint": "^9.39.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-typescript": "^4.4.4",
