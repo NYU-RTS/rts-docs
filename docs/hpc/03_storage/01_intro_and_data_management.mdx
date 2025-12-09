@@ -1,10 +1,10 @@
 # HPC Storage
 
-The NYU HPC Environment provides access to a number of file-systems to better serve the needs of researchers managing data during the various stages of the [research data life cycle](https://guides.nyu.edu/dataservices#s-lg-box-33756318). Each HPC file-system comes with different features, policies, and availability.  
+The HPC Environment provides access to a number of file-systems to better serve the needs of researchers managing data during the various stages of the [research data life cycle](https://guides.nyu.edu/dataservices#s-lg-box-33756318). Each HPC file-system comes with different features, policies, and availability.  
 
 Numerous data management tools are available that enable data transfers and data sharing, recommended best practices, and various scenarios and use cases of managing data in the HPC Environment. We strongly recommend [`globus`](./03_globus.md) as the primary data transfer tool.
 
-Selected public datasets are available to all HPC users, such as a subset of The Cancer Genome Atlas (`TCGA`), the Million Song Database, `ImageNet`, and Reference Genomes. More information can be found in the [datasets section](../04_datasets/01_intro.md). 
+Selected public datasets are available to all HPC users, such as a subset of The Cancer Genome Atlas (`TCGA`), the Million Song Database, `ImageNet`, and Reference Genomes. More information can be found in the [datasets section](../04_datasets/01_intro.md).
 
 :::warning[HPC is only approved for Moderate Risk Data]
 -   The HPC Environment has been approved for storing and analyzing **Moderate Risk research data**, as defined in the [NYU Electronic Data and System Risk Classification Policy](https://www.nyu.edu/about/policies-guidelines-compliance/policies-and-guidelines/electronic-data-and-system-risk-classification.html). 
@@ -15,11 +15,9 @@ Selected public datasets are available to all HPC users, such as a subset of The
 Because the HPC system is not approved for High Risk data, we recommend using an approved system like the [Secure Research Data Environments (SRDE)](../../srde/01_getting_started/01_intro.md).
 :::
 
-## Data Storage options in the HPC Environment
+Below is a list of file-systems with their characteristics and a summary table. Reviewing the list of available file-systems and the various scenarios/use cases that are presented below, can help you in selecting the right file-systems for your research project. Please note that there are strict limits on the size and number of files you are allowed to have on each filesystem. To find out your current disk space, inode quota utilization and the distribution of files under your scratch directory, refer to the section on [understanding user quota Limits and the myquota command.](./05_best_practices.md#user-quota-limits-and-the-myquota-command)
 
-Below is a list of file-systems with their characteristics and a summary table. Reviewing the list of available file-systems and the various scenarios/use cases that are presented below, can help select the right file-systems for a research project. Please note that there are strict limits on the size and number of files you are allowed to have on each filesystem. To find out your current disk space, inode quota utilization and the distribution of files under your scratch directory, please see: [Understanding user quota Limits and the myquota command.](./05_best_practices.md#user-quota-limits-and-the-myquota-command)
-
-### User Home Directories
+## User Home Directories
 Every individual user has a home directory (under **`/home/$USER`**, environment variable **`$HOME`**) for permanently storing code and important configuration files. Home Directories provide limited storage space (**50 GB**) and inodes (files) **30,000** per user. Users can check their quota utilization using the [myquota](http://www.info-ren.org/projects/ckp/tech/software/version/myquota.html) command. User home directories are backed up daily and old files under **`$HOME`** are not purged. The user home directories are available on every cluster node (login nodes, compute nodes) as well as and the Data Transfer Node (gDTN).
 
 :::warning
@@ -34,7 +32,7 @@ User Home Directories are not ideal for sharing files and folders with other use
 -   Working with `conda` environments: To avoid running out of inode limits in home directories, the HPC team recommends **setting up `conda` environments with Singularity overlay images** as [described here](../07_containers/03_singularity_with_conda.md). Avoid creating `conda` environments in your `$HOME` directory.
 :::
 
-### HPC Scratch
+## HPC Scratch
 The HPC scratch an all flash (VAST) file-system where most of the users store research data needed during the analysis phase of their research projects. The scratch file-system provides ***temporary*** storage for datasets needed for running jobs. Every user has a dedicated scratch directory (**/scratch/$USER**) with **5 TB** disk quota and **5,000,000 inodes** (files) limit per user. The scratch file-system is available on all nodes (compute, login, etc.) on Torch as well as Data Transfer Node (gDTN).
 
 :::warning[Scratch Purging Policy]
@@ -48,13 +46,13 @@ The HPC scratch an all flash (VAST) file-system where most of the users store re
 -   Once a research project completes, users should archive their important files in the [HPC Archive file-system](./01_intro_and_data_management.mdx#hpc-archive).
 :::
 
-### HPC Research Project Space
+## HPC Research Project Space
 The HPC Research Project Space (RPS) provides data storage space for research projects that is easily shared amongst collaborators, ***backed up***, and ***not subject to the old file purging policy***. HPC RPS was introduced to ease data management in the HPC environment and eliminate the need of having to frequently copying files between Scratch and Archive file-systems by having all projects files under one area. ***These benefits of the HPC RPS come at a cost***. The cost is determined by the allocated disk space and the number of files (inodes). For detailed information about RPS see: [HPC Research Project Space](./04_research_project_space.mdx)
 
-### HPC Work
+## HPC Work
 The HPC team makes available a number of public datasets that are commonly used in analysis jobs. The data-sets are available Read-Only under `/scratch/work/public`. For some of the datasets users must provide a signed usage agreement before accessing. Public datasets available on the HPC clusters can be viewed on the [Datasets page](../04_datasets/01_intro.md).
 
-### HPC Archive
+## HPC Archive
 Once the Analysis stage of the [research data life cycle](https://guides.nyu.edu/dataservices#s-lg-box-33756318) has completed, you should compress your data before moving it onto the archive (`/archive/$USER`). For instance you can use the `tar` command to compress all your data into a single `tar.gz` file. The HPC Archive file-system is not accessible by running jobs; it is suitable for long-term data storage. Each user has access to a default disk quota of **2TB** and ***20,000 inode (files) limit***. The rather low limit on the number of inodes per user is intentional. The archive file-system is available only ***on login nodes*** of Torch. The archive file-system is backed up daily.
 
 -   Here is an example `tar` command that combines the data in a directory named `my_run_dir` under `$SCRATCH` and outputs the tar file in the user's `$ARCHIVE`: 
@@ -63,14 +61,14 @@ Once the Analysis stage of the [research data life cycle](https://guides.nyu.edu
 tar cvf $ARCHIVE/simulation_01.tar -C $SCRATCH my_run_dir
 ```
 
-### NYU (Google) Drive
+## NYU (Google) Drive
 Google Drive ([NYU Drive](https://www.nyu.edu/life/information-technology/communication-and-collaboration/document-collaboration-and-sharing/nyu-drive.html)) is accessible from the NYU HPC environment and provides an option to users who wish to archive data or share data with external collaborators who do not have access to the NYU HPC environment. 
 
 As of December 2023, storage limits were applied to all faculty, staff, and student NYU Google accounts. Please see [Google Workspace Storage](https://www.nyu.edu/life/information-technology/about-nyu-it/key-projects-and-initiatives/google-workspace-storage.html) for details.
 
 There are also limits to the data transfer rate in moving to/from Google Drive. Thus, moving many small files to Google Drive is not going to be efficient. Please read the [Instructions on how to use cloud storage within the NYU HPC Environment](./07_transferring_cloud_storage_data_with_rclone.md). 
 
-### HPC Storage Comparison Table
+## HPC Storage Comparison Table
 
 | Space                       | Environment Variable | Purpose                                         | Backed Up / Flushed                 | Quota Disk Space / # of Files      |
 |-----------------------------|----------------------|-------------------------------------------------------|-------------------------------------|------------------------------------|
