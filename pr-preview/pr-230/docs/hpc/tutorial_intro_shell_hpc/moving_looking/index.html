@@ -10,8 +10,8 @@
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2DXB3BDH70"></script>
 <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-2DXB3BDH70",{anonymize_ip:!0})</script><link rel="stylesheet" href="/pr-preview/pr-230/assets/css/styles.e184c1bb.css">
-<script src="/pr-preview/pr-230/assets/js/runtime~main.cb9e3e6d.js" defer="defer"></script>
-<script src="/pr-preview/pr-230/assets/js/main.f7de040e.js" defer="defer"></script>
+<script src="/pr-preview/pr-230/assets/js/runtime~main.b3deefb2.js" defer="defer"></script>
+<script src="/pr-preview/pr-230/assets/js/main.27597d2d.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -31,7 +31,7 @@
 <h2 class="anchor anchorTargetStickyNavbar_eh83" id="system-architecture">System Architecture<a href="#system-architecture" class="hash-link" aria-label="Direct link to System Architecture" title="Direct link to System Architecture" translate="no">​</a></h2>
 <p>File Systems:
 The NYU HPC clusters have multiple file systems for user’s files. Each file system is configured differently to serve a different purpose.</p>
-<table><thead><tr><th>Space</th><th>Environment Variable</th><th>Space Purpose</th><th>Flushed</th><th>Allocation (per user)</th></tr></thead><tbody><tr><td>/home</td><td>$HOME</td><td>Program development space; storing small files you want to keep long term, e.g. source code, scripts.</td><td>NO</td><td>20 GB</td></tr><tr><td>/scratch</td><td>$SCRATCH</td><td>Computational workspace. Best suited to large, infrequent reads and writes.</td><td>YES. Files not accessed for 60 days are deleted.</td><td>5 TB</td></tr><tr><td>/archive</td><td>$ARCHIVE</td><td>Long-term storage</td><td>NO</td><td>2 TB</td></tr><tr><td>/vast</td><td>$VAST</td><td>Flash memory for high I/O workflows</td><td>YES. Files not accessed for 60 days are deleted.</td><td>2 TB</td></tr></tbody></table>
+<table><thead><tr><th>Space</th><th>Environment Variable</th><th>Space Purpose</th><th>Flushed</th><th>Allocation (per user)</th></tr></thead><tbody><tr><td>/home</td><td>$HOME</td><td>Program development space; storing small files you want to keep long term, e.g. source code, scripts.</td><td>NO</td><td>20 GB</td></tr><tr><td>/scratch</td><td>$SCRATCH</td><td>Computational workspace. Best suited to large, infrequent reads and writes.</td><td>YES. Files not accessed for 60 days are deleted.</td><td>5 TB</td></tr><tr><td>/archive</td><td>$ARCHIVE</td><td>Long-term storage</td><td>NO</td><td>2 TB</td></tr></tbody></table>
 <p>Please see <a class="" href="/pr-preview/pr-230/docs/hpc/storage/intro_and_data_management/">HPC Storage</a> for more details.</p>
 <p>Right now, all we see is something that looks like this:</p>
 <div class="language-bash codeBlockContainer_foFG theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_oOJy"><pre tabindex="0" class="prism-code language-bash codeBlock_EAWu thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_TxFa"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token punctuation" style="color:hsl(119, 34%, 47%)">[</span><span class="token plain">NetID@login-1 ~</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">]</span><span class="token plain">$ </span><br></span></code></pre></div></div>
