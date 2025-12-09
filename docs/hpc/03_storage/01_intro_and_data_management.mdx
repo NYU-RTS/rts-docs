@@ -5,10 +5,10 @@
 -   The Office of Sponsored Projects (OSP) & Global Office of Information Security (GOIS) are exclusively empowered to classify the risk categories for a dataset as listed in the [NYU Electronic Data and System Risk Classification Policy](https://www.nyu.edu/about/policies-guidelines-compliance/policies-and-guidelines/electronic-data-and-system-risk-classification.html).
 :::
 
-The HPC environment provides access to the file-systems listed below to better serve your needs for managing research data during all stages of the [research data life cycle](https://guides.nyu.edu/dataservices#s-lg-box-33756318). Reviewing the list of available file-systems and their intended uses can help you in selecting the right file-system for your tasks. Please note that there are strict limits on the size and number of files you are allowed to have on each filesystem. To find out your current disk space & inode quota utilization refer to the section on [understanding user quota limits.](./05_best_practices.md#user-quota-limits-and-the-myquota-command)
+The HPC environment provides access to the file-systems listed below to better serve your needs for managing research data during all stages of the [research data life cycle](https://guides.nyu.edu/dataservices#s-lg-box-33756318). Reviewing the list of available file-systems and their intended uses can help you in selecting the right file-system for your tasks. Please note that there are strict limits on the size and number of files you are allowed to have on each filesystem. To find out your current disk space & inode quota utilization refer to the section on [understanding user quota limits.](./05_best_practices.mdx#user-quota-limits-and-the-myquota-command)
 
 ## User Home Directories
-You have access to a home directory at `/home/$USER` (accessible via the environment variable `$HOME`) for permanently storing code and important configuration files. Home Directories provide limited storage space (**50 GB**) and inodes (files) capacity **30,000**. You can check your quota utilization using the `myquota`command as [described here](./05_best_practices.md#user-quota-limits-and-the-myquota-command). Home directories are backed up daily and old files under `$HOME` are not purged. Home directories are available on every cluster node (login nodes, compute nodes) and the Data Transfer Node (gDTN).
+You have access to a home directory at `/home/$USER` (accessible via the environment variable `$HOME`) for permanently storing code and important configuration files. Home Directories provide limited storage space (**50 GB**) and inodes (files) capacity **30,000**. You can check your quota utilization using the `myquota`command as [described here](./05_best_practices.mdx#user-quota-limits-and-the-myquota-command). Home directories are backed up daily and old files under `$HOME` are not purged. Home directories are available on every cluster node (login nodes, compute nodes) and the Data Transfer Node (gDTN).
 
 :::warning
 Avoid changing file and directory permissions in your home directory to allow other users to access files.
@@ -18,7 +18,7 @@ User Home Directories are not ideal for sharing files and folders with other use
 
 :::tip[`inode` limits]
 -   One of the common issues that users report regarding their home directories is running out of inodes (i.e. the number of files stored under their home exceeds the inode limit), which by default is set to 30,000 files
--   To find out the current space and inode quota utilization and the distribution of files under your home directory, please see: [Understanding user quota limits and the myquota command.](./05_best_practices.md#user-quota-limits-and-the-myquota-command) 
+-   To find out the current space and inode quota utilization and the distribution of files under your home directory, please see: [Understanding user quota limits and the myquota command.](./05_best_practices.mdx#user-quota-limits-and-the-myquota-command) 
 -   Working with `conda` environments: To avoid running out of inode limits in home directories, the HPC team recommends **setting up `conda` environments with Singularity overlay images** as [described here](../07_containers/03_singularity_with_conda.md). Avoid creating `conda` environments in your `$HOME` directory.
 :::
 
