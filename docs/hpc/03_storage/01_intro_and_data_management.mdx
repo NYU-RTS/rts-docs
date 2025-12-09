@@ -23,7 +23,7 @@ User Home Directories are not ideal for sharing files and folders with other use
 :::
 
 ## HPC Scratch
-The HPC scratch is an all flash (VAST) file-system you can store research data needed during the analysis phase of their research projects. It provides ***temporary*** storage for datasets needed for running job. Your scratch directory (`/scratch/$USER`) has a limit of **5 TB** disk quota and **5,000,000 inodes** (files). The scratch file-system is available on all nodes (compute, login, etc.) on Torch as well as Data Transfer Node (gDTN). There are no backups for this file-system and files that are deleted accidentally or removed due to storage system failures cannot be recovered.
+The HPC scratch is an all flash (VAST) file-system you can store research data needed during the analysis phase of your research projects. It provides ***temporary*** storage for datasets needed for running jobs. Your scratch directory (`/scratch/$USER`) has a limit of **5 TB** disk quota and **5,000,000 inodes** (files). The scratch file-system is available on all nodes (compute, login, etc.) on Torch as well as Data Transfer Node (gDTN). There are no backups for this file-system and files that are deleted accidentally or removed due to storage system failures cannot be recovered.
 
 :::warning[Scratch Purging Policy]
 -   Files on the `/scratch` file-system that have not been accessed for 60 or more days will be purged.
