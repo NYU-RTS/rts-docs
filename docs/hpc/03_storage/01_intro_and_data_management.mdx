@@ -17,7 +17,7 @@ Because the HPC system is not approved for High Risk data, we recommend using an
 
 ## Data Storage options in the HPC Environment
 
-Below is a list of file-systems with their characteristics and a summary table. Reviewing the list of available file-systems and the various Scenarios/Use cases that are presented below, can help select the right file-systems for a research project.
+Below is a list of file-systems with their characteristics and a summary table. Reviewing the list of available file-systems and the various scenarios/use cases that are presented below, can help select the right file-systems for a research project. Please note that there are strict limits on the size and number of files you are allowed to have on each filesystem. To find out your current disk space, inode quota utilization and the distribution of files under your scratch directory, please see: [Understanding user quota Limits and the myquota command.](./05_best_practices.md#user-quota-limits-and-the-myquota-command)
 
 ### User Home Directories
 Every individual user has a home directory (under **`/home/$USER`**, environment variable **`$HOME`**) for permanently storing code and important configuration files. Home Directories provide limited storage space (**50 GB**) and inodes (files) **30,000** per user. Users can check their quota utilization using the [myquota](http://www.info-ren.org/projects/ckp/tech/software/version/myquota.html) command. User home directories are backed up daily and old files under **`$HOME`** are not purged. The user home directories are available on every cluster node (login nodes, compute nodes) as well as and the Data Transfer Node (gDTN).
@@ -38,15 +38,13 @@ User Home Directories are not ideal for sharing files and folders with other use
 The HPC scratch an all flash (VAST) file-system where most of the users store research data needed during the analysis phase of their research projects. The scratch file-system provides ***temporary*** storage for datasets needed for running jobs. Every user has a dedicated scratch directory (**/scratch/$USER**) with **5 TB** disk quota and **5,000,000 inodes** (files) limit per user. The scratch file-system is available on all nodes (compute, login, etc.) on Torch as well as Data Transfer Node (gDTN).
 
 :::warning[Scratch Purging Policy]
-- Files on the /scratch file-system that have not been accessed for 60 or more days will be purged.
+-   Files on the /scratch file-system that have not been accessed for 60 or more days will be purged.
 0 There are no backups of the scratch file-system. Files that were deleted accidentally or removed due to storage system failures CANNOT be recovered.
+-    It is a policy violation to use scripts to change the file access time.</ins> Any user found to be violating this policy will have their HPC account locked. A second violation may result in your HPC account being turned off.
 :::
 
 :::tip
-
--   Since there are ***no backups of HPC Scratch file-system***, users should not put important source code, scripts, libraries, executables in `/scratch`. These important files should be stored in file-systems that are backed up, such as `/home` or [Research Project Space (RPS)](./04_research_project_space.mdx). Code can also be stored in a `git` repository.
--   ***Old file purging policy on HPC Scratch:*** <ins>All files on the HPC Scratch file-system that have not been accessed ***for more than 60 days*** will be removed. It is a policy violation to use scripts to change the file access time.</ins> Any user found to be violating this policy will have their HPC account locked. A second violation may result in your HPC account being turned off.  
--   To find out the user's current disk space and inode quota utilization and the distribution of files under your scratch directory, please see: [Understanding user quota Limits and the myquota command.](./05_best_practices.md#user-quota-limits-and-the-myquota-command)
+-   There are no backups of HPC Scratch file-system and you should not put important source code, scripts, libraries, executables in `/scratch`. These files should instead be stored in file-systems that are backed up, such as `/home` or [Research Project Space (RPS)](./04_research_project_space.mdx). Code can also be stored in a `git` repository.
 -   Once a research project completes, users should archive their important files in the [HPC Archive file-system](./01_intro_and_data_management.mdx#hpc-archive).
 :::
 
