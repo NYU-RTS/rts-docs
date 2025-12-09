@@ -23,15 +23,14 @@ User Home Directories are not ideal for sharing files and folders with other use
 :::
 
 ## HPC Scratch
-The HPC scratch is an all flash (VAST) file-system you can store research data needed during the analysis phase of their research projects. It provides ***temporary*** storage for datasets needed for running job. Your scratch directory (`/scratch/$USER`) has a limit of **5 TB** disk quota and **5,000,000 inodes** (files). The scratch file-system is available on all nodes (compute, login, etc.) on Torch as well as Data Transfer Node (gDTN).
+The HPC scratch is an all flash (VAST) file-system you can store research data needed during the analysis phase of their research projects. It provides ***temporary*** storage for datasets needed for running job. Your scratch directory (`/scratch/$USER`) has a limit of **5 TB** disk quota and **5,000,000 inodes** (files). The scratch file-system is available on all nodes (compute, login, etc.) on Torch as well as Data Transfer Node (gDTN). There are no backups for this file-system and files that are deleted accidentally or removed due to storage system failures cannot be recovered.
 
 :::warning[Scratch Purging Policy]
--   Files on the /scratch file-system that have not been accessed for 60 or more days will be purged.
-0 There are no backups of the scratch file-system. Files that were deleted accidentally or removed due to storage system failures cannot be recovered.
--    It is a policy violation to use scripts to change the file access time. Any user found to be violating this policy will have their HPC account locked. A second violation may result in your HPC account being turned off.
+-   Files on the `/scratch` file-system that have not been accessed for 60 or more days will be purged.
+-   It is a policy violation to use scripts to change the file access time. Any user found to be violating this policy will have their HPC account locked. A second violation may result in your access to HPC being revoked.
 :::
 
-:::tip
+:::tip[Avoiding data loss from purging]
 -   There are no backups of HPC Scratch file-system and you should not put important source code, scripts, libraries, executables in `/scratch`. These files should instead be stored in file-systems that are backed up, such as `/home` or [Research Project Space (RPS)](./04_research_project_space.mdx). Code can also be stored in a `git` repository.
 -   Upon the completion of your research study, you are encouraged to archive your data in the [HPC Archive file-system](./01_intro_and_data_management.mdx#hpc-archive).
 :::
