@@ -1,5 +1,9 @@
 # Transferring Cloud Storage Data with rclone
 
+:::tip Globus
+Globus is the recommended tool to use for large-volume data transfers due to the efficiency, reliability, security and ease of use. Use other tools only if you really need to. Detailed instructions available at [Globus](./03_globus.md)
+:::
+
 ## Transferring files to and from Google Drive with RCLONE
 Having access to Google Drive from the HPC environment provides an option to archive data and even share data with collaborators who have no access to the NYU HPC environment. Other options to archiving data include the HPC Archive file system and using [Globus](./03_globus.md) to share data with collaborators.
 
