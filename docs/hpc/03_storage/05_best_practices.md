@@ -39,7 +39,7 @@ $ for d in $(find $(pwd) -maxdepth 1 -mindepth 1 -type d | sort -u); do n_files=
 ## Large number of small files
 In case your dataset or workflow requires to use large number of small files, this can create a bottleneck due to read/write rates. 
 
-Please refer to [our page on working with a large number of files](./07_large_number_of_small_files.md) to learn about some of the options we recommend to consider.
+Please refer to [our page on working with a large number of files](./06_large_number_of_small_files.md) to learn about some of the options we recommend to consider.
 
 ## Installing Python packages
 :::warning

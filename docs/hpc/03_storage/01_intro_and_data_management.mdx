@@ -1,13 +1,10 @@
 # HPC Storage
 
-The Torch HPC cluster is served by an all Flash VAST storage cluster. The HPC team supports data storage, transfer, and archival needs on the HPC clusters, as well as collaborative research services like the [Research Project Space (RPS)](./05_research_project_space.mdx).
-
-## Introduction to HPC Data Management
 The NYU HPC Environment provides access to a number of file-systems to better serve the needs of researchers managing data during the various stages of the research data life cycle (data capture, analysis, archiving, etc.). Each HPC file-system comes with different features, policies, and availability.  
 
-In addition, a number of data management tools are available that enable data transfers and data sharing, recommended best practices, and various scenarios and use cases of managing data in the HPC Environment. We strongly recommend [`globus`](./04_globus.md) as the primary data transfer tool.
+Numerous data management tools are available that enable data transfers and data sharing, recommended best practices, and various scenarios and use cases of managing data in the HPC Environment. We strongly recommend [`globus`](./03_globus.md) as the primary data transfer tool.
 
-Multiple ***public data sets*** are available to all users of the HPC environment, such as a subset of The Cancer Genome Atlas (`TCGA`), the Million Song Database, `ImageNet`, and Reference Genomes. More information can be found in the [datasets section](../04_datasets/01_intro.md). 
+Selected public datasets are available to all HPC users, such as a subset of The Cancer Genome Atlas (`TCGA`), the Million Song Database, `ImageNet`, and Reference Genomes. More information can be found in the [datasets section](../04_datasets/01_intro.md). 
 
 :::warning[HPC is only approved for Moderate Risk Data]
 -   The HPC Environment has been approved for storing and analyzing **Moderate Risk research data**, as defined in the [NYU Electronic Data and System Risk Classification Policy](https://www.nyu.edu/about/policies-guidelines-compliance/policies-and-guidelines/electronic-data-and-system-risk-classification.html). 
@@ -29,11 +26,11 @@ Every individual user has a home directory (under **`/home/$USER`**, environment
 Avoid changing file and directory permissions in your home directory to allow other users to access files.
 :::
 
-User Home Directories are not ideal for sharing files and folders with other users. HPC Scratch or [Research Project Space (RPS)](./05_research_project_space.mdx) are better file-systems for sharing data.
+User Home Directories are not ideal for sharing files and folders with other users. HPC Scratch or [Research Project Space (RPS)](./04_research_project_space.mdx) are better file-systems for sharing data.
 
 :::tip[`inode` limits]
 -   One of the common issues that users report regarding their home directories is running out of inodes (i.e. the number of files stored under their home exceeds the inode limit), which by default is set to 30,000 files
--   To find out the current space and inode quota utilization and the distribution of files under your home directory, please see: [Understanding user quota limits and the myquota command.](./06_best_practices.md#user-quota-limits-and-the-myquota-command) 
+-   To find out the current space and inode quota utilization and the distribution of files under your home directory, please see: [Understanding user quota limits and the myquota command.](./05_best_practices.md#user-quota-limits-and-the-myquota-command) 
 -   Working with `conda` environments: To avoid running out of inode limits in home directories, the HPC team recommends **setting up `conda` environments with Singularity overlay images** as [described here](../07_containers/03_singularity_with_conda.md). Avoid creating `conda` environments in your `$HOME` directory.
 :::
 
@@ -47,15 +44,15 @@ The HPC scratch an all flash (VAST) file-system where most of the users store re
 
 :::tip
 
--   Since there are ***no backups of HPC Scratch file-system***, users should not put important source code, scripts, libraries, executables in `/scratch`. These important files should be stored in file-systems that are backed up, such as `/home` or [Research Project Space (RPS)](./05_research_project_space.mdx). Code can also be stored in a `git` repository.
+-   Since there are ***no backups of HPC Scratch file-system***, users should not put important source code, scripts, libraries, executables in `/scratch`. These important files should be stored in file-systems that are backed up, such as `/home` or [Research Project Space (RPS)](./04_research_project_space.mdx). Code can also be stored in a `git` repository.
 -   ***Old file purging policy on HPC Scratch:*** <ins>All files on the HPC Scratch file-system that have not been accessed ***for more than 60 days*** will be removed. It is a policy violation to use scripts to change the file access time.</ins> Any user found to be violating this policy will have their HPC account locked. A second violation may result in your HPC account being turned off.  
--   To find out the user's current disk space and inode quota utilization and the distribution of files under your scratch directory, please see: [Understanding user quota Limits and the myquota command.](./06_best_practices.md#user-quota-limits-and-the-myquota-command)
+-   To find out the user's current disk space and inode quota utilization and the distribution of files under your scratch directory, please see: [Understanding user quota Limits and the myquota command.](./05_best_practices.md#user-quota-limits-and-the-myquota-command)
 -   Once a research project completes, users should archive their important files in the [HPC Archive file-system](./01_intro_and_data_management.mdx#hpc-archive).
 :::
 
 ### HPC Research Project Space
 The HPC Research Project Space (RPS) provides data storage space for research projects that is easily shared amongst collaborators, ***backed up***, and ***not subject to the old file purging policy***. HPC RPS was introduced to ease data management in the HPC environment and eliminate the need of having to frequently copying files between Scratch and Archive file-systems by having all projects files under one area. ***These benefits of the HPC RPS come at a cost***. The cost is determined by the allocated disk space and the number of files (inodes). 
--   For detailed information about RPS see: [HPC Research Project Space](./05_research_project_space.mdx)
+-   For detailed information about RPS see: [HPC Research Project Space](./04_research_project_space.mdx)
 
 ### HPC Work
 The HPC team makes available a number of public datasets that are commonly used in analysis jobs. The data-sets are available Read-Only under `/scratch/work/public`. For some of the datasets users must provide a signed usage agreement before accessing. Public datasets available on the HPC clusters can be viewed on the [Datasets page](../04_datasets/01_intro.md).
@@ -74,7 +71,7 @@ Google Drive ([NYU Drive](https://www.nyu.edu/life/information-technology/commun
 
 As of December 2023, storage limits were applied to all faculty, staff, and student NYU Google accounts. Please see [Google Workspace Storage](https://www.nyu.edu/life/information-technology/about-nyu-it/key-projects-and-initiatives/google-workspace-storage.html) for details.
 
-There are also limits to the data transfer rate in moving to/from Google Drive. Thus, moving many small files to Google Drive is not going to be efficient. Please read the [Instructions on how to use cloud storage within the NYU HPC Environment](./08_transferring_cloud_storage_data_with_rclone.md). 
+There are also limits to the data transfer rate in moving to/from Google Drive. Thus, moving many small files to Google Drive is not going to be efficient. Please read the [Instructions on how to use cloud storage within the NYU HPC Environment](./07_transferring_cloud_storage_data_with_rclone.md). 
 
 ### HPC Storage Comparison Table
 
