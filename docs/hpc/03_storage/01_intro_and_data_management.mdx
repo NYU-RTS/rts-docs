@@ -11,7 +11,7 @@ The HPC Environment provides access to a number of file-systems to better serve 
 Below is a list of file-systems with their characteristics and a summary table. Reviewing the list of available file-systems and the various scenarios/use cases that are presented below, can help you in selecting the right file-systems for your research project. Please note that there are strict limits on the size and number of files you are allowed to have on each filesystem. To find out your current disk space, inode quota utilization and the distribution of files under your scratch directory, refer to the section on [understanding user quota Limits and the myquota command.](./05_best_practices.md#user-quota-limits-and-the-myquota-command)
 
 ## User Home Directories
-Every individual user has a home directory (under **`/home/$USER`**, environment variable **`$HOME`**) for permanently storing code and important configuration files. Home Directories provide limited storage space (**50 GB**) and inodes (files) **30,000** per user. Users can check their quota utilization using the [myquota](http://www.info-ren.org/projects/ckp/tech/software/version/myquota.html) command. User home directories are backed up daily and old files under **`$HOME`** are not purged. The user home directories are available on every cluster node (login nodes, compute nodes) as well as and the Data Transfer Node (gDTN).
+Every individual user has a home directory (under `/home/$USER`, environment variable `$HOME`) for permanently storing code and important configuration files. Home Directories provide limited storage space (**50 GB**) and inodes (files) **30,000** per user. Users can check their quota utilization using the [myquota](http://www.info-ren.org/projects/ckp/tech/software/version/myquota.html) command. User home directories are backed up daily and old files under `$HOME` are not purged. The user home directories are available on every cluster node (login nodes, compute nodes) as well as and the Data Transfer Node (gDTN).
 
 :::warning
 Avoid changing file and directory permissions in your home directory to allow other users to access files.
@@ -26,7 +26,7 @@ User Home Directories are not ideal for sharing files and folders with other use
 :::
 
 ## HPC Scratch
-The HPC scratch an all flash (VAST) file-system where most of the users store research data needed during the analysis phase of their research projects. The scratch file-system provides ***temporary*** storage for datasets needed for running jobs. Every user has a dedicated scratch directory (**/scratch/$USER**) with **5 TB** disk quota and **5,000,000 inodes** (files) limit per user. The scratch file-system is available on all nodes (compute, login, etc.) on Torch as well as Data Transfer Node (gDTN).
+The HPC scratch an all flash (VAST) file-system where most of the users store research data needed during the analysis phase of their research projects. The scratch file-system provides ***temporary*** storage for datasets needed for running jobs. Every user has a dedicated scratch directory (`/scratch/$USER`) with **5 TB** disk quota and **5,000,000 inodes** (files) limit per user. The scratch file-system is available on all nodes (compute, login, etc.) on Torch as well as Data Transfer Node (gDTN).
 
 :::warning[Scratch Purging Policy]
 -   Files on the /scratch file-system that have not been accessed for 60 or more days will be purged.
