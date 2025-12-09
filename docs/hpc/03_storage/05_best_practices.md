@@ -11,12 +11,15 @@ Users can check their current utilization of quota using the myquota command. Th
 In the following example the user who executes the `myquota` command is out of inodes in their home directory. The user inode quota limit on the `/home` file system **30.0K inodes** and the user has **33000 inodes**, thus **110%** of the inode quota limit.
 ```sh
 $ myquota
-Hostname: log-1 at Sun Mar 21 21:59:08 EDT 2021
-Filesystem   Environment   Backed up?   Allocation       Current Usage
-Space        Variable      /Flushed?    Space / Files    Space(%) / Files(%)
-/home        $HOME         Yes/No       50.0GB/30.0K       8.96GB(17.91%)/33000(110.00%)
-/scratch     $SCRATCH      No/Yes        5.0TB/1.0M     811.09GB(15.84%)/2437(0.24%)
-/archive     $ARCHIVE      Yes/No        2.0TB/20.0K       0.00GB(0.00%)/1(0.00%)
+Quota Information for NetID
+Hostname: torch-login-2 at 2025-12-09 17:18:24
+
+Filesystem   Environment       Backed up?   Allocation           Current Usage
+Space        Variable          /Flushed?    Space / Files        Space(%) / Files(%)
+
+/home        $HOME             YES/NO       0.05TB/0.03M         0.0TB(0.0%)/54(0%)
+/scratch     $SCRATCH          NO/YES       5.0TB/5.0M           0.0TB(0.0%)/1(0%)
+/archive     $ARCHIVE          YES/NO       2.0TB/0.02M          0.0TB(0.0%)/1(0%)
 ```
 Users can find out the number of inodes (files) used per subdirectory under their home directory (`$HOME`), by running the following commands:
 ```sh
