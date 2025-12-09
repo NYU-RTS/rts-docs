@@ -17,7 +17,6 @@ Space        Variable      /Flushed?    Space / Files    Space(%) / Files(%)
 /home        $HOME         Yes/No       50.0GB/30.0K       8.96GB(17.91%)/33000(110.00%)
 /scratch     $SCRATCH      No/Yes        5.0TB/1.0M     811.09GB(15.84%)/2437(0.24%)
 /archive     $ARCHIVE      Yes/No        2.0TB/20.0K       0.00GB(0.00%)/1(0.00%)
-/vast        $VAST         No/Yes        2.0TB/5.0M        0.00GB(0.00%)/1(0.00%)
 ```
 Users can find out the number of inodes (files) used per subdirectory under their home directory (`$HOME`), by running the following commands:
 ```sh
