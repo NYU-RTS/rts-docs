@@ -2,8 +2,8 @@
 ## User Quota Limits and the myquota command
 All users have quote limits set on HPC fie systems. There are several types of quota limits, such as limits on the amount of disk space (disk quota), number of files (inode quota) etc. The default user quota limits on HPC file systems are listed [on our Data Management page](./01_intro_and_data_management.mdx#hpc-storage-mounts-comparison-table).
 
-:::warning
-_One of the common issues users report is running out of inodes in their home directory._ This usually occurs during software installation, for example installing conda environment under their home directory.  Running out of quota causes a variety of issues such as running user jobs being interrupted or users being unable to finish the installation of packages under their home directory.
+:::warning[Home directory inode quotas]
+_One of the common issues users report is running out of inodes in their home directory._ This usually occurs during software installation, for example installing conda environment under their home directory. Running out of quota causes a variety of issues such as running user jobs being interrupted or users being unable to finish the installation of packages under their home directory.
 :::
 
 Users can check their current utilization of quota using the myquota command. The myquota command provides a report of the current quota limits on mounted file systems, the user's quota utilization, as well as the percentage of quota utilization.
@@ -21,33 +21,46 @@ Space        Variable          /Flushed?    Space / Files        Space(%) / File
 /scratch     $SCRATCH          NO/YES       5.0TB/5.0M           0.0TB(0.0%)/1(0%)
 /archive     $ARCHIVE          YES/NO       2.0TB/0.02M          0.0TB(0.0%)/1(0%)
 ```
-Users can find out the number of inodes (files) used per subdirectory under their home directory (`$HOME`), by running the following commands:
+You can use the following command to print the list of files within each sub-folder for a given directory:
 ```sh
 $cd $HOME
-$ for d in $(find $(pwd) -maxdepth 1 -mindepth 1 -type d | sort -u); do n_files=$(find $d | wc -l); echo $d $n_files; done
-/home/netid/.cache 1507
-/home/netid/.conda 2
-/home/netid/.config 2
-/home/netid/.ipython 11
-/home/netid/.jupyter 2
-/home/netid/.keras 2
-/home/netid/.local 24185
-/home/netid/.nv 2
-/home/netid/.sacrebleu 46
-/home/netid/.singularity 1
-/home/netid/.ssh 5
-/home/netid/.vscode-server 7216
+$du --inodes -h --max-depth=1
+6	./.ssh
+88	./.config
+2	./.vnc
+2	./.aws
+3	./.lmod.d
+5.3K	./.local
+3	./.dbus
+408	./ondemand
+2	./.virtual_documents
+6	./.nv
+6.7K	./.pixi
+33	./workshop_scripts
+5	./.cupy
+6	./.gnupg
+1	./.emacs.d
+194	./.nextflow
+6	./.terminfo
+2	./.conda
+2	./.singularity
+3	./.vast-dev
+1	./custom
+185	./genai-workshop
+6	./.atuin
+1	./.apptainer
+9	./.subversion
+4	./packages
+1.4K	./.cache
+15K	.
 ```
 
 ## Large number of small files
-In case your dataset or workflow requires to use large number of small files, this can create a bottleneck due to read/write rates. 
-
-Please refer to [our page on working with a large number of files](./06_large_number_of_small_files.md) to learn about some of the options we recommend to consider.
+In case your dataset or workflow requires to use large number of small files, this can create a bottleneck due to read/write rates. Please refer to [our page on working with a large number of files](./06_large_number_of_small_files.md) to learn about some of the options we recommend to consider.
 
 ## Installing Python packages
 :::warning
-Your home directory has a relatively small number of inodes.
-If you create a conda or python environment in you home directory, this can eat up all the inodes. 
+Your home directory is limited to a relatively small number of inodes (30,000). Creating conda/python environments in you home directory, this can eat easily exhaust your inode quota.
 :::
 
 Please review the [Package Management section](../06_tools_and_software/01_intro.md#package-management-for-r-python--julia-and-conda-in-general) of the [Torch Software Page](../06_tools_and_software/01_intro.md).
