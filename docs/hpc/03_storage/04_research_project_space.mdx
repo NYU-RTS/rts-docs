@@ -4,6 +4,7 @@
 Research Project Space (RPS) volumes provide working space for sharing data and code amongst project or lab members. RPS directories are built on the same parallel file system (VAST) like HPC Scratch. They are mounted on the cluster Compute Nodes, and thus they can be accessed by running jobs. RPS directories are backed up and there is no old file purging policy. These features of RPS simplify the management of data in the HPC environment as users of the HPC Cluster can store their data and code on RPS directories and they do not need to move data between the HPC Scratch and the HPC Archive file systems.
 
 :::info
+-   Due to limitations of the underlying parallel file system, the total number of RPS volumes that can be created is limited.
 -   There is an annual cost associated with RPS.
 -   The disk space and inode usage in RPS directories do not count towards quota limits in other HPC file systems (Home, Scratch, and Archive). 
 :::
