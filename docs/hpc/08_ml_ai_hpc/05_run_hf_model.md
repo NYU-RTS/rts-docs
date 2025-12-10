@@ -5,7 +5,7 @@ Here we provide an example of how one can run a Hugging Face Large-language mode
 ## Prepare environment
 ### Create project directory
 
-After [logging on to a Torch login node](../02_connecting_to_hpc/01_connecting_to_hpc.md), make a directory for this project:
+After [logging on to a Torch login node](../02_connecting_to_hpc/01_connecting_to_hpc.mdx), make a directory for this project:
 ```bash
 [NetID@log-1 ~]$ mkdir -p /scratch/NetID/llm_example
 [NetID@log-1 ~]$ cd /scratch/NetID/llm_example
