@@ -1,14 +1,14 @@
 # Data Transfers
 
 :::tip Globus
-Globus is the recommended tool to use for large-volume data transfers due to the efficiency, reliability, security and ease of use. Use other tools only if you really need to. Detailed instructions available at [Globus](./04_globus.md)
+Globus is the recommended tool to use for large-volume data transfers due to the efficiency, reliability, security and ease of use. Use other tools only if you really need to. Detailed instructions available at [Globus](./03_globus.md)
 :::
 
 ## Data-Transfer nodes
 Attached to the NYU HPC cluster Torch, the Torch Data Transfer Node (gDTN) are  nodes optimized for transferring data between cluster file systems (e.g. scratch)  and other endpoints outside the NYU HPC clusters, including user laptops and desktops. The gDTNs have 100-Gb/s Ethernet connections to the High Speed Research Network (HSRN) and are connected to the HDR Infiniband fabric of the HPC clusters. More information on the hardware characteristics is available at [Torch spec sheet](../10_spec_sheet.md).
 
 ### Data Transfer Node Access
-The HPC cluster filesystems include `/home`, `/scratch`, `/archive` and the [HPC Research Project Space](./05_research_project_space.mdx) are available on the gDTN. The Data-Transfer Node (DTN) can be accessed in a variety of ways
+The HPC cluster filesystems include `/home`, `/scratch`, `/archive` and the [HPC Research Project Space](./04_research_project_space.mdx) are available on the gDTN. The Data-Transfer Node (DTN) can be accessed in a variety of ways
 -   From NYU-net and the High Speed Research Network: use SSH to the DTN hostname `dtn011.hpc.nyu.edu` or `dtn012.hpc.nyu.edu` 
 
 :::info
@@ -42,12 +42,12 @@ where username would be your user name, project1 a directory to be copied to the
 
 ### Windows Tools
 #### File Transfer Clients
-Windows 10 machines may have the Linux Subsystem installed, which will allow for the use of Linux tools, as listed above, but generally it is recommended to use a client such as [WinSCP](https://winscp.net/eng/docs/tunneling) or [FileZilla](https://filezilla-project.org/) to transfer data. Additionally, Windows users may also take advantage of [Globus](./04_globus.md) to transfer files.
+Windows 10 machines may have the Linux Subsystem installed, which will allow for the use of Linux tools, as listed above, but generally it is recommended to use a client such as [WinSCP](https://winscp.net/eng/docs/tunneling) or [FileZilla](https://filezilla-project.org/) to transfer data. Additionally, Windows users may also take advantage of [Globus](./03_globus.md) to transfer files.
 
 ### Globus
 Globus is the recommended tool to use for large-volume data transfers. It features automatic performance tuning and automatic retries in cases of file-transfer failures. Data-transfer tasks can be submitted via a web portal. The Globus service will take care of the rest, to make sure files are copied efficiently, reliably, and securely. Globus is also a tool for you to share data with collaborators, for whom you only need to provide the email addresses.
 
-The Globus endpoint for Torch is available at `nyu#torch`. Detailed instructions available at [Globus](./04_globus.md)
+The Globus endpoint for Torch is available at `nyu#torch`. Detailed instructions available at [Globus](./03_globus.md)
 
 ### rclone
 rclone - rsync for cloud storage, is a command line program to sync files and directories to and from cloud storage systems such as Google Drive, Amazon Drive, S3, B2 etc. rclone is available on DTNs. [Please see the documentation for how to use it.](https://rclone.org/)

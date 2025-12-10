@@ -20,7 +20,7 @@ The widespread usage of scheduling systems where users submit jobs on HPC resour
 ## Be Kind to the Login Nodes
 The login node is often busy managing all of the logged in users, creating and editing files and compiling software. If the machine runs out of memory or processing capacity, it will become very slow and unusable for everyone. While the machine is meant to be used, be sure to do so responsibly – in ways that will not adversely impact other users’ experience.
 
-Login nodes are always the right place to launch jobs, but data transfers should be done on the Torch Data Transfer Nodes (gDTNs).  Please see more about gDTNs at [Data Transfers](../03_storage/03_data_transfers.md). Similarly, computationally intensive tasks should all be done on compute nodes.  This refers to not just computational analysis/research tasks, but also to processor intensive software installations and similar tasks.
+Login nodes are always the right place to launch jobs, but data transfers should be done on the Torch Data Transfer Nodes (gDTNs).  Please see more about gDTNs at [Data Transfers](../03_storage/02_data_transfers.md). Similarly, computationally intensive tasks should all be done on compute nodes.  This refers to not just computational analysis/research tasks, but also to processor intensive software installations and similar tasks.
 
 :::warning[Login Nodes Are a Shared Resource]
 Remember, the login node is shared with all other users and your actions could cause issues for other people. Think carefully about the potential implications of issuing commands that may use large amounts of resource.
@@ -77,7 +77,7 @@ Make sure you understand what the backup policy is on the system you are using a
 :::
 
 ## Transferring Data
-The most important point about transferring data responsibly on Green is to be sure to use Torch Data Transfer Nodes (gDTNs) or other options like [Globus](../03_storage/04_globus.md).  Please see [Data Transfers](../03_storage/03_data_transfers.md) for details.  By doing this you'll help to keep the login nodes responsive for all users.
+The most important point about transferring data responsibly on Green is to be sure to use Torch Data Transfer Nodes (gDTNs) or other options like [Globus](../03_storage/03_globus.md).  Please see [Data Transfers](../03_storage/02_data_transfers.md) for details.  By doing this you'll help to keep the login nodes responsive for all users.
 
 Being efficient in *how* you transfer data on the gDTNs is also important.  It will not only reduce the load on the gDTNs, but also save your time.  Be sure to archive and compress you files if possible with `tar` and `gzip`.  This will remove the overhead of trying to transfer many files and shrink the size of transfer.  Please see [Transferring Files with Remote Computers](./07_transferring_files_remote.mdx) for details.
 
