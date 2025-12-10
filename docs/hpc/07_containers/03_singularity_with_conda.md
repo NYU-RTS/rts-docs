@@ -39,30 +39,30 @@ Create a directory for the environment:
 ```
 Copy an appropriate gzipped overlay images from the overlay directory. You can browse available images to see available options:
 ```bash
-[NetID@log-1 pytorch-example]$ ls /scratch/work/public/overlay-fs-ext3
+[NetID@log-1 pytorch-example]$ ls /share/apps/overlay-fs-ext3
 ```
 In this example we use `overlay-15GB-500K.ext3.gz` as it has enough available storage for most conda environments. It has 15GB free space inside and is able to hold 500K files
 You can use another size as needed.
 ```bash
-[NetID@log-1 pytorch-example]$ cp -rp /scratch/work/public/overlay-fs-ext3/overlay-15GB-500K.ext3.gz .
+[NetID@log-1 pytorch-example]$ cp -rp /share/apps/overlay-fs-ext3/overlay-15GB-500K.ext3.gz .
 [NetID@log-1 pytorch-example]$ gunzip overlay-15GB-500K.ext3.gz
 ```
 
 Choose a corresponding Singularity image. For this example we will use the following image:
 ```bash
-/scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif 
+/share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif 
 ```
 
 For Singularity image available on nyu HPC Torch, please check the singularity images folder:
 ```sh
-[NetID@log-1 pytorch-example]$ ls /scratch/work/public/singularity/
+[NetID@log-1 pytorch-example]$ ls /share/apps/images/
 ```
 
 For the most recent supported versions of PyTorch, please check the [PyTorch website](https://pytorch.org/get-started/locally/). 
 
 Launch the appropriate Singularity container in read/write mode (with the :rw flag):
 ```sh
-singularity exec --overlay overlay-15GB-500K.ext3:rw /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
+singularity exec --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
 ```
 
 The above starts a bash shell inside the referenced Singularity Container overlaid with the 15GB 500K you set up earlier. This creates the functional illusion of having a writable filesystem inside the typically read-only Singularity container.
@@ -143,7 +143,7 @@ The login nodes restrict memory to 2GB per user, which may cause some large pack
 After it is running, you’ll be redirected to a compute node. From there, run singularity to setup on conda environment, same as you were doing on login node:
 
 ```sh
-[NetID@cm001 pytorch-example]$ singularity exec --overlay overlay-15GB-500K.ext3:rw /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
+[NetID@cm001 pytorch-example]$ singularity exec --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
 
 Singularity> source /ext3/env.sh
 # activate the environment
@@ -174,7 +174,7 @@ Singularity> exit
 ```
 #### Test your PyTorch Singularity Image
 ```sh
-[NetID@cm001 pytorch-example]$ singularity exec --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash -c 'source /ext3/env.sh; python -c "import torch; print(torch.__file__); print(torch.__version__)"'
+[NetID@cm001 pytorch-example]$ singularity exec --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash -c 'source /ext3/env.sh; python -c "import torch; print(torch.__file__); print(torch.__version__)"'
 
 #output: /ext3/miniforge3/lib/python3.8/site-packages/torch/__init__.py
 #output: 2.7.1+cu126
@@ -223,7 +223,7 @@ module purge
 
 singularity exec --nv \
 	    --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro \
-	    /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif\
+	    /share/apps/images/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif\
 	    /bin/bash -c "source /ext3/env.sh; python torch-test.py"
 ```
 
@@ -249,7 +249,7 @@ Check your SLURM output for results, an example is shown below:
 ### Optional: Convert ext3 to a compressed, read-only squashfs filesystem
 Singularity images can be compressed into read-only squashfs filesystems to conserve space in your environment. Use the following steps to convert your ext3 Singularity image into a smaller squashfs filesystem.
 ```sh
-[NetID@log-1 pytorch-example]$ srun -N1 -c4 singularity exec --overlay my_pytorch.ext3:ro /scratch/work/public/singularity/centos-8.2.2004.sif mksquashfs /ext3 /scratch/<NetID>/pytorch-example/my_pytorch.sqf -keep-as-directory -processors 4 -noappend
+[NetID@log-1 pytorch-example]$ srun -N1 -c4 singularity exec --overlay my_pytorch.ext3:ro /share/apps/images/centos-8.2.2004.sif mksquashfs /ext3 /scratch/<NetID>/pytorch-example/my_pytorch.sqf -keep-as-directory -processors 4 -noappend
 ```
 
 Here is an example of the amount of compression that can be realized by converting:
@@ -265,7 +265,7 @@ Notice that it saves over 3GB of storage in this case, though your results may v
 
 You can use squashFS images similarly to the ext3 images:
 ```sh
-[NetID@log-1 pytorch-example]$ singularity exec --overlay /scratch/<NetID>/pytorch-example/my_pytorch.sqf:ro /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif  /bin/bash -c 'source /ext3/env.sh; python -c "import torch; print(torch.__file__); print(torch.__version__)"'
+[NetID@log-1 pytorch-example]$ singularity exec --overlay /scratch/<NetID>/pytorch-example/my_pytorch.sqf:ro /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif  /bin/bash -c 'source /ext3/env.sh; python -c "import torch; print(torch.__file__); print(torch.__version__)"'
 
 #example output: /ext3/miniforge3/lib/python3.12/site-packages/torch/__init__.py
 #example output: 2.6.0+cu124
@@ -277,10 +277,10 @@ If the first ext3 overlay image runs out of space or you are using a squashFS co
 
 Open the first image in read only mode:
 ```sh
-[NetID@log-1 pytorch-example]$ cp -rp /scratch/work/public/overlay-fs-ext3/overlay-2GB-100K.ext3.gz .
+[NetID@log-1 pytorch-example]$ cp -rp /share/apps/overlay-fs-ext3/overlay-2GB-100K.ext3.gz .
 [NetID@log-1 pytorch-example]$ gunzip overlay-2GB-100K.ext3.gz
 
-[NetID@log-1 pytorch-example]$ singularity exec --overlay overlay-2GB-100K.ext3 --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
+[NetID@log-1 pytorch-example]$ singularity exec --overlay overlay-2GB-100K.ext3 --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
 Singularity> source /ext3/env.sh
 Singularity> pip install tensorboard
 ```
@@ -303,7 +303,7 @@ Create a directory for your Julia work, such as `/scratch/<NetID>/julia`, and th
 
 Copy an overlay image, such as the 2GB 100K overlay, which generally has enough storage for Julia packages. Once copied, unzip to the same folder, rename to julia-pkgs.ext3:
 ```sh
-[NetID@log-1 julia]$ cp -rp /scratch/work/public/overlay-fs-ext3/overlay-2GB-100K.ext3.gz .
+[NetID@log-1 julia]$ cp -rp /share/apps/overlay-fs-ext3/overlay-2GB-100K.ext3.gz .
 [NetID@log-1 julia]$ gunzip overlay-2GB-100K.ext3.gz
 [NetID@log-1 julia]$ mv overlay-2GB-100K.ext3 julia-pkgs.ext3
 ```
@@ -478,7 +478,7 @@ Building on the previous Julia example, this will demonstrate how to set up a si
 
 Copy overlay image:
 ```sh
-[NetID@log-1 julia]$ cp -rp /scratch/work/public/overlay-fs-ext3/overlay-2GB-100K.ext3.gz .
+[NetID@log-1 julia]$ cp -rp /share/apps/overlay-fs-ext3/overlay-2GB-100K.ext3.gz .
 [NetID@log-1 julia]$ gunzip overlay-2GB-100K.ext3.gz
 [NetID@log-1 julia]$ mv overlay-2GB-100K.ext3 julia-pkgs.ext3
 ```
@@ -507,7 +507,7 @@ Launch Singularity with overlay images in writable mode to install packages:
         --bind /share/apps \
         --bind /scratch/<NetID>/julia/julia-compiled:/ext3/pkgs/compiled \
         --bind /scratch/<NetID>/julia/julia-logs:/ext3/pkgs/logs  \
-        /scratch/work/public/apps/torch/centos-8.2.2004.sif \
+        /share/apps/images/centos-8.2.2004.sif \
         /bin/bash
 ```
 
@@ -569,7 +569,7 @@ singularity exec \
         --bind /share/apps \
         --bind /scratch/<NetID>/julia/julia-compiled:/ext3/pkgs/compiled \
         --bind /scratch/<NetID>/julia/julia-logs:/ext3/pkgs/logs  \
-        /scratch/work/public/apps/torch/centos-8.2.2004.sif \
+        /share/apps/images/centos-8.2.2004.sif \
         /bin/bash -c "
 source /ext3/env.sh
 julia $args
@@ -629,7 +629,7 @@ singularity exec \
         --bind /share/apps \
         --bind /scratch/<NetID>/julia/julia-compiled:/ext3/pkgs/compiled \
         --bind /scratch/<NetID>/julia/julia-logs:/ext3/pkgs/logs  \
-        /scratch/work/public/apps/torch/centos-8.2.2004.sif \
+        /share/apps/images/centos-8.2.2004.sif \
         /bin/bash -c "
 source /ext3/env.sh
 julia $args
@@ -649,7 +649,7 @@ Install packages to the writable image:
 
 If you do not need host packages installed in `/share/apps`, you can work with Singularity OS image:
 ```sh
-/scratch/work/public/singularity/ubuntu-20.04.1.sif 
+/share/apps/images/ubuntu-20.04.1.sif 
 ```
 
 Download Julia installation package from [https://julialang-s3.julialang.org/bin/linux/x64/1.5/julia-1.5.3-linux-x86_64.tar.gz](https://julialang-s3.julialang.org/bin/linux/x64/1.5/julia-1.5.3-linux-x86_64.tar.gz)
