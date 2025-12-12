@@ -155,10 +155,12 @@ After it is running, you’ll be redirected to a compute node. From there, run s
 
 ### Configure iPython Kernels
 To create a kernel named my_env copy the template files to your home directory.
+Please note that kernel_template on Greene is stored under `/share/apps/mypy/src/kernel_template`
 ```bash sh
 Singularity> mkdir -p ~/.local/share/jupyter/kernels
 Singularity> cd ~/.local/share/jupyter/kernels
-Singularity> cp -R /share/apps/mypy/src/kernel_template ./my_env # this should be the name of your Singularity env
+Singularity> cp -R /share/apps/kernel_template ./my_env # this should be the name of your Singularity env
+
 Singularity> cd ./my_env 
 
 Singularity> ls
