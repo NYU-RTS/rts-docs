@@ -65,7 +65,7 @@ Above we used the overlay file `overlay-15GB-500K.ext3.gz` which will contain al
 
 ### Launch Singularity Environment for Installation
 ```bash
-[NetID@log-1 ~]$ singularity exec --overlay /scratch/$USER/my_env/overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif /bin/bash
+[NetID@log-1 ~]$ singularity exec --fakeroot --overlay /scratch/$USER/my_env/overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif /bin/bash
 ```
 Above we used the Singularity OS image `cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif` which provides the base operating system environment for the conda environment. There are other Singularity OS images available at `/share/apps/images`
 
@@ -137,6 +137,8 @@ Singularity> which pip
 
 Now use either conda or pip to install your required python packages to the Miniforge environment.
 
+:::note If using Apptainer (the default Singularity installation on Torch) be sure to use the --fakeroot flag when launching overlay files in read-write mode (:rw).
+
 To install larger packages, like Tensorflow, you must first start an interactive job with adequate compute and memory resources to install packages. The login nodes restrict memory to 2GB per user, which may cause some large packages to crash.
 ```bash
 Singularity> exit
@@ -145,7 +147,7 @@ Singularity> exit
 
 # wait to be assigned a node
 
-[NetID@cm001 my_env]$ singularity exec --overlay /scratch/$USER/my_env/overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif /bin/bash
+[NetID@cm001 my_env]$ singularity exec --fakeroot --overlay /scratch/$USER/my_env/overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif /bin/bash
 
 Singularity> source /ext3/env.sh
 # activate the environment

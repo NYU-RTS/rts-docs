@@ -83,10 +83,14 @@ For the most recent supported versions of PyTorch, please check the [PyTorch web
 
 Launch the appropriate Singularity container in read/write mode (with the :rw flag):
 ```sh
-singularity exec --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
+singularity exec --fakeroot --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
 ```
 
-The above starts a bash shell inside the referenced Singularity Container overlaid with the 15GB 500K you set up earlier. This creates the functional illusion of having a writable filesystem inside the typically read-only Singularity container.
+The above starts a bash shell inside the referenced Singularity Container overlaid with the 15GB 500K you set up earlier. This creates the functional illusion of having a writable filesystem inside the typically read-only Singularity container. 
+
+:::note
+Please note that the default Singularity on Torch is now Apptainer, which requires the --fakeroot option to load overlay files in read/write mode.
+:::
 
 Now, inside the container, download and install miniforge to `/ext3/miniforge3`:
 ```bash
@@ -164,7 +168,7 @@ The login nodes restrict memory to 2GB per user, which may cause some large pack
 After it is running, you’ll be redirected to a compute node. From there, run singularity to setup on conda environment, same as you were doing on login node:
 
 ```sh
-[NetID@cm001 pytorch-example]$ singularity exec --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
+[NetID@cm001 pytorch-example]$ singularity exec --fakeroot --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
 
 Singularity> source /ext3/env.sh
 # activate the environment
