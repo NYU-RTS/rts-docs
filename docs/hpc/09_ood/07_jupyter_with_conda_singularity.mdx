@@ -1,5 +1,25 @@
 # Jupyter Notebook with Conda/Singularity in OOD
+Please note that Greene and Torch organize overlay files and Singularity images in different directories. 
 
+## Greene Directories
+Overlay Files:
+```
+/scratch/work/public/overlay-fs-ext3/
+```
+Singularity Files:
+```
+/scratch/work/public/singularity/
+```
+
+## Torch Directories
+Overlay Files:
+```
+/share/apps/overlay-fs-ext3
+```
+Singularity Files:
+```
+/share/apps/images/
+```
 ## OOD + Singularity + conda
 This page describes how to use your Singularity with conda environment in OOD GUI at Torch. 
 
@@ -38,16 +58,16 @@ The above code automatically makes your environment look for the default shared 
 ```bash
 [NetID@log-1 ~]$ mkdir /scratch/$USER/my_env
 [NetID@log-1 ~]$ cd /scratch/$USER/my_env
-[NetID@log-1 my_env]$ cp -rp /scratch/work/public/overlay-fs-ext3/overlay-15GB-500K.ext3.gz .
+[NetID@log-1 my_env]$ cp -rp /share/apps/overlay-fs-ext3/overlay-15GB-500K.ext3.gz .
 [NetID@log-1 my_env]$ gunzip overlay-15GB-500K.ext3.gz
 ```
 Above we used the overlay file `overlay-15GB-500K.ext3.gz` which will contain all of the installed packages. There are more optional overlay files. You can find instructions on the following pages: [Singularity with Conda](../07_containers/03_singularity_with_conda.md), [Squash File System and Singularity](../07_containers/04_squash_file_system_and_singularity.md). 
 
 ### Launch Singularity Environment for Installation
 ```bash
-[NetID@log-1 ~]$ singularity exec --overlay /scratch/$USER/my_env/overlay-15GB-500K.ext3:rw /scratch/work/public/singularity/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif /bin/bash
+[NetID@log-1 ~]$ singularity exec --overlay /scratch/$USER/my_env/overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif /bin/bash
 ```
-Above we used the Singularity OS image `cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif` which provides the base operating system environment for the conda environment. There are other Singularity OS images available at `/scratch/work/public/singularity`
+Above we used the Singularity OS image `cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif` which provides the base operating system environment for the conda environment. There are other Singularity OS images available at `/share/apps/images`
 
 Launching Singularity with the `--overlay` flag mounts the overlay file to a new directory: `/ext3` - you will notice that when not using Singularity `/ext3` is not available.
 
@@ -125,7 +145,7 @@ Singularity> exit
 
 # wait to be assigned a node
 
-[NetID@cm001 my_env]$ singularity exec --overlay /scratch/$USER/my_env/overlay-15GB-500K.ext3:rw /scratch/work/public/singularity/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif /bin/bash
+[NetID@cm001 my_env]$ singularity exec --overlay /scratch/$USER/my_env/overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif /bin/bash
 
 Singularity> source /ext3/env.sh
 # activate the environment
@@ -153,11 +173,11 @@ At the bottom of the file we have the template singularity command.
 ```bash
 singularity exec $nv \
   --overlay /scratch/$USER/my_env/overlay-15GB-500K.ext3:ro \
-  /scratch/work/public/singularity/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif \
+  /share/apps/images/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif \
   /bin/bash -c "source /ext3/env.sh; $cmd $args"
 ```
 :::warning
-If you used a different overlay (/scratch/$USER/my_env/overlay-15GB-500K.ext3 shown above) or .sif file (/scratch/work/public/singularity/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif shown above), you MUST change those lines in the command above to the files you used.
+If you used a different overlay (/scratch/$USER/my_env/overlay-15GB-500K.ext3 shown above) or .sif file (/share/apps/images/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif shown above), you MUST change those lines in the command above to the files you used.
 :::
 
 Edit the default `kernel.json` file by setting PYTHON_LOCATION and KERNEL_DISPLAY_NAME using a text editor like nano/vim.
