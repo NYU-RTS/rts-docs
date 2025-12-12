@@ -88,8 +88,9 @@ singularity exec --fakeroot --overlay overlay-15GB-500K.ext3:rw /share/apps/imag
 
 The above starts a bash shell inside the referenced Singularity Container overlaid with the 15GB 500K you set up earlier. This creates the functional illusion of having a writable filesystem inside the typically read-only Singularity container. 
 
-:::information
+:::note
 Please note that the default Singularity on Torch is now Apptainer, which requires the --fakeroot option to load overlay files in read/write mode.
+:::
 
 Now, inside the container, download and install miniforge to `/ext3/miniforge3`:
 ```bash
