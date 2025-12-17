@@ -55,18 +55,18 @@ The above code automatically makes your environment look for the default shared 
 
 Create a directory for the environment:
 ```bash
-[NetID@log-1 ~]$ mkdir /scratch/<NetID>/pytorch-example
-[NetID@log-1 ~]$ cd /scratch/<NetID>/pytorch-example
+mkdir /scratch/<NetID>/pytorch-example
+cd /scratch/<NetID>/pytorch-example
 ```
 Copy an appropriate gzipped overlay images from the overlay directory. You can browse available images to see available options:
 ```bash
-[NetID@log-1 pytorch-example]$ ls /share/apps/overlay-fs-ext3
+ls /share/apps/overlay-fs-ext3
 ```
 In this example we use `overlay-15GB-500K.ext3.gz` as it has enough available storage for most conda environments. It has 15GB free space inside and is able to hold 500K files
 You can use another size as needed.
 ```bash
-[NetID@log-1 pytorch-example]$ cp -rp /share/apps/overlay-fs-ext3/overlay-15GB-500K.ext3.gz .
-[NetID@log-1 pytorch-example]$ gunzip overlay-15GB-500K.ext3.gz
+cp -rp /share/apps/overlay-fs-ext3/overlay-15GB-500K.ext3.gz .
+gunzip overlay-15GB-500K.ext3.gz
 ```
 
 Choose a corresponding Singularity image. For this example we will use the following image:
@@ -76,7 +76,7 @@ Choose a corresponding Singularity image. For this example we will use the follo
 
 For Singularity image available on nyu HPC Torch, please check the singularity images folder:
 ```sh
-[NetID@log-1 pytorch-example]$ ls /share/apps/images/
+ls /share/apps/images/
 ```
 
 For the most recent supported versions of PyTorch, please check the [PyTorch website](https://pytorch.org/get-started/locally/). 
@@ -92,17 +92,22 @@ The above starts a bash shell inside the referenced Singularity Container overla
 Please note that the default Singularity on Torch is now Apptainer, which requires the --fakeroot option to load overlay files in read/write mode.
 :::
 
-Now, inside the container, download and install miniforge to `/ext3/miniforge3`:
+Now, inside the container, download and install miniforge to `/ext3/miniforge3`.
+
+:::note
+Please note your prompt should indicate you're in singularity with the `Singularity>` prompt
+:::
+
 ```bash
-Singularity> wget --no-check-certificate https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
-Singularity> bash Miniforge3-Linux-x86_64.sh -b -p /ext3/miniforge3
+wget --no-check-certificate https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
+bash Miniforge3-Linux-x86_64.sh -b -p /ext3/miniforge3
 # rm Miniforge3-Linux-x86_64.sh # if you don't need this file any longer
 ```
 
 Next, create a wrapper script /ext3/env.sh using a text editor, like nano:
 ```sh
-Singularity> touch /ext3/env.sh
-Singularity> nano /ext3/env.sh
+touch /ext3/env.sh
+nano /ext3/env.sh
 ```
 
 The wrapper script will activate your conda environment, to which you will be installing your packages and dependencies. The script should contain the following:
@@ -118,38 +123,38 @@ export PYTHONPATH=/ext3/miniforge3/bin:$PATH
 
 Activate your conda environment with the following:
 ```bash
-Singularity> source /ext3/env.sh
+source /ext3/env.sh
 ```
 
 If you have the "defaults" channel enabled, please disable it with:
 ```bash
-Singularity> conda config --remove channels defaults
+conda config --remove channels defaults
 ```
 
 Now that your environment is activated, you can update and install packages:
 ```bash
-Singularity> conda update -n base conda -y
-Singularity> conda clean --all --yes
-Singularity> conda install pip -y
-Singularity> conda install ipykernel -y # Note: ipykernel is required to run as a kernel in the Open OnDemand Jupyter Notebooks
+conda update -n base conda -y
+conda clean --all --yes
+conda install pip -y
+conda install ipykernel -y # Note: ipykernel is required to run as a kernel in the Open OnDemand Jupyter Notebooks
 ```
 
 To confirm that your environment is appropriately referencing your Miniforge installation, try out the following:
 ```bash
-Singularity> unset -f which
-Singularity> which conda
+unset -f which
+which conda
 # output: /ext3/miniforge3/bin/conda
 
-Singularity> which python
+which python
 # output: /ext3/miniforge3/bin/python
 
-Singularity> python --version
+python --version
 # output: Python 3.12.10
 
-Singularity> which pip
+which pip
 # output: /ext3/miniforge3/bin/pip
 
-Singularity> exit
+exit
 # exit Singularity
 ```
 
@@ -160,7 +165,7 @@ You may now install packages into the environment with either the `pip install` 
 The login nodes restrict memory to 2GB per user, which may cause some large packages to crash.  For this reason, please start an interactive job with adequate compute and memory resources to install packages:
 
 ```sh
-[NetID@log-1 pytorch-example]$ srun --cpus-per-task=2 --mem=10GB --time=04:00:00 --pty /bin/bash
+srun --cpus-per-task=2 --mem=10GB --time=04:00:00 --pty /bin/bash
 
 # wait to be assigned a node
 ```
@@ -168,38 +173,40 @@ The login nodes restrict memory to 2GB per user, which may cause some large pack
 After it is running, you’ll be redirected to a compute node. From there, run singularity to setup on conda environment, same as you were doing on login node:
 
 ```sh
-[NetID@cm001 pytorch-example]$ singularity exec --fakeroot --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
+# Your prompt should now look something like this once your jobs starts: [NetID@cm001 pytorch-example]$
 
-Singularity> source /ext3/env.sh
+singularity exec --fakeroot --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
+
+source /ext3/env.sh
 # activate the environment
 ```
 
 We will install PyTorch as an example:
 ```sh
-Singularity> pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116
+pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116
 
-Singularity> pip3 install jupyter jupyterhub pandas matplotlib scipy scikit-learn scikit-image Pillow
+pip3 install jupyter jupyterhub pandas matplotlib scipy scikit-learn scikit-image Pillow
 ```
 
 For the latest versions of PyTorch please check the [PyTorch website](https://pytorch.org/).
 
 You can see the available space left on your image with the following commands:
 ```sh
-Singularity> find /ext3 | wc -l
+find /ext3 | wc -l
 # output: should be something like: 77674
 
-Singularity> du -sh  /ext3        
+du -sh  /ext3        
 # output should be something like: 6.5G    /ext3
 ```
 
 Now, exit the Singularity container and then rename the overlay image. Typing `exit` and hitting `enter` will exit the Singularity container if you are currently inside it. You can tell if you're in a Singularity container because your prompt will be different, such as showing the prompt `Singularity>`:
 ```sh
-Singularity> exit
-[NetID@cm001 pytorch-example]$ mv overlay-15GB-500K.ext3 my_pytorch.ext3
+exit
+mv overlay-15GB-500K.ext3 my_pytorch.ext3
 ```
 #### Test your PyTorch Singularity Image
 ```sh
-[NetID@cm001 pytorch-example]$ singularity exec --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash -c 'source /ext3/env.sh; python -c "import torch; print(torch.__file__); print(torch.__version__)"'
+singularity exec --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash -c 'source /ext3/env.sh; python -c "import torch; print(torch.__file__); print(torch.__version__)"'
 
 #output: /ext3/miniforge3/lib/python3.8/site-packages/torch/__init__.py
 #output: 2.7.1+cu126
@@ -256,12 +263,12 @@ You will notice that the singularity exec command features the `--nv` flag - thi
 
 Run the run-test.SBATCH script:
 ```sh
-[NetID@log-1 pytorch-example]$ sbatch run-test.SBATCH
+sbatch run-test.SBATCH
 ```
 
 Check your SLURM output for results, an example is shown below:
 ```sh
-[NetID@log-1 pytorch-example]$ cat slurm-3752662.out
+cat slurm-3752662.out
 
 # example output:
 # /ext3/miniforge3/lib/python3.8/site-packages/torch/__init__.py
@@ -274,12 +281,12 @@ Check your SLURM output for results, an example is shown below:
 ### Optional: Convert ext3 to a compressed, read-only squashfs filesystem
 Singularity images can be compressed into read-only squashfs filesystems to conserve space in your environment. Use the following steps to convert your ext3 Singularity image into a smaller squashfs filesystem.
 ```sh
-[NetID@log-1 pytorch-example]$ srun -N1 -c4 singularity exec --overlay my_pytorch.ext3:ro /share/apps/images/centos-8.2.2004.sif mksquashfs /ext3 /scratch/<NetID>/pytorch-example/my_pytorch.sqf -keep-as-directory -processors 4 -noappend
+srun -N1 -c4 singularity exec --overlay my_pytorch.ext3:ro /share/apps/images/centos-8.2.2004.sif mksquashfs /ext3 /scratch/<NetID>/pytorch-example/my_pytorch.sqf -keep-as-directory -processors 4 -noappend
 ```
 
 Here is an example of the amount of compression that can be realized by converting:
 ```sh
-[NetID@log-1 pytorch-example]$ ls -ltrsh my_pytorch.*
+ls -ltrsh my_pytorch.*
 5.5G -rw-r--r-- 1 wang wang 5.5G Mar 14 20:45 my_pytorch.ext3
 2.2G -rw-r--r-- 1 wang wang 2.2G Mar 14 20:54 my_pytorch.sqf
 ```
@@ -290,7 +297,7 @@ Notice that it saves over 3GB of storage in this case, though your results may v
 
 You can use squashFS images similarly to the ext3 images:
 ```sh
-[NetID@log-1 pytorch-example]$ singularity exec --overlay /scratch/<NetID>/pytorch-example/my_pytorch.sqf:ro /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif  /bin/bash -c 'source /ext3/env.sh; python -c "import torch; print(torch.__file__); print(torch.__version__)"'
+singularity exec --overlay /scratch/<NetID>/pytorch-example/my_pytorch.sqf:ro /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif  /bin/bash -c 'source /ext3/env.sh; python -c "import torch; print(torch.__file__); print(torch.__version__)"'
 
 #example output: /ext3/miniforge3/lib/python3.12/site-packages/torch/__init__.py
 #example output: 2.6.0+cu124
@@ -302,12 +309,12 @@ If the first ext3 overlay image runs out of space or you are using a squashFS co
 
 Open the first image in read only mode:
 ```sh
-[NetID@log-1 pytorch-example]$ cp -rp /share/apps/overlay-fs-ext3/overlay-2GB-100K.ext3.gz .
-[NetID@log-1 pytorch-example]$ gunzip overlay-2GB-100K.ext3.gz
+cp -rp /share/apps/overlay-fs-ext3/overlay-2GB-100K.ext3.gz .
+gunzip overlay-2GB-100K.ext3.gz
 
-[NetID@log-1 pytorch-example]$ singularity exec --overlay overlay-2GB-100K.ext3 --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
-Singularity> source /ext3/env.sh
-Singularity> pip install tensorboard
+singularity exec --overlay overlay-2GB-100K.ext3 --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
+source /ext3/env.sh
+pip install tensorboard
 ```
 
 :::note
@@ -322,29 +329,29 @@ Singularity can be used to set up a Julia environment.
 
 Create a directory for your Julia work, such as `/scratch/<NetID>/julia`, and then change to your working directory to it. An example is shown below:
 ```sh
-[NetID@log-1 NetID]$ mkdir /home/<NetID>/julia
-[NetID@log-1 NetID]$ cd /home/<NetID>/julia
+mkdir /home/<NetID>/julia
+cd /home/<NetID>/julia
 ```
 
 Copy an overlay image, such as the 2GB 100K overlay, which generally has enough storage for Julia packages. Once copied, unzip to the same folder, rename to julia-pkgs.ext3:
 ```sh
-[NetID@log-1 julia]$ cp -rp /share/apps/overlay-fs-ext3/overlay-2GB-100K.ext3.gz .
-[NetID@log-1 julia]$ gunzip overlay-2GB-100K.ext3.gz
-[NetID@log-1 julia]$ mv overlay-2GB-100K.ext3 julia-pkgs.ext3
+cp -rp /share/apps/overlay-fs-ext3/overlay-2GB-100K.ext3.gz .
+gunzip overlay-2GB-100K.ext3.gz
+mv overlay-2GB-100K.ext3 julia-pkgs.ext3
 ```
 
 Copy the following wrapper script in the directory:
 ```sh
-[NetID@log-1 julia]$ cp -rp /share/apps/utils/julia-setup/* .
+cp -rp /share/apps/utils/julia-setup/* .
 ```
 
 Now launch writable Singularity overlay to install packages:
 ```sh
-[NetID@log-1 julia]$ module purge
-[NetID@log-1 julia]$ module load knitro/12.3.0
-[NetID@log-1 julia]$ module load julia/1.5.3
+module purge
+module load knitro/12.3.0
+module load julia/1.5.3
 
-[NetID@log-1 julia]$ ~/julia/my-julia-writable
+~/julia/my-julia-writable
 
 julia> using Pkg
 julia> Pkg.add("KNITRO")
@@ -353,7 +360,7 @@ julia> Pkg.add("JuMP")
 
 Now exit from the container to launch a read only version to test (example below):
 ```julia
-[NetID@log-1 julia]$ ~/julia/my-julia
+~/julia/my-julia
               _
   _       _ _(_)_     |  Documentation: https://docs.julialang.org
   (_)     | (_) (_)    |
@@ -406,7 +413,7 @@ You can add additional packages with commands like the one below:
 Please do not install new packages when you have Julia jobs running, this may create issues with your Julia installation
 :::
 ```julia
-[NetID@log-1 julia]$ ~/julia/my-julia-writable -e 'using Pkg; Pkg.add(["Calculus", "LinearAlgebra"])'
+~/julia/my-julia-writable -e 'using Pkg; Pkg.add(["Calculus", "LinearAlgebra"])'
 ```
 
 Run a SLURM job to test with the following sbatch command (e.g. julia-test.SBATCH):
@@ -429,12 +436,12 @@ module load knitro/12.3.0
 
 Then run the command with the following:
 ```sh
-[NetID@log-1 julia]$ sbatch julia-test.SBATCH
+sbatch julia-test.SBATCH
 ```
 
 Once the job completes, check the SLURM output (example below):
 ```sh
-[NetID@log-1 julia]$ cat slurm-1022969.out
+cat slurm-1022969.out
 
 =======================================
            Academic License
@@ -503,9 +510,10 @@ Building on the previous Julia example, this will demonstrate how to set up a si
 
 Copy overlay image:
 ```sh
-[NetID@log-1 julia]$ cp -rp /share/apps/overlay-fs-ext3/overlay-2GB-100K.ext3.gz .
-[NetID@log-1 julia]$ gunzip overlay-2GB-100K.ext3.gz
-[NetID@log-1 julia]$ mv overlay-2GB-100K.ext3 julia-pkgs.ext3
+cd ~/julia
+cp -rp /share/apps/overlay-fs-ext3/overlay-2GB-100K.ext3.gz .
+gunzip overlay-2GB-100K.ext3.gz
+mv overlay-2GB-100K.ext3 julia-pkgs.ext3
 ```
 
 :::note
@@ -514,7 +522,7 @@ The path in this example is `/scratch/<NetID>/julia/julia-pkgs.ext3`
 
 To use modules installed into `/share/apps` you can make two directories:
 ```sh
-[NetID@log-1 julia]$ mkdir julia-compiled julia-logs
+mkdir julia-compiled julia-logs
 ```
 
 :::note
@@ -527,7 +535,7 @@ Now, in this example, the absolute paths are as follows:
 
 Launch Singularity with overlay images in writable mode to install packages:
 ```sh
-[NetID@log-1 julia]$ singularity exec \
+singularity exec \
         --overlay /scratch/<NetID>/julia/julia-pkgs.ext3 \
         --bind /share/apps \
         --bind /scratch/<NetID>/julia/julia-compiled:/ext3/pkgs/compiled \
@@ -550,16 +558,16 @@ module load julia/1.5.3
 
 Load Julia via the wrapper script and check that it loads properly:
 ```sh
-Singularity> source /ext3/env.sh
-Singularity> which julia
+source /ext3/env.sh
+which julia
 # example output: /share/apps/julia/1.5.3/bin/julia
-Singularity> julia --version
+julia --version
 # example output: julia version 1.5.3
 ```
 
 Run Julia to install packages:
 ```julia
-Singularity> julia
+julia
 julia> using Pkg
 julia> Pkg.add("KNITRO")
 julia> Pkg.add("JuMP")
@@ -603,7 +611,7 @@ julia $args
 
 Make the wrapper executable:
 ```sh
-[NetID@log-1 julia]$ chmod 755 ~/bin/julia
+chmod 755 ~/bin/julia
 ```
 
 Test your installation with a SLURM job example. The following code has been put into a file called test-julia-centos.SBATCH:
@@ -623,20 +631,20 @@ julia test.jl
 
 Run the above with the following:
 ```sh
-[NetID@log-1 julia]$ sbatch test-julia-centos.SBATCH
+sbatch test-julia-centos.SBATCH
 ```
 
 Read the output (example below):
 ```sh
-[NetID@log-1 julia]$ cat slurm-764085.out 
+cat slurm-764085.out 
 ```
 
 #### Installing New Julia Packages Later
 
 Implement another writable julia-writable with overlay image writable in order to install new Julia packages later:
 ```sh
-[NetID@log-1 julia]$ cd /home/<NetID>/bin
-[NetID@log-1 julia]$ cp -rp julia julia-writable
+cd /home/<NetID>/bin
+cp -rp julia julia-writable
 ```
 ```bash
 #!/bin/bash
@@ -663,13 +671,13 @@ julia $args
 
 Check the writable image:
 ```sh
-[NetID@log-1 julia]$ which julia-writable
+which julia-writable
 #example output: ~/bin/julia-writable
 ```
 
 Install packages to the writable image:
 ```sh
-[NetID@log-1 julia]$ julia-writable -e 'using Pkg; Pkg.add(["Calculus", "LinearAlgebra"])'
+julia-writable -e 'using Pkg; Pkg.add(["Calculus", "LinearAlgebra"])'
 ```
 
 If you do not need host packages installed in `/share/apps`, you can work with Singularity OS image:
