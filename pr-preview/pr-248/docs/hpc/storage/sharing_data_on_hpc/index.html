@@ -10,8 +10,8 @@
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2DXB3BDH70"></script>
 <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-2DXB3BDH70",{anonymize_ip:!0})</script><link rel="stylesheet" href="/pr-preview/pr-248/assets/css/styles.e184c1bb.css">
-<script src="/pr-preview/pr-248/assets/js/runtime~main.f9cbe6a7.js" defer="defer"></script>
-<script src="/pr-preview/pr-248/assets/js/main.9c9ffbe2.js" defer="defer"></script>
+<script src="/pr-preview/pr-248/assets/js/runtime~main.484548a4.js" defer="defer"></script>
+<script src="/pr-preview/pr-248/assets/js/main.dca45388.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -26,15 +26,12 @@
 <div class="language-text codeBlockContainer_foFG theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_oOJy"><pre tabindex="0" class="prism-code language-text codeBlock_EAWu thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_TxFa"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">[type]:[flags]:[principal]:[permissions]</span><br></span></code></pre></div></div>
 <ul>
 <li class=""><code>type</code>: kind of ACE entry, we recommend only using <code>A</code> (access). Deny type entries make the ACE more complex to reason about when compared to using only access type entries for the same configuration. We strongly urge you to not use them.</li>
-<li class=""><code>flags</code>: inheritance flags which apply to directories and control how ACEs are inherited, with the following available:<!-- -->
-<ul>
-<li class=""><code>f</code>: files inherit ACEs, but inheritance flags are not set on the files</li>
-<li class=""><code>d</code>: directories inherit both the ACE and the inheritance flags</li>
-<li class=""><code>i</code>: only inherit the inheritance flags, ACEs do not apply to this directory</li>
-<li class=""><code>n</code>: directories only inherit ACEs, not the inheritance flags
+<li class=""><code>flags</code>: inheritance flags which apply to directories and control how ACEs are inherited, with the following available::
+| <code>f</code>  | files inherit ACEs, but inheritance flags are not set on the files      |
+| <code>d</code>  | directories inherit both the ACE and the inheritance flags              |
+| <code>i</code>  | only inherit the inheritance flags, ACEs do not apply to this directory |
+| <code>n</code>  | directories only inherit ACEs, not the inheritance flags and a special  |
 and a special <code>g</code> flag that is only used when the principal is a group.</li>
-</ul>
-</li>
 <li class=""><code>principal</code>: the user or group to apply the ACE to. Note the presence of special principals <code>OWNER</code>, <code>GROUP</code> (which refer to the owner and default group) and <code>EVERYONE</code>.</li>
 <li class=""><code>permissions</code>: the level of access to grant. Aliases for most common uses include:<!-- -->
 <ul>
