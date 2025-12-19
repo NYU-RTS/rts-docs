@@ -1,8 +1,10 @@
 # Sharing Data on HPC
 
 ## Introduction
-To share files on the cluster with other users, we recommend using NFSv4 Access Control Lists (ACL) for a user to share access to their data with others. NFSv4 ACL mechanism allows for fine-grained control access to any files by any users or groups of users. We discourage users from setting `777` permissions with `chmod`, because this can lead to data loss (by a malicious user or unintentionally, by accident).
-
+To share files on the cluster with other users, we recommend using NFSv4 Access Control Lists (ACL) for a user to share access to their data with others. NFSv4 ACL mechanism allows for fine-grained control access to any files by any users or groups of users.
+:::warning
+We discourage users from setting `777` permissions with `chmod`, because this can lead to data loss (by a malicious user or unintentionally, by accident).
+:::
 :::info
 Torch supports NFSv4 ACLs rather than the POSIX ACLs supported by Greene! NFSv4 ACLs allow for more fine grained control when compared to POSIX ACLs.
 :::
