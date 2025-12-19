@@ -10,8 +10,8 @@
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2DXB3BDH70"></script>
 <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-2DXB3BDH70",{anonymize_ip:!0})</script><link rel="stylesheet" href="/pr-preview/pr-248/assets/css/styles.e184c1bb.css">
-<script src="/pr-preview/pr-248/assets/js/runtime~main.484548a4.js" defer="defer"></script>
-<script src="/pr-preview/pr-248/assets/js/main.dca45388.js" defer="defer"></script>
+<script src="/pr-preview/pr-248/assets/js/runtime~main.1c784fa2.js" defer="defer"></script>
+<script src="/pr-preview/pr-248/assets/js/main.b3b6f6fb.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -24,24 +24,7 @@
 <h3 class="anchor anchorTargetStickyNavbar_eh83" id="anatomy-of-an-access-control-entry">Anatomy of an Access Control Entry<a href="#anatomy-of-an-access-control-entry" class="hash-link" aria-label="Direct link to Anatomy of an Access Control Entry" title="Direct link to Anatomy of an Access Control Entry" translate="no">​</a></h3>
 <p>An Access Control List is composed of Access Control Entries, each of which has the following structure:</p>
 <div class="language-text codeBlockContainer_foFG theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_oOJy"><pre tabindex="0" class="prism-code language-text codeBlock_EAWu thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_TxFa"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">[type]:[flags]:[principal]:[permissions]</span><br></span></code></pre></div></div>
-<ul>
-<li class=""><code>type</code>: kind of ACE entry, we recommend only using <code>A</code> (access). Deny type entries make the ACE more complex to reason about when compared to using only access type entries for the same configuration. We strongly urge you to not use them.</li>
-<li class=""><code>flags</code>: inheritance flags which apply to directories and control how ACEs are inherited, with the following available::
-| <code>f</code>  | files inherit ACEs, but inheritance flags are not set on the files      |
-| <code>d</code>  | directories inherit both the ACE and the inheritance flags              |
-| <code>i</code>  | only inherit the inheritance flags, ACEs do not apply to this directory |
-| <code>n</code>  | directories only inherit ACEs, not the inheritance flags and a special  |
-and a special <code>g</code> flag that is only used when the principal is a group.</li>
-<li class=""><code>principal</code>: the user or group to apply the ACE to. Note the presence of special principals <code>OWNER</code>, <code>GROUP</code> (which refer to the owner and default group) and <code>EVERYONE</code>.</li>
-<li class=""><code>permissions</code>: the level of access to grant. Aliases for most common uses include:<!-- -->
-<ul>
-<li class=""><code>R</code>: Read, alias for <code>rntcy</code></li>
-<li class=""><code>W</code>: Write, alias for <code>watTNcCy</code></li>
-<li class=""><code>X</code>: Execute, alias for <code>watTNcCy</code>
-the full set of permission entry types are listed below for reference.</li>
-</ul>
-</li>
-</ul>
+<table><thead><tr><th style="text-align:left">Property</th><th style="text-align:left">Description</th></tr></thead><tbody><tr><td style="text-align:left"><em>type</em></td><td style="text-align:left">Kind of ACE entry, we recommend only using A (access). Deny type entries make the ACE more complex to reason about when compared to using only access type entries for the same configuration.</td></tr><tr><td style="text-align:left"><em>flags</em></td><td style="text-align:left">Inheritance flags which apply to directories and control how ACEs are inherited:<br>- <strong><code>f</code></strong>: files inherit ACEs, but inheritance flags are not set on the files<br>- <strong><code>d</code></strong>: directories inherit both the ACE and the inheritance flags<br>- <strong><code>i</code></strong>: only inherit the inheritance flags, ACEs do not apply to this directory<br>- <strong><code>n</code></strong>: directories only inherit ACEs, not the inheritance flags<br>- <strong><code>g</code></strong>: only used when the principal is a group</td></tr><tr><td style="text-align:left"><em>principal</em></td><td style="text-align:left">The user or group to apply the ACE to, with the following special principals:<br>- <strong><code>OWNER</code></strong><br>- <strong><code>GROUP</code></strong><br>- <strong><code>EVERYONE</code></strong></td></tr><tr><td style="text-align:left"><em>permissions</em></td><td style="text-align:left">The level of access to grant. Aliases for most common uses include: the full set of permission entry types are listed below for reference, with the most commonly used options being:<br>- <strong><code>R</code></strong>: Read, alias for <code>rntcy</code><br>- <strong><code>W</code></strong>: Write, alias for <code>watTNcCy</code><br>- <strong><code>X</code></strong>: Execute, alias for <code>watTNcCy</code> <br> The full list of available options can be found <a href="https://man7.org/linux/man-pages/man5/nfs4_acl.5.html" target="_blank" rel="noopener noreferrer" class="">here</a>.</td></tr></tbody></table>
 <h3 class="anchor anchorTargetStickyNavbar_eh83" id="creating-and-applying-acls">Creating and Applying ACLs<a href="#creating-and-applying-acls" class="hash-link" aria-label="Direct link to Creating and Applying ACLs" title="Direct link to Creating and Applying ACLs" translate="no">​</a></h3>
 <p>The following commands are available:</p>
 <ul>
