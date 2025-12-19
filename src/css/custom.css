@@ -47,3 +47,17 @@ select {
   margin-right: 0.4em;
   vertical-align: middle;
 }
+
+/* Search result highlighting */
+.search-highlight {
+  padding: 0.1em 0.2em;
+  color: var(--ifm-color-warning-contrast-foreground);
+  font-weight: 500;
+  background-color: var(--ifm-color-warning);
+  border-radius: 0.2em;
+}
+
+[data-theme="dark"] .search-highlight {
+  color: var(--ifm-color-warning-contrast-foreground);
+  background-color: var(--ifm-color-warning-dark);
+}
