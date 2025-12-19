@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkrts_docs_dev=self.webpackChunkrts_docs_dev||[]).push([["2884"],{74700:function(e){e.exports=JSON.parse('{"tags":[{"label":"Pythia","permalink":"/blog/tags/pythia","description":"Pythia, GenAI platform for research","count":2},{"label":"GenAI","permalink":"/blog/tags/genai","description":"Generative AI","count":2}]}')}}]);
