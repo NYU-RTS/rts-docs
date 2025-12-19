@@ -22,12 +22,12 @@ bun scripts/storage-finder-data-generator/generate.ts \
 
 ## How to add or change a question
 
-1.   Add a column to the sheet that contains the signals you want to match.
-2.   In `scripts/storage-finder-data-generator/config.ts`, add a new facet entry to `FACET_CONFIGS`:
-   -   Set `id` (slug), `name`, `controlType` (`radio` or `checkbox`), `column` (sheet column name), and `choices` (labels the app should show).
-   -   Add `matchers`: regex patterns that map cell text to choice IDs. Include `allowMultipleMatches: true` if a radio question legitimately matches more than one choice.
-   -   If no regex matches, `fallback: "all"` keeps the service visible; otherwise supply an explicit array of choice IDs.
-3.   Regenerate with the CLI and verify in the app.
+1.  Add a column to the sheet that contains the signals you want to match.
+2.  In `scripts/storage-finder-data-generator/config.ts`, add a new facet entry to `FACET_CONFIGS`:
+-   Set `id` (slug), `name`, `controlType` (`radio` or `checkbox`), `column` (sheet column name), and `choices` (labels the app should show).
+-   Add `matchers`: regex patterns that map cell text to choice IDs. Include `allowMultipleMatches: true` if a radio question legitimately matches more than one choice.
+-   If no regex matches, `fallback: "all"` keeps the service visible; otherwise supply an explicit array of choice IDs.
+3.  Regenerate with the CLI and verify in the app.
 
 ## Service fields
 
