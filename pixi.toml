@@ -11,5 +11,5 @@ build = { cmd = ["pnpm", "build"], depends-on = ["install"] }
 start = { cmd = ["pnpm", "start"], depends-on = ["build"] }
 
 [dependencies]
-nodejs = ">=24.4.1,<24.10"
-pnpm = ">=10.20.0,<11"
+nodejs = ">=24.12.0,<24.13"
+pnpm = ">=10.26.1,<11"
