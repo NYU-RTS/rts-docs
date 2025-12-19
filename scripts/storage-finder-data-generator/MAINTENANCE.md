@@ -18,7 +18,7 @@ bun scripts/storage-finder-data-generator/generate.ts \
 
 - Omit `--csv` to download from `STORAGE_FINDER_SHEET_URL`.
 - Use `--output` to write elsewhere (defaults to `src/data/storage-finder/generated` in the code).
-- If you do not have Bun, install it from <https://bun.sh/> or run with `pnpm dlx tsx scripts/storage-finder-data-generator/generate.ts ...`. Node does not run TypeScript by default; `tsx` provides the TypeScript loader.
+- If you do not have Bun, install it from [https://bun.sh/](https://bun.sh/) or run with `pnpm dlx tsx scripts/storage-finder-data-generator/generate.ts ...`. Node does not run TypeScript by default; `tsx` provides the TypeScript loader.
 
 ## How to add or change a question
 
