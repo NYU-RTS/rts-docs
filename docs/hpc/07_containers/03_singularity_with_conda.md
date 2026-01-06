@@ -92,7 +92,12 @@ The above starts a bash shell inside the referenced Singularity Container overla
 Please note that the default Singularity on Torch is now Apptainer, which requires the --fakeroot option to load overlay files in read/write mode.
 :::
 
-Now, inside the container, download and install miniforge to `/ext3/miniforge3`:
+Now, inside the container, download and install miniforge to `/ext3/miniforge3`.
+
+:::note
+Please note your prompt should indicate you're in singularity with the `Singularity>` prompt
+:::
+
 ```bash
 wget --no-check-certificate https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
 bash Miniforge3-Linux-x86_64.sh -b -p /ext3/miniforge3
@@ -167,6 +172,11 @@ srun --cpus-per-task=2 --mem=10GB --time=04:00:00 --pty /bin/bash
 
 After it is running, you’ll be redirected to a compute node. From there, run singularity to setup on conda environment, same as you were doing on login node. Your prompt should look similar to this:
 ```sh
+# Your prompt should now look something like this once your jobs starts: [NetID@cm001 pytorch-example]$
+
+singularity exec --fakeroot --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
+
+source /ext3/env.sh
 [NetID@cm001 pytorch-example]$ 
 ```
 Then you can activate your environment:
@@ -509,6 +519,7 @@ Building on the previous Julia example, this will demonstrate how to set up a si
 
 Copy overlay image:
 ```sh
+cd ~/julia
 cp -rp /share/apps/overlay-fs-ext3/overlay-2GB-100K.ext3.gz .
 gunzip overlay-2GB-100K.ext3.gz
 mv overlay-2GB-100K.ext3 julia-pkgs.ext3
@@ -566,6 +577,9 @@ julia --version
 Run Julia to install packages:
 ```julia
 julia
+julia> using Pkg
+julia> Pkg.add("KNITRO")
+julia> Pkg.add("JuMP")
 # Your prompt should now be julia>
 using Pkg
 Pkg.add("KNITRO")
