@@ -30,20 +30,20 @@ GUI based applications are accessible without the need for port or X11 forwardin
 
 ### Connections to Open OnDemand
 
-A common issue that can occur is receiving an error that the Open OnDemand page cannot be reached. Sometimes this can indicate that the service is down, but often this is an issue with the the local browser cache. You can test this by opening a private browser window and seeing if https://ood.hpc.nyu.edu will load. If it does, try deleting the cache for https://ood.hpc.nyu.edu in your browser history to resolve this issue.
+A common issue that can occur is receiving an error that the Open OnDemand page cannot be reached. Sometimes this can indicate that the service is down, but often this is an issue with the the local browser cache. You can test this by opening a private browser window and seeing if https://ood.torch.hpc.nyu.edu will load. If it does, try deleting the cache for https://ood.torch.hpc.nyu.edu in your browser history to resolve this issue.
 
 In Chrome, this can be done by navigating to this page in your settings:
 
 
 ```bash
-chrome://settings/content/all?searchSubpage=ood.hpc.nyu.edu&search
+chrome://settings/content/all?searchSubpage=ood.torch.hpc.nyu.edu&search
 ```
 
 The link above will automatically search for the Open OnDemand site data and cookies. You can then simply click on the trashcan icon to delete the site cache.
 
 ![Remove browser cache image](./static/ood_remove_cache.png)
 
-Once done, try navigating again to https://ood.hpc.nyu.edu and the site should load. For other issues please email hpc@nyu.edu.
+Once done, try navigating again to https://ood.torch.hpc.nyu.edu and the site should load. For other issues please email hpc@nyu.edu.
 
 ### Viewing Logs
 
