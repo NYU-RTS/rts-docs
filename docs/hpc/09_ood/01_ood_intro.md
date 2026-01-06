@@ -10,7 +10,7 @@ OOD is designed to create easier access for users to interface with HPC systems.
 -   Full Linux desktop experience without X11
 -   Interactive Apps such as JupyterHub and RStudio without the need for port forwarding
 
-It is accessible to all users with a valid NYU HPC account while on-campus network or through NYU VPN via https://ood.hpc.nyu.edu.
+It is accessible to all users with a valid NYU HPC account while on-campus network or through NYU VPN via https://ood.torch.hpc.nyu.edu.
 
 ## Access the Shell
 
