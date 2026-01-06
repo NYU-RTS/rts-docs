@@ -170,15 +170,21 @@ srun --cpus-per-task=2 --mem=10GB --time=04:00:00 --pty /bin/bash
 # wait to be assigned a node
 ```
 
-After it is running, you’ll be redirected to a compute node. From there, run singularity to setup on conda environment, same as you were doing on login node:
-
+After it is running, you’ll be redirected to a compute node. From there, run singularity to setup on conda environment, same as you were doing on login node. Your prompt should look similar to this:
 ```sh
 # Your prompt should now look something like this once your jobs starts: [NetID@cm001 pytorch-example]$
 
 singularity exec --fakeroot --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
 
 source /ext3/env.sh
+[NetID@cm001 pytorch-example]$ 
+```
+Then you can activate your environment:
+```sh
+singularity exec --fakeroot --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
+# Singularity>
 # activate the environment
+source /ext3/env.sh
 ```
 
 We will install PyTorch as an example:
@@ -201,6 +207,7 @@ du -sh  /ext3
 
 Now, exit the Singularity container and then rename the overlay image. Typing `exit` and hitting `enter` will exit the Singularity container if you are currently inside it. You can tell if you're in a Singularity container because your prompt will be different, such as showing the prompt `Singularity>`:
 ```sh
+#Singularity>
 exit
 mv overlay-15GB-500K.ext3 my_pytorch.ext3
 ```
@@ -353,28 +360,30 @@ module load julia/1.5.3
 
 ~/julia/my-julia-writable
 
-julia> using Pkg
-julia> Pkg.add("KNITRO")
-julia> Pkg.add("JuMP")
+# Your prompt will look like this:
+# julia>
+using Pkg
+Pkg.add("KNITRO")
+Pkg.add("JuMP")
 ```
 
 Now exit from the container to launch a read only version to test (example below):
 ```julia
 ~/julia/my-julia
               _
-  _       _ _(_)_     |  Documentation: https://docs.julialang.org
-  (_)     | (_) (_)    |
-  _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
-  | | | | | | |/ _` |  |
-  | | |_| | | | (_| |  |  Version 1.5.3 (2020-11-09)
-_/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
-|__/                   |
+#  _       _ _(_)_     |  Documentation: https://docs.julialang.org
+#  (_)     | (_) (_)    |
+#  _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
+#  | | | | | | |/ _` |  |
+#  | | |_| | | | (_| |  |  Version 1.5.3 (2020-11-09)
+#_/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
+#|__/                   |
 
-julia> using Pkg
+using Pkg
 
-julia> using JuMP, KNITRO
+using JuMP, KNITRO
 
-julia> m = Model(with_optimizer(KNITRO.Optimizer))
+m = Model(with_optimizer(KNITRO.Optimizer))
 A JuMP Model
 Feasibility problem with:
 Variables: 0
@@ -382,18 +391,18 @@ Model mode: AUTOMATIC
 CachingOptimizer state: EMPTY_OPTIMIZER
 Solver name: Knitro
 
-julia> @variable(m, x1 >= 0)
+@variable(m, x1 >= 0)
 x1
 
-julia> @variable(m, x2 >= 0)
+@variable(m, x2 >= 0)
 x2
 
-julia> @NLconstraint(m, x1*x2 == 0)
+@NLconstraint(m, x1*x2 == 0)
 x1 * x2 - 0.0 = 0
 
-julia> @NLobjective(m, Min, x1*(1-x2^2))
+@NLobjective(m, Min, x1*(1-x2^2))
 
-julia> optimize!(m)
+optimize!(m)
 ```
 
 You can make the above code into a Julia script to test batch jobs. Save the following as `test-knitro.jl`:
@@ -571,6 +580,10 @@ julia
 julia> using Pkg
 julia> Pkg.add("KNITRO")
 julia> Pkg.add("JuMP")
+# Your prompt should now be julia>
+using Pkg
+Pkg.add("KNITRO")
+Pkg.add("JuMP")
 ```
 
 Set up a similar test script like the test-knitro.jl script above. Name it test.jl:
