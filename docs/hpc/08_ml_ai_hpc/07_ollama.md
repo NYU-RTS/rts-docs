@@ -3,7 +3,7 @@
 [Ollama](https://github.com/ollama/ollama) is a developing command line tool designed to run large language models.
 
 ## Ollama Installation Instructions
-Create an Ollama directory in your /scratch directories, then download the ollama files:
+Create an Ollama directory in your /scratch directory, then download the ollama files:
 ```
 curl -L https://ollama.com/download/ollama-linux-amd64.tgz -o ollama-linux-amd64.tgz
 tar -vxzf ollama-linux-amd64.tgz
