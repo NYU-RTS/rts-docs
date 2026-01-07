@@ -57,6 +57,7 @@ In the above example, your python script will be able to talk to the ollama serv
 If you want to run Ollama and chat with it, open a Desktop session on a GPU node via Open Ondemand (https://ood.hpc.nyu.edu/) and launch two terminals, one to start the ollama server and the other to chat with LLMs.
 
 **In Terminal 1:**
+
 Start ollama
 ```
 export OLPORT=$(python3 -c "import socket; sock=socket.socket(); sock.bind(('',0)); print(sock.getsockname()[1])")
@@ -64,6 +65,7 @@ echo $OLPORT #so you know what port Ollama is running on
 OLLAMA_HOST=127.0.0.1:$OLPORT ./bin/ollama serve
 ```
 **In Terminal 2:**
+
 Pull a model and begin chatting
 ```
 export OLLAMA_HOST=127.0.0.1:$OLPORT 
