@@ -3,12 +3,12 @@
 [Ollama](https://github.com/ollama/ollama) is a developing command line tool designed to run large language models.
 
 ## Ollama Installation Instructions
-Create an Ollama directory, such as in your /scratch or /vast directories, then download the ollama files:
+Create an Ollama directory in your /scratch directories, then download the ollama files:
 ```
 curl -L https://ollama.com/download/ollama-linux-amd64.tgz -o ollama-linux-amd64.tgz
 tar -vxzf ollama-linux-amd64.tgz
 ```
-### Use VAST Storage for Best Performance
+### Use High-Performance SCRATCH Storage
 There are several environment variables that can be changed:
 ```
 ollama serve --help
@@ -18,13 +18,13 @@ ollama serve --help
 #OLLAMA_MODELS The path to the models directory (default is "~/.ollama/models")
 #OLLAMA_KEEP_ALIVE The duration that models stay loaded in memory (default is "5m")
 ```
-LLMs require very fast storage. The fastest storage on the HPC clusters is the currently the all-flash VAST storage service. This storage is designed for AI workloads and can greatly speed up performance. You should change your model download directory accordingly:
+LLMs require very fast storage. On Torch, the SCRATCH filesystem is an all-flash system designed for AI workloads, providing excellent performance. You should change your model download directory to your scratch space:
 ```
-export OLLAMA_MODELS=$VAST/ollama_models
+export OLLAMA_MODELS=/scratch/$USER/ollama_models
 ```
-You should run this to configure ollama to always use your VAST storage for consistent use:
+You should run this to configure ollama to always use your SCRATCH storage for consistent use:
 ```
-echo "export OLLAMA_MODELS=$VAST/ollama_models" >> ~/.bashrc file
+echo "export OLLAMA_MODELS=/scratch/$USER/ollama_models" >> ~/.bashrc
 ```
 
 ## Run Ollama
