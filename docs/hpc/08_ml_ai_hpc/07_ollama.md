@@ -55,6 +55,7 @@ python my_ollama_python_script.py >> my_ollama_output.txt
 In the above example, your python script will be able to talk to the ollama server.
 ### Interactive Ollama Sessions
 If you want to run Ollama and chat with it, open a Desktop session on a GPU node via Open Ondemand (https://ood.hpc.nyu.edu/) and launch two terminals, one to start the ollama server and the other to chat with LLMs.
+
 **In Terminal 1:**
 Start ollama
 ```
