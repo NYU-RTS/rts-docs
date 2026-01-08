@@ -1,7 +1,11 @@
 # Datasets Available
 
 ## General
-The HPC team makes available a number of public sets that are commonly used in analysis jobs. The data sets are available Read-Only under
+The HPC team makes available a number of public sets that are commonly used in analysis jobs. The data sets are available Read-Only.
+On Torch they are available in:
+- `/projects/work/public/ml-datasets/`
+
+On Greene they are available in:
 -   `/scratch/work/public/ml-datasets/`
 -   `/vast/work/public/ml-datasets/`
 
