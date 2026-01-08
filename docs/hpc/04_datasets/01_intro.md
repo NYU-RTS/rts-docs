@@ -87,18 +87,6 @@ Please open the ImageNet site, find the terms of use ([http://image-net.org/down
 -   `/scratch/work/public/MillionSongDataset`
 -   `/vast/work/public/ml-datasets/millionsongdataset/`
 
-### Twitter Decahose
-*About data set*:  [https://developer.twitter.com/en/docs/twitter-api/enterprise/decahose-api/overview/decahose](https://developer.twitter.com/en/docs/twitter-api/enterprise/decahose-api/overview/decahose)
-
-NYU has a subscription to Twitter Decahose - 10% random sample of the realtime Twitter Firehose through a streaming connection
-
-*Datasets are stored* in GCP cloud (BigQuery) and on the HPC cluster Torch.
-
-Please contact Megan Brown at [The Center for Social Media & Politics](https://csmapnyu.org/) to get access to data and learn the tools available to work with it.
-
-*On cluster dataset is available under (given that you have permissions)*
--   `/scratch/work/twitter_decahose/`
-
 ### ProQuest Congressional Record
 About data set: [ProQuest Congressional Record](https://guides.nyu.edu/govdocs/congressional#s-lg-box-14137380)
 
