@@ -104,5 +104,5 @@ There are other formats like [Bcolz](http://bcolz.blosc.org/), [Zarr](https://gi
 
 ## Benchmarking Code
 -   A benchmarking of various ways of reading data was performed on now retired Prince HPC cluster. You can find the code used to perform that benchmarking and the results [at this repository](https://github.com/nyuhpc/public_ml/tree/master/Data_read_benchmarking).
--   For those of you interested in using multiple cores for data reading, [this code example below may be useful](https://github.com/nyuhpc/public_ml/blob/master/Data_read_benchmarking/TextImages/read_benchmarks/read_parallel.py).
+-   For those of you interested in using multiple cores for data reading, [this code example may be useful](https://github.com/nyuhpc/public_ml/blob/master/Data_read_benchmarking/TextImages/read_benchmarks/read_parallel.py).
     -   Multiple cores on the same node are used. Parallelization is based on `joblib` Python module
