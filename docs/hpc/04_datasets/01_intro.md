@@ -33,7 +33,7 @@ $ singularity exec \
   /share/apps/images/cuda11.8.86-cudnn8.7-devel-ubuntu22.04.2.sif /bin/bash
 
 $ singularity exec \
-  --overlay /home/rjy1/doc_testing/pytorch-example/my_pytorch.ext3:ro \
+  --overlay /<path>/my_pytorch.ext3:ro \
   --overlay /projects/work/public/ml-datasets/af3/databases/pdb_2022_09_28_mmcif_files.sqf:ro \
   --overlay /projects/work/public/ml-datasets/af3/databases/public_databases.sqf:ro \
   /share/apps/images/cuda11.1-cudnn8-devel-ubuntu18.04.sif find /mmcif_files | wc -l
