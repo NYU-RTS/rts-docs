@@ -53,7 +53,7 @@ The Globus endpoint for Torch is available at `nyu#torch`. Detailed instructions
 rclone - rsync for cloud storage, is a command line program to sync files and directories to and from cloud storage systems such as Google Drive, Amazon Drive, S3, B2 etc. rclone is available on DTNs. [Please see the documentation for how to use it.](https://rclone.org/)
 
 ### Open OnDemand (OOD)
-One can use [Open OnDemand (OOD)](../09_ood/01_ood_intro.md) interface to upload data.
+One can use [Open OnDemand (OOD)](../09_ood/01_ood_intro.mdx) interface to upload data.
 :::warning
 Please only use OOD for small data transfers!  Please use Data-Transfer Nodes (DTNs) for moving large data.
 :::
