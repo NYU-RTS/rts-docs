@@ -2,6 +2,7 @@
 
 ## General
 The HPC team makes available a number of public sets that are commonly used in analysis jobs. The data sets are available Read-Only.
+
 On Torch they are available in:
 - `/projects/work/public/ml-datasets/`
 
@@ -9,7 +10,7 @@ On Greene they are available in:
 -   `/scratch/work/public/ml-datasets/`
 -   `/vast/work/public/ml-datasets/`
 
-We recommend to use version stored at `/vast` (when available) to have better read performance
+We recommend to use version stored at `/vast` (when available) to have better read performance when using Greene.
 
 :::note
 For some of the datasets users must provide a signed usage agreement before accessing
@@ -17,17 +18,39 @@ For some of the datasets users must provide a signed usage agreement before acce
 
 ## Format
 Many datasets are available in the form of '.sqf' file, which can be used with Singularity.
-For example, in order to use coco dataset, one can run the following commands 
+For example, in order to use coco dataset, one can run the following commands:
+:::note
+the my_pytorch.ext3 file in the first overlay below is the pytorch we created in [Singularity with Conda](../07_containers/03_singularity_with_conda.md)
+:::
+
 ```sh
+On Torch:
+
 $ singularity exec \
-  --overlay /<path>/pytorch1.8.0-cuda11.1.ext3:ro \
+  --overlay /<path>/my_pytorch.ext3:ro \
+  --overlay /projects/work/public/ml-datasets/af3/databases/pdb_2022_09_28_mmcif_files.sqf:ro \
+  --overlay /projects/work/public/ml-datasets/af3/databases/public_databases.sqf:ro \
+  /share/apps/images/cuda11.8.86-cudnn8.7-devel-ubuntu22.04.2.sif /bin/bash
+
+$ singularity exec \
+  --overlay /home/rjy1/doc_testing/pytorch-example/my_pytorch.ext3:ro \
+  --overlay /projects/work/public/ml-datasets/af3/databases/pdb_2022_09_28_mmcif_files.sqf:ro \
+  --overlay /projects/work/public/ml-datasets/af3/databases/public_databases.sqf:ro \
+  /share/apps/images/cuda11.1-cudnn8-devel-ubuntu18.04.sif find /mmcif_files | wc -l
+
+195860
+
+On Greene:
+
+$ singularity exec \
+  --overlay /<path>/my_pytorch.ext3:ro \
   --overlay /vast/work/public/ml-datasets/coco/coco-2014.sqf:ro \
   --overlay /vast/work/public/ml-datasets/coco/coco-2015.sqf:ro \
   --overlay /vast/work/public/ml-datasets/coco/coco-2017.sqf:ro \
   /scratch/work/public/singularity/cuda11.1-cudnn8-devel-ubuntu18.04.sif /bin/bash
 
 $ singularity exec \
-  --overlay /<path>/pytorch1.8.0-cuda11.1.ext3:ro \
+  --overlay /<path>/my_pytorch.ext3:ro \
   --overlay /vast/work/public/ml-datasets/coco/coco-2014.sqf:ro \
   --overlay /vast/work/public/ml-datasets/coco/coco-2015.sqf:ro \
   --overlay /vast/work/public/ml-datasets/coco/coco-2017.sqf:ro \
