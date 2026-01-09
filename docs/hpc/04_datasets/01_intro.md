@@ -17,8 +17,8 @@ For some of the datasets users must provide a signed usage agreement before acce
 :::
 
 ## Format
-Many datasets are available in the form of '.sqf' file, which can be used with Singularity.
-For example, in order to use coco dataset, one can run the following commands:
+Many datasets are available in the form of `.sqf` file, which can be used with Singularity.
+For example, in order to use coco dataset (Greene) or af3 dataset (Torch), one can run the following commands:
 :::note
 the my_pytorch.ext3 file in the first overlay below is the pytorch we created in [Singularity with Conda](../07_containers/03_singularity_with_conda.md)
 :::
