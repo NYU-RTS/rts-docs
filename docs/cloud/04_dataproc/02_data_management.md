@@ -57,11 +57,11 @@ Data uploaded into the ingest website will be visible to all members of the clus
 ## Uploading Data to HDFS from Torch
 First download gcloud on a desktop computer with a browser by following the instructions [here](https://cloud.google.com/sdk/docs/install). Ensure that you run the install command described as optional in step 4. Log into Torch and activate the Google Cloud command line interface module:
 ```sh
-ml load google-cloud-sdk/379.0.0
+module load google-cloud-sdk/552.0.0
 ```
 Then log into Google Cloud by typing the following:
 ```sh
-gcloud auth login
+gcloud auth login --no-browser
 ```
 Copy and paste the command that you are given into a terminal application on your desktop and run it.  When prompted, type y to proceed.  If you are signed into multiple Google accounts, you will then be presented with a browser window where you can choose your account.  Select your NYU account.  Google will then present a message saying that “Google Cloud SDK wants to access your Google Account”.  Click Allow.
 
