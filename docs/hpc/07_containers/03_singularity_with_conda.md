@@ -162,7 +162,8 @@ exit
 
 You may now install packages into the environment with either the `pip install` or `conda install` commands. 
 
-The login nodes restrict memory to 2GB per user, which may cause some large packages to crash.  For this reason, please start an interactive job with adequate compute and memory resources to install packages:
+:::warning
+The login nodes restrict memory to 2GB per user, which may cause some large packages to crash.  In addition, on Torch, the login nodes and compute nodes run different operating system versions.  This means that code built on the login nodes probably won't run on the compute nodes.  For these reasons, please start an interactive job with adequate compute and memory resources to install packages:
 
 ```sh
 srun --cpus-per-task=2 --mem=10GB --time=04:00:00 --pty /bin/bash
@@ -186,6 +187,7 @@ singularity exec --fakeroot --overlay overlay-15GB-500K.ext3:rw /share/apps/imag
 # activate the environment
 source /ext3/env.sh
 ```
+:::
 
 We will install PyTorch as an example:
 ```sh
