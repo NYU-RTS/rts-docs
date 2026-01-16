@@ -60,3 +60,34 @@ Please only use OOD for small data transfers!  Please use Data-Transfer Nodes (D
 
 ### FDT
 [FDT](https://fast-data-transfer.github.io/) stands for "Fast Data Transfer". It is a command line application written in Java. With the plugin mechanism, FDT allows users to load user-defined classes for Pre- and Post-Processing of file transfers. Users can start their own server processes. If you have use cases for FDT, visit the [download page](https://github.com/fast-data-transfer/fdt/releases) to get `fdt.jar` to start. Please contact [hpc@nyu.edu](mailto:hpc@nyu.edu) for any questions.
+
+## Copying Data from the Greene HPC Cluster to Torch HPC Cluster
+### Copying Data to Torch via the Command Line
+Torch has an available data transfer node (DTN) that can be used to upload data. You must authenticate similarly to the steps outlined on the Accessing Torch page.
+
+```
+netid@localpc ~ $ rsync -avz -e ssh ~/testfile.txt netid@dtn012.hpc.nyu.edu:/scratch/netid/testfile.txt
+(netid@dtn012.hpc.nyu.edu) Authenticate with PIN BUUM5YHJX at https://microsoft.com/devicelogin and press ENTER.
+testfile.txt                      100%    0     0.0KB/s   00:00
+netid@localpc ~ $
+```
+## Copying Data to Torch via Globus
+Globus has been installed for Torch - you can log in at https://globus.org/ and search for the Torch home, scratch, or archive collections under nyu#torch.​
+
+Globus works much the same as it did on Greene, so see our previous page on how to use it. Once you install Globus Connect Personal on your personal device you can easily transfer files between your local machine and Torch.
+
+## File Transfer (Torch ↔ Greene)
+To ease data transfer between clusters, Torch storage has been mounted on the Greene Data Transfer Nodes (e.g. dtn-1.hpc.nyu.edu and dtn-2.hpc.nyu.edu).
+
+This allows users to access the data under /torch:
+
+```
+[netid@dtn-1]$ ls /torch
+archive  home  scratch  share
+```
+
+You can copy files using the rsync command from the Greene DTN:
+
+```
+[netid@dtn-1]$ rsync /scratch/netid/my_file.txt /torch/scratch/netid/my_file.txt
+```
