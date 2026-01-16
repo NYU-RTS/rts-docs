@@ -55,6 +55,16 @@ The above code automatically makes your environment look for the default shared 
 :::
 
 ### Prepare Overlay File 
+First, start a job to work on the compute nodes.
+```bash
+[NetID@log-1 my_env]$ sbatch --cpus-per-task=2 --mem=10GB --time=04:00:00 --wrap "sleep infinity"
+
+# wait to be assigned a node then SSH to the node
+```
+Once you SSH to the node, you can begin setting up the environment.
+
+:::note Files will not properly compile on the login nodes as they have different Red Hat OS images than the compute nodes. All compilation and package installation must be done on the compute nodes. 
+
 ```bash
 [NetID@log-1 ~]$ mkdir /scratch/$USER/my_env
 [NetID@log-1 ~]$ cd /scratch/$USER/my_env
@@ -143,9 +153,9 @@ To install larger packages, like Tensorflow, you must first start an interactive
 ```bash
 Singularity> exit
 
-[NetID@log-1 my_env]$ srun --cpus-per-task=2 --mem=10GB --time=04:00:00 --pty /bin/bash
+[NetID@log-1 my_env]$ sbatch --cpus-per-task=2 --mem=10GB --time=04:00:00 --wrap "sleep infinity"
 
-# wait to be assigned a node
+# wait to be assigned a node then SSH to the node
 
 [NetID@cm001 my_env]$ singularity exec --fakeroot --overlay /scratch/$USER/my_env/overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif /bin/bash
 
