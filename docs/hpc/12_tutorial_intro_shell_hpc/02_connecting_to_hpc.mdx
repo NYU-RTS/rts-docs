@@ -4,7 +4,6 @@
 Questions:
 -   How do I open a terminal?
 -   How do I connect to a remote computer?
--   What is an SSH key?
 
 Objectives:
 -   Connect to a remote HPC system.
@@ -23,7 +22,7 @@ If you have ever opened the Windows Command Prompt or macOS Terminal, you have s
 
 SSH clients are usually command-line tools, where you provide the remote machine address as the only required argument. If your username on the remote system differs from what you use locally, you must provide that as well. If your SSH client has a graphical front-end, such as PuTTY or MobaXterm, you will set these arguments before clicking “connect.” From the terminal, you’ll write something like ssh userName@hostname, where the argument is just like an email address: the “@” symbol is used to separate the personal ID from the address of the remote machine.
 
-When logging in to a laptop, tablet, or other personal device, a username, password, or pattern are normally required to prevent unauthorized access. In these situations, the likelihood of somebody else intercepting your password is low, since logging your keystrokes requires a malicious exploit or physical access. For systems like log-1 running an SSH server, anybody on the network can log in, or try to. Since usernames are often public or easy to guess, your password is often the weakest link in the security chain. Many clusters therefore forbid password-based login, requiring instead that you generate and configure a public-private key pair with a much stronger password. Even though Torch does not require the use SSH keys to login, please consider using the instructions below to use them.  It will make for quicker and more secure connections with Torch.
+When logging in to a laptop, tablet, or other personal device, a username, password, or pattern are normally required to prevent unauthorized access. In these situations, the likelihood of somebody else intercepting your password is low, since logging your keystrokes requires a malicious exploit or physical access. For systems like log-1 running an SSH server, anybody on the network can log in, or try to. Since usernames are often public or easy to guess, your password is often the weakest link in the security chain.
 
 ## Remote Connections with the NYU VPN
 If you are connecting from a remote location that is not on the NYU network (your home for example), you have have to set up your computer to use the NYU VPN. Once you’ve created a VPN connection, you can proceed as if you were connected to the NYU net.
@@ -94,8 +93,6 @@ It is strictly speaking not necessary to have a terminal running on your local c
 
 PuTTY is available for [free download](https://www.chiark.torchnd.org.uk/~sgtatham/putty/latest.html). Download the version that is correct for your operating system and install it as you would other software on your Windows system. Once installed it will be available through the start menu or similar.
 
-You can use puttygen to create ssh keys if you are using PuTTY.  Please see the [puttygen page](https://www.chiark.torchnd.org.uk/~sgtatham/putty/docs.html) in the [PuTTY documentation](https://the.earth.li/~sgtatham/putty/0.83/htmldoc/) for details.
-
 Running PuTTY will not initially produce a terminal but instead a window full of connection options. Putting the address of the remote system in the “Host Name (or IP Address)” box and either pressing enter or clicking the “Open” button should begin the connection process.
 
 If this works you will see a terminal window open that prompts you for a username through the “login as:” prompt and then for a password. If both of these are passed correctly then you will be given access to the system and will see a message saying so within the terminal. If you need to escape the authentication process you can hold the Control (Ctrl) key and press the c key to exit and start again.
@@ -135,52 +132,7 @@ In Chrome, this can be done by navigating to this page in your settings:
 
 The link above will automatically search for the Open OnDemand site data and cookies. You can then simply click on the trashcan icon to delete the site cache.
 
-Once done, try navigating again to [https://ood.hpc.nyu.edu](https://ood.hpc.nyu.edu) and the site should load. For other issues please email [hpc@nyu.edu](mailto:hpc@nyu.edu).
-
-## SSH keys (optional)
-SSH keys are an alternative method for authentication to obtain access to remote computing systems. They can also be used for authentication when transferring files or for accessing version control systems. In this section you will create a pair of SSH keys, a private key which you keep on your own computer and a public key which is placed on the remote HPC system that you will log into.
-
-### Creating SSH keys on Windows
-We mentioned methods for creating SSH keys using some of the [Windows SSH options above](#windows).
-
-### Creating SSH keys on Linux, Mac and Windows Subsystem for Linux
-Once you have opened a terminal check for existing SSH keys and filenames since existing SSH keys could be overwritten by the following command if the filename is the same.  If you already have a key with the name given after the `-f` option you will need to change the filename to keep from losing your existing file.
-
-```bash
-$ ls ~/.ssh/
-```
-then generate a new public-private key pair:
-```bash
-$ ssh-keygen -o -a 100 -t rsa -b 4096 -f ~/.ssh/id_Torch_rsa
-```
--   `-o` (no default): use the OpenSSH key format, rather than PEM.
--   `-a` (default is 16): number of rounds of passphrase derivation; increase to slow down brute force attacks.
--   `-t` (default is rsa): specify the “type” or cryptographic algorithm.
--   `-b` (default is 2048): sets the number of bits in the key.
--   `-f` (default is /home/user/.ssh/id_algorithm): filename to store your keys. If you already have SSH keys, make sure you specify a different name: ssh-keygen will overwrite the default key if you don’t specify!
-
-When prompted, enter a strong password that you will remember. Cryptography is only as good as the weakest link, and this will be used to connect to a powerful, precious, computational resource.
-
-Take a look in `~/.ssh` (use `ls ~/.ssh`). You should see the two new files: your private key (`~/.ssh/key_Torch_rsa`) and the public key (`~/.ssh/key_Torch_rsa.pub`). If a key is requested by the system administrators, the _public_ key is the one to provide.
-
-:::danger
-Private keys are your private identity
-
-A private key that is visible to anyone but you should be considered compromised, and must be destroyed. This includes having improper permissions on the directory it (or a copy) is stored in, traversing any network in the clear, attachment on unencrypted email, and even displaying the key (which is ASCII text) in your terminal window.
-
-Protect this key as if it unlocks your front door. In many ways, it does.
-:::
-
-:::tip[Further information]
-For more information on SSH security and some of the flags set here, an excellent resource is [Secure Secure Shell](https://blog.stribik.technology/2015/01/04/secure-secure-shell.html).
-:::
-
-### SSH Agent for Easier Key Handling
-An SSH key is only as strong as the password used to unlock it, but on the other hand, typing out a complex password every time you connect to a machine is tedious and gets old very fast. This is where the SSH Agent comes in.
-
-Using an SSH Agent, you can type your password for the private key once, then have the Agent remember it for some number of hours or until you log off. Unless some nefarious actor has physical access to your machine, this keeps the password safe, and removes the tedium of entering the password multiple times.
-
-Just remember your password, because once it expires in the Agent, you have to type it in again.
+Once done, try navigating again to [https://ood.torch.hpc.nyu.edu](https://ood.hpc.nyu.edu) and the site should load. For other issues please email [hpc@nyu.edu](mailto:hpc@nyu.edu).
 
 #### SSH Agents on Linux, macOS, and Windows
 Open your terminal application and check if an agent is running:
@@ -211,15 +163,6 @@ You could run each line of the `ssh-agent` output yourself, and achieve the same
 :::
 -   Otherwise, your agent is already running: don’t mess with it.
 
-Add your key to the agent, with session expiration after 8 hours:
-```bash
-[user@laptop ~]$ ssh-add -t 8h ~/.ssh/id_ed25519
-Enter passphrase for .ssh/id_ed25519:
-Identity added: .ssh/id_ed25519
-Lifetime set to 86400 seconds
-```
-For the duration (8 hours), whenever you use that key, the SSH Agent will provide the key on your behalf without you having to type a single keystroke.
-
 #### SSH Agent on PuTTY
 If you are using PuTTY on Windows, download and use `pageant` as the SSH agent. See the [PuTTY documentation](./02_connecting_to_hpc.mdx#opening-a-terminal).
 
@@ -227,21 +170,22 @@ If you are using PuTTY on Windows, download and use `pageant` as the SSH agent. 
 ## Modifying your .ssh/config file
 Please add the following lines to your `~/.ssh/config` file:
 ```
-Host login.torch.hpc.nyu.edu dtn.torch.hpc.nyu.edu
+Host dtn.torch.hpc.nyu.edu
+  User <NetID>
   StrictHostKeyChecking no
   ServerAliveInterval 60
   ForwardAgent yes
   UserKnownHostsFile /dev/null
   LogLevel ERROR
 
-Host torch
-  HostName localhost
-  Port 8027
-  ForwardX11 yes
+Host torch login.torch.hpc.nyu.edu
+  Hostname login.torch.hpc.nyu.edu
+  User <NetID>
   StrictHostKeyChecking no
+  ServerAliveInterval 60
+  ForwardAgent yes
   UserKnownHostsFile /dev/null
   LogLevel ERROR
-  User <Your NetID>
 ```
 You'll need to replace the sections above labelled `<Your NetID>` with your NetID.  You can find more details about this at the [Quickstart section of Accessing HPC at NYU](https://sites.google.com/nyu.edu/nyu-hpc/accessing-hpc#h.7t97br4zzvip)
 
@@ -252,15 +196,6 @@ SSH allows us to connect to UNIX computers remotely, and use them as if they wer
 ```bash
 ssh yourUsername@some.computer.address
 ```
-
-Let’s attempt to connect to the HPC system now:
-
-If you'd like to connect without typing your password you'll need to copy your public key file to torch first:
-```bash
-scp ~/.ssh/id_Torch_rsa.pub <NetID>@login.torch.hpc.nyu.edu:/home/<NetID>
-```
-
-You'll need to log in with your password at least once even if you plan to use SSH keys in the future because we'll need to set up your keys.
 
 Once you are on the NYU WiFi or VPN you can connect with:
 ```bash
@@ -288,15 +223,6 @@ Space        Variable      /Flushed?    Space / Files    Space(%) / Files(%)
 By looking at the information after *Hostname:* and in the prompt you'll notice that the machine you're currently logged into is not Torch.  This is expected.  You've just logged into a _login node_ that is connected to Torch.  It is from the login nodes that you will submit jobs to Torch.
 
 If you logged in using PuTTY this will not apply because it does not offer a local terminal.
-
-### Setting up your SSH keys (optional)
-
-If you copied your SSH keys to your home directory in an earlier step, we'll guide you through setting them up for use now.
-1.   If you do not have a directory name `.ssh` in your home directory create one now with the command: `mkdir ~/.ssh`
-    - Remember you can list the hidden (dot) files by running the command: `ls -a`
-2. add your key to the list of `authorized_keys` with the command: `cat ~/id_Torch_rsa.pub >> ~/.ssh/authorized_keys`
-
-That’s all! Disconnect, then try to log back into the remote: if your key and agent have been configured correctly, you should not be prompted for the password.
 
 ### Telling the Difference between the Local Terminal and the Remote Terminal
 
