@@ -1,7 +1,6 @@
-# Ollama - A Command Line LLM Tool
+# vLLM - A Command Line LLM Tool
 ## What is Ollama?
-[Ollama](https://github.com/ollama/ollama) is a developing command line tool designed to run large language models.
-
+[vLLM](https://docs.vllm.ai/en/latest/) is a fast and easy-to-use library for LLM inference and serving.
 ## Ollama Installation Instructions
 Create an Ollama directory in your /scratch directory, then download the ollama files:
 ```
