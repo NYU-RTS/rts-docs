@@ -1,5 +1,5 @@
 # vLLM - A Command Line LLM Tool
-## What is Ollama?
+## What is vLLM?
 [vLLM](https://docs.vllm.ai/en/latest/) is a fast and easy-to-use library for LLM inference and serving.
 ## Ollama Installation Instructions
 Create an Ollama directory in your /scratch directory, then download the ollama files:
