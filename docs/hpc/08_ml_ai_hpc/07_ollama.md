@@ -21,52 +21,41 @@ echo "export VLLM_CACHE_ROOT=/scratch/\$USER/vllm_cache" >> ~/.bashrc
 Note: Files on $SCRATCH are not backed up and will be deleted after 60 days of inactivity. Always keep your source code and .slurm scripts in $HOME!
 
 ## Run vLLM
-### Online Serving
-You can run ollama on a random port:
+### Online Serving (OpenAI-Compatible API)
+vLLM implements the OpenAI API protocol, allowing it to be a drop-in replacement for applications using OpenAI's services. By default, it starts the server at http://localhost:8000. You can specify the address with --host and --port arguments. 
+**In Terminal 1:**
+Start  vLLM server (In this example we use Qwen model):
 ```
-export OLPORT=$(python3 -c "import socket; sock=socket.socket(); sock.bind(('',0)); print(sock.getsockname()[1])")
-OLLAMA_HOST=127.0.0.1:$OLPORT ./bin/ollama serve
+apptainer exec --nv vllm-openai_latest.sif vllm serve "Qwen/Qwen2.5-0.5B-Instruct"
 ```
-You can use the above as part of a Slurm batch job like the example below:
+When you see:
 ```
-#!/bin/bash
-#SBATCH --job-name=ollama
-#SBATCH --output=ollama_%j.log
-#SBATCH --ntasks=1
-#SBATCH --mem=8gb
-#SBATCH --gres=gpu:a100:1
-#SBATCH --time=01:00:00
+Application startup complete.
+```
+Open another terminal and log in to the same computing node as in terminal 1.
 
-export OLPORT=$(python3 -c "import socket; sock=socket.socket(); sock.bind(('',0)); print(sock.getsockname()[1])")
-export OLLAMA_HOST=127.0.0.1:$OLPORT 
-
-./bin/ollama serve > ollama-server.log 2>&1 &&
-wait 10
-./bin/ollama pull mistral
-python my_ollama_python_script.py >> my_ollama_output.txt
+**In Terminal 2**
 ```
-In the above example, your python script will be able to talk to the ollama server.
+curl http://localhost:8000/v1/chat/completions \
+    -H "Content-Type: application/json" \
+    -d '{
+        "model": "Qwen/Qwen2.5-0.5B-Instruct",
+        "messages": [
+            {"role": "user", "content": "Your prompt..."}
+        ]
+    }'
+```
 
 ### Offline Inference
 If you need to process a large dataset at once without setting up a server, you can use vLLM's LLM class.
-
-**In Terminal 1:**
-
-Start ollama
+For example, the following code downloads the facebook/opt-125m model from HuggingFace and runs it in vLLM using the default configuration.
 ```
-export OLPORT=$(python3 -c "import socket; sock=socket.socket(); sock.bind(('',0)); print(sock.getsockname()[1])")
-echo $OLPORT #so you know what port Ollama is running on
-OLLAMA_HOST=127.0.0.1:$OLPORT ./bin/ollama serve
-```
-**In Terminal 2:**
+from vllm import LLM
 
-Pull a model and begin chatting
+# Initialize the vLLM engine.
+llm = LLM(model="facebook/opt-125m")
 ```
-export OLLAMA_HOST=127.0.0.1:$OLPORT 
-./bin/ollama pull llama3.2
-./bin/ollama run llama3.2
-```
-
+After initializing the LLM instance, use the available APIs to perform model inference.
 
 ## vLLM CLI
 The vllm command-line tool is used to run and manage vLLM models. You can start by viewing the help message with:
