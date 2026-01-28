@@ -1,6 +1,17 @@
 # vLLM - A Command Line LLM Tool
 ## What is vLLM?
 [vLLM](https://docs.vllm.ai/en/latest/) is a fast and easy-to-use library for LLM inference and serving.
+
+## Why vLLM?
+We tested vLLM and llama-cpp on Torch, and found vLLM performs better on Torch:
+Model: Qwen2.5-7B-Instruct
+Prompt Tokens:512
+Output Tokens: 256
+|Backend|Peak Throughput|Median Latency(ms)|Recommendation
+|-----|-----|-----|-----|
+|vLLM|~4689.6|48.0|Best for Batch/Research|
+|llama-cpp|~115.0|~280.0|Best for Single User|
+
 ## vLLM Installation Instructions
 Create a vLLM directory in your /scratch directory, then install the vLLM image:
 ```
