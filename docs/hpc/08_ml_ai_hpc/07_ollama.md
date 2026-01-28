@@ -9,7 +9,7 @@ Prompt Tokens:512
 Output Tokens: 256
 |Backend|Peak Throughput|Median Latency(ms)|Recommendation
 |-----|-----|-----|-----|
-|vLLM|~4689.6|48.0|Best for Batch/Research|
+|vLLM|~4689.6|~48.0|Best for Batch/Research|
 |llama-cpp|~115.0|~280.0|Best for Single User|
 
 ## vLLM Installation Instructions
