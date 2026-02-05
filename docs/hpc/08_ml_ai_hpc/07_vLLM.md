@@ -68,7 +68,7 @@ llm = LLM(model="facebook/opt-125m")
 ```
 After initializing the LLM instance, use the available APIs to perform model inference.
 
-### SGLang: A Simple Option for Offline Batch Inference
+### SGLang: A Simple Option for Offline Batch Inference (Supplement Material)
 For cases where users only want to run batch inference and do not need an HTTP endpoint, SGLang provides a much simpler offline engine API compared to running a full vLLM server. It is particularly suitable for dataset processing, evaluation pipelines, and one-off large-scale inference jobs.
 For more details and examples, see the official SGLang offline engine documentation:
 https://docs.sglang.io/basic_usage/offline_engine_api.html
