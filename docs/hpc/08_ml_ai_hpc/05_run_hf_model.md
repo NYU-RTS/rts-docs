@@ -22,7 +22,7 @@ Some of the following steps can require significant resources, so we'll move to 
 
 ### Copy appropriate overlay file to the project directory
 ```bash
-[NetID@cm001 llm_example]$ cp -rp /scratch/work/public/overlay-fs-ext3/overlay-50G-10M.ext3.gz .
+[NetID@cm001 llm_example]$ cp -rp /share/apps/overlay-fs-ext3/overlay-50G-10M.ext3.gz .
 [NetID@cm001 llm_example]$ gunzip overlay-50G-10M.ext3.gz
 ```
 
