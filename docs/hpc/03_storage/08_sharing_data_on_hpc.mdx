@@ -71,13 +71,13 @@ Once you have a group assigned, managers of the group can use the `ipa` commands
 
 Relevant user commands include:
 - `ipa group-add-member`: Add members to a group.
-Example:
+-- Example:
 `ipa group-add-member GROUP-NAME --users='NETID'`
 - `ipa group-add-member-manager`: Add users that can manage members of this group.
-Example:
+-- Example:
 `ipa group-add-member-manager GROUP-NAME --users='NETID'`
 - `ipa group-find`: Search for groups.
-Example:
+-- Example:
 ```
 ipa group-find test
 ----------------
@@ -94,15 +94,15 @@ Number of entries returned 2
 ----------------------------
 ```
 - `ipa group-remove-member`: Remove members from a group.
-Example:
+-- Example:
 `ipa group-remove-member --users=NETID`
 - `ipa group-remove-member-manager`: Remove users that can manage members of this group.
-Example:
+-- Example:
 `ipa group-remove-member-manager --users=NETID`
 - `ipa group-show`: Display information about a named group.
-Example:
+-- Example:
 `ipa group-show GROUP-NAME`
-Example:
+-- Example:
 ```
 [mdw303@torch-login-1 ~]$ ipa group-show g-hpc-mdw303test
   Group name: g-hpc-mdw303test
