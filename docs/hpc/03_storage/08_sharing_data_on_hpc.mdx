@@ -59,3 +59,50 @@ A:g:GROUP@:rtncy
 A::EVERYONE@:rtncy
 ```
 where `collaborator-netid` refers to the `NetID` of your collaborator.
+
+## Linux Groups for Group Permissions
+The HPC team allows teams to manage group membership using a IPA Linux Group. This is a good choice for when all users need the same read/write/execute permissions for a directory and subdirectories.
+
+Please email hpc@nyu.edu if your team would like to use a Linux Group. Generally this will follow some kind of naming convention along the lines of:
+
+g-DEPT-LABNAME
+
+Once you have a group assigned, managers of the group can use the `ipa` commands to manage members via the login nodes.
+
+Relevant user commands include:
+- `ipa group-add-member`: Add members to a group.
+`ipa group-add-member GROUP-NAME --users='NETID'`
+- `ipa group-add-member-manager`: Add users that can manage members of this group.
+`ipa group-add-member-manager GROUP-NAME --users='NETID'`
+- `ipa group-find`: Search for groups.
+Example:
+```
+ipa group-find test
+----------------
+2 groups matched
+----------------
+  Group name: g-test-2222
+  GID: 891200121
+
+  Group name: g-test-2223
+  Description: g-test-2223
+  GID: 891200122
+----------------------------
+Number of entries returned 2
+----------------------------
+```
+- `ipa group-remove-member`: Remove members from a group.
+`ipa group-remove-member --users=NETID`
+- `ipa group-remove-member-manager`: Remove users that can manage members of this group.
+`ipa group-remove-member-manager --users=NETID`
+- `ipa group-show`: Display information about a named group.
+`ipa group-show GROUP-NAME`
+Example:
+```
+[mdw303@torch-login-1 ~]$ ipa group-show g-hpc-mdw303test
+  Group name: g-hpc-mdw303test
+  Description: test RPS group directory
+  GID: 891200193
+  Member users: mdw303, sw77
+  Membership managed by users: mdw303
+```
