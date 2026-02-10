@@ -71,8 +71,10 @@ Once you have a group assigned, managers of the group can use the `ipa` commands
 
 Relevant user commands include:
 - `ipa group-add-member`: Add members to a group.
+Example:
 `ipa group-add-member GROUP-NAME --users='NETID'`
 - `ipa group-add-member-manager`: Add users that can manage members of this group.
+Example:
 `ipa group-add-member-manager GROUP-NAME --users='NETID'`
 - `ipa group-find`: Search for groups.
 Example:
@@ -92,10 +94,13 @@ Number of entries returned 2
 ----------------------------
 ```
 - `ipa group-remove-member`: Remove members from a group.
+Example:
 `ipa group-remove-member --users=NETID`
 - `ipa group-remove-member-manager`: Remove users that can manage members of this group.
+Example:
 `ipa group-remove-member-manager --users=NETID`
 - `ipa group-show`: Display information about a named group.
+Example:
 `ipa group-show GROUP-NAME`
 Example:
 ```
