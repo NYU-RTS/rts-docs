@@ -10,8 +10,8 @@
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2DXB3BDH70"></script>
 <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-2DXB3BDH70",{anonymize_ip:!0})</script><link rel="stylesheet" href="/assets/css/styles.67f60864.css">
-<script src="/assets/js/runtime~main.783d2085.js" defer="defer"></script>
-<script src="/assets/js/main.55cbbb5b.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.15eddd0e.js" defer="defer"></script>
+<script src="/assets/js/main.0c84bc4f.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -52,8 +52,10 @@ with the usage described in the following examples.</li>
 <p>Relevant user commands include:</p>
 <ul>
 <li class=""><code>ipa group-add-member</code>: Add members to a group.
+Example:
 <code>ipa group-add-member GROUP-NAME --users=&#x27;NETID&#x27;</code></li>
 <li class=""><code>ipa group-add-member-manager</code>: Add users that can manage members of this group.
+Example:
 <code>ipa group-add-member-manager GROUP-NAME --users=&#x27;NETID&#x27;</code></li>
 <li class=""><code>ipa group-find</code>: Search for groups.
 Example:</li>
@@ -61,10 +63,13 @@ Example:</li>
 <div class="language-text codeBlockContainer_CNg3 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_sHyZ"><pre tabindex="0" class="prism-code language-text codeBlock_EvrG thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_274r"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">ipa group-find test</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">----------------</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">2 groups matched</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">----------------</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  Group name: g-test-2222</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  GID: 891200121</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  Group name: g-test-2223</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  Description: g-test-2223</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  GID: 891200122</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">----------------------------</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">Number of entries returned 2</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">----------------------------</span><br></span></code></pre></div></div>
 <ul>
 <li class=""><code>ipa group-remove-member</code>: Remove members from a group.
+Example:
 <code>ipa group-remove-member --users=NETID</code></li>
 <li class=""><code>ipa group-remove-member-manager</code>: Remove users that can manage members of this group.
+Example:
 <code>ipa group-remove-member-manager --users=NETID</code></li>
 <li class=""><code>ipa group-show</code>: Display information about a named group.
+Example:
 <code>ipa group-show GROUP-NAME</code>
 Example:</li>
 </ul>
