@@ -159,21 +159,29 @@ export const FACET_CONFIGS: FacetConfig[] = [
     column: "Permission Settings",
     controlType: "checkbox",
     choices: [
-      { id: "access-needs.individual", name: "No sharing", weight: 0 },
-      { id: "access-needs.public", name: "Public access", weight: 1 },
+      {
+        id: "access-needs.individual",
+        name: "No sharing, individual use only",
+        weight: 0,
+      },
+      {
+        id: "access-needs.public",
+        name: "Public access for a research data management plan",
+        weight: 1,
+      },
       {
         id: "access-needs.shared-link",
-        name: "Shared link collaborators",
+        name: "Non-specific collaborators via a shared link",
         weight: 2,
       },
       {
         id: "access-needs.netid-collaborators",
-        name: "Affiliated collaborators with NetIDs",
+        name: "Specific affiliated collaborators with NetIDs",
         weight: 3,
       },
       {
         id: "access-needs.external-collaborators",
-        name: "Collaborators external to NYU",
+        name: "Specific collaborators external to NYU without NetIDs",
         weight: 4,
       },
     ],
