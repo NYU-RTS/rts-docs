@@ -1,7 +1,7 @@
 [workspace]
 channels = ["conda-forge"]
 description = "Add a short description here"
-name = "rts-docs-dev"
+name = "rts-docs"
 platforms = ["osx-arm64", "linux-64", "linux-aarch64"]
 version = "0.1.0"
 
@@ -11,5 +11,5 @@ build = { cmd = ["pnpm", "build"], depends-on = ["install"] }
 start = { cmd = ["pnpm", "start"], depends-on = ["build"] }
 
 [dependencies]
-nodejs = ">=24.12.0,<24.13"
-pnpm = ">=10.26.1,<11"
+nodejs = ">=24.13.0,<24.14"
+pnpm = ">=10.29.2,<11"
