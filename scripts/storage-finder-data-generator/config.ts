@@ -224,4 +224,294 @@ export const FACET_CONFIGS: FacetConfig[] = [
     ],
     fallback: "all",
   },
+  {
+    id: "synchronous-access",
+    name: "Do you need synchronous or simultaneous access to your data?",
+    description: null,
+    column: "Synchronous Access",
+    controlType: "radio",
+    allowMultipleMatches: true,
+    choices: [
+      {
+        id: "synchronous-access.yes",
+        name: "Yes",
+        weight: 0,
+      },
+      {
+        id: "synchronous-access.no",
+        name: "No",
+        weight: 1,
+      },
+    ],
+    matchers: [
+      {
+        pattern: /\b(yes|users can edit|simultaneously)\b/i,
+        choices: ["synchronous-access.yes"],
+      },
+      {
+        pattern: /\bnot available\b/i,
+        choices: ["synchronous-access.no"],
+      },
+    ],
+    fallback: "all",
+  },
+  {
+    id: "alumni-access",
+    name: "Do you need alumni to have access to your data?",
+    description: null,
+    column: "Alumni Access",
+    controlType: "radio",
+    choices: [
+      { id: "alumni-access.yes", name: "Yes", weight: 0 },
+      { id: "alumni-access.no", name: "No", weight: 1 },
+    ],
+    matchers: [
+      {
+        pattern: /\bNot Available\b/i,
+        choices: ["alumni-access.no"],
+      },
+      {
+        pattern: /^Available$/i,
+        choices: ["alumni-access.yes"],
+      },
+    ],
+    fallback: "all",
+  },
+  {
+    id: "storage-duration",
+    name: "What is your storage duration need?",
+    description: null,
+    column: "Use Case",
+    controlType: "radio",
+    allowMultipleMatches: true,
+    choices: [
+      {
+        id: "storage-duration.long-term",
+        name: "Long-term or archival",
+        weight: 0,
+      },
+      {
+        id: "storage-duration.temporary",
+        name: "Temporary or short-term",
+        weight: 1,
+      },
+    ],
+    matchers: [
+      {
+        pattern: /\b(long.?term|archive|archival|preservation)\b/i,
+        choices: ["storage-duration.long-term"],
+      },
+      {
+        pattern: /\btemporary\b/i,
+        choices: ["storage-duration.temporary"],
+      },
+    ],
+    fallback: "all",
+  },
+  {
+    id: "use-case-purpose",
+    name: "What is the primary purpose for your storage?",
+    description: null,
+    column: "Use Case",
+    controlType: "checkbox",
+    choices: [
+      {
+        id: "use-case-purpose.archive",
+        name: "Archive and preservation",
+        weight: 0,
+      },
+      {
+        id: "use-case-purpose.active-research",
+        name: "Active research and analysis",
+        weight: 1,
+      },
+      {
+        id: "use-case-purpose.collaboration",
+        name: "Collaboration and file sharing",
+        weight: 2,
+      },
+      {
+        id: "use-case-purpose.surveys",
+        name: "Surveys and data collection",
+        weight: 3,
+      },
+      {
+        id: "use-case-purpose.media",
+        name: "Video and audio",
+        weight: 4,
+      },
+      {
+        id: "use-case-purpose.repository",
+        name: "Data repository and publishing",
+        weight: 5,
+      },
+    ],
+    matchers: [
+      {
+        pattern: /\b(archive|archival|preservation)\b/i,
+        choices: ["use-case-purpose.archive"],
+      },
+      {
+        pattern: /\b(research|analysis|hpc|analyze)\b/i,
+        choices: ["use-case-purpose.active-research"],
+      },
+      {
+        pattern: /\b(collaboration|collaborat|share|sharing)\b/i,
+        choices: ["use-case-purpose.collaboration"],
+      },
+      {
+        pattern: /\b(survey|surveys)\b/i,
+        choices: ["use-case-purpose.surveys"],
+      },
+      {
+        pattern: /\b(video|audio|media)\b/i,
+        choices: ["use-case-purpose.media"],
+      },
+      {
+        pattern: /\b(repository|geospatial|deposit|publication)\b/i,
+        choices: ["use-case-purpose.repository"],
+      },
+    ],
+    fallback: "all",
+  },
+  {
+    id: "cost-model",
+    name: "What is your budget for storage?",
+    description: null,
+    column: "Limitations",
+    controlType: "radio",
+    allowMultipleMatches: true,
+    choices: [
+      {
+        id: "cost-model.free",
+        name: "Free or included services",
+        weight: 0,
+      },
+      {
+        id: "cost-model.paid",
+        name: "Willing to pay or use chargeback",
+        weight: 1,
+      },
+    ],
+    matchers: [
+      {
+        pattern: /\b(chargeback|available for a fee)\b/i,
+        choices: ["cost-model.paid"],
+      },
+      {
+        pattern: /\b(free|no cost|included)\b/i,
+        choices: ["cost-model.free"],
+      },
+    ],
+    fallback: "all",
+  },
+  {
+    id: "storage-capacity",
+    name: "What storage capacity do you need?",
+    description: null,
+    column: "Limitations",
+    controlType: "radio",
+    allowMultipleMatches: true,
+    choices: [
+      {
+        id: "storage-capacity.small",
+        name: "Small (< 50 GB)",
+        weight: 0,
+      },
+      {
+        id: "storage-capacity.medium",
+        name: "Medium (50 GB - 2 TB)",
+        weight: 1,
+      },
+      {
+        id: "storage-capacity.large",
+        name: "Large (> 2 TB or unlimited)",
+        weight: 2,
+      },
+    ],
+    matchers: [
+      {
+        pattern: /\b20\s*GB\b/i,
+        choices: ["storage-capacity.small"],
+      },
+      {
+        pattern: /\b(50\s*GB|2TB|2\s*TB)\b/i,
+        choices: ["storage-capacity.small", "storage-capacity.medium"],
+      },
+      {
+        pattern: /\b(5TB|5\s*TB|no limit|unlimited)\b/i,
+        choices: [
+          "storage-capacity.small",
+          "storage-capacity.medium",
+          "storage-capacity.large",
+        ],
+      },
+      {
+        pattern: /\b(not available)\b/i,
+        choices: [
+          "storage-capacity.small",
+          "storage-capacity.medium",
+          "storage-capacity.large",
+        ],
+      },
+    ],
+    fallback: "all",
+  },
+  {
+    id: "special-requirements",
+    name: "Do you have any special requirements or restrictions?",
+    description: null,
+    column: "Limitations",
+    controlType: "checkbox",
+    choices: [
+      {
+        id: "special-requirements.none",
+        name: "No special requirements",
+        weight: 0,
+      },
+      {
+        id: "special-requirements.active-directory",
+        name: "Can use Active Directory",
+        weight: 1,
+      },
+      {
+        id: "special-requirements.faculty-sponsorship",
+        name: "Have faculty sponsorship",
+        weight: 2,
+      },
+      {
+        id: "special-requirements.data-stewardship",
+        name: "Have data stewardship knowledge",
+        weight: 3,
+      },
+      {
+        id: "special-requirements.project-approval",
+        name: "Can get project approval",
+        weight: 4,
+      },
+    ],
+    matchers: [
+      {
+        pattern: /\bactive directory\b/i,
+        choices: ["special-requirements.active-directory"],
+      },
+      {
+        pattern: /\b(faculty sponsorship|faculty sponsored)\b/i,
+        choices: ["special-requirements.faculty-sponsorship"],
+      },
+      {
+        pattern: /\b(data stewardship|stewardship knowledge)\b/i,
+        choices: ["special-requirements.data-stewardship"],
+      },
+      {
+        pattern: /\b(project.*approval|approved by.*staff)\b/i,
+        choices: ["special-requirements.project-approval"],
+      },
+      {
+        pattern: /\b(not available|no limit)\b/i,
+        choices: ["special-requirements.none"],
+      },
+    ],
+    fallback: "all",
+  },
 ];

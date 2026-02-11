@@ -1,1354 +1,1481 @@
 [
   {
-    "id": "9",
+    "id": "amazon-s3",
     "title": "Amazon S3",
     "facet_matches": [
-      "5",
-      "6",
-      "7",
-      "28",
-      "29",
-      "33",
-      "32",
-      "35",
-      "34",
-      "36",
-      "38",
-      "61",
-      "39",
-      "40",
-      "41",
-      "49",
-      "50",
-      "48",
-      "54",
-      "60",
-      "58",
-      "57",
-      "56",
-      "55",
-      "26",
-      "23",
-      "22",
-      "24",
-      "25",
-      "11",
-      "10",
-      "13",
-      "14",
-      "18",
-      "20",
-      "19"
+      "risk-classification.public-low",
+      "risk-classification.sensitive-moderate",
+      "risk-classification.confidential-high",
+      "affiliation.faculty",
+      "affiliation.staff",
+      "access-needs.netid-collaborators",
+      "backup-availability.yes",
+      "synchronous-access.no",
+      "alumni-access.no",
+      "storage-duration.long-term",
+      "use-case-purpose.archive",
+      "cost-model.paid",
+      "storage-capacity.small",
+      "storage-capacity.medium",
+      "storage-capacity.large",
+      "special-requirements.none",
+      "special-requirements.active-directory",
+      "special-requirements.faculty-sponsorship",
+      "special-requirements.data-stewardship",
+      "special-requirements.project-approval"
     ],
     "summary": null,
     "field_data": {
+      "field_links": {
+        "value": "<p><a href=\"https://www.nyu.edu/servicelink/KB0020307\">Amazon S3</a></p>",
+        "label": "Links",
+        "weight": 2
+      },
+      "field_storable_files": {
+        "value": "<p>High</p>",
+        "label": "Storable Files",
+        "weight": 3
+      },
+      "field_use_case": {
+        "value": "<p>Archive and long-term, high-security storage of large datasets.</p>",
+        "label": "Use Case",
+        "weight": 4
+      },
+      "field_limitations": {
+        "value": "<p>AWS S3 is a chargeback service and an NYU chartfield is required for chargeback.<br>Max individual file upload size is 5TB.</p>",
+        "label": "Limitations",
+        "weight": 5
+      },
+      "field_permission_settings": {
+        "value": "<p>Restricted access by individual or group.</p>",
+        "label": "Permission Settings",
+        "weight": 6
+      },
+      "field_eligibility": {
+        "value": "<p>Staff and Faculty.</p>",
+        "label": "Eligibility",
+        "weight": 7
+      },
+      "field_synchronous_access": {
+        "value": "<p>Not Available</p>",
+        "label": "Synchronous Access",
+        "weight": 9
+      },
       "field_alumni_access": {
-        "value": "\u003Cp\u003ENot Available\u003C\/p\u003E",
+        "value": "<p>Not Available</p>",
         "label": "Alumni Access",
         "weight": 10
       },
       "field_backup": {
-        "value": "\u003Cp\u003EAvailable for additional cost.\u003C\/p\u003E",
+        "value": "<p>Yes</p>",
         "label": "Backup",
         "weight": 11
-      },
-      "field_eligibility": {
-        "value": "\u003Cp\u003EStaff and Faculty.\u003C\/p\u003E",
-        "label": "Eligibility",
-        "weight": 7
-      },
-      "field_limitations": {
-        "value": "\u003Cp\u003EAWS S3 is a chargeback service and an NYU chartfield is required for chargeback.\u003Cbr\u003EMax individual file upload size is 5TB.\u003C\/p\u003E\u003Cp\u003E\u0026nbsp;\u003C\/p\u003E",
-        "label": "Limitations",
-        "weight": 5
-      },
-      "field_links": {
-        "value": "\u003Cp\u003E\u003Ca href=\u0022https:\/\/www.nyu.edu\/servicelink\/KB0020307\u0022\u003EAmazon S3\u003C\/a\u003E\u003C\/p\u003E",
-        "label": "Links",
-        "weight": 2
-      },
-      "field_permission_settings": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003ERestricted access by individual or group.\u003C\/p\u003E",
-        "label": "Permission Settings",
-        "weight": 6
-      },
-      "field_storable_files": {
-        "value": "\u003Cp\u003EHigh, Moderate, \u0026amp; Low Risk.\u003Cbr\u003E\u0026nbsp;\u003C\/p\u003E",
-        "label": "Storable Files",
-        "weight": 3
-      },
-      "field_synchronous_access": {
-        "value": "\u003Cp\u003ENot Available\u003C\/p\u003E",
-        "label": "Synchronous Access",
-        "weight": 9
-      },
-      "field_use_case": {
-        "value": "\u003Cp\u003EArchive and long-term, high-security storage of large datasets.\u003C\/p\u003E",
-        "label": "Use Case",
-        "weight": 4
       }
     }
   },
   {
-    "id": "15",
-    "title": "Distributed storage on the HSRN",
+    "id": "hsrn-ceph",
+    "title": "HSRN Ceph",
     "facet_matches": [
-      "5",
-      "6",
-      "10",
-      "11",
-      "13",
-      "14",
-      "18",
-      "20",
-      "26",
-      "28",
-      "29",
-      "32",
-      "33",
-      "34",
-      "38",
-      "41",
-      "48",
-      "49",
-      "50",
-      "54"
+      "risk-classification.public-low",
+      "risk-classification.sensitive-moderate",
+      "affiliation.faculty",
+      "access-needs.individual",
+      "access-needs.public",
+      "access-needs.shared-link",
+      "access-needs.netid-collaborators",
+      "access-needs.external-collaborators",
+      "backup-availability.yes",
+      "synchronous-access.yes",
+      "alumni-access.no",
+      "storage-duration.long-term",
+      "use-case-purpose.archive",
+      "use-case-purpose.active-research",
+      "use-case-purpose.collaboration",
+      "use-case-purpose.surveys",
+      "use-case-purpose.media",
+      "use-case-purpose.repository",
+      "cost-model.free",
+      "cost-model.paid",
+      "storage-capacity.small",
+      "storage-capacity.medium",
+      "storage-capacity.large",
+      "special-requirements.none",
+      "special-requirements.active-directory",
+      "special-requirements.faculty-sponsorship",
+      "special-requirements.data-stewardship",
+      "special-requirements.project-approval"
     ],
     "summary": null,
     "field_data": {
+      "field_links": {
+        "value": "<p><a href=\"https://hsrn.nyu.edu/docs/cephfs/\">HSRN Ceph</a></p>",
+        "label": "Links",
+        "weight": 2
+      },
+      "field_storable_files": {
+        "value": "<p>Moderate</p>",
+        "label": "Storable Files",
+        "weight": 3
+      },
+      "field_use_case": {
+        "value": "<p>Long term storage</p>",
+        "label": "Use Case",
+        "weight": 4
+      },
+      "field_limitations": {
+        "value": "<p>Not Available</p>",
+        "label": "Limitations",
+        "weight": 5
+      },
+      "field_permission_settings": {
+        "value": "<p>User-controlled using facl</p>",
+        "label": "Permission Settings",
+        "weight": 6
+      },
+      "field_eligibility": {
+        "value": "<p>Faculty sponsored</p>",
+        "label": "Eligibility",
+        "weight": 7
+      },
+      "field_synchronous_access": {
+        "value": "<p>Yes</p>",
+        "label": "Synchronous Access",
+        "weight": 9
+      },
       "field_alumni_access": {
-        "value": "\u003Cp\u003ENot Available\u003C\/p\u003E",
+        "value": "<p>Not Available</p>",
         "label": "Alumni Access",
         "weight": 10
       },
       "field_backup": {
-        "value": "\u003Cp\u003EYes, 30 day retention\u0026nbsp;\u003C\/p\u003E",
+        "value": "<p>Yes</p>",
         "label": "Backup",
         "weight": 11
-      },
-      "field_eligibility": {
-        "value": "\u003Cp\u003EFaculty sponsored\u003C\/p\u003E",
-        "label": "Eligibility",
-        "weight": 7
-      },
-      "field_limitations": {
-        "value": "\u003Cp\u003E\u003C\/p\u003E",
-        "label": "Limitations",
-        "weight": 5
-      },
-      "field_links": {
-        "value": "\u003Cp\u003E\u003Ca href=\u0022https:\/\/hsrn.nyu.edu\/docs\/cephfs\/\u0022\u003Ehsrn.nyu.edu\/docs\/cephfs\/\u003C\/a\u003E\u003C\/p\u003E",
-        "label": "Links",
-        "weight": 2
-      },
-      "field_permission_settings": {
-        "value": "\u003Cp\u003EUser controlled using facl\u003C\/p\u003E",
-        "label": "Permission Settings",
-        "weight": 6
-      },
-      "field_storable_files": {
-        "value": "\u003Cp\u003EModerate\u0026nbsp;\u0026amp; Low risk\u003C\/p\u003E",
-        "label": "Storable Files",
-        "weight": 3
-      },
-      "field_synchronous_access": {
-        "value": "\u003Cp\u003EYes\u003C\/p\u003E",
-        "label": "Synchronous Access",
-        "weight": 9
-      },
-      "field_use_case": {
-        "value": "\u003Cp\u003ELong term storage\u003C\/p\u003E",
-        "label": "Use Case",
-        "weight": 4
       }
     }
   },
   {
-    "id": "5",
+    "id": "file-sharing-windows",
     "title": "File Sharing (Windows)",
     "facet_matches": [
-      "5",
-      "6",
-      "7",
-      "28",
-      "29",
-      "33",
-      "32",
-      "35",
-      "34",
-      "38",
-      "41",
-      "49",
-      "50",
-      "48",
-      "54",
-      "60",
-      "57",
-      "56",
-      "55",
-      "26",
-      "24",
-      "11",
-      "10",
-      "13",
-      "14",
-      "18",
-      "20"
+      "risk-classification.public-low",
+      "risk-classification.sensitive-moderate",
+      "risk-classification.confidential-high",
+      "affiliation.faculty",
+      "affiliation.staff",
+      "access-needs.individual",
+      "access-needs.public",
+      "access-needs.shared-link",
+      "access-needs.netid-collaborators",
+      "access-needs.external-collaborators",
+      "backup-availability.yes",
+      "synchronous-access.yes",
+      "synchronous-access.no",
+      "alumni-access.no",
+      "storage-duration.long-term",
+      "storage-duration.temporary",
+      "use-case-purpose.collaboration",
+      "cost-model.free",
+      "cost-model.paid",
+      "storage-capacity.small",
+      "storage-capacity.medium",
+      "storage-capacity.large",
+      "special-requirements.active-directory"
     ],
     "summary": null,
     "field_data": {
+      "field_links": {
+        "value": "<p><a href=\"https://nyu.edu/it/windows-file-sharing\">File Sharing (Windows)</a></p>",
+        "label": "Links",
+        "weight": 2
+      },
+      "field_storable_files": {
+        "value": "<p>High</p>",
+        "label": "Storable Files",
+        "weight": 3
+      },
+      "field_use_case": {
+        "value": "<p>NYU departments that want to store &amp; share files of low &amp; moderate security</p>",
+        "label": "Use Case",
+        "weight": 4
+      },
+      "field_limitations": {
+        "value": "<p>Workstations will have to be joined to NYU&#39;s Active Directory</p>",
+        "label": "Limitations",
+        "weight": 5
+      },
+      "field_permission_settings": {
+        "value": "<p>Options for read only, modify, or remove. Activated in NYU&#39;s Active Directory security groups via role-based access.</p>",
+        "label": "Permission Settings",
+        "weight": 6
+      },
+      "field_eligibility": {
+        "value": "<p>NYU Units, Faculty, Staff, Researchers</p>",
+        "label": "Eligibility",
+        "weight": 7
+      },
+      "field_synchronous_access": {
+        "value": "<p>Unlimited access to the file share but files can only be editable by one person unless the application allows otherwise.</p>",
+        "label": "Synchronous Access",
+        "weight": 9
+      },
       "field_alumni_access": {
-        "value": "\u003Cp\u003ENot Available\u003C\/p\u003E",
+        "value": "<p>Not Available</p>",
         "label": "Alumni Access",
         "weight": 10
       },
       "field_backup": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003EBacked up daily, retains last 30 days; monitored 24x7\u003C\/p\u003E",
+        "value": "<p>Yes</p>",
         "label": "Backup",
         "weight": 11
-      },
-      "field_eligibility": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003ENYU Units, Faculty, Staff, Researchers\u003C\/p\u003E",
-        "label": "Eligibility",
-        "weight": 7
-      },
-      "field_limitations": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003EWorkstations will have to be joined to NYU\u0027s Active Directory\u003C\/p\u003E",
-        "label": "Limitations",
-        "weight": 5
-      },
-      "field_links": {
-        "value": "\u003Cp\u003E\u003Ca href=\u0022https:\/\/www.nyu.edu\/life\/information-technology\/communication-and-collaboration\/document-collaboration-and-sharing\/file-sharing-windows.html\u0022\u003EFile Sharing (Windows)\u003C\/a\u003E\u003C\/p\u003E",
-        "label": "Links",
-        "weight": 2
-      },
-      "field_permission_settings": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003EOptions for read only, modify, or remove. Activated in NYU\u0027s Active Directory security groups via role-based access.\u003C\/p\u003E",
-        "label": "Permission Settings",
-        "weight": 6
-      },
-      "field_storable_files": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003EHigh, Moderate, \u0026amp; Low Risk\u003C\/p\u003E",
-        "label": "Storable Files",
-        "weight": 3
-      },
-      "field_synchronous_access": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003EUnlimited access to the file share but files can only be editable by one person unless the application allows otherwise.\u003C\/p\u003E",
-        "label": "Synchronous Access",
-        "weight": 9
-      },
-      "field_use_case": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003ENYU departments that want to store \u0026amp; share files of low \u0026amp; moderate security\u003C\/p\u003E",
-        "label": "Use Case",
-        "weight": 4
       }
     }
   },
   {
-    "id": "14",
+    "id": "hpc-ai-storage",
     "title": "HPC AI Storage",
     "facet_matches": [
-      "5",
-      "6",
-      "28",
-      "29",
-      "30",
-      "38",
-      "41",
-      "49",
-      "50",
-      "48",
-      "51",
-      "54",
-      "26",
-      "24",
-      "11",
-      "13",
-      "14",
-      "18"
+      "risk-classification.public-low",
+      "risk-classification.sensitive-moderate",
+      "affiliation.faculty",
+      "access-needs.individual",
+      "access-needs.public",
+      "access-needs.shared-link",
+      "access-needs.netid-collaborators",
+      "access-needs.external-collaborators",
+      "backup-availability.no",
+      "synchronous-access.yes",
+      "alumni-access.yes",
+      "storage-duration.temporary",
+      "use-case-purpose.archive",
+      "use-case-purpose.active-research",
+      "use-case-purpose.collaboration",
+      "use-case-purpose.surveys",
+      "use-case-purpose.media",
+      "use-case-purpose.repository",
+      "cost-model.free",
+      "cost-model.paid",
+      "storage-capacity.small",
+      "storage-capacity.medium",
+      "special-requirements.none",
+      "special-requirements.active-directory",
+      "special-requirements.faculty-sponsorship",
+      "special-requirements.data-stewardship",
+      "special-requirements.project-approval"
     ],
     "summary": null,
     "field_data": {
+      "field_links": {
+        "value": "<p><a href=\"https://hpc.nyu.edu//\">HPC AI Storage</a></p>",
+        "label": "Links",
+        "weight": 2
+      },
+      "field_storable_files": {
+        "value": "<p>Moderate</p>",
+        "label": "Storable Files",
+        "weight": 3
+      },
+      "field_use_case": {
+        "value": "<p>Temporary storage</p>",
+        "label": "Use Case",
+        "weight": 4
+      },
+      "field_limitations": {
+        "value": "<p>2TB limit with 60 day purge policy for untouched files</p>",
+        "label": "Limitations",
+        "weight": 5
+      },
+      "field_permission_settings": {
+        "value": "<p>User controlled using facl</p>",
+        "label": "Permission Settings",
+        "weight": 6
+      },
+      "field_eligibility": {
+        "value": "<p>Faculty sponsored</p>",
+        "label": "Eligibility",
+        "weight": 7
+      },
+      "field_synchronous_access": {
+        "value": "<p>Yes</p>",
+        "label": "Synchronous Access",
+        "weight": 9
+      },
       "field_alumni_access": {
-        "value": "\u003Cp\u003EAvailable\u003C\/p\u003E",
+        "value": "<p>Available</p>",
         "label": "Alumni Access",
         "weight": 10
       },
       "field_backup": {
-        "value": "\u003Cp\u003ENo\u003C\/p\u003E",
+        "value": "<p>No</p>",
         "label": "Backup",
         "weight": 11
-      },
-      "field_eligibility": {
-        "value": "\u003Cp\u003EFaculty sponsored\u003C\/p\u003E",
-        "label": "Eligibility",
-        "weight": 7
-      },
-      "field_limitations": {
-        "value": "\u003Cp\u003E2TB limit with 60 day purge policy for untouched files\u003C\/p\u003E",
-        "label": "Limitations",
-        "weight": 5
-      },
-      "field_links": {
-        "value": "\u003Cp\u003E\u003Ca href=\u0022http:\/\/hpc.nyu.edu\/\u0022\u003Ehpc.nyu.edu\u003C\/a\u003E\u003C\/p\u003E",
-        "label": "Links",
-        "weight": 2
-      },
-      "field_permission_settings": {
-        "value": "\u003Cp\u003EUser controlled using facl\u003C\/p\u003E",
-        "label": "Permission Settings",
-        "weight": 6
-      },
-      "field_storable_files": {
-        "value": "\u003Cp\u003EModerate\u0026nbsp;\u0026amp; Low risk\u003C\/p\u003E",
-        "label": "Storable Files",
-        "weight": 3
-      },
-      "field_synchronous_access": {
-        "value": "\u003Cp\u003EYes\u003C\/p\u003E",
-        "label": "Synchronous Access",
-        "weight": 9
-      },
-      "field_use_case": {
-        "value": "\u003Cp\u003ETemporary\u0026nbsp;storage\u003C\/p\u003E",
-        "label": "Use Case",
-        "weight": 4
       }
     }
   },
   {
-    "id": "20",
+    "id": "hpc-archive",
     "title": "HPC Archive",
     "facet_matches": [
-      "5",
-      "6",
-      "28",
-      "29",
-      "30",
-      "32",
-      "34",
-      "38",
-      "41",
-      "49",
-      "50",
-      "48",
-      "54",
-      "26",
-      "24",
-      "10",
-      "13",
-      "14",
-      "18",
-      "20"
+      "risk-classification.public-low",
+      "risk-classification.sensitive-moderate",
+      "affiliation.faculty",
+      "access-needs.individual",
+      "access-needs.public",
+      "access-needs.shared-link",
+      "access-needs.netid-collaborators",
+      "access-needs.external-collaborators",
+      "backup-availability.yes",
+      "synchronous-access.yes",
+      "alumni-access.yes",
+      "storage-duration.long-term",
+      "use-case-purpose.archive",
+      "use-case-purpose.active-research",
+      "use-case-purpose.collaboration",
+      "use-case-purpose.surveys",
+      "use-case-purpose.media",
+      "use-case-purpose.repository",
+      "cost-model.free",
+      "cost-model.paid",
+      "storage-capacity.small",
+      "storage-capacity.medium",
+      "special-requirements.none",
+      "special-requirements.active-directory",
+      "special-requirements.faculty-sponsorship",
+      "special-requirements.data-stewardship",
+      "special-requirements.project-approval"
     ],
     "summary": null,
     "field_data": {
+      "field_links": {
+        "value": "<p><a href=\"https://hpc.nyu.edu//\">HPC Archive</a></p>",
+        "label": "Links",
+        "weight": 2
+      },
+      "field_storable_files": {
+        "value": "<p>Moderate</p>",
+        "label": "Storable Files",
+        "weight": 3
+      },
+      "field_use_case": {
+        "value": "<p>Long term storage</p>",
+        "label": "Use Case",
+        "weight": 4
+      },
+      "field_limitations": {
+        "value": "<p>2TB limit</p>",
+        "label": "Limitations",
+        "weight": 5
+      },
+      "field_permission_settings": {
+        "value": "<p>User controlled using facl</p>",
+        "label": "Permission Settings",
+        "weight": 6
+      },
+      "field_eligibility": {
+        "value": "<p>Faculty sponsored</p>",
+        "label": "Eligibility",
+        "weight": 7
+      },
+      "field_synchronous_access": {
+        "value": "<p>Yes</p>",
+        "label": "Synchronous Access",
+        "weight": 9
+      },
       "field_alumni_access": {
-        "value": "\u003Cp\u003EAvailable\u003C\/p\u003E",
+        "value": "<p>Available</p>",
         "label": "Alumni Access",
         "weight": 10
       },
       "field_backup": {
-        "value": "\u003Cp\u003EYes, 30 day retention\u003C\/p\u003E",
+        "value": "<p>Yes</p>",
         "label": "Backup",
         "weight": 11
-      },
-      "field_eligibility": {
-        "value": "\u003Cp\u003EFaculty sponsored\u003C\/p\u003E",
-        "label": "Eligibility",
-        "weight": 7
-      },
-      "field_limitations": {
-        "value": "\u003Cp\u003E2TB limit\u003C\/p\u003E",
-        "label": "Limitations",
-        "weight": 5
-      },
-      "field_links": {
-        "value": "\u003Cp\u003E\u003Ca href=\u0022http:\/\/hpc.nyu.edu\/\u0022\u003Ehpc.nyu.edu\u003C\/a\u003E\u003C\/p\u003E",
-        "label": "Links",
-        "weight": 2
-      },
-      "field_permission_settings": {
-        "value": "\u003Cp\u003EUser controlled using facl\u003C\/p\u003E",
-        "label": "Permission Settings",
-        "weight": 6
-      },
-      "field_storable_files": {
-        "value": "\u003Cp\u003EModerate\u0026nbsp;\u0026amp; Low risk\u003C\/p\u003E",
-        "label": "Storable Files",
-        "weight": 3
-      },
-      "field_synchronous_access": {
-        "value": "\u003Cp\u003EYes\u003C\/p\u003E",
-        "label": "Synchronous Access",
-        "weight": 9
-      },
-      "field_use_case": {
-        "value": "\u003Cp\u003ELong term storage\u003C\/p\u003E",
-        "label": "Use Case",
-        "weight": 4
       }
     }
   },
   {
-    "id": "8",
+    "id": "hpc-research-project-space",
     "title": "HPC Research Project Space",
     "facet_matches": [
-      "5",
-      "6",
-      "28",
-      "29",
-      "33",
-      "32",
-      "34",
-      "38",
-      "41",
-      "49",
-      "50",
-      "48",
-      "51",
-      "54",
-      "56",
-      "26",
-      "24",
-      "10",
-      "13",
-      "14",
-      "18",
-      "20"
+      "risk-classification.public-low",
+      "risk-classification.sensitive-moderate",
+      "affiliation.faculty",
+      "affiliation.student",
+      "access-needs.external-collaborators",
+      "access-needs.netid-collaborators",
+      "backup-availability.yes",
+      "synchronous-access.no",
+      "alumni-access.no",
+      "storage-duration.long-term",
+      "storage-duration.temporary",
+      "use-case-purpose.active-research",
+      "cost-model.paid",
+      "storage-capacity.small",
+      "storage-capacity.medium",
+      "storage-capacity.large",
+      "special-requirements.none"
     ],
     "summary": null,
     "field_data": {
+      "field_links": {
+        "value": "<p><a href=\"https://sites.google.com/nyu.edu/nyu-hpc/hpc-systems/hpc-storage/data-management/research-project-space-rps\">HPC Research Project Space</a></p>",
+        "label": "Links",
+        "weight": 2
+      },
+      "field_storable_files": {
+        "value": "<p>Moderate</p>",
+        "label": "Storable Files",
+        "weight": 3
+      },
+      "field_use_case": {
+        "value": "<p>Use of the high-security HPC environment to actively analyze research data.</p>",
+        "label": "Use Case",
+        "weight": 4
+      },
+      "field_limitations": {
+        "value": "<p>Storage space and number of inodes (files) are available for a fee. </p><p>No limit on the amount of storage that can be purchased, but significant purchases may require approval.</p>",
+        "label": "Limitations",
+        "weight": 5
+      },
+      "field_permission_settings": {
+        "value": "<p>Restricted access by individual or group using Access Control Lists (ACLs).</p><p>Sharing with external collaborators is possible using Globus Data Transfer Node .</p>",
+        "label": "Permission Settings",
+        "weight": 6
+      },
+      "field_eligibility": {
+        "value": "<p>Faculty, Researcher, and Graduate Student HPC user account holders.</p>",
+        "label": "Eligibility",
+        "weight": 7
+      },
+      "field_synchronous_access": {
+        "value": "<p>Not Available.</p>",
+        "label": "Synchronous Access",
+        "weight": 9
+      },
       "field_alumni_access": {
-        "value": "\u003Cp\u003EAvailable to Alumni and external collaborators with sponsorship.\u003C\/p\u003E",
+        "value": "<p>Not Available</p>",
         "label": "Alumni Access",
         "weight": 10
       },
       "field_backup": {
-        "value": "\u003Cp\u003ERetains past 30 days.\u003C\/p\u003E",
+        "value": "<p>Yes</p>",
         "label": "Backup",
         "weight": 11
-      },
-      "field_eligibility": {
-        "value": "\u003Cp\u003EFaculty, Researcher, and Graduate Student\u0026nbsp;HPC user account holders.\u003C\/p\u003E",
-        "label": "Eligibility",
-        "weight": 7
-      },
-      "field_limitations": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003EStorage space and number of inodes (files) are available for a fee.\u0026nbsp;\u003C\/p\u003E\u003Cp dir=\u0022ltr\u0022\u003ENo limit on the amount of storage that can be purchased, but significant purchases may require approval.\u003C\/p\u003E",
-        "label": "Limitations",
-        "weight": 5
-      },
-      "field_links": {
-        "value": "\u003Cp\u003E\u003Ca href=\u0022https:\/\/sites.google.com\/nyu.edu\/nyu-hpc\/hpc-systems\/hpc-storage\/data-management\/research-project-space-rps\u0022\u003EResearch Project Space\u003C\/a\u003E\u003C\/p\u003E",
-        "label": "Links",
-        "weight": 2
-      },
-      "field_permission_settings": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003ERestricted access by individual or group using Access Control Lists (ACLs).\u003C\/p\u003E\u003Cp dir=\u0022ltr\u0022\u003ESharing with external collaborators is possible using\u0026nbsp;\u003Ca href=\u0022https:\/\/www.nyu.edu\/life\/information-technology\/research-computing-services\/research-data-and-tools\/globus-data-transfer-node.html\u0022\u003EGlobus Data Transfer Node\u003C\/a\u003E .\u003C\/p\u003E",
-        "label": "Permission Settings",
-        "weight": 6
-      },
-      "field_storable_files": {
-        "value": "\u003Cp\u003EModerate \u0026amp; Low Risk\u003Cbr\u003E\u0026nbsp;\u003C\/p\u003E",
-        "label": "Storable Files",
-        "weight": 3
-      },
-      "field_synchronous_access": {
-        "value": "\u003Cp\u003ENot Available.\u003C\/p\u003E",
-        "label": "Synchronous Access",
-        "weight": 9
-      },
-      "field_use_case": {
-        "value": "\u003Cp\u003EUse of the high-security HPC environment to actively analyze research data.\u003C\/p\u003E",
-        "label": "Use Case",
-        "weight": 4
       }
     }
   },
   {
-    "id": "12",
+    "id": "hpc-scratch",
     "title": "HPC Scratch",
     "facet_matches": [
-      "5",
-      "6",
-      "28",
-      "29",
-      "30",
-      "38",
-      "41",
-      "49",
-      "50",
-      "48",
-      "51",
-      "54",
-      "26",
-      "24",
-      "11",
-      "13",
-      "14",
-      "18"
+      "risk-classification.public-low",
+      "affiliation.faculty",
+      "access-needs.individual",
+      "access-needs.public",
+      "access-needs.shared-link",
+      "access-needs.netid-collaborators",
+      "access-needs.external-collaborators",
+      "backup-availability.no",
+      "synchronous-access.yes",
+      "alumni-access.yes",
+      "storage-duration.temporary",
+      "use-case-purpose.archive",
+      "use-case-purpose.active-research",
+      "use-case-purpose.collaboration",
+      "use-case-purpose.surveys",
+      "use-case-purpose.media",
+      "use-case-purpose.repository",
+      "cost-model.free",
+      "cost-model.paid",
+      "storage-capacity.small",
+      "storage-capacity.medium",
+      "special-requirements.none",
+      "special-requirements.active-directory",
+      "special-requirements.faculty-sponsorship",
+      "special-requirements.data-stewardship",
+      "special-requirements.project-approval"
     ],
     "summary": null,
     "field_data": {
+      "field_links": {
+        "value": "<p><a href=\"https://hpc.nyu.edu/\">HPC Scratch</a></p>",
+        "label": "Links",
+        "weight": 2
+      },
+      "field_storable_files": {
+        "value": "<p>Low</p>",
+        "label": "Storable Files",
+        "weight": 3
+      },
+      "field_use_case": {
+        "value": "<p>Temporary storage</p>",
+        "label": "Use Case",
+        "weight": 4
+      },
+      "field_limitations": {
+        "value": "<p>2TB limit with 60 day purge policy for untouched files</p>",
+        "label": "Limitations",
+        "weight": 5
+      },
+      "field_permission_settings": {
+        "value": "<p>User controlled using facl</p>",
+        "label": "Permission Settings",
+        "weight": 6
+      },
+      "field_eligibility": {
+        "value": "<p>Faculty sponsored</p>",
+        "label": "Eligibility",
+        "weight": 7
+      },
+      "field_synchronous_access": {
+        "value": "<p>Yes</p>",
+        "label": "Synchronous Access",
+        "weight": 9
+      },
       "field_alumni_access": {
-        "value": "\u003Cp\u003EAvailable\u003C\/p\u003E",
+        "value": "<p>Available</p>",
         "label": "Alumni Access",
         "weight": 10
       },
       "field_backup": {
-        "value": "\u003Cp\u003ENo\u003C\/p\u003E",
+        "value": "<p>No</p>",
         "label": "Backup",
         "weight": 11
-      },
-      "field_eligibility": {
-        "value": "\u003Cp\u003EFaculty sponsored\u003C\/p\u003E",
-        "label": "Eligibility",
-        "weight": 7
-      },
-      "field_limitations": {
-        "value": "\u003Cp\u003E2TB limit with 60 day purge policy for untouched files\u003C\/p\u003E",
-        "label": "Limitations",
-        "weight": 5
-      },
-      "field_links": {
-        "value": "\u003Cp\u003E\u003Ca href=\u0022http:\/\/hpc.nyu.edu\/\u0022\u003Ehpc.nyu.edu\u003C\/a\u003E\u003C\/p\u003E",
-        "label": "Links",
-        "weight": 2
-      },
-      "field_permission_settings": {
-        "value": "\u003Cp\u003EUser controlled using facl\u003C\/p\u003E",
-        "label": "Permission Settings",
-        "weight": 6
-      },
-      "field_storable_files": {
-        "value": "\u003Cp\u003EModerate\u0026nbsp;\u0026amp; Low risk\u003C\/p\u003E",
-        "label": "Storable Files",
-        "weight": 3
-      },
-      "field_synchronous_access": {
-        "value": "\u003Cp\u003EYes\u003C\/p\u003E",
-        "label": "Synchronous Access",
-        "weight": 9
-      },
-      "field_use_case": {
-        "value": "\u003Cp\u003ETemporary\u0026nbsp;storage\u003C\/p\u003E",
-        "label": "Use Case",
-        "weight": 4
       }
     }
   },
   {
-    "id": "3",
+    "id": "nyu-box",
     "title": "NYU Box",
     "facet_matches": [
-      "5",
-      "6",
-      "7",
-      "8",
-      "28",
-      "29",
-      "33",
-      "32",
-      "34",
-      "36",
-      "38",
-      "61",
-      "39",
-      "40",
-      "41",
-      "49",
-      "50",
-      "48",
-      "54",
-      "26",
-      "23",
-      "22",
-      "24",
-      "25",
-      "11",
-      "10",
-      "13",
-      "18",
-      "20",
-      "19"
+      "risk-classification.public-low",
+      "risk-classification.sensitive-moderate",
+      "risk-classification.confidential-high",
+      "affiliation.faculty",
+      "affiliation.staff",
+      "access-needs.individual",
+      "access-needs.public",
+      "access-needs.shared-link",
+      "access-needs.netid-collaborators",
+      "access-needs.external-collaborators",
+      "backup-availability.yes",
+      "synchronous-access.yes",
+      "alumni-access.no",
+      "storage-duration.long-term",
+      "storage-duration.temporary",
+      "use-case-purpose.archive",
+      "use-case-purpose.active-research",
+      "use-case-purpose.collaboration",
+      "use-case-purpose.surveys",
+      "use-case-purpose.media",
+      "use-case-purpose.repository",
+      "cost-model.free",
+      "cost-model.paid",
+      "storage-capacity.small",
+      "storage-capacity.medium",
+      "special-requirements.none",
+      "special-requirements.active-directory",
+      "special-requirements.faculty-sponsorship",
+      "special-requirements.data-stewardship",
+      "special-requirements.project-approval"
     ],
     "summary": null,
     "field_data": {
+      "field_links": {
+        "value": "<p><a href=\"https://nyu.edu/it/box\">NYU Box</a></p>",
+        "label": "Links",
+        "weight": 2
+      },
+      "field_storable_files": {
+        "value": "<p>High</p>",
+        "label": "Storable Files",
+        "weight": 3
+      },
+      "field_use_case": {
+        "value": "<p>Storage of NYU data with high security &amp; the ability to collaborate with external associates</p>",
+        "label": "Use Case",
+        "weight": 4
+      },
+      "field_limitations": {
+        "value": "<p>Max upload is 50 GB for an single file</p>",
+        "label": "Limitations",
+        "weight": 5
+      },
+      "field_permission_settings": {
+        "value": "<p>Permissions granted by NYU IT Admin</p>",
+        "label": "Permission Settings",
+        "weight": 6
+      },
+      "field_eligibility": {
+        "value": "<p>Faculty, Staff, Researchers</p>",
+        "label": "Eligibility",
+        "weight": 7
+      },
+      "field_synchronous_access": {
+        "value": "<p>Up to 20 users can edit and comment simultaneously</p>",
+        "label": "Synchronous Access",
+        "weight": 9
+      },
       "field_alumni_access": {
-        "value": "\u003Cp\u003ENot Available\u003C\/p\u003E",
+        "value": "<p>Not Available</p>",
         "label": "Alumni Access",
         "weight": 10
       },
       "field_backup": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003ERetains up to 100 previous versions of a single file\u003C\/p\u003E",
+        "value": "<p>Yes</p>",
         "label": "Backup",
         "weight": 11
-      },
-      "field_eligibility": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003EFaculty, Staff, Researchers\u003C\/p\u003E",
-        "label": "Eligibility",
-        "weight": 7
-      },
-      "field_limitations": {
-        "value": "\u003Cp\u003EMax upload is 50 GB for an single file\u003C\/p\u003E",
-        "label": "Limitations",
-        "weight": 5
-      },
-      "field_links": {
-        "value": "\u003Cp\u003E\u003Ca href=\u0022https:\/\/www.nyu.edu\/life\/information-technology\/communication-and-collaboration\/document-collaboration-and-sharing\/nyu-box.html\u0022\u003ENYU Box\u003C\/a\u003E\u003C\/p\u003E",
-        "label": "Links",
-        "weight": 2
-      },
-      "field_permission_settings": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003EPermissions granted by NYU IT Admin\u003C\/p\u003E",
-        "label": "Permission Settings",
-        "weight": 6
-      },
-      "field_storable_files": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003EHigh, Moderate, \u0026amp; Low Risk\u003C\/p\u003E",
-        "label": "Storable Files",
-        "weight": 3
-      },
-      "field_synchronous_access": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003EUp to 20 users can edit and comment simultaneously\u003C\/p\u003E",
-        "label": "Synchronous Access",
-        "weight": 9
-      },
-      "field_use_case": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003EStorage of NYU data with high security \u0026amp; the ability to collaborate with external associates\u003C\/p\u003E",
-        "label": "Use Case",
-        "weight": 4
       }
     }
   },
   {
-    "id": "2",
+    "id": "nyu-google-drive",
     "title": "NYU Google Drive",
     "facet_matches": [
-      "5",
-      "6",
-      "28",
-      "29",
-      "30",
-      "33",
-      "36",
-      "38",
-      "61",
-      "39",
-      "40",
-      "41",
-      "49",
-      "50",
-      "48",
-      "54",
-      "26",
-      "23",
-      "22",
-      "24",
-      "25",
-      "11",
-      "10",
-      "13",
-      "18",
-      "20",
-      "19"
+      "risk-classification.public-low",
+      "risk-classification.sensitive-moderate",
+      "affiliation.faculty",
+      "affiliation.staff",
+      "access-needs.individual",
+      "access-needs.public",
+      "access-needs.shared-link",
+      "access-needs.netid-collaborators",
+      "access-needs.external-collaborators",
+      "backup-availability.yes",
+      "synchronous-access.yes",
+      "alumni-access.yes",
+      "storage-duration.long-term",
+      "storage-duration.temporary",
+      "use-case-purpose.archive",
+      "use-case-purpose.active-research",
+      "use-case-purpose.collaboration",
+      "use-case-purpose.surveys",
+      "use-case-purpose.media",
+      "use-case-purpose.repository",
+      "cost-model.free",
+      "cost-model.paid",
+      "storage-capacity.small",
+      "special-requirements.none",
+      "special-requirements.active-directory",
+      "special-requirements.faculty-sponsorship",
+      "special-requirements.data-stewardship",
+      "special-requirements.project-approval"
     ],
     "summary": null,
     "field_data": {
+      "field_links": {
+        "value": "<p><a href=\"https://nyu.edu/it/drive\">NYU Google Drive</a></p>",
+        "label": "Links",
+        "weight": 2
+      },
+      "field_storable_files": {
+        "value": "<p>Moderate</p>",
+        "label": "Storable Files",
+        "weight": 3
+      },
+      "field_use_case": {
+        "value": "<p>Storage of NYU data with moderate security &amp; the ability to collaborate with external associates</p>",
+        "label": "Use Case",
+        "weight": 4
+      },
+      "field_limitations": {
+        "value": "<p>My Drive: max storage is 20 GB<br>Shared Drives: max storage TBD</p>",
+        "label": "Limitations",
+        "weight": 5
+      },
+      "field_permission_settings": {
+        "value": "<p>View, comment, edit and temp access to comment and view</p>",
+        "label": "Permission Settings",
+        "weight": 6
+      },
+      "field_eligibility": {
+        "value": "<p>Faculty, Staff, Students, Researchers</p>",
+        "label": "Eligibility",
+        "weight": 7
+      },
+      "field_synchronous_access": {
+        "value": "<p>Up to 100 users can edit &amp; comment simultaneously</p>",
+        "label": "Synchronous Access",
+        "weight": 9
+      },
       "field_alumni_access": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003E\u003Cstrong\u003EMy Drive:\u003C\/strong\u003E Available\u0026nbsp;\u003Cbr\u003E\u003Cstrong\u003EShared drives:\u0026nbsp;\u003C\/strong\u003ENot Available\u003C\/p\u003E",
+        "value": "<p>Available</p>",
         "label": "Alumni Access",
         "weight": 10
       },
       "field_backup": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003ERetains last 30 days or 100 revisions\u003C\/p\u003E",
+        "value": "<p>Yes</p>",
         "label": "Backup",
         "weight": 11
-      },
-      "field_eligibility": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003EFaculty, Staff, Students, Researchers\u003C\/p\u003E",
-        "label": "Eligibility",
-        "weight": 7
-      },
-      "field_limitations": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003EMy Drive: max storage is 20 GB\u003Cbr\u003EShared Drives: max storage TBD\u003C\/p\u003E",
-        "label": "Limitations",
-        "weight": 5
-      },
-      "field_links": {
-        "value": "\u003Cp\u003E\u003Ca href=\u0022https:\/\/www.nyu.edu\/life\/information-technology\/communication-and-collaboration\/document-collaboration-and-sharing\/nyu-drive.html\u0022\u003ENYU Drive\u003C\/a\u003E\u003C\/p\u003E",
-        "label": "Links",
-        "weight": 2
-      },
-      "field_permission_settings": {
-        "value": "\u003Cp\u003EView, comment, edit and temp access to comment and view\u003C\/p\u003E",
-        "label": "Permission Settings",
-        "weight": 6
-      },
-      "field_storable_files": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003EModerate \u0026amp; Low Risk\u003C\/p\u003E",
-        "label": "Storable Files",
-        "weight": 3
-      },
-      "field_synchronous_access": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003EUp to 100 users can edit \u0026amp; comment simultaneously\u003C\/p\u003E",
-        "label": "Synchronous Access",
-        "weight": 9
-      },
-      "field_use_case": {
-        "value": "\u003Cp\u003EStorage of NYU data with moderate security \u0026amp; the ability to collaborate with external associates\u003Cbr\u003E\u0026nbsp;\u003C\/p\u003E",
-        "label": "Use Case",
-        "weight": 4
       }
     }
   },
   {
-    "id": "21",
+    "id": "nyu-shared-google-drive",
     "title": "NYU Shared Google Drive",
     "facet_matches": [
-      "5",
-      "6",
-      "28",
-      "29",
-      "33",
-      "32",
-      "34",
-      "36",
-      "38",
-      "61",
-      "39",
-      "40",
-      "41",
-      "49",
-      "50",
-      "48",
-      "54",
-      "55",
-      "23",
-      "22",
-      "24",
-      "25",
-      "10",
-      "13",
-      "18",
-      "20",
-      "19"
+      "risk-classification.public-low",
+      "risk-classification.sensitive-moderate",
+      "affiliation.faculty",
+      "affiliation.staff",
+      "access-needs.individual",
+      "access-needs.public",
+      "access-needs.shared-link",
+      "access-needs.netid-collaborators",
+      "access-needs.external-collaborators",
+      "backup-availability.yes",
+      "synchronous-access.yes",
+      "alumni-access.no",
+      "storage-duration.long-term",
+      "storage-duration.temporary",
+      "use-case-purpose.archive",
+      "use-case-purpose.active-research",
+      "use-case-purpose.collaboration",
+      "use-case-purpose.surveys",
+      "use-case-purpose.media",
+      "use-case-purpose.repository",
+      "cost-model.free",
+      "cost-model.paid",
+      "storage-capacity.small",
+      "special-requirements.none",
+      "special-requirements.active-directory",
+      "special-requirements.faculty-sponsorship",
+      "special-requirements.data-stewardship",
+      "special-requirements.project-approval"
     ],
     "summary": null,
     "field_data": {
+      "field_links": {
+        "value": "<p><a href=\"https://nyu.edu/it/drive\">NYU Shared Google Drive</a></p>",
+        "label": "Links",
+        "weight": 2
+      },
+      "field_storable_files": {
+        "value": "<p>Moderate</p>",
+        "label": "Storable Files",
+        "weight": 3
+      },
+      "field_use_case": {
+        "value": "<p>Storage of NYU data with moderate security &amp; the ability to collaborate with external associates</p>",
+        "label": "Use Case",
+        "weight": 4
+      },
+      "field_limitations": {
+        "value": "<p>My Drive: max storage is 20 GB<br>Shared Drives: max storage TBD</p>",
+        "label": "Limitations",
+        "weight": 5
+      },
+      "field_permission_settings": {
+        "value": "<p>View, comment, edit and temp access to comment and view</p>",
+        "label": "Permission Settings",
+        "weight": 6
+      },
+      "field_eligibility": {
+        "value": "<p>Faculty, Staff, Students, Researchers</p>",
+        "label": "Eligibility",
+        "weight": 7
+      },
+      "field_synchronous_access": {
+        "value": "<p>Up to 100 users can edit &amp; comment simultaneously</p>",
+        "label": "Synchronous Access",
+        "weight": 9
+      },
       "field_alumni_access": {
-        "value": "\u003Cp\u003E\u003Cstrong\u003EMy Drive:\u003C\/strong\u003E Available\u0026nbsp;\u003Cbr\u003E\u003Cstrong\u003EShared drives:\u0026nbsp;\u003C\/strong\u003ENot Available\u003C\/p\u003E",
+        "value": "<p>Not Available</p>",
         "label": "Alumni Access",
         "weight": 10
       },
       "field_backup": {
-        "value": "\u003Cp\u003ERetains last 30 days or 100 revisions\u003C\/p\u003E",
+        "value": "<p>Yes</p>",
         "label": "Backup",
         "weight": 11
-      },
-      "field_eligibility": {
-        "value": "\u003Cp\u003EFaculty, Staff, Students, Researchers\u003C\/p\u003E",
-        "label": "Eligibility",
-        "weight": 7
-      },
-      "field_limitations": {
-        "value": "\u003Cp\u003EMy Drive: max storage is 20 GB\u003Cbr\u003EShared Drives: max storage TBD\u003C\/p\u003E",
-        "label": "Limitations",
-        "weight": 5
-      },
-      "field_links": {
-        "value": "\u003Cp\u003E\u003Ca href=\u0022https:\/\/www.nyu.edu\/life\/information-technology\/communication-and-collaboration\/document-collaboration-and-sharing\/nyu-drive.html\u0022\u003ENYU Drive\u003C\/a\u003E\u003C\/p\u003E",
-        "label": "Links",
-        "weight": 2
-      },
-      "field_permission_settings": {
-        "value": "\u003Cp\u003EView, comment, edit and temp access to comment and view\u003C\/p\u003E",
-        "label": "Permission Settings",
-        "weight": 6
-      },
-      "field_storable_files": {
-        "value": "\u003Cp\u003EModerate \u0026amp; Low Risk\u003C\/p\u003E",
-        "label": "Storable Files",
-        "weight": 3
-      },
-      "field_synchronous_access": {
-        "value": "\u003Cp\u003EUp to 100 users can edit \u0026amp; comment simultaneously\u003C\/p\u003E",
-        "label": "Synchronous Access",
-        "weight": 9
-      },
-      "field_use_case": {
-        "value": "\u003Cp\u003EStorage of NYU data with moderate security \u0026amp; the ability to collaborate with external associates\u003C\/p\u003E",
-        "label": "Use Case",
-        "weight": 4
       }
     }
   },
   {
-    "id": "7",
+    "id": "nyu-stream",
     "title": "NYU Stream",
-    "facet_matches": ["5", "10", "13", "14", "41"],
+    "facet_matches": [
+      "risk-classification.public-low",
+      "affiliation.faculty",
+      "affiliation.staff",
+      "access-needs.netid-collaborators",
+      "backup-availability.yes",
+      "synchronous-access.no",
+      "alumni-access.no",
+      "storage-duration.long-term",
+      "storage-duration.temporary",
+      "use-case-purpose.media",
+      "cost-model.free",
+      "cost-model.paid",
+      "storage-capacity.small",
+      "storage-capacity.medium",
+      "storage-capacity.large",
+      "special-requirements.none",
+      "special-requirements.active-directory",
+      "special-requirements.faculty-sponsorship",
+      "special-requirements.data-stewardship",
+      "special-requirements.project-approval"
+    ],
     "summary": null,
     "field_data": {
+      "field_links": {
+        "value": "<p><a href=\"https://nyu.edu/it/nyustream\">NYU Stream</a></p>",
+        "label": "Links",
+        "weight": 2
+      },
+      "field_storable_files": {
+        "value": "<p>Low</p>",
+        "label": "Storable Files",
+        "weight": 3
+      },
+      "field_use_case": {
+        "value": "<p>Video and audio</p>",
+        "label": "Use Case",
+        "weight": 4
+      },
+      "field_limitations": {
+        "value": "<p>User must have nyu.edu account; Student must be actively enrolled</p>",
+        "label": "Limitations",
+        "weight": 5
+      },
+      "field_permission_settings": {
+        "value": "<p>Options to restrict access to content by individual or group</p>",
+        "label": "Permission Settings",
+        "weight": 6
+      },
+      "field_eligibility": {
+        "value": "<p>Students, Faculty, Staff</p>",
+        "label": "Eligibility",
+        "weight": 7
+      },
+      "field_synchronous_access": {
+        "value": "<p>Not Available</p>",
+        "label": "Synchronous Access",
+        "weight": 9
+      },
       "field_alumni_access": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003ENot Available\u003C\/p\u003E",
+        "value": "<p>Not Available</p>",
         "label": "Alumni Access",
         "weight": 10
       },
       "field_backup": {
-        "value": "\u003Cp\u003EIndefinite\u003C\/p\u003E",
+        "value": "<p>Yes</p>",
         "label": "Backup",
         "weight": 11
-      },
-      "field_eligibility": {
-        "value": "\u003Cp\u003EStudents, Faculty, Staff\u003Cbr\u003E\u0026nbsp;\u003C\/p\u003E",
-        "label": "Eligibility",
-        "weight": 7
-      },
-      "field_limitations": {
-        "value": "\u003Cp\u003EUser must have nyu.edu account; Student must be actively enrolled\u003Cbr\u003E\u0026nbsp;\u003C\/p\u003E",
-        "label": "Limitations",
-        "weight": 5
-      },
-      "field_links": {
-        "value": "\u003Cp\u003E\u003Ca href=\u0022https:\/\/www.nyu.edu\/life\/information-technology\/teaching-and-learning-services\/instructional-media\/nyu-stream.html\u0022\u003ENYU Stream\u003C\/a\u003E\u003C\/p\u003E",
-        "label": "Links",
-        "weight": 2
-      },
-      "field_permission_settings": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003EOptions to restrict access to content by individual or group\u003C\/p\u003E",
-        "label": "Permission Settings",
-        "weight": 6
-      },
-      "field_storable_files": {
-        "value": "\u003Cp\u003ELow Risk\u003C\/p\u003E",
-        "label": "Storable Files",
-        "weight": 3
-      },
-      "field_synchronous_access": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003ENot Available\u003C\/p\u003E",
-        "label": "Synchronous Access",
-        "weight": 9
-      },
-      "field_use_case": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003EVideo and audio\u003C\/p\u003E",
-        "label": "Use Case",
-        "weight": 4
       }
     }
   },
   {
-    "id": "19",
+    "id": "qualtrics",
     "title": "Qualtrics",
     "facet_matches": [
-      "32",
-      "40",
-      "41",
-      "48",
-      "54",
-      "60",
-      "55",
-      "5",
-      "28",
-      "30",
-      "29",
-      "26",
-      "23",
-      "24",
-      "25",
-      "10",
-      "13",
-      "18",
-      "20"
+      "risk-classification.public-low",
+      "affiliation.faculty",
+      "affiliation.staff",
+      "access-needs.individual",
+      "access-needs.public",
+      "access-needs.shared-link",
+      "access-needs.netid-collaborators",
+      "access-needs.external-collaborators",
+      "backup-availability.yes",
+      "synchronous-access.yes",
+      "alumni-access.yes",
+      "storage-duration.long-term",
+      "storage-duration.temporary",
+      "use-case-purpose.active-research",
+      "use-case-purpose.surveys",
+      "cost-model.free",
+      "cost-model.paid",
+      "storage-capacity.small",
+      "storage-capacity.medium",
+      "storage-capacity.large",
+      "special-requirements.none"
     ],
     "summary": null,
     "field_data": {
+      "field_links": {
+        "value": "<p><a href=\"https://nyu.edu/it/qualtrics\">Qualtrics</a></p>",
+        "label": "Links",
+        "weight": 2
+      },
+      "field_storable_files": {
+        "value": "<p>Low</p>",
+        "label": "Storable Files",
+        "weight": 3
+      },
+      "field_use_case": {
+        "value": "<p>To create and administer web surveys for research, teaching and administrative purposes</p>",
+        "label": "Use Case",
+        "weight": 4
+      },
+      "field_limitations": {
+        "value": "<p>No limit for storage, 10 GB export limit per CSV file</p>",
+        "label": "Limitations",
+        "weight": 5
+      },
+      "field_permission_settings": {
+        "value": "<p>One owner, adjustable collaboration permissions for teamwork</p>",
+        "label": "Permission Settings",
+        "weight": 6
+      },
+      "field_eligibility": {
+        "value": "<p>Current Faculty, Retired Faculty, Staff, Students &amp; Researchers</p>",
+        "label": "Eligibility",
+        "weight": 7
+      },
+      "field_synchronous_access": {
+        "value": "<p>Yes</p>",
+        "label": "Synchronous Access",
+        "weight": 9
+      },
       "field_alumni_access": {
-        "value": "\u003Cp\u003EAvailable\u003C\/p\u003E",
+        "value": "<p>Available</p>",
         "label": "Alumni Access",
         "weight": 10
       },
       "field_backup": {
-        "value": "\u003Cp\u003EYes, backed up daily by Qualtrics\u003C\/p\u003E",
+        "value": "<p>Yes</p>",
         "label": "Backup",
         "weight": 11
-      },
-      "field_eligibility": {
-        "value": "\u003Cp\u003ECurrent Faculty, Retired Faculty, Staff, Students \u0026amp; Researchers\u003C\/p\u003E",
-        "label": "Eligibility",
-        "weight": 7
-      },
-      "field_limitations": {
-        "value": "\u003Cp\u003ENo limit for storage, 10 GB export limit per CSV file\u003C\/p\u003E",
-        "label": "Limitations",
-        "weight": 5
-      },
-      "field_links": {
-        "value": "\u003Cp\u003E\u003Ca href=\u0022https:\/\/www.nyu.edu\/life\/information-technology\/research-computing-services\/research-data-and-tools\/nyu-survey-service-qualtrics.html\u0022\u003Enyu.qualtrics.com\u003C\/a\u003E\u003C\/p\u003E",
-        "label": "Links",
-        "weight": 2
-      },
-      "field_permission_settings": {
-        "value": "\u003Cp\u003EOne owner, adjustable collaboration permissions for teamwork\u003C\/p\u003E",
-        "label": "Permission Settings",
-        "weight": 6
-      },
-      "field_storable_files": {
-        "value": "\u003Cp\u003ELow Risk\u003C\/p\u003E",
-        "label": "Storable Files",
-        "weight": 3
-      },
-      "field_synchronous_access": {
-        "value": "\u003Cp\u003EYes\u003C\/p\u003E",
-        "label": "Synchronous Access",
-        "weight": 9
-      },
-      "field_use_case": {
-        "value": "\u003Cp\u003ETo create and administer web surveys for research, teaching and administrative purposes\u003C\/p\u003E",
-        "label": "Use Case",
-        "weight": 4
       }
     }
   },
   {
-    "id": "18",
+    "id": "redcap",
     "title": "REDCap",
     "facet_matches": [
-      "32",
-      "40",
-      "41",
-      "54",
-      "5",
-      "6",
-      "7",
-      "28",
-      "29",
-      "26",
-      "24",
-      "25",
-      "10",
-      "13",
-      "18",
-      "20"
+      "risk-classification.public-low",
+      "risk-classification.sensitive-moderate",
+      "affiliation.faculty",
+      "affiliation.staff",
+      "affiliation.student",
+      "access-needs.individual",
+      "access-needs.public",
+      "access-needs.shared-link",
+      "access-needs.netid-collaborators",
+      "access-needs.external-collaborators",
+      "backup-availability.yes",
+      "synchronous-access.yes",
+      "alumni-access.no",
+      "storage-duration.long-term",
+      "storage-duration.temporary",
+      "use-case-purpose.surveys",
+      "cost-model.free",
+      "cost-model.paid",
+      "storage-capacity.small",
+      "storage-capacity.medium",
+      "storage-capacity.large",
+      "special-requirements.none",
+      "special-requirements.active-directory",
+      "special-requirements.faculty-sponsorship",
+      "special-requirements.data-stewardship",
+      "special-requirements.project-approval"
     ],
     "summary": null,
     "field_data": {
+      "field_links": {
+        "value": "<p><a href=\"https://nyu.edu/it/redcap\">REDCap</a></p>",
+        "label": "Links",
+        "weight": 2
+      },
+      "field_storable_files": {
+        "value": "<p>Moderate</p>",
+        "label": "Storable Files",
+        "weight": 3
+      },
+      "field_use_case": {
+        "value": "<p>A secure web application for managing online surveys that involves collection of High Risk data and in compliance with multiple government standards</p>",
+        "label": "Use Case",
+        "weight": 4
+      },
+      "field_limitations": {
+        "value": "<p>Small to medium sized projects</p>",
+        "label": "Limitations",
+        "weight": 5
+      },
+      "field_permission_settings": {
+        "value": "<p>Customizable rights, roles and access to data can be given for collaborators with an approved NYU REDCap account</p>",
+        "label": "Permission Settings",
+        "weight": 6
+      },
+      "field_eligibility": {
+        "value": "<p>Faculty, Research staff, Student research affiliates &amp; External research collaborators</p>",
+        "label": "Eligibility",
+        "weight": 7
+      },
+      "field_synchronous_access": {
+        "value": "<p>Yes</p>",
+        "label": "Synchronous Access",
+        "weight": 9
+      },
       "field_alumni_access": {
-        "value": "\u003Cp\u003ENot Available\u003C\/p\u003E",
+        "value": "<p>Not Available</p>",
         "label": "Alumni Access",
         "weight": 10
       },
       "field_backup": {
-        "value": "\u003Cp\u003EYes, backed up daily\u003C\/p\u003E",
+        "value": "<p>Yes</p>",
         "label": "Backup",
         "weight": 11
-      },
-      "field_eligibility": {
-        "value": "\u003Cp\u003EFaculty, Research staff, Student research affiliates \u0026amp; External research collaborators\u003C\/p\u003E",
-        "label": "Eligibility",
-        "weight": 7
-      },
-      "field_limitations": {
-        "value": "\u003Cp\u003ESmall to medium sized projects\u003C\/p\u003E",
-        "label": "Limitations",
-        "weight": 5
-      },
-      "field_links": {
-        "value": "\u003Cp\u003E\u003Ca href=\u0022https:\/\/www.nyu.edu\/life\/information-technology\/research-computing-services\/research-data-and-tools\/redcap.html\u0022\u003Eredcap.nyu.edu\u003C\/a\u003E\u003C\/p\u003E",
-        "label": "Links",
-        "weight": 2
-      },
-      "field_permission_settings": {
-        "value": "\u003Cp\u003ECustomizable rights, roles and access to data can be given for collaborators with an approved NYU REDCap account\u003C\/p\u003E",
-        "label": "Permission Settings",
-        "weight": 6
-      },
-      "field_storable_files": {
-        "value": "\u003Cp\u003EHigh, Moderate \u0026amp; Low Risk\u003C\/p\u003E",
-        "label": "Storable Files",
-        "weight": 3
-      },
-      "field_synchronous_access": {
-        "value": "\u003Cp\u003EYes\u003Cbr\u003E\u0026nbsp;\u003C\/p\u003E",
-        "label": "Synchronous Access",
-        "weight": 9
-      },
-      "field_use_case": {
-        "value": "\u003Cp\u003EA secure web application for managing online surveys that involves collection of High Risk data and in compliance with multiple government standards\u003C\/p\u003E",
-        "label": "Use Case",
-        "weight": 4
       }
     }
   },
   {
-    "id": "22",
+    "id": "research-archival-storage",
+    "title": "Research Archival Storage",
+    "facet_matches": [
+      "risk-classification.public-low",
+      "risk-classification.sensitive-moderate",
+      "affiliation.faculty",
+      "access-needs.individual",
+      "access-needs.public",
+      "access-needs.shared-link",
+      "access-needs.netid-collaborators",
+      "access-needs.external-collaborators",
+      "backup-availability.yes",
+      "synchronous-access.yes",
+      "alumni-access.yes",
+      "storage-duration.long-term",
+      "use-case-purpose.archive",
+      "use-case-purpose.active-research",
+      "use-case-purpose.collaboration",
+      "use-case-purpose.surveys",
+      "use-case-purpose.media",
+      "use-case-purpose.repository",
+      "cost-model.free",
+      "cost-model.paid",
+      "storage-capacity.small",
+      "storage-capacity.medium",
+      "special-requirements.none",
+      "special-requirements.active-directory",
+      "special-requirements.faculty-sponsorship",
+      "special-requirements.data-stewardship",
+      "special-requirements.project-approval"
+    ],
+    "summary": null,
+    "field_data": {
+      "field_links": {
+        "value": "<p><a href=\"http://hpc.nyu.edu/\">Research Archival Storage</a></p>",
+        "label": "Links",
+        "weight": 2
+      },
+      "field_storable_files": {
+        "value": "<p>Moderate</p>",
+        "label": "Storable Files",
+        "weight": 3
+      },
+      "field_use_case": {
+        "value": "<p>Long term storage</p>",
+        "label": "Use Case",
+        "weight": 4
+      },
+      "field_limitations": {
+        "value": "<p>2TB limit</p>",
+        "label": "Limitations",
+        "weight": 5
+      },
+      "field_permission_settings": {
+        "value": "<p>User controlled using facl</p>",
+        "label": "Permission Settings",
+        "weight": 6
+      },
+      "field_eligibility": {
+        "value": "<p>Faculty sponsored</p>",
+        "label": "Eligibility",
+        "weight": 7
+      },
+      "field_synchronous_access": {
+        "value": "<p>Yes</p>",
+        "label": "Synchronous Access",
+        "weight": 9
+      },
+      "field_alumni_access": {
+        "value": "<p>Available</p>",
+        "label": "Alumni Access",
+        "weight": 10
+      },
+      "field_backup": {
+        "value": "<p>Yes</p>",
+        "label": "Backup",
+        "weight": 11
+      }
+    }
+  },
+  {
+    "id": "research-data-lake-pilot",
     "title": "Research Data Lake (Pilot)",
-    "facet_matches": ["5", "6", "28", "32", "38", "54", "24", "10"],
-    "summary": null,
-    "field_data": {
-      "field_alumni_access": {
-        "value": "\u003Cp\u003ENot Available\u003C\/p\u003E",
-        "label": "Alumni Access",
-        "weight": 10
-      },
-      "field_backup": {
-        "value": "\u003Cp\u003EYes, available as configurable snapshotting\u003C\/p\u003E",
-        "label": "Backup",
-        "weight": 11
-      },
-      "field_eligibility": {
-        "value": "\u003Cp\u003EFaculty, and Researchers\u003C\/p\u003E",
-        "label": "Eligibility",
-        "weight": 7
-      },
-      "field_limitations": {
-        "value": "\u003Cp\u003EDuring pilot phase, projects must be approved by RTS staff\u003C\/p\u003E",
-        "label": "Limitations",
-        "weight": 5
-      },
-      "field_links": {
-        "value": "\u003Cp\u003Edatalake.nyu.edu ( dummy link )\u003C\/p\u003E",
-        "label": "Links",
-        "weight": 2
-      },
-      "field_permission_settings": {
-        "value": "\u003Cp\u003EProject dependent, role-based permissions. Users added by PI request\u003C\/p\u003E",
-        "label": "Permission Settings",
-        "weight": 6
-      },
-      "field_storable_files": {
-        "value": "\u003Cp\u003EModerate\u0026nbsp;\u0026amp; Low risk\u003C\/p\u003E",
-        "label": "Storable Files",
-        "weight": 3
-      },
-      "field_synchronous_access": {
-        "value": "\u003Cp\u003EYes\u003C\/p\u003E",
-        "label": "Synchronous Access",
-        "weight": 9
-      },
-      "field_use_case": {
-        "value": "\u003Cp\u003EHigh-performance storage for active research datasets with multiple users. Supports structured and semi-structured data\u003C\/p\u003E",
-        "label": "Use Case",
-        "weight": 4
-      }
-    }
-  },
-  {
-    "id": "4",
-    "title": "Research Workspace",
     "facet_matches": [
-      "5",
-      "6",
-      "28",
-      "33",
-      "32",
-      "34",
-      "38",
-      "61",
-      "41",
-      "49",
-      "50",
-      "48",
-      "54",
-      "56",
-      "26",
-      "24",
-      "25",
-      "11",
-      "10",
-      "13",
-      "14",
-      "18",
-      "20"
+      "risk-classification.public-low",
+      "risk-classification.sensitive-moderate",
+      "affiliation.faculty",
+      "access-needs.individual",
+      "access-needs.public",
+      "access-needs.shared-link",
+      "access-needs.netid-collaborators",
+      "access-needs.external-collaborators",
+      "backup-availability.yes",
+      "synchronous-access.yes",
+      "alumni-access.no",
+      "storage-duration.long-term",
+      "storage-duration.temporary",
+      "use-case-purpose.active-research",
+      "cost-model.free",
+      "cost-model.paid",
+      "storage-capacity.small",
+      "storage-capacity.medium",
+      "storage-capacity.large",
+      "special-requirements.project-approval"
     ],
     "summary": null,
     "field_data": {
+      "field_links": {
+        "value": "<p><a href=\"datalake.nyu.edu ( dummy link )\">Research Data Lake (Pilot)</a></p>",
+        "label": "Links",
+        "weight": 2
+      },
+      "field_storable_files": {
+        "value": "<p>Moderate</p>",
+        "label": "Storable Files",
+        "weight": 3
+      },
+      "field_use_case": {
+        "value": "<p>High-performance storage for active research datasets with multiple users. Supports structured and semi-structured data</p>",
+        "label": "Use Case",
+        "weight": 4
+      },
+      "field_limitations": {
+        "value": "<p>During pilot phase, projects must be approved by RTS staff</p>",
+        "label": "Limitations",
+        "weight": 5
+      },
+      "field_permission_settings": {
+        "value": "<p>Project dependent, role-based permissions. Users added by PI request</p>",
+        "label": "Permission Settings",
+        "weight": 6
+      },
+      "field_eligibility": {
+        "value": "<p>Faculty, and Researchers</p>",
+        "label": "Eligibility",
+        "weight": 7
+      },
+      "field_synchronous_access": {
+        "value": "<p>Yes</p>",
+        "label": "Synchronous Access",
+        "weight": 9
+      },
       "field_alumni_access": {
-        "value": "\u003Cp\u003ENot Available\u003C\/p\u003E",
+        "value": "<p>Not Available</p>",
         "label": "Alumni Access",
         "weight": 10
       },
       "field_backup": {
-        "value": "\u003Cp\u003ERetains last 30 days\u003C\/p\u003E",
+        "value": "<p>Yes</p>",
         "label": "Backup",
         "weight": 11
-      },
-      "field_eligibility": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003EFaculty; or Staff\/Student with full-time faculty sponsorship\u003C\/p\u003E",
-        "label": "Eligibility",
-        "weight": 7
-      },
-      "field_limitations": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003ERequires faculty, staff; or student with full-time NYU faculty sponsorship\u003C\/p\u003E",
-        "label": "Limitations",
-        "weight": 5
-      },
-      "field_links": {
-        "value": "\u003Cp\u003E\u003Ca href=\u0022https:\/\/www.nyu.edu\/life\/information-technology\/research-computing-services\/research-data-and-tools\/research-workspace.html\u0022\u003EResearch Workspace\u003C\/a\u003E\u003C\/p\u003E",
-        "label": "Links",
-        "weight": 2
-      },
-      "field_permission_settings": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003EOptions for fully private, read only, or editable\u003C\/p\u003E",
-        "label": "Permission Settings",
-        "weight": 6
-      },
-      "field_storable_files": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003EModerate \u0026amp; Low Risk\u003C\/p\u003E",
-        "label": "Storable Files",
-        "weight": 3
-      },
-      "field_synchronous_access": {
-        "value": "\u003Cp\u003ENot Available\u003C\/p\u003E",
-        "label": "Synchronous Access",
-        "weight": 9
-      },
-      "field_use_case": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003EStorage of NYU research data \u0026amp; collaboration with non-NYU researchers\u003C\/p\u003E",
-        "label": "Use Case",
-        "weight": 4
       }
     }
   },
   {
-    "id": "6",
-    "title": "Secure Research Data Environments",
+    "id": "research-workshop",
+    "title": "Research Workshop",
     "facet_matches": [
-      "5",
-      "6",
-      "7",
-      "8",
-      "28",
-      "29",
-      "33",
-      "32",
-      "35",
-      "34",
-      "38",
-      "61",
-      "40",
-      "41",
-      "49",
-      "50",
-      "48",
-      "51",
-      "54",
-      "60",
-      "59",
-      "56",
-      "55",
-      "26",
-      "24",
-      "25",
-      "11",
-      "10",
-      "13",
-      "14",
-      "18",
-      "20"
+      "risk-classification.public-low",
+      "risk-classification.sensitive-moderate",
+      "affiliation.faculty",
+      "affiliation.staff",
+      "affiliation.student",
+      "access-needs.individual",
+      "access-needs.public",
+      "access-needs.shared-link",
+      "access-needs.netid-collaborators",
+      "access-needs.external-collaborators",
+      "backup-availability.yes",
+      "synchronous-access.no",
+      "alumni-access.no",
+      "storage-duration.long-term",
+      "storage-duration.temporary",
+      "use-case-purpose.active-research",
+      "use-case-purpose.collaboration",
+      "cost-model.free",
+      "cost-model.paid",
+      "storage-capacity.small",
+      "storage-capacity.medium",
+      "storage-capacity.large",
+      "special-requirements.faculty-sponsorship"
     ],
     "summary": null,
     "field_data": {
+      "field_links": {
+        "value": "<p><a href=\"https://nyu.edu/it/research-workspace\">Research Workshop</a></p>",
+        "label": "Links",
+        "weight": 2
+      },
+      "field_storable_files": {
+        "value": "<p>Moderate</p>",
+        "label": "Storable Files",
+        "weight": 3
+      },
+      "field_use_case": {
+        "value": "<p>Storage of NYU research data &amp; collaboration with non-NYU researchers</p>",
+        "label": "Use Case",
+        "weight": 4
+      },
+      "field_limitations": {
+        "value": "<p>Requires faculty, staff; or student with full-time NYU faculty sponsorship</p>",
+        "label": "Limitations",
+        "weight": 5
+      },
+      "field_permission_settings": {
+        "value": "<p>Options for fully private, read only, or editable</p>",
+        "label": "Permission Settings",
+        "weight": 6
+      },
+      "field_eligibility": {
+        "value": "<p>Faculty; or Staff/Student with full-time faculty sponsorship</p>",
+        "label": "Eligibility",
+        "weight": 7
+      },
+      "field_synchronous_access": {
+        "value": "<p>Not Available</p>",
+        "label": "Synchronous Access",
+        "weight": 9
+      },
       "field_alumni_access": {
-        "value": "\u003Cp\u003EAvailable with faculty sponsorship\u003C\/p\u003E",
+        "value": "<p>Not Available</p>",
         "label": "Alumni Access",
         "weight": 10
       },
       "field_backup": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003ENot Available\u003C\/p\u003E",
+        "value": "<p>Yes</p>",
         "label": "Backup",
         "weight": 11
-      },
-      "field_eligibility": {
-        "value": "\u003Cp\u003EFaculty; or Staff\/Student with full-time faculty sponsorship\u003C\/p\u003E",
-        "label": "Eligibility",
-        "weight": 7
-      },
-      "field_limitations": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003ERequires secure data stewardship knowledge\u003C\/p\u003E",
-        "label": "Limitations",
-        "weight": 5
-      },
-      "field_links": {
-        "value": "\u003Cp\u003E\u003Ca href=\u0022https:\/\/sites.google.com\/nyu.edu\/nyu-hpc\/training-support\/supported-research-initiatives\/secure-research-data-environment-srde\u0022\u003ESRDE Pilot\u003C\/a\u003E\u003C\/p\u003E",
-        "label": "Links",
-        "weight": 2
-      },
-      "field_permission_settings": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003EProject dependent, role-based permissions, requires data steward role\u003C\/p\u003E",
-        "label": "Permission Settings",
-        "weight": 6
-      },
-      "field_storable_files": {
-        "value": "\u003Cp dir=\u0022ltr\u0022\u003EHigh, Moderate, \u0026amp; Low Risk\u003C\/p\u003E",
-        "label": "Storable Files",
-        "weight": 3
-      },
-      "field_synchronous_access": {
-        "value": "\u003Cp\u003ENot Available\u003C\/p\u003E",
-        "label": "Synchronous Access",
-        "weight": 9
-      },
-      "field_use_case": {
-        "value": "\u003Cp\u003EResearchers using the HPC clusters to data analysis of simulations sharing data amongst group members\u003C\/p\u003E",
-        "label": "Use Case",
-        "weight": 4
       }
     }
   },
   {
-    "id": "17",
+    "id": "secure-research-data-environment",
+    "title": "Secure Research Data Environment",
+    "facet_matches": [
+      "risk-classification.public-low",
+      "risk-classification.sensitive-moderate",
+      "risk-classification.confidential-high",
+      "affiliation.faculty",
+      "affiliation.staff",
+      "affiliation.student",
+      "access-needs.individual",
+      "access-needs.public",
+      "access-needs.shared-link",
+      "access-needs.netid-collaborators",
+      "access-needs.external-collaborators",
+      "backup-availability.no",
+      "synchronous-access.no",
+      "alumni-access.yes",
+      "storage-duration.long-term",
+      "storage-duration.temporary",
+      "use-case-purpose.active-research",
+      "use-case-purpose.collaboration",
+      "cost-model.free",
+      "cost-model.paid",
+      "storage-capacity.small",
+      "storage-capacity.medium",
+      "storage-capacity.large",
+      "special-requirements.data-stewardship"
+    ],
+    "summary": null,
+    "field_data": {
+      "field_links": {
+        "value": "<p><a href=\"https://nyu.edu/it/srde\">Secure Research Data Environment</a></p>",
+        "label": "Links",
+        "weight": 2
+      },
+      "field_storable_files": {
+        "value": "<p>High</p>",
+        "label": "Storable Files",
+        "weight": 3
+      },
+      "field_use_case": {
+        "value": "<p>Researchers using the HPC clusters to data analysis of simulations sharing data amongst group members</p>",
+        "label": "Use Case",
+        "weight": 4
+      },
+      "field_limitations": {
+        "value": "<p>Requires secure data stewardship knowledge</p>",
+        "label": "Limitations",
+        "weight": 5
+      },
+      "field_permission_settings": {
+        "value": "<p>Project dependent, role-based permissions, requires data steward role</p>",
+        "label": "Permission Settings",
+        "weight": 6
+      },
+      "field_eligibility": {
+        "value": "<p>Faculty; or Staff/Student with full-time faculty sponsorship</p>",
+        "label": "Eligibility",
+        "weight": 7
+      },
+      "field_synchronous_access": {
+        "value": "<p>Not Available</p>",
+        "label": "Synchronous Access",
+        "weight": 9
+      },
+      "field_alumni_access": {
+        "value": "<p>Available</p>",
+        "label": "Alumni Access",
+        "weight": 10
+      },
+      "field_backup": {
+        "value": "<p>No</p>",
+        "label": "Backup",
+        "weight": 11
+      }
+    }
+  },
+  {
+    "id": "spatial-data-repository",
     "title": "Spatial Data Repository",
     "facet_matches": [
-      "34",
-      "36",
-      "39",
-      "40",
-      "41",
-      "38",
-      "49",
-      "50",
-      "48",
-      "59",
-      "58",
-      "5",
-      "28",
-      "30",
-      "29",
-      "22",
-      "24",
-      "25",
-      "10",
-      "13",
-      "19"
+      "risk-classification.public-low",
+      "affiliation.faculty",
+      "affiliation.staff",
+      "access-needs.individual",
+      "access-needs.public",
+      "access-needs.shared-link",
+      "access-needs.netid-collaborators",
+      "access-needs.external-collaborators",
+      "backup-availability.yes",
+      "synchronous-access.no",
+      "alumni-access.no",
+      "storage-duration.long-term",
+      "storage-duration.temporary",
+      "use-case-purpose.repository",
+      "cost-model.free",
+      "cost-model.paid",
+      "storage-capacity.small",
+      "storage-capacity.medium",
+      "storage-capacity.large",
+      "special-requirements.none"
     ],
     "summary": null,
     "field_data": {
+      "field_links": {
+        "value": "<p><a href=\"https://geo.nyu.edu/\">Spatial Data Repository</a></p>",
+        "label": "Links",
+        "weight": 2
+      },
+      "field_storable_files": {
+        "value": "<p>Low</p>",
+        "label": "Storable Files",
+        "weight": 3
+      },
+      "field_use_case": {
+        "value": "<p>A collection of Geospatial Data from Open Data and proprietary resources. Users can download layers and work with them in many GIS platforms</p>",
+        "label": "Use Case",
+        "weight": 4
+      },
+      "field_limitations": {
+        "value": "<p>Not Available</p>",
+        "label": "Limitations",
+        "weight": 5
+      },
+      "field_permission_settings": {
+        "value": "<p>Not Available</p>",
+        "label": "Permission Settings",
+        "weight": 6
+      },
+      "field_eligibility": {
+        "value": "<p>Current Faculty, Staff, Students &amp; Researchers</p>",
+        "label": "Eligibility",
+        "weight": 7
+      },
+      "field_synchronous_access": {
+        "value": "<p>Not Available</p>",
+        "label": "Synchronous Access",
+        "weight": 9
+      },
       "field_alumni_access": {
-        "value": "\u003Cp\u003ENot Available\u003C\/p\u003E",
+        "value": "<p>Not Available</p>",
         "label": "Alumni Access",
         "weight": 10
       },
       "field_backup": {
-        "value": "\u003Cp\u003EYes\u003C\/p\u003E",
+        "value": "<p>Yes</p>",
         "label": "Backup",
         "weight": 11
-      },
-      "field_eligibility": {
-        "value": "\u003Cp\u003ECurrent Faculty, Staff, Students \u0026amp; Researchers\u003C\/p\u003E",
-        "label": "Eligibility",
-        "weight": 7
-      },
-      "field_limitations": {
-        "value": "\u003Cp\u003ENot Available\u003C\/p\u003E",
-        "label": "Limitations",
-        "weight": 5
-      },
-      "field_links": {
-        "value": "\u003Cp\u003E\u003Ca href=\u0022https:\/\/geo.nyu.edu\/\u0022\u003Egeo.nyu.edu\u003C\/a\u003E\u003C\/p\u003E",
-        "label": "Links",
-        "weight": 2
-      },
-      "field_permission_settings": {
-        "value": "\u003Cp\u003ENot Available\u003C\/p\u003E",
-        "label": "Permission Settings",
-        "weight": 6
-      },
-      "field_storable_files": {
-        "value": "\u003Cp\u003ELow Risk\u003C\/p\u003E",
-        "label": "Storable Files",
-        "weight": 3
-      },
-      "field_synchronous_access": {
-        "value": "\u003Cp\u003ENot Available\u003C\/p\u003E",
-        "label": "Synchronous Access",
-        "weight": 9
-      },
-      "field_use_case": {
-        "value": "\u003Cp\u003EA collection of Geospatial Data from Open Data and proprietary resources. Users can download layers and work with them in many GIS platforms\u003C\/p\u003E",
-        "label": "Use Case",
-        "weight": 4
       }
     }
   },
   {
-    "id": "16",
+    "id": "ultraviolet-repository",
     "title": "Ultraviolet Repository",
     "facet_matches": [
-      "34",
-      "36",
-      "40",
-      "42",
-      "44",
-      "43",
-      "45",
-      "46",
-      "41",
-      "39",
-      "38",
-      "49",
-      "50",
-      "48",
-      "59",
-      "58",
-      "53",
-      "55",
-      "5",
-      "28",
-      "30",
-      "29",
-      "22",
-      "10",
-      "13",
-      "14",
-      "19"
+      "risk-classification.public-low",
+      "affiliation.faculty",
+      "affiliation.staff",
+      "access-needs.public",
+      "backup-availability.yes",
+      "synchronous-access.no",
+      "alumni-access.yes",
+      "storage-duration.long-term",
+      "use-case-purpose.archive",
+      "use-case-purpose.repository",
+      "cost-model.free",
+      "cost-model.paid",
+      "storage-capacity.small",
+      "storage-capacity.medium",
+      "special-requirements.none",
+      "special-requirements.active-directory",
+      "special-requirements.faculty-sponsorship",
+      "special-requirements.data-stewardship",
+      "special-requirements.project-approval"
     ],
     "summary": null,
     "field_data": {
+      "field_links": {
+        "value": "<p><a href=\"https://www.nyu.edu/life/information-technology/web-and-digital-publishing/collections-and-repositories/ultraviolet.html\">Ultraviolet Repository</a></p>",
+        "label": "Links",
+        "weight": 2
+      },
+      "field_storable_files": {
+        "value": "<p>Low</p>",
+        "label": "Storable Files",
+        "weight": 3
+      },
+      "field_use_case": {
+        "value": "<p>To deposit scholarly materials as open access publication and long-term preservation</p>",
+        "label": "Use Case",
+        "weight": 4
+      },
+      "field_limitations": {
+        "value": "<p>Recommended to 100 files or 50GB (per file), contact repository team uv@nyu.edu if exceeds this limit</p>",
+        "label": "Limitations",
+        "weight": 5
+      },
+      "field_permission_settings": {
+        "value": "<p>Public visibility by default</p>",
+        "label": "Permission Settings",
+        "weight": 6
+      },
+      "field_eligibility": {
+        "value": "<p>Faculty, Staff, Students &amp; Researchers</p>",
+        "label": "Eligibility",
+        "weight": 7
+      },
+      "field_synchronous_access": {
+        "value": "<p>Not Available</p>",
+        "label": "Synchronous Access",
+        "weight": 9
+      },
       "field_alumni_access": {
-        "value": "\u003Cp\u003EAvailable\u003C\/p\u003E",
+        "value": "<p>Available</p>",
         "label": "Alumni Access",
         "weight": 10
       },
       "field_backup": {
-        "value": "\u003Cp\u003EYes, backed up as different versions\u003C\/p\u003E",
+        "value": "<p>Yes</p>",
         "label": "Backup",
         "weight": 11
-      },
-      "field_eligibility": {
-        "value": "\u003Cp\u003EFaculty, Staff, Students \u0026amp; Researchers\u003C\/p\u003E",
-        "label": "Eligibility",
-        "weight": 7
-      },
-      "field_limitations": {
-        "value": "\u003Cp\u003ERecommended to 100 files or 50GB (per file), contact repository team \u003Ca href=\u0022mailto:uv@nyu.edu\u0022\u003Euv@nyu.edu\u003C\/a\u003E if exceeds this limit\u003C\/p\u003E",
-        "label": "Limitations",
-        "weight": 5
-      },
-      "field_links": {
-        "value": "\u003Cp\u003E\u003Ca href=\u0022https:\/\/www.nyu.edu\/life\/information-technology\/web-and-digital-publishing\/collections-and-repositories\/ultraviolet.html\u0022\u003Eultraviolet.library.nyu.edu\u003C\/a\u003E\u003C\/p\u003E",
-        "label": "Links",
-        "weight": 2
-      },
-      "field_permission_settings": {
-        "value": "\u003Cp\u003EPublic visibility by default\u003C\/p\u003E",
-        "label": "Permission Settings",
-        "weight": 6
-      },
-      "field_storable_files": {
-        "value": "\u003Cp\u003ELow Risk\u003C\/p\u003E",
-        "label": "Storable Files",
-        "weight": 3
-      },
-      "field_synchronous_access": {
-        "value": "\u003Cp\u003ENot Available\u003C\/p\u003E",
-        "label": "Synchronous Access",
-        "weight": 9
-      },
-      "field_use_case": {
-        "value": "\u003Cp\u003ETo deposit scholarly materials as open access publication and long-term preservation\u003C\/p\u003E",
-        "label": "Use Case",
-        "weight": 4
       }
     }
   }
