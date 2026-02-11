@@ -1,45 +1,45 @@
 [
   {
-    "id": "risk-classification",
+    "id": "4",
     "name": "What is the risk classification of your data?",
     "control_type": "radio",
     "parent": "0",
     "weight": "0",
     "selected": false,
-    "description": null,
+    "description": "\u003Cp\u003E\u003Cstrong\u003EPublic\/Low Risk\u003C\/strong\u003E if either of the following conditions apply:\u003C\/p\u003E\u003Cp\u003E1. The data is generally available to the public, or\u003Cbr\u003E2. The unauthorized use, access, or alteration of the data would not have an adverse impact on NYU or an individual community member.\u003C\/p\u003E\u003Cp\u003E\u003Cstrong\u003ESensitive\/Moderate Risk\u003C\/strong\u003E if any of the following conditions apply:\u003C\/p\u003E\u003Cp\u003E1. The data is governed by laws or regulations that restrict the use or disclosure of such data, or\u003Cbr\u003E2. The data is subject to contractual restrictions that restrict the use or disclosure of such data, or\u003Cbr\u003E3. The unauthorized use, access, or alteration of the data could have an adverse impact on NYU or an individual community member.\u003C\/p\u003E\u003Cp\u003E\u003Cstrong\u003EConfidential or Restricted \/ High Risk\u003C\/strong\u003E if either of the following conditions apply:\u003C\/p\u003E\u003Cp\u003E1. The data is governed by laws or regulations that require NYU to report to the government and\/or provide notice to individuals if the data is breached, or\u003Cbr\u003E2. The unauthorized use, access, or alteration of the data could have a significant adverse impact on NYU or an individual community member\u003C\/p\u003E\u003Cp\u003E\u003Cstrong\u003EHIPAA Regulated\u003C\/strong\u003E if the following condition applys:\u003C\/p\u003E\u003Cp\u003E1. The data contains personally identifiable health information about patients, including Protected Health Information (PHI), or\u003Cbr\u003E2. The data matches the policies defined at \u003Ca href=\u0022https:\/\/www.nyu.edu\/about\/policies-guidelines-compliance\/policies-and-guidelines\/hipaa-policies.html\u0022\u003EHIPAA Security Policies\u003C\/a\u003E\u003C\/p\u003E\u003Cp\u003EFor more information see \u003Ca href=\u0022https:\/\/www.nyu.edu\/about\/policies-guidelines-compliance\/policies-and-guidelines\/electronic-data-and-system-risk-classification.html\u0022\u003EElectronic Data and System Risk Classification Policy\u003C\/a\u003E\u003C\/p\u003E",
     "choices": [
       {
-        "id": "risk-classification.public-low",
-        "name": "Public / Low Risk",
+        "id": "5",
+        "name": "Public \/ Low Risk",
         "control_type": "radio",
-        "parent": "risk-classification",
+        "parent": "4",
         "weight": "0",
         "selected": false,
         "description": null
       },
       {
-        "id": "risk-classification.sensitive-moderate",
-        "name": "Sensitive / Moderate Risk",
+        "id": "6",
+        "name": "Sensitive \/ Moderate Risk",
         "control_type": "radio",
-        "parent": "risk-classification",
+        "parent": "4",
         "weight": "1",
         "selected": false,
         "description": null
       },
       {
-        "id": "risk-classification.confidential-high",
-        "name": "Confidential or Restricted / High Risk",
+        "id": "7",
+        "name": "Confidential or Restricted \/ High Risk",
         "control_type": "radio",
-        "parent": "risk-classification",
+        "parent": "4",
         "weight": "2",
         "selected": false,
         "description": null
       },
       {
-        "id": "risk-classification.hipaa",
+        "id": "8",
         "name": "HIPAA-Regulated",
         "control_type": "radio",
-        "parent": "risk-classification",
+        "parent": "4",
         "weight": "3",
         "selected": false,
         "description": null
@@ -47,37 +47,37 @@
     ]
   },
   {
-    "id": "affiliation",
+    "id": "27",
     "name": "What is your University affiliation?",
     "control_type": "radio",
     "parent": "0",
     "weight": "2",
     "selected": false,
-    "description": null,
+    "description": "\u003Cp\u003EA full-time NYU faculty member can sponsor a non-NYU collaborator for an affiliate status. Please see \u003Ca href=\u0022https:\/\/nyu.service-now.com\/sp?sys_kb_id=621146614050d5442a5dc4baadd48b32\u0026amp;id=kb_article_view\u0026amp;sysparm_rank=1\u0026amp;sysparm_tsqueryId=7d719c551b2820d0a54ffdd51a4bcb90\u0022\u003Einstructions for affiliate management\u003C\/a\u003E (NYU NetID login is required to follow the link).\u003C\/p\u003E",
     "choices": [
       {
-        "id": "affiliation.faculty",
+        "id": "28",
         "name": "Faculty or research principal investigator (PI)",
         "control_type": "radio",
-        "parent": "affiliation",
+        "parent": "27",
         "weight": "0",
         "selected": false,
         "description": null
       },
       {
-        "id": "affiliation.staff",
+        "id": "29",
         "name": "University staff",
         "control_type": "radio",
-        "parent": "affiliation",
+        "parent": "27",
         "weight": "1",
         "selected": false,
         "description": null
       },
       {
-        "id": "affiliation.student",
+        "id": "30",
         "name": "Student",
         "control_type": "radio",
-        "parent": "affiliation",
+        "parent": "27",
         "weight": "2",
         "selected": false,
         "description": null
@@ -85,55 +85,55 @@
     ]
   },
   {
-    "id": "access-needs",
-    "name": "Who needs access to your data?",
-    "control_type": "checkbox",
+    "id": "31",
+    "name": "For what purpose will you be using this storage?",
+    "control_type": "radio",
     "parent": "0",
-    "weight": "4",
+    "weight": "5",
     "selected": false,
     "description": null,
     "choices": [
       {
-        "id": "access-needs.individual",
-        "name": "No sharing",
-        "control_type": "checkbox",
-        "parent": "access-needs",
+        "id": "33",
+        "name": "Backups",
+        "control_type": "radio",
+        "parent": "31",
         "weight": "0",
         "selected": false,
         "description": null
       },
       {
-        "id": "access-needs.public",
-        "name": "Public access",
-        "control_type": "checkbox",
-        "parent": "access-needs",
+        "id": "32",
+        "name": "Data storage for a project or team",
+        "control_type": "radio",
+        "parent": "31",
         "weight": "1",
         "selected": false,
         "description": null
       },
       {
-        "id": "access-needs.shared-link",
-        "name": "Shared link collaborators",
-        "control_type": "checkbox",
-        "parent": "access-needs",
+        "id": "35",
+        "name": "Hosting an application or database",
+        "control_type": "radio",
+        "parent": "31",
         "weight": "2",
         "selected": false,
         "description": null
       },
       {
-        "id": "access-needs.netid-collaborators",
-        "name": "Affiliated collaborators with NetIDs",
-        "control_type": "checkbox",
-        "parent": "access-needs",
+        "id": "34",
+        "name": "Long-term preservation",
+        "control_type": "radio",
+        "parent": "31",
         "weight": "3",
         "selected": false,
         "description": null
       },
       {
-        "id": "access-needs.external-collaborators",
-        "name": "Collaborators external to NYU",
-        "control_type": "checkbox",
-        "parent": "access-needs",
+        "id": "36",
+        "name": "Sharing data externally with a web link",
+        "control_type": "radio",
+        "parent": "31",
         "weight": "4",
         "selected": false,
         "description": null
@@ -141,8 +141,8 @@
     ]
   },
   {
-    "id": "backup-availability",
-    "name": "Do you need backups, snapshots or replication of your data?",
+    "id": "37",
+    "name": "From where will the data be accessed?",
     "control_type": "radio",
     "parent": "0",
     "weight": "6",
@@ -150,28 +150,102 @@
     "description": null,
     "choices": [
       {
-        "id": "backup-availability.yes",
-        "name": "Yes",
-        "control_type": "radio",
-        "parent": "backup-availability",
+        "id": "38",
+        "name": "On a NYU campus network or remotely through a VPN",
+        "control_type": "checkbox",
+        "parent": "37",
         "weight": "0",
         "selected": false,
         "description": null
       },
       {
-        "id": "backup-availability.no",
-        "name": "No",
-        "control_type": "radio",
-        "parent": "backup-availability",
+        "id": "61",
+        "name": "Public Cloud Provider",
+        "control_type": "checkbox",
+        "parent": "37",
         "weight": "1",
+        "selected": false,
+        "description": "\u003Cp\u003EGCP, AWS\u003C\/p\u003E"
+      },
+      {
+        "id": "39",
+        "name": "Off campus without a VPN",
+        "control_type": "checkbox",
+        "parent": "37",
+        "weight": "2",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "40",
+        "name": "From a web browser",
+        "control_type": "checkbox",
+        "parent": "37",
+        "weight": "3",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "41",
+        "name": "From workstations or laptops",
+        "control_type": "checkbox",
+        "parent": "37",
+        "weight": "4",
         "selected": false,
         "description": null
       }
     ]
   },
   {
-    "id": "synchronous-access",
-    "name": "Do you need synchronous or simultaneous access to your data?",
+    "id": "47",
+    "name": "How large is any individual file in this collection likely to be?",
+    "control_type": "radio",
+    "parent": "0",
+    "weight": "7",
+    "selected": false,
+    "description": null,
+    "choices": [
+      {
+        "id": "49",
+        "name": "Some individual files will be larger than 10 GB",
+        "control_type": "radio",
+        "parent": "47",
+        "weight": "0",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "50",
+        "name": "Some individual files will be larger than 15 GB",
+        "control_type": "radio",
+        "parent": "47",
+        "weight": "1",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "48",
+        "name": "Some individual files will be larger than 5 GB",
+        "control_type": "radio",
+        "parent": "47",
+        "weight": "2",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "51",
+        "name": "Some individual files will be larger than 5 TB (terabytes)",
+        "control_type": "radio",
+        "parent": "47",
+        "weight": "3",
+        "selected": false,
+        "description": null
+      }
+    ]
+  },
+  {
+    "id": "52",
+    "name": "What additional capabilities do you require for data storage?",
     "control_type": "radio",
     "parent": "0",
     "weight": "8",
@@ -179,28 +253,138 @@
     "description": null,
     "choices": [
       {
-        "id": "synchronous-access.yes",
-        "name": "Yes",
-        "control_type": "radio",
-        "parent": "synchronous-access",
+        "id": "54",
+        "name": "Access level controls (admin, read, write, etc.)",
+        "control_type": "checkbox",
+        "parent": "52",
         "weight": "0",
         "selected": false,
         "description": null
       },
       {
-        "id": "synchronous-access.no",
-        "name": "No",
-        "control_type": "radio",
-        "parent": "synchronous-access",
+        "id": "60",
+        "name": "Automated workflows",
+        "control_type": "checkbox",
+        "parent": "52",
         "weight": "1",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "59",
+        "name": "Code sharing \/ code management",
+        "control_type": "checkbox",
+        "parent": "52",
+        "weight": "2",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "58",
+        "name": "Data replication (copy of data exists in other location(s))",
+        "control_type": "checkbox",
+        "parent": "52",
+        "weight": "3",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "57",
+        "name": "Data transfer from instruments",
+        "control_type": "checkbox",
+        "parent": "52",
+        "weight": "4",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "53",
+        "name": "Generate DOIs for datasets (Digital Object Identifier)",
+        "control_type": "checkbox",
+        "parent": "52",
+        "weight": "5",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "56",
+        "name": "Large data transfers",
+        "control_type": "checkbox",
+        "parent": "52",
+        "weight": "6",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "55",
+        "name": "Version control \/ snapshots",
+        "control_type": "checkbox",
+        "parent": "52",
+        "weight": "7",
         "selected": false,
         "description": null
       }
     ]
   },
   {
-    "id": "alumni-access",
-    "name": "Do you need alumni to have access to your data?",
+    "id": "21",
+    "name": "Who needs access to your data?",
+    "control_type": "radio",
+    "parent": "0",
+    "weight": "9",
+    "selected": false,
+    "description": null,
+    "choices": [
+      {
+        "id": "26",
+        "name": "No sharing, individual use only",
+        "control_type": "radio",
+        "parent": "21",
+        "weight": "0",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "23",
+        "name": "Non-specific collaborators via a shared link",
+        "control_type": "radio",
+        "parent": "21",
+        "weight": "1",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "22",
+        "name": "Public access for a research data management plan",
+        "control_type": "radio",
+        "parent": "21",
+        "weight": "2",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "24",
+        "name": "Specific affiliated collaborators with NetIDs",
+        "control_type": "radio",
+        "parent": "21",
+        "weight": "3",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "25",
+        "name": "Specific collaborators external to NYU without NetIDs",
+        "control_type": "radio",
+        "parent": "21",
+        "weight": "4",
+        "selected": false,
+        "description": null
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "name": "Do you need backups, snapshots or replication of your data?",
     "control_type": "radio",
     "parent": "0",
     "weight": "10",
@@ -208,19 +392,19 @@
     "description": null,
     "choices": [
       {
-        "id": "alumni-access.yes",
-        "name": "Yes",
+        "id": "11",
+        "name": "No",
         "control_type": "radio",
-        "parent": "alumni-access",
+        "parent": "9",
         "weight": "0",
         "selected": false,
         "description": null
       },
       {
-        "id": "alumni-access.no",
-        "name": "No",
+        "id": "10",
+        "name": "Yes",
         "control_type": "radio",
-        "parent": "alumni-access",
+        "parent": "9",
         "weight": "1",
         "selected": false,
         "description": null
@@ -228,8 +412,37 @@
     ]
   },
   {
-    "id": "storage-duration",
-    "name": "What is your storage duration need?",
+    "id": "12",
+    "name": "How much data do you have and how fast will it grow?",
+    "control_type": "radio",
+    "parent": "0",
+    "weight": "11",
+    "selected": false,
+    "description": null,
+    "choices": [
+      {
+        "id": "13",
+        "name": "Unlikely to exceed 1TB in 2 years",
+        "control_type": "checkbox",
+        "parent": "12",
+        "weight": "0",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "14",
+        "name": "Greater than 1TB or likely to exceed in 2 years",
+        "control_type": "checkbox",
+        "parent": "12",
+        "weight": "1",
+        "selected": false,
+        "description": null
+      }
+    ]
+  },
+  {
+    "id": "17",
+    "name": "How are you currently using the data?",
     "control_type": "radio",
     "parent": "0",
     "weight": "12",
@@ -237,208 +450,29 @@
     "description": null,
     "choices": [
       {
-        "id": "storage-duration.long-term",
-        "name": "Long-term or archival",
+        "id": "18",
+        "name": "Actively processing data (creating, editing, calculating)",
         "control_type": "radio",
-        "parent": "storage-duration",
+        "parent": "17",
         "weight": "0",
         "selected": false,
         "description": null
       },
       {
-        "id": "storage-duration.temporary",
-        "name": "Temporary or short-term",
+        "id": "20",
+        "name": "Private archive: Access controlled, not published",
         "control_type": "radio",
-        "parent": "storage-duration",
-        "weight": "1",
-        "selected": false,
-        "description": null
-      }
-    ]
-  },
-  {
-    "id": "use-case-purpose",
-    "name": "What is the primary purpose for your storage?",
-    "control_type": "checkbox",
-    "parent": "0",
-    "weight": "14",
-    "selected": false,
-    "description": null,
-    "choices": [
-      {
-        "id": "use-case-purpose.archive",
-        "name": "Archive and preservation",
-        "control_type": "checkbox",
-        "parent": "use-case-purpose",
-        "weight": "0",
-        "selected": false,
-        "description": null
-      },
-      {
-        "id": "use-case-purpose.active-research",
-        "name": "Active research and analysis",
-        "control_type": "checkbox",
-        "parent": "use-case-purpose",
+        "parent": "17",
         "weight": "1",
         "selected": false,
         "description": null
       },
       {
-        "id": "use-case-purpose.collaboration",
-        "name": "Collaboration and file sharing",
-        "control_type": "checkbox",
-        "parent": "use-case-purpose",
+        "id": "19",
+        "name": "Publishing \/ sharing your data: Worldwide, read-only access to a completed data set",
+        "control_type": "radio",
+        "parent": "17",
         "weight": "2",
-        "selected": false,
-        "description": null
-      },
-      {
-        "id": "use-case-purpose.surveys",
-        "name": "Surveys and data collection",
-        "control_type": "checkbox",
-        "parent": "use-case-purpose",
-        "weight": "3",
-        "selected": false,
-        "description": null
-      },
-      {
-        "id": "use-case-purpose.media",
-        "name": "Video and audio",
-        "control_type": "checkbox",
-        "parent": "use-case-purpose",
-        "weight": "4",
-        "selected": false,
-        "description": null
-      },
-      {
-        "id": "use-case-purpose.repository",
-        "name": "Data repository and publishing",
-        "control_type": "checkbox",
-        "parent": "use-case-purpose",
-        "weight": "5",
-        "selected": false,
-        "description": null
-      }
-    ]
-  },
-  {
-    "id": "cost-model",
-    "name": "What is your budget for storage?",
-    "control_type": "radio",
-    "parent": "0",
-    "weight": "16",
-    "selected": false,
-    "description": null,
-    "choices": [
-      {
-        "id": "cost-model.free",
-        "name": "Free or included services",
-        "control_type": "radio",
-        "parent": "cost-model",
-        "weight": "0",
-        "selected": false,
-        "description": null
-      },
-      {
-        "id": "cost-model.paid",
-        "name": "Willing to pay or use chargeback",
-        "control_type": "radio",
-        "parent": "cost-model",
-        "weight": "1",
-        "selected": false,
-        "description": null
-      }
-    ]
-  },
-  {
-    "id": "storage-capacity",
-    "name": "What storage capacity do you need?",
-    "control_type": "radio",
-    "parent": "0",
-    "weight": "18",
-    "selected": false,
-    "description": null,
-    "choices": [
-      {
-        "id": "storage-capacity.small",
-        "name": "Small (< 50 GB)",
-        "control_type": "radio",
-        "parent": "storage-capacity",
-        "weight": "0",
-        "selected": false,
-        "description": null
-      },
-      {
-        "id": "storage-capacity.medium",
-        "name": "Medium (50 GB - 2 TB)",
-        "control_type": "radio",
-        "parent": "storage-capacity",
-        "weight": "1",
-        "selected": false,
-        "description": null
-      },
-      {
-        "id": "storage-capacity.large",
-        "name": "Large (> 2 TB or unlimited)",
-        "control_type": "radio",
-        "parent": "storage-capacity",
-        "weight": "2",
-        "selected": false,
-        "description": null
-      }
-    ]
-  },
-  {
-    "id": "special-requirements",
-    "name": "Do you have any special requirements or restrictions?",
-    "control_type": "checkbox",
-    "parent": "0",
-    "weight": "20",
-    "selected": false,
-    "description": null,
-    "choices": [
-      {
-        "id": "special-requirements.none",
-        "name": "No special requirements",
-        "control_type": "checkbox",
-        "parent": "special-requirements",
-        "weight": "0",
-        "selected": false,
-        "description": null
-      },
-      {
-        "id": "special-requirements.active-directory",
-        "name": "Can use Active Directory",
-        "control_type": "checkbox",
-        "parent": "special-requirements",
-        "weight": "1",
-        "selected": false,
-        "description": null
-      },
-      {
-        "id": "special-requirements.faculty-sponsorship",
-        "name": "Have faculty sponsorship",
-        "control_type": "checkbox",
-        "parent": "special-requirements",
-        "weight": "2",
-        "selected": false,
-        "description": null
-      },
-      {
-        "id": "special-requirements.data-stewardship",
-        "name": "Have data stewardship knowledge",
-        "control_type": "checkbox",
-        "parent": "special-requirements",
-        "weight": "3",
-        "selected": false,
-        "description": null
-      },
-      {
-        "id": "special-requirements.project-approval",
-        "name": "Can get project approval",
-        "control_type": "checkbox",
-        "parent": "special-requirements",
-        "weight": "4",
         "selected": false,
         "description": null
       }
