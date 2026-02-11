@@ -71,7 +71,8 @@ export const FACET_CONFIGS: FacetConfig[] = [
   {
     id: "risk-classification",
     name: "What is the risk classification of your data?",
-    description: null,
+    description:
+      '<p><strong>Public/Low Risk</strong> if either of the following conditions apply:</p><p>1. The data is generally available to the public, or<br>2. The unauthorized use, access, or alteration of the data would not have an adverse impact on NYU or an individual community member.</p><p><strong>Sensitive/Moderate Risk</strong> if any of the following conditions apply:</p><p>1. The data is governed by laws or regulations that restrict the use or disclosure of such data, or<br>2. The data is subject to contractual restrictions that restrict the use or disclosure of such data, or<br>3. The unauthorized use, access, or alteration of the data could have an adverse impact on NYU or an individual community member.</p><p><strong>Confidential or Restricted / High Risk</strong> if either of the following conditions apply:</p><p>1. The data is governed by laws or regulations that require NYU to report to the government and/or provide notice to individuals if the data is breached, or<br>2. The unauthorized use, access, or alteration of the data could have a significant adverse impact on NYU or an individual community member</p><p><strong>HIPAA Regulated</strong> if the following condition applys:</p><p>1. The data contains personally identifiable health information about patients, including Protected Health Information (PHI), or<br>2. The data matches the policies defined at <a href="https://www.nyu.edu/about/policies-guidelines-compliance/policies-and-guidelines/hipaa-policies.html">HIPAA Security Policies</a></p><p>For more information see <a href="https://www.nyu.edu/about/policies-guidelines-compliance/policies-and-guidelines/electronic-data-and-system-risk-classification.html">Electronic Data and System Risk Classification Policy</a></p>',
     column: "Storable Files",
     controlType: "radio",
     allowMultipleMatches: true,
@@ -128,7 +129,8 @@ export const FACET_CONFIGS: FacetConfig[] = [
   {
     id: "affiliation",
     name: "What is your University affiliation?",
-    description: null,
+    description:
+      '<p>A full-time NYU faculty member can sponsor a non-NYU collaborator for an affiliate status. Please see <a href="https://nyu.service-now.com/sp?sys_kb_id=621146614050d5442a5dc4baadd48b32&id=kb_article_view&sysparm_rank=1&sysparm_tsqueryId=7d719c551b2820d0a54ffdd51a4bcb90">instructions for affiliate management</a> (NYU NetID login is required to follow the link).</p>',
     column: "Eligibility",
     controlType: "radio",
     allowMultipleMatches: true,
