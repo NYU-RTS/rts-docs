@@ -1,7 +1,7 @@
 [workspace]
 channels = ["conda-forge"]
 description = "Add a short description here"
-name = "rts-docs-dev"
+name = "rts-docs"
 platforms = ["osx-arm64", "linux-64", "linux-aarch64"]
 version = "0.1.0"
 

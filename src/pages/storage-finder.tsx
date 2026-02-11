@@ -68,14 +68,16 @@ export default function StorageFinderPage() {
     Record<string, string[]>
   >({});
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
-  const [nonMatchingServiceDisplay, setNonMatchingServiceDisplay] =
-    useState<string>("show-disabled");
+  const [nonMatchingServiceDisplay, setNonMatchingServiceDisplay] = useState<
+    string
+  >("show-disabled");
   const comparisonSectionRef = useRef<HTMLDivElement>(null);
   const infoBarRef = useRef<HTMLDivElement>(null);
   const infoBarStickyDetectorRef = useRef<HTMLDivElement>(null);
   const [isInfoBarSticky, setIsInfoBarSticky] = useState(false);
-  const [isComparisonSectionVisible, setIsComparisonSectionVisible] =
-    useState(false);
+  const [isComparisonSectionVisible, setIsComparisonSectionVisible] = useState(
+    false,
+  );
 
   /**
    * An intersection observer that detects when the info bar should become
@@ -100,16 +102,18 @@ export default function StorageFinderPage() {
 
   // Update sticky state based on intersection
   useEffect(() => {
-    if (infoBarStickyDetectorIntersection)
+    if (infoBarStickyDetectorIntersection) {
       setIsInfoBarSticky(!infoBarStickyDetectorIntersection.isIntersecting);
+    }
   }, [infoBarStickyDetectorIntersection]);
 
   // Update comparison section visibility state
   useEffect(() => {
-    if (comparisonSectionIntersection)
+    if (comparisonSectionIntersection) {
       setIsComparisonSectionVisible(
         comparisonSectionIntersection.isIntersecting,
       );
+    }
   }, [comparisonSectionIntersection]);
 
   // Filter services based on selected facet options
@@ -117,7 +121,7 @@ export default function StorageFinderPage() {
     if (Object.keys(selectedFacets).length === 0) return true;
     return Object.entries(selectedFacets).every(([, choiceIds]) =>
       // For each facet, at least one selected choice must match
-      choiceIds.some((choiceId) => service.facet_matches.includes(choiceId)),
+      choiceIds.some((choiceId) => service.facet_matches.includes(choiceId))
     );
   });
 
@@ -207,8 +211,8 @@ export default function StorageFinderPage() {
           if (Object.keys(newFilters).length === 0) return true;
           return Object.entries(newFilters).every(([, filterChoiceIds]) =>
             filterChoiceIds.some((filterChoiceId) =>
-              service.facet_matches.includes(filterChoiceId),
-            ),
+              service.facet_matches.includes(filterChoiceId)
+            )
           );
         });
 
@@ -218,8 +222,8 @@ export default function StorageFinderPage() {
           previous.filter((serviceId) =>
             newFilteredServices.some(
               (service: Service) => service.id === serviceId,
-            ),
-          ),
+            )
+          )
         );
       }
     },
@@ -230,7 +234,7 @@ export default function StorageFinderPage() {
     setSelectedServices((previous) =>
       previous.includes(serviceId)
         ? previous.filter((id) => id !== serviceId)
-        : [...previous, serviceId],
+        : [...previous, serviceId]
     );
   }, []);
 
@@ -243,8 +247,9 @@ export default function StorageFinderPage() {
   }, [filteredServices]);
 
   const scrollToComparison = useCallback(() => {
-    if (comparisonSectionRef.current)
+    if (comparisonSectionRef.current) {
       comparisonSectionRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   }, []);
 
   const isServiceDisabled = useCallback(
@@ -261,7 +266,7 @@ export default function StorageFinderPage() {
   const isSelectAllDisabled = useMemo(() => {
     if (filteredServices.length === 0) return true;
     return filteredServices.every((service) =>
-      selectedServices.includes(service.id),
+      selectedServices.includes(service.id)
     );
   }, [filteredServices, selectedServices]);
 
@@ -297,11 +302,15 @@ export default function StorageFinderPage() {
           {/* Sticky Info Bar - No container class when sticky */}
           <header
             ref={infoBarRef}
-            className={`${styles.infoBar} ${isInfoBarSticky ? styles.sticky : ""}`}
+            className={`${styles.infoBar} ${
+              isInfoBarSticky ? styles.sticky : ""
+            }`}
           >
             {/* Animated title that appears when sticky */}
             <div
-              className={`${styles.stickyTitle} ${isInfoBarSticky ? styles.visible : ""}`}
+              className={`${styles.stickyTitle} ${
+                isInfoBarSticky ? styles.visible : ""
+              }`}
             >
               Storage Finder
             </div>
@@ -330,25 +339,26 @@ export default function StorageFinderPage() {
             <div>
               {/* Show scroll to details/comparison when services are selected and comparison section not visible */}
               {selectedServices.length > 0 &&
-                (isComparisonSectionVisible ? (
-                  <button
-                    className="button button--secondary button--sm"
-                    onClick={() =>
-                      window.scrollTo({ top: 0, behavior: "smooth" })
-                    }
-                  >
-                    Scroll to Top
-                  </button>
-                ) : (
-                  <button
-                    className="button button--primary button--sm"
-                    onClick={scrollToComparison}
-                  >
-                    {selectedServices.length === 1
-                      ? "Scroll to Details"
-                      : "Scroll to Comparison"}
-                  </button>
-                ))}
+                (isComparisonSectionVisible
+                  ? (
+                    <button
+                      className="button button--secondary button--sm"
+                      onClick={() =>
+                        window.scrollTo({ top: 0, behavior: "smooth" })}
+                    >
+                      Scroll to Top
+                    </button>
+                  )
+                  : (
+                    <button
+                      className="button button--primary button--sm"
+                      onClick={scrollToComparison}
+                    >
+                      {selectedServices.length === 1
+                        ? "Scroll to Details"
+                        : "Scroll to Comparison"}
+                    </button>
+                  ))}
             </div>
           </header>
 
@@ -362,28 +372,30 @@ export default function StorageFinderPage() {
                 </Heading>
 
                 <div className={styles.buttonRow}>
-                  {isClearAnswersDisabled ? (
-                    <Tooltip
-                      keepOpenOnActivate
-                      content="No answers are currently selected"
-                    >
-                      <TooltipDisabledTarget>
-                        <button
-                          className="button button--outline button--primary button--sm"
-                          disabled={true}
-                        >
-                          Clear Answers
-                        </button>
-                      </TooltipDisabledTarget>
-                    </Tooltip>
-                  ) : (
-                    <button
-                      className="button button--outline button--primary button--sm"
-                      onClick={clearAnswers}
-                    >
-                      Clear Answers
-                    </button>
-                  )}
+                  {isClearAnswersDisabled
+                    ? (
+                      <Tooltip
+                        keepOpenOnActivate
+                        content="No answers are currently selected"
+                      >
+                        <TooltipDisabledTarget>
+                          <button
+                            className="button button--outline button--primary button--sm"
+                            disabled={true}
+                          >
+                            Clear Answers
+                          </button>
+                        </TooltipDisabledTarget>
+                      </Tooltip>
+                    )
+                    : (
+                      <button
+                        className="button button--outline button--primary button--sm"
+                        onClick={clearAnswers}
+                      >
+                        Clear Answers
+                      </button>
+                    )}
                 </div>
               </div>
               <div className={`${styles.panelScrollContent} card__body`}>
@@ -403,7 +415,7 @@ export default function StorageFinderPage() {
                       {facet.choices.map((choice) => {
                         const isChecked =
                           selectedFacets[facet.id]?.includes(choice.id) ??
-                          false;
+                            false;
 
                         return (
                           <SelectableButton
@@ -412,14 +424,11 @@ export default function StorageFinderPage() {
                             label={choice.name}
                             name={`facet-${facet.id}`}
                             value={choice.id}
-                            type={
-                              facet.control_type === "radio"
-                                ? "radio"
-                                : "checkbox"
-                            }
+                            type={facet.control_type === "radio"
+                              ? "radio"
+                              : "checkbox"}
                             onChange={(value, checked) =>
-                              handleFacetChange(facet.id, value, checked)
-                            }
+                              handleFacetChange(facet.id, value, checked)}
                           />
                         );
                       })}
@@ -465,7 +474,7 @@ export default function StorageFinderPage() {
                           const nonMatchingServiceIds = new Set(
                             serviceList
                               .filter((service: Service) =>
-                                isServiceDisabled(service.id),
+                                isServiceDisabled(service.id)
                               )
                               .map((service: Service) => service.id),
                           );
@@ -474,7 +483,7 @@ export default function StorageFinderPage() {
                           setSelectedServices((previous) =>
                             previous.filter(
                               (id) => !nonMatchingServiceIds.has(id),
-                            ),
+                            )
                           );
                         }
                       }}
@@ -487,58 +496,60 @@ export default function StorageFinderPage() {
 
                   <div className={styles.buttonRow}>
                     <div className={styles.serviceActionButtons}>
-                      {isSelectAllDisabled ? (
-                        <Tooltip
-                          content={
-                            filteredServices.length === 0
+                      {isSelectAllDisabled
+                        ? (
+                          <Tooltip
+                            content={filteredServices.length === 0
                               ? "No services available to select"
-                              : "All available services are already selected"
-                          }
-                        >
-                          <TooltipDisabledTarget>
-                            <button
-                              className="button button--outline button--primary button--sm"
-                              disabled={true}
-                            >
-                              {isClearAnswersDisabled
-                                ? "Select All"
-                                : "Select All Available"}
-                            </button>
-                          </TooltipDisabledTarget>
-                        </Tooltip>
-                      ) : (
-                        <button
-                          className="button button--outline button--primary button--sm"
-                          onClick={selectAllServices}
-                        >
-                          {isClearAnswersDisabled
-                            ? "Select All"
-                            : "Select All Available"}
-                        </button>
-                      )}
+                              : "All available services are already selected"}
+                          >
+                            <TooltipDisabledTarget>
+                              <button
+                                className="button button--outline button--primary button--sm"
+                                disabled={true}
+                              >
+                                {isClearAnswersDisabled
+                                  ? "Select All"
+                                  : "Select All Available"}
+                              </button>
+                            </TooltipDisabledTarget>
+                          </Tooltip>
+                        )
+                        : (
+                          <button
+                            className="button button--outline button--primary button--sm"
+                            onClick={selectAllServices}
+                          >
+                            {isClearAnswersDisabled
+                              ? "Select All"
+                              : "Select All Available"}
+                          </button>
+                        )}
 
-                      {isClearSelectionsDisabled ? (
-                        <Tooltip
-                          keepOpenOnActivate
-                          content="No services are currently selected"
-                        >
-                          <TooltipDisabledTarget>
-                            <button
-                              className="button button--outline button--primary button--sm"
-                              disabled={true}
-                            >
-                              Clear Selections
-                            </button>
-                          </TooltipDisabledTarget>
-                        </Tooltip>
-                      ) : (
-                        <button
-                          className="button button--outline button--primary button--sm"
-                          onClick={() => setSelectedServices([])}
-                        >
-                          Clear Selections
-                        </button>
-                      )}
+                      {isClearSelectionsDisabled
+                        ? (
+                          <Tooltip
+                            keepOpenOnActivate
+                            content="No services are currently selected"
+                          >
+                            <TooltipDisabledTarget>
+                              <button
+                                className="button button--outline button--primary button--sm"
+                                disabled={true}
+                              >
+                                Clear Selections
+                              </button>
+                            </TooltipDisabledTarget>
+                          </Tooltip>
+                        )
+                        : (
+                          <button
+                            className="button button--outline button--primary button--sm"
+                            onClick={() => setSelectedServices([])}
+                          >
+                            Clear Selections
+                          </button>
+                        )}
                     </div>
                   </div>
                 </div>
@@ -555,7 +566,7 @@ export default function StorageFinderPage() {
                       if (nonMatchingServiceDisplay === "hide") return null;
 
                       // Show but disable non-matching services
-                      if (nonMatchingServiceDisplay === "show-disabled")
+                      if (nonMatchingServiceDisplay === "show-disabled") {
                         return (
                           <Tooltip
                             key={service.id}
@@ -572,18 +583,23 @@ export default function StorageFinderPage() {
                             </button>
                           </Tooltip>
                         );
+                      }
 
                       // Show but highlight non-matching services
-                      if (nonMatchingServiceDisplay === "show-enabled")
+                      if (nonMatchingServiceDisplay === "show-enabled") {
                         return (
                           <Tooltip
                             key={service.id}
                             content="This service is highlighted because it does not match your filter criteria"
                           >
                             <button
-                              aria-label={`${service.title}${isSelected ? " (selected)" : ""} (doesn't match filters)`}
+                              aria-label={`${service.title}${
+                                isSelected ? " (selected)" : ""
+                              } (doesn't match filters)`}
                               aria-pressed={isSelected}
-                              className={`${styles.serviceButton} ${styles.nonMatching} ${isSelected ? styles.selected : ""}`}
+                              className={`${styles.serviceButton} ${styles.nonMatching} ${
+                                isSelected ? styles.selected : ""
+                              }`}
                               onClick={() => toggleServiceSelection(service.id)}
                             >
                               {service.title}
@@ -598,15 +614,20 @@ export default function StorageFinderPage() {
                             </button>
                           </Tooltip>
                         );
+                      }
                     }
 
                     // Regular matching services
                     return (
                       <button
                         key={service.id}
-                        aria-label={`${service.title}${isSelected ? " (selected)" : ""}`}
+                        aria-label={`${service.title}${
+                          isSelected ? " (selected)" : ""
+                        }`}
                         aria-pressed={isSelected}
-                        className={`${styles.serviceButton} ${isSelected ? styles.selected : ""}`}
+                        className={`${styles.serviceButton} ${
+                          isSelected ? styles.selected : ""
+                        }`}
                         onClick={() => toggleServiceSelection(service.id)}
                       >
                         {service.title}
@@ -635,98 +656,106 @@ export default function StorageFinderPage() {
             ref={comparisonSectionRef}
             className={styles.comparisonTableSection}
           >
-            {selectedServices.length > 0 ? (
-              <>
-                <Heading as="h2" className="text--center margin-bottom--md">
-                  {selectedServices.length === 1
-                    ? "Service Details"
-                    : "Service Details and Comparison"}
-                </Heading>
+            {selectedServices.length > 0
+              ? (
+                <>
+                  <Heading as="h2" className="text--center margin-bottom--md">
+                    {selectedServices.length === 1
+                      ? "Service Details"
+                      : "Service Details and Comparison"}
+                  </Heading>
 
-                <div className={styles.tableScrollIndicator}>
-                  <ChevronLeft aria-hidden="true" size={16} />
-                  <span aria-live="polite" role="status">
-                    Scroll to view more
-                  </span>
-                  <ChevronRight aria-hidden="true" size={16} />
-                </div>
+                  <div className={styles.tableScrollIndicator}>
+                    <ChevronLeft aria-hidden="true" size={16} />
+                    <span aria-live="polite" role="status">
+                      Scroll to view more
+                    </span>
+                    <ChevronRight aria-hidden="true" size={16} />
+                  </div>
 
-                <div
-                  className={`${styles.comparisonTableWrapper} table-responsive`}
-                >
-                  <table
-                    className={`${styles.comparisonTable} table table--striped`}
+                  <div
+                    className={`${styles.comparisonTableWrapper} table-responsive`}
                   >
-                    <thead>
-                      <tr>
-                        <th className={styles.attributeColumn}>Attribute</th>
-                        {selectedServices.map((serviceId) => {
-                          const service = serviceList.find(
-                            (s) => s.id === serviceId,
-                          );
-                          return (
-                            <th
-                              key={serviceId}
-                              className={`${styles.serviceColumn} ${selectedServices.length === 1 ? styles.singleServiceColumn : ""}`}
-                            >
-                              {service?.title}
-                            </th>
-                          );
-                        })}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {attributeFields.map((field) => (
-                        <tr key={field.key}>
-                          <td className={styles.attributeName}>
-                            {field.label}
-                            {/* <Tooltip keepOpenOnActivate content="Learn more">
-                              <InfoButton
-                                content={`Information about ${field.label.toLowerCase()}`}
-                                title={field.label}
-                              />
-                            </Tooltip> */}
-                          </td>
+                    <table
+                      className={`${styles.comparisonTable} table table--striped`}
+                    >
+                      <thead>
+                        <tr>
+                          <th className={styles.attributeColumn}>Attribute</th>
                           {selectedServices.map((serviceId) => {
                             const service = serviceList.find(
                               (s) => s.id === serviceId,
                             );
-                            // Create a safer way to access the field data
-                            const fieldData = service?.field_data
-                              ? ((
+                            return (
+                              <th
+                                key={serviceId}
+                                className={`${styles.serviceColumn} ${
+                                  selectedServices.length === 1
+                                    ? styles.singleServiceColumn
+                                    : ""
+                                }`}
+                              >
+                                {service?.title}
+                              </th>
+                            );
+                          })}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {attributeFields.map((field) => (
+                          <tr key={field.key}>
+                            <td className={styles.attributeName}>
+                              {field.label}
+                              {
+                                /* <Tooltip keepOpenOnActivate content="Learn more">
+                              <InfoButton
+                                content={`Information about ${field.label.toLowerCase()}`}
+                                title={field.label}
+                              />
+                            </Tooltip> */
+                              }
+                            </td>
+                            {selectedServices.map((serviceId) => {
+                              const service = serviceList.find(
+                                (s) => s.id === serviceId,
+                              );
+                              // Create a safer way to access the field data
+                              const fieldData = service?.field_data
+                                ? ((
                                   service.field_data[
                                     field.key as keyof typeof service.field_data
                                   ] as FieldData | undefined
                                 )?.value ?? "N/A")
-                              : "N/A";
+                                : "N/A";
 
-                            return (
-                              <td
-                                key={serviceId}
-                                dangerouslySetInnerHTML={{
-                                  __html: fieldData,
-                                }}
-                              />
-                            );
-                          })}
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                              return (
+                                <td
+                                  key={serviceId}
+                                  dangerouslySetInnerHTML={{
+                                    __html: fieldData,
+                                  }}
+                                />
+                              );
+                            })}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </>
+              )
+              : (
+                <div className={styles.noServicesSelected}>
+                  <Heading as="h2" className="text--center">
+                    Select service(s) to view details or compare
+                  </Heading>
                 </div>
-              </>
-            ) : (
-              <div className={styles.noServicesSelected}>
-                <Heading as="h2" className="text--center">
-                  Select service(s) to view details or compare
-                </Heading>
-              </div>
-            )}
+              )}
           </div>
 
           {/* Footer */}
           <DocumentFooter
-            editHref="https://github.com/NYU-ITS/rts-docs-dev/blob/main/src/pages/storage-finder.tsx"
+            editHref="https://github.com/NYU-ITS/rts-docs/blob/main/src/pages/storage-finder.tsx"
             lastUpdatedContent="by Ka Pui (August) Cheung"
           />
         </main>
