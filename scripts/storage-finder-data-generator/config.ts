@@ -133,7 +133,11 @@ export const FACET_CONFIGS: FacetConfig[] = [
     controlType: "radio",
     allowMultipleMatches: true,
     choices: [
-      { id: "affiliation.faculty", name: "Faculty or PI", weight: 0 },
+      {
+        id: "affiliation.faculty",
+        name: "Faculty or research principal investigator (PI)",
+        weight: 0,
+      },
       { id: "affiliation.staff", name: "University staff", weight: 1 },
       { id: "affiliation.student", name: "Student", weight: 2 },
     ],
