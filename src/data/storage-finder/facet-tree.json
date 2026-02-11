@@ -57,7 +57,7 @@
     "choices": [
       {
         "id": "affiliation.faculty",
-        "name": "Faculty or PI",
+        "name": "Faculty or research principal investigator (PI)",
         "control_type": "radio",
         "parent": "affiliation",
         "weight": "0",
