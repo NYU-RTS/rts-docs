@@ -22,13 +22,13 @@ Some of the following steps can require significant resources, so we'll move to 
 
 ### Copy appropriate overlay file to the project directory
 ```bash
-[NetID@cm001 llm_example]$ cp -rp /scratch/work/public/overlay-fs-ext3/overlay-50G-10M.ext3.gz .
+[NetID@cm001 llm_example]$ cp -rp /share/apps/overlay-fs-ext3/overlay-50G-10M.ext3.gz .
 [NetID@cm001 llm_example]$ gunzip overlay-50G-10M.ext3.gz
 ```
 
 ### Launch Singularity container in read/write mode
 ```bash
-[NetID@cm001 llm_example]$ singularity exec --overlay overlay-50G-10M.ext3:rw /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
+[NetID@cm001 llm_example]$ apptainer exec --fakeroot --overlay overlay-50G-10M.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
 ```
 
 ### Install miniconda in the container
