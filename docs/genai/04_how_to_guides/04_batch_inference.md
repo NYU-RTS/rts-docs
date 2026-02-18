@@ -2,7 +2,7 @@
 
 When immediate results are not needed, for instance in transforming large datasets of unstructured data with LLMs, batch inference adds convenience while offering lower costs. Typical completion window are 24/48h as LLM inference providers run your workload when the load on the inference server is low. If you are interested in harnessing this feature, reach out to us at [`genai-research-support@nyu.edu`](mailto:genai-research-support@nyu.edu) and we will set up a cloud storage bucket for you.
 
-:::note
+:::info
 Batch processing is only supported for LLMs that can be accessed via the `@vertexai` provider.
 :::
 
