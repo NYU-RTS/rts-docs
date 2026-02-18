@@ -549,9 +549,7 @@
     "id": "nyu-box",
     "title": "NYU Box",
     "facet_matches": [
-      "risk-classification.public-low",
-      "risk-classification.sensitive-moderate",
-      "risk-classification.confidential-high",
+      "risk-classification.hipaa",
       "affiliation.faculty",
       "affiliation.staff",
       "access-needs.individual",
@@ -588,7 +586,7 @@
         "weight": 2
       },
       "field_storable_files": {
-        "value": "<p>High</p>",
+        "value": "<p>HIPAA</p>",
         "label": "Storable Files",
         "weight": 3
       },
@@ -1258,9 +1256,7 @@
     "id": "secure-research-data-environment",
     "title": "Secure Research Data Environment",
     "facet_matches": [
-      "risk-classification.public-low",
-      "risk-classification.sensitive-moderate",
-      "risk-classification.confidential-high",
+      "risk-classification.hipaa",
       "affiliation.faculty",
       "affiliation.staff",
       "affiliation.student",
@@ -1291,7 +1287,7 @@
         "weight": 2
       },
       "field_storable_files": {
-        "value": "<p>High</p>",
+        "value": "<p>HIPAA</p>",
         "label": "Storable Files",
         "weight": 3
       },
