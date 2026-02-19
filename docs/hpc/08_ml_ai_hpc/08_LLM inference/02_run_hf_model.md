@@ -1,4 +1,4 @@
-# Run a Hugging Face model
+# Basic LLM Inference with Hugging Face transformers
 
 Here we provide an example of how one can run a Hugging Face Large-language model (LLM) on the NYU Torch cluster
 
