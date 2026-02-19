@@ -22,13 +22,17 @@ const config: Config = {
   deploymentBranch: "main",
 
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "warn",
 
   //https://docusaurus.io/docs/deployment#docusaurusconfigjs-settings
   trailingSlash: true,
 
   markdown: {
     mermaid: true,
+
+    hooks: {
+      onBrokenMarkdownLinks: "throw",
+      onBrokenMarkdownImages: "throw",
+    },
   },
   themes: ["@docusaurus/theme-mermaid"],
 
