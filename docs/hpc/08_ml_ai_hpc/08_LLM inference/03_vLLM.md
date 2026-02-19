@@ -4,13 +4,7 @@
 [`vLLM`](https://docs.vllm.ai/en/latest/) is an easy-to-use library for LLM inference and serving which support a wide variety of models with optimized kernels ensuring optimal utilization of GPUs.
 
 ## Why `vLLM`?
-We tested `vLLM` and `llama-cpp` (the inference framework behind `ollama`) on Torch, and found `vLLM` performs better on Torch with the following model and token configuration:
-
-Model: `Qwen2.5-7B-Instruct`
-
-Prompt Tokens: `512`
-
-Output Tokens: `256`
+We tested `vLLM` and `llama-cpp` (the inference framework behind `ollama`) on Torch, and found `vLLM` performs better on Torch for `Qwen2.5-7B-Instruct` with `512` input and `256` output tokens.
 
 |Inference Server|Peak Throughput|Median Latency(ms)|Recommendation
 |-----|-----|-----|-----|
