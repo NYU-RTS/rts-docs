@@ -10,8 +10,8 @@
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2DXB3BDH70"></script>
 <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-2DXB3BDH70",{anonymize_ip:!0})</script><link rel="stylesheet" href="/pr-preview/pr-296/assets/css/styles.f829a653.css">
-<script src="/pr-preview/pr-296/assets/js/runtime~main.04127fbb.js" defer="defer"></script>
-<script src="/pr-preview/pr-296/assets/js/main.71b984ac.js" defer="defer"></script>
+<script src="/pr-preview/pr-296/assets/js/runtime~main.4ec02de5.js" defer="defer"></script>
+<script src="/pr-preview/pr-296/assets/js/main.80438e75.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -21,11 +21,11 @@
 <h2 class="anchor anchorTargetStickyNavbar_wKjT" id="what-is-vllm">What is vLLM?<a href="#what-is-vllm" class="hash-link" aria-label="Direct link to What is vLLM?" title="Direct link to What is vLLM?" translate="no">​</a></h2>
 <p><a href="https://docs.vllm.ai/en/latest/" target="_blank" rel="noopener noreferrer" class="">vLLM</a> is an easy-to-use library for LLM inference and serving which support a wide variety of models with optimized kernels ensuring optimal utilization of GPUs.</p>
 <h2 class="anchor anchorTargetStickyNavbar_wKjT" id="why-vllm">Why vLLM?<a href="#why-vllm" class="hash-link" aria-label="Direct link to Why vLLM?" title="Direct link to Why vLLM?" translate="no">​</a></h2>
-<p>We tested <code>vLLM</code> and <code>llama-cpp</code> (the inference framework behind <code>ollama</code>) on Torch, and found <code>vLLM</code> performs better on Torch:
-Model: <code>Qwen2.5-7B-Instruct</code>
-Prompt Tokens: <code>512</code>
-Output Tokens: <code>256</code></p>
-<table><thead><tr><th>Backend</th><th>Peak Throughput</th><th>Median Latency(ms)</th><th>Recommendation</th></tr></thead><tbody><tr><td><code>vLLM</code></td><td>~4689.6</td><td>~48.0</td><td>Best for Batch/Research</td></tr><tr><td><code>llama-cpp</code></td><td>~115.0</td><td>~280.0</td><td>Best for Single User</td></tr></tbody></table>
+<p>We tested <code>vLLM</code> and <code>llama-cpp</code> (the inference framework behind <code>ollama</code>) on Torch, and found <code>vLLM</code> performs better on Torch with the following model and token configuration:</p>
+<p>Model: <code>Qwen2.5-7B-Instruct</code></p>
+<p>Prompt Tokens: <code>512</code></p>
+<p>Output Tokens: <code>256</code></p>
+<table><thead><tr><th>Inference Server</th><th>Peak Throughput</th><th>Median Latency(ms)</th><th>Recommendation</th></tr></thead><tbody><tr><td><code>vLLM</code></td><td>~4689.6</td><td>~48.0</td><td>Best for Batch/Research</td></tr><tr><td><code>llama-cpp</code></td><td>~115.0</td><td>~280.0</td><td>Best for Single User</td></tr></tbody></table>
 <h2 class="anchor anchorTargetStickyNavbar_wKjT" id="vllm-installation-instructions">vLLM Installation Instructions<a href="#vllm-installation-instructions" class="hash-link" aria-label="Direct link to vLLM Installation Instructions" title="Direct link to vLLM Installation Instructions" translate="no">​</a></h2>
 <p>Create a vLLM directory in your /scratch directory, then install the vLLM image:</p>
 <div class="language-text codeBlockContainer_ndbq theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_Zo7j"><pre tabindex="0" class="prism-code language-text codeBlock_hgHP thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_EpfB"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">apptainer pull docker://vllm/vllm-openai:latest</span><br></span></code></pre></div></div>
