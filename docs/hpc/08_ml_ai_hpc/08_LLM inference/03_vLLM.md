@@ -11,6 +11,13 @@ We tested `vLLM` and `llama-cpp` (the inference framework behind `ollama`) on To
 |`vLLM`|~4689.6|~48.0|Best for Batch/Research|
 |`llama-cpp`|~115.0|~280.0|Best for Single User|
 
+### Test Environment
+GPU: NVIDIA L40S
+
+`vLLM`: 0.13.0
+
+`Ollama` (llama-cpp backend): 0.14.2
+
 ## vLLM Installation Instructions
 Create a `vLLM` directory in your /scratch directory, then install the vLLM image:
 ```
