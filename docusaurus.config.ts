@@ -44,8 +44,6 @@ const config: Config = {
     locales: ["en"],
   },
 
-  plugins: ["docusaurus-lunr-search"],
-
   presets: [
     [
       "classic",
@@ -171,7 +169,8 @@ const config: Config = {
           items: [
             {
               label: "Feedback",
-              to: "https://docs.google.com/forms/d/e/1FAIpQLSeHnmkPdR_IvWnT6a7U_V3RpfmQrpS8hjxI11FNnsZMlrBa4g/viewform",
+              to:
+                "https://docs.google.com/forms/d/e/1FAIpQLSeHnmkPdR_IvWnT6a7U_V3RpfmQrpS8hjxI11FNnsZMlrBa4g/viewform",
             },
             {
               label: "Announcements",
@@ -197,6 +196,14 @@ const config: Config = {
         "julia",
         "r",
       ],
+    },
+
+    algolia: {
+      appId: "5Y8Q0MVP6Y",
+      apiKey: "765882f24d95c1462561a66b67f33fb8",
+      indexName: "algolia-crawler",
+      searchPagePath: "search",
+      insights: true,
     },
   } satisfies Preset.ThemeConfig,
 
