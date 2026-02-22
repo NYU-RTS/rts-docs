@@ -4,19 +4,25 @@
 [`vLLM`](https://docs.vllm.ai/en/latest/) is an easy-to-use library for LLM inference and serving which support a wide variety of models with optimized kernels ensuring optimal utilization of GPUs.
 
 ## Why `vLLM`?
-We tested `vLLM` and `llama-cpp` (the inference framework behind `ollama`) on Torch, and found `vLLM` performs better on Torch for `Qwen2.5-7B-Instruct` with `512` input and `256` output tokens.
+We tested `vLLM` and `llama-cpp` on Torch, and found `vLLM` performs better on Torch for `Qwen2.5-0.5B-Instruct` with `256` input and `256` output tokens.
 
-|Inference Server|Peak Throughput|Median Latency(ms)|Recommendation
+|Inference Server|Total Throughput (tok/s)|Median Latency (ms)|Recommendation
 |-----|-----|-----|-----|
-|`vLLM`|~4689.6|~48.0|Best for Batch/Research|
-|`llama-cpp`|~115.0|~280.0|Best for Single User|
+|`vLLM`|~2273|~890|Best for Batch/Research|
+|`llama-cpp`|~1312|~1440 |Best for Single User|
 
 ### Test Environment
 GPU: NVIDIA L40S
 
-`vLLM`: 0.13.0
+Model: `Qwen2.5-0.5B-Instruct`
 
-`Ollama` (llama-cpp backend): 0.14.2
+Precision: FP16
+
+Workload: 256 input / 256 output tokens  
+
+Concurrency: 8
+
+Max requests: 64
 
 ## vLLM Installation Instructions
 Create a `vLLM` directory in your /scratch directory, then install the vLLM image:
