@@ -10,8 +10,8 @@
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2DXB3BDH70"></script>
 <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-2DXB3BDH70",{anonymize_ip:!0})</script><link rel="stylesheet" href="/pr-preview/pr-299/assets/css/styles.f829a653.css">
-<script src="/pr-preview/pr-299/assets/js/runtime~main.942d874c.js" defer="defer"></script>
-<script src="/pr-preview/pr-299/assets/js/main.f0e68083.js" defer="defer"></script>
+<script src="/pr-preview/pr-299/assets/js/runtime~main.2d7dcba0.js" defer="defer"></script>
+<script src="/pr-preview/pr-299/assets/js/main.209791a0.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -21,7 +21,7 @@
 <h2 class="anchor anchorTargetStickyNavbar_wKjT" id="what-is-vllm">What is vLLM?<a href="#what-is-vllm" class="hash-link" aria-label="Direct link to What is vLLM?" title="Direct link to What is vLLM?" translate="no">​</a></h2>
 <p><a href="https://docs.vllm.ai/en/latest/" target="_blank" rel="noopener noreferrer" class=""><code>vLLM</code></a> is an easy-to-use library for LLM inference and serving which support a wide variety of models with optimized kernels ensuring optimal utilization of GPUs.</p>
 <h2 class="anchor anchorTargetStickyNavbar_wKjT" id="why-vllm">Why <code>vLLM</code>?<a href="#why-vllm" class="hash-link" aria-label="Direct link to why-vllm" title="Direct link to why-vllm" translate="no">​</a></h2>
-<p>We tested <code>vLLM</code> and <code>llama-cpp</code> on Torch, and found <code>vLLM</code> performs better on Torch for <code>Qwen2.5-0.5B-Instruct</code> and <code>Qwen2.5-7B-Instruct</code> with <code>256</code> input and <code>256</code> output tokens. In terms of practical usage, vLLM is better suited for high-concurrency and batch workloads, while llama-cpp is more appropriate for lightweight or single-user scenarios.</p>
+<p>We tested <code>vLLM</code> and <code>llama-cpp</code> on Torch, and found <code>vLLM</code> performs better on Torch for <code>Qwen2.5-0.5B-Instruct</code> and <code>Qwen2.5-7B-Instruct</code> with <code>256</code> input and <code>256</code> output tokens. Based on our results, vLLM retains a performance advantage over llama-cpp across both model sizes, although the relative gap decreases as the model size increases. In addition, vLLM integrates more naturally with the Hugging Face/Torch ecosystem in HPC environment, whereas llama-cpp requires more manual setup and compatibility adjustment.</p>
 <table><thead><tr><th>Model</th><th>Inference Server</th><th>Generated Throughput (tok/s)</th><th>Median Latency (ms)</th></tr></thead><tbody><tr><td>0.5B</td><td><code>vLLM</code></td><td>~2273</td><td>~890</td></tr><tr><td>0.5B</td><td><code>llama-cpp</code></td><td>~1312</td><td>~1440</td></tr><tr><td>7B</td><td><code>vLLM</code></td><td>~354</td><td>~5780</td></tr><tr><td>7B</td><td><code>llama-cpp</code></td><td>~277</td><td>~7200</td></tr></tbody></table>
 <h3 class="anchor anchorTargetStickyNavbar_wKjT" id="test-environment">Test Environment<a href="#test-environment" class="hash-link" aria-label="Direct link to Test Environment" title="Direct link to Test Environment" translate="no">​</a></h3>
 <p>GPU: NVIDIA L40S</p>
