@@ -4,7 +4,7 @@
 [`vLLM`](https://docs.vllm.ai/en/latest/) is an easy-to-use library for LLM inference and serving which support a wide variety of models with optimized kernels ensuring optimal utilization of GPUs.
 
 ## Why `vLLM`?
-We tested `vLLM` and `llama-cpp` on Torch, and found `vLLM` performs better on Torch for `Qwen2.5-0.5B-Instruct` and `Qwen2.5-7B-Instruct` with `256` input and `256` output tokens. In terms of practical usage, vLLM is better suited for high-concurrency and batch workloads, while llama-cpp is more appropriate for lightweight or single-user scenarios.
+We tested `vLLM` and `llama-cpp` on Torch, and found `vLLM` performs better on Torch for `Qwen2.5-0.5B-Instruct` and `Qwen2.5-7B-Instruct` with `256` input and `256` output tokens. Based on our results, vLLM retains a performance advantage over llama-cpp across both model sizes, although the relative gap decreases as the model size increases. In addition, vLLM integrates more naturally with the Hugging Face/Torch ecosystem in HPC environment, whereas llama-cpp requires more manual setup and compatibility adjustment.
 
 |Model|Inference Server|Generated Throughput (tok/s)|Median Latency (ms)|
 |-----|-----|-----|-----|
