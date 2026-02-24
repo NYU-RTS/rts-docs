@@ -199,6 +199,7 @@ const config: Config = {
     },
 
     algolia: {
+      askAi: "8ZKKd4FtQw2e",
       appId: "5Y8Q0MVP6Y",
       apiKey: "765882f24d95c1462561a66b67f33fb8",
       indexName: "algolia-crawler",
