@@ -71,7 +71,8 @@ export const FACET_CONFIGS: FacetConfig[] = [
   {
     id: "risk-classification",
     name: "What is the risk classification of your data?",
-    description: null,
+    description:
+      '<p><strong>Public/Low Risk</strong> if either of the following conditions apply:</p><p>1. The data is generally available to the public, or<br>2. The unauthorized use, access, or alteration of the data would not have an adverse impact on NYU or an individual community member.</p><p><strong>Sensitive/Moderate Risk</strong> if any of the following conditions apply:</p><p>1. The data is governed by laws or regulations that restrict the use or disclosure of such data, or<br>2. The data is subject to contractual restrictions that restrict the use or disclosure of such data, or<br>3. The unauthorized use, access, or alteration of the data could have an adverse impact on NYU or an individual community member.</p><p><strong>Confidential or Restricted / High Risk</strong> if either of the following conditions apply:</p><p>1. The data is governed by laws or regulations that require NYU to report to the government and/or provide notice to individuals if the data is breached, or<br>2. The unauthorized use, access, or alteration of the data could have a significant adverse impact on NYU or an individual community member</p><p><strong>HIPAA Regulated</strong> if the following condition applys:</p><p>1. The data contains personally identifiable health information about patients, including Protected Health Information (PHI), or<br>2. The data matches the policies defined at <a href="https://www.nyu.edu/about/policies-guidelines-compliance/policies-and-guidelines/hipaa-policies.html">HIPAA Security Policies</a></p><p>For more information see <a href="https://www.nyu.edu/about/policies-guidelines-compliance/policies-and-guidelines/electronic-data-and-system-risk-classification.html">Electronic Data and System Risk Classification Policy</a></p>',
     column: "Storable Files",
     controlType: "radio",
     allowMultipleMatches: true,
@@ -128,12 +129,17 @@ export const FACET_CONFIGS: FacetConfig[] = [
   {
     id: "affiliation",
     name: "What is your University affiliation?",
-    description: null,
+    description:
+      '<p>A full-time NYU faculty member can sponsor a non-NYU collaborator for an affiliate status. Please see <a href="https://nyu.service-now.com/sp?sys_kb_id=621146614050d5442a5dc4baadd48b32&id=kb_article_view&sysparm_rank=1&sysparm_tsqueryId=7d719c551b2820d0a54ffdd51a4bcb90">instructions for affiliate management</a> (NYU NetID login is required to follow the link).</p>',
     column: "Eligibility",
     controlType: "radio",
     allowMultipleMatches: true,
     choices: [
-      { id: "affiliation.faculty", name: "Faculty or PI", weight: 0 },
+      {
+        id: "affiliation.faculty",
+        name: "Faculty or research principal investigator (PI)",
+        weight: 0,
+      },
       { id: "affiliation.staff", name: "University staff", weight: 1 },
       { id: "affiliation.student", name: "Student", weight: 2 },
     ],
@@ -155,21 +161,29 @@ export const FACET_CONFIGS: FacetConfig[] = [
     column: "Permission Settings",
     controlType: "checkbox",
     choices: [
-      { id: "access-needs.individual", name: "No sharing", weight: 0 },
-      { id: "access-needs.public", name: "Public access", weight: 1 },
+      {
+        id: "access-needs.individual",
+        name: "No sharing, individual use only",
+        weight: 0,
+      },
+      {
+        id: "access-needs.public",
+        name: "Public access for a research data management plan",
+        weight: 1,
+      },
       {
         id: "access-needs.shared-link",
-        name: "Shared link collaborators",
+        name: "Non-specific collaborators via a shared link",
         weight: 2,
       },
       {
         id: "access-needs.netid-collaborators",
-        name: "Affiliated collaborators with NetIDs",
+        name: "Specific affiliated collaborators with NetIDs",
         weight: 3,
       },
       {
         id: "access-needs.external-collaborators",
-        name: "Collaborators external to NYU",
+        name: "Specific collaborators external to NYU without NetIDs",
         weight: 4,
       },
     ],
@@ -220,6 +234,296 @@ export const FACET_CONFIGS: FacetConfig[] = [
       {
         pattern: /\b(no|not available)\b/i,
         choices: ["backup-availability.no"],
+      },
+    ],
+    fallback: "all",
+  },
+  {
+    id: "synchronous-access",
+    name: "Do you need synchronous or simultaneous access to your data?",
+    description: null,
+    column: "Synchronous Access",
+    controlType: "radio",
+    allowMultipleMatches: true,
+    choices: [
+      {
+        id: "synchronous-access.yes",
+        name: "Yes",
+        weight: 0,
+      },
+      {
+        id: "synchronous-access.no",
+        name: "No",
+        weight: 1,
+      },
+    ],
+    matchers: [
+      {
+        pattern: /\b(yes|users can edit|simultaneously)\b/i,
+        choices: ["synchronous-access.yes"],
+      },
+      {
+        pattern: /\bnot available\b/i,
+        choices: ["synchronous-access.no"],
+      },
+    ],
+    fallback: "all",
+  },
+  {
+    id: "alumni-access",
+    name: "Do you need alumni to have access to your data?",
+    description: null,
+    column: "Alumni Access",
+    controlType: "radio",
+    choices: [
+      { id: "alumni-access.yes", name: "Yes", weight: 0 },
+      { id: "alumni-access.no", name: "No", weight: 1 },
+    ],
+    matchers: [
+      {
+        pattern: /\bNot Available\b/i,
+        choices: ["alumni-access.no"],
+      },
+      {
+        pattern: /^Available$/i,
+        choices: ["alumni-access.yes"],
+      },
+    ],
+    fallback: "all",
+  },
+  {
+    id: "storage-duration",
+    name: "What is your storage duration need?",
+    description: null,
+    column: "Use Case",
+    controlType: "radio",
+    allowMultipleMatches: true,
+    choices: [
+      {
+        id: "storage-duration.long-term",
+        name: "Long-term or archival",
+        weight: 0,
+      },
+      {
+        id: "storage-duration.temporary",
+        name: "Temporary or short-term",
+        weight: 1,
+      },
+    ],
+    matchers: [
+      {
+        pattern: /\b(long.?term|archive|archival|preservation)\b/i,
+        choices: ["storage-duration.long-term"],
+      },
+      {
+        pattern: /\btemporary\b/i,
+        choices: ["storage-duration.temporary"],
+      },
+    ],
+    fallback: "all",
+  },
+  {
+    id: "use-case-purpose",
+    name: "What is the primary purpose for your storage?",
+    description: null,
+    column: "Use Case",
+    controlType: "checkbox",
+    choices: [
+      {
+        id: "use-case-purpose.archive",
+        name: "Archive and preservation",
+        weight: 0,
+      },
+      {
+        id: "use-case-purpose.active-research",
+        name: "Active research and analysis",
+        weight: 1,
+      },
+      {
+        id: "use-case-purpose.collaboration",
+        name: "Collaboration and file sharing",
+        weight: 2,
+      },
+      {
+        id: "use-case-purpose.surveys",
+        name: "Surveys and data collection",
+        weight: 3,
+      },
+      {
+        id: "use-case-purpose.media",
+        name: "Video and audio",
+        weight: 4,
+      },
+      {
+        id: "use-case-purpose.repository",
+        name: "Data repository and publishing",
+        weight: 5,
+      },
+    ],
+    matchers: [
+      {
+        pattern: /\b(archive|archival|preservation)\b/i,
+        choices: ["use-case-purpose.archive"],
+      },
+      {
+        pattern: /\b(research|analysis|hpc|analyze)\b/i,
+        choices: ["use-case-purpose.active-research"],
+      },
+      {
+        pattern: /\b(collaboration|collaborat|share|sharing)\b/i,
+        choices: ["use-case-purpose.collaboration"],
+      },
+      {
+        pattern: /\b(survey|surveys)\b/i,
+        choices: ["use-case-purpose.surveys"],
+      },
+      {
+        pattern: /\b(video|audio|media)\b/i,
+        choices: ["use-case-purpose.media"],
+      },
+      {
+        pattern: /\b(repository|geospatial|deposit|publication)\b/i,
+        choices: ["use-case-purpose.repository"],
+      },
+    ],
+    fallback: "all",
+  },
+  {
+    id: "cost-model",
+    name: "What is your budget for storage?",
+    description: null,
+    column: "Limitations",
+    controlType: "radio",
+    allowMultipleMatches: true,
+    choices: [
+      {
+        id: "cost-model.free",
+        name: "Free or included services",
+        weight: 0,
+      },
+      {
+        id: "cost-model.paid",
+        name: "Willing to pay or use chargeback",
+        weight: 1,
+      },
+    ],
+    matchers: [
+      {
+        pattern: /\b(chargeback|available for a fee)\b/i,
+        choices: ["cost-model.paid"],
+      },
+      {
+        pattern: /\b(free|no cost|included)\b/i,
+        choices: ["cost-model.free"],
+      },
+    ],
+    fallback: "all",
+  },
+  {
+    id: "storage-capacity",
+    name: "What storage capacity do you need?",
+    description: null,
+    column: "Limitations",
+    controlType: "radio",
+    allowMultipleMatches: true,
+    choices: [
+      {
+        id: "storage-capacity.small",
+        name: "Small (< 50 GB)",
+        weight: 0,
+      },
+      {
+        id: "storage-capacity.medium",
+        name: "Medium (50 GB - 2 TB)",
+        weight: 1,
+      },
+      {
+        id: "storage-capacity.large",
+        name: "Large (> 2 TB or unlimited)",
+        weight: 2,
+      },
+    ],
+    matchers: [
+      {
+        pattern: /\b20\s*GB\b/i,
+        choices: ["storage-capacity.small"],
+      },
+      {
+        pattern: /\b(50\s*GB|2TB|2\s*TB)\b/i,
+        choices: ["storage-capacity.small", "storage-capacity.medium"],
+      },
+      {
+        pattern: /\b(5TB|5\s*TB|no limit|unlimited)\b/i,
+        choices: [
+          "storage-capacity.small",
+          "storage-capacity.medium",
+          "storage-capacity.large",
+        ],
+      },
+      {
+        pattern: /\b(not available)\b/i,
+        choices: [
+          "storage-capacity.small",
+          "storage-capacity.medium",
+          "storage-capacity.large",
+        ],
+      },
+    ],
+    fallback: "all",
+  },
+  {
+    id: "special-requirements",
+    name: "Do you have any special requirements or restrictions?",
+    description: null,
+    column: "Limitations",
+    controlType: "checkbox",
+    choices: [
+      {
+        id: "special-requirements.none",
+        name: "No special requirements",
+        weight: 0,
+      },
+      {
+        id: "special-requirements.active-directory",
+        name: "Can use Active Directory",
+        weight: 1,
+      },
+      {
+        id: "special-requirements.faculty-sponsorship",
+        name: "Have faculty sponsorship",
+        weight: 2,
+      },
+      {
+        id: "special-requirements.data-stewardship",
+        name: "Have data stewardship knowledge",
+        weight: 3,
+      },
+      {
+        id: "special-requirements.project-approval",
+        name: "Can get project approval",
+        weight: 4,
+      },
+    ],
+    matchers: [
+      {
+        pattern: /\bactive directory\b/i,
+        choices: ["special-requirements.active-directory"],
+      },
+      {
+        pattern: /\b(faculty sponsorship|faculty sponsored)\b/i,
+        choices: ["special-requirements.faculty-sponsorship"],
+      },
+      {
+        pattern: /\b(data stewardship|stewardship knowledge)\b/i,
+        choices: ["special-requirements.data-stewardship"],
+      },
+      {
+        pattern: /\b(project.*approval|approved by.*staff)\b/i,
+        choices: ["special-requirements.project-approval"],
+      },
+      {
+        pattern: /\b(not available|no limit)\b/i,
+        choices: ["special-requirements.none"],
       },
     ],
     fallback: "all",
