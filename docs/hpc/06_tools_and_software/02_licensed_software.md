@@ -9,9 +9,14 @@ Schrödinger can be used for non-commercial, academic purposes ONLY.
 
 ### Using SCHRODINGER on HPC Cluster
 
-To load Schrodinger module execute
+Schrödinger is available using a wrapper script 
 ```sh
-$ module load schrodinger/2024.4
+$ /share/apps/images/run-schrodinger-2025.4.bash
+```
+Here is an example showing jaguar:
+```sh
+[wang@cs650 ~]$ /share/apps/images/run-schrodinger-2025.4.bash which jaguar
+/ext3/schrodinger/2025.4/jaguar
 ```
 ### Using SCHRODINGER on NYU Lab Computers
 
@@ -27,13 +32,7 @@ Please see the following links for installation of the license file:
 
 To check licenses status
 ```sh
-# module load schrodinger/2021-1 # load schrodinger if not already loaded
-# licadmin STAT 
-# licutil -jobs
-
-## For example:
-
-[wang@cs001 ~]$ licutil -jobs
+[wang@cs001 ~]$ /share/apps/images/run-schrodinger-2025.4.bash licutil -jobs
 ######## Server /share/apps/schrodinger/schrodinger.lic
 Product & job type                            Jobs
 BIOLUMINATE                                     10
@@ -83,12 +82,6 @@ QSITE                                            5
 SITEMAP                                         10
 ```
 
-### Schrodinger Example Files
-Example SBATCH jobs and outputs are available to review here: 
-```sh
-/scratch/work/public/examples/schrodinger/
-```
-
 ## COMSOL
 COMSOL is a problem-solving simulation environment, enforcing compatibility guarantees consistent multiphysics models. COMSOL Multiphysics is a general-purpose software platform, based on advanced numerical methods, for modeling and simulating physics-based problems. The package is cross-platform (Windows, Mac, Linux). The COMSOL Desktop helps you organize your simulation by presenting a clear overview of your model at any point. It uses functional form, structure, and aesthetics as the means to achieve simplicity for modeling complex realities.
 
@@ -101,7 +94,7 @@ In order to check what Comsol licenses are available on Torch use `comsol_licens
 Several versions of COMSOL are available on the HPC cluster. To use COMSOL on the Torch HPC cluster, please 
 load the relevant module in your batch job submission script:
 ```sh
-module load comsol/6.3
+module load comsol/6.3.0
 ```
 To submit a COMSOL job in a parallel fashion, running on multiple processing cores, follow the steps below:
 1.  Create a directory on "scratch" as given below.
