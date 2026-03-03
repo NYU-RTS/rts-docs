@@ -10,8 +10,9 @@ We currently facilitate access to the following externally hosted LLMs:
 -   gemini-embedding-001
 
 ## Anthropic (via GCP VertexAI)
--   Claude Sonnet (4.0 & 3.7)
--   Claude Opus 4.0
+-   Claude Sonnet 4.6 & 4.5
+-   Claude Opus 4.6 & 4.6
+-   Claude Haiku 4.5
 
 ## OpenAI (via Azure OpenAI)
 -   gpt-5-mini
