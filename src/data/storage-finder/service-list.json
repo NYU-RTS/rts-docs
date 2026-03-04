@@ -61,7 +61,7 @@
         "weight": 7
       },
       "field_access_location": {
-        "value": "<p>Not Available</p>",
+        "value": "<p>All</p>",
         "label": "Access Locations",
         "weight": 8
       },
@@ -110,9 +110,6 @@
       "storage-capacity.medium",
       "storage-capacity.large",
       "access-location.vpn",
-      "access-location.public-cloud",
-      "access-location.off-campus",
-      "access-location.browser",
       "special-requirements.none",
       "special-requirements.active-directory",
       "special-requirements.faculty-sponsorship",
@@ -152,7 +149,7 @@
         "weight": 7
       },
       "field_access_location": {
-        "value": "<p>Not Available</p>",
+        "value": "<p>VPN</p>",
         "label": "Access Locations",
         "weight": 8
       },
@@ -200,9 +197,6 @@
       "storage-capacity.medium",
       "storage-capacity.large",
       "access-location.vpn",
-      "access-location.public-cloud",
-      "access-location.off-campus",
-      "access-location.browser",
       "special-requirements.active-directory"
     ],
     "summary": null,
@@ -238,7 +232,7 @@
         "weight": 7
       },
       "field_access_location": {
-        "value": "<p>Not Available</p>",
+        "value": "<p>VPN</p>",
         "label": "Access Locations",
         "weight": 8
       },
@@ -286,9 +280,6 @@
       "storage-capacity.small",
       "storage-capacity.medium",
       "access-location.vpn",
-      "access-location.public-cloud",
-      "access-location.off-campus",
-      "access-location.browser",
       "special-requirements.none",
       "special-requirements.active-directory",
       "special-requirements.faculty-sponsorship",
@@ -328,7 +319,7 @@
         "weight": 7
       },
       "field_access_location": {
-        "value": "<p>Not Available</p>",
+        "value": "<p>VPN</p>",
         "label": "Access Locations",
         "weight": 8
       },
@@ -370,9 +361,6 @@
       "storage-capacity.medium",
       "storage-capacity.large",
       "access-location.vpn",
-      "access-location.public-cloud",
-      "access-location.off-campus",
-      "access-location.browser",
       "special-requirements.none"
     ],
     "summary": null,
@@ -408,7 +396,7 @@
         "weight": 7
       },
       "field_access_location": {
-        "value": "<p>Not Available</p>",
+        "value": "<p>VPN</p>",
         "label": "Access Locations",
         "weight": 8
       },
@@ -455,9 +443,6 @@
       "storage-capacity.small",
       "storage-capacity.medium",
       "access-location.vpn",
-      "access-location.public-cloud",
-      "access-location.off-campus",
-      "access-location.browser",
       "special-requirements.none",
       "special-requirements.active-directory",
       "special-requirements.faculty-sponsorship",
@@ -497,7 +482,7 @@
         "weight": 7
       },
       "field_access_location": {
-        "value": "<p>Not Available</p>",
+        "value": "<p>VPN</p>",
         "label": "Access Locations",
         "weight": 8
       },
@@ -588,7 +573,7 @@
         "weight": 7
       },
       "field_access_location": {
-        "value": "<p>Not Available</p>",
+        "value": "<p>All</p>",
         "label": "Access Locations",
         "weight": 8
       },
@@ -679,7 +664,7 @@
         "weight": 7
       },
       "field_access_location": {
-        "value": "<p>Not Available</p>",
+        "value": "<p>All</p>",
         "label": "Access Locations",
         "weight": 8
       },
@@ -770,7 +755,7 @@
         "weight": 7
       },
       "field_access_location": {
-        "value": "<p>Not Available</p>",
+        "value": "<p>All</p>",
         "label": "Access Locations",
         "weight": 8
       },
@@ -811,9 +796,6 @@
       "storage-capacity.medium",
       "storage-capacity.large",
       "access-location.vpn",
-      "access-location.public-cloud",
-      "access-location.off-campus",
-      "access-location.browser",
       "special-requirements.none",
       "special-requirements.active-directory",
       "special-requirements.faculty-sponsorship",
@@ -853,7 +835,7 @@
         "weight": 7
       },
       "field_access_location": {
-        "value": "<p>Not Available</p>",
+        "value": "<p>VPN</p>",
         "label": "Access Locations",
         "weight": 8
       },
@@ -899,8 +881,6 @@
       "storage-capacity.medium",
       "storage-capacity.large",
       "access-location.vpn",
-      "access-location.public-cloud",
-      "access-location.off-campus",
       "access-location.browser",
       "special-requirements.none"
     ],
@@ -937,7 +917,7 @@
         "weight": 7
       },
       "field_access_location": {
-        "value": "<p>Not Available</p>",
+        "value": "<p>VPN, Browser GUI</p>",
         "label": "Access Locations",
         "weight": 8
       },
@@ -984,8 +964,6 @@
       "storage-capacity.medium",
       "storage-capacity.large",
       "access-location.vpn",
-      "access-location.public-cloud",
-      "access-location.off-campus",
       "access-location.browser",
       "special-requirements.none",
       "special-requirements.active-directory",
@@ -1026,7 +1004,7 @@
         "weight": 7
       },
       "field_access_location": {
-        "value": "<p>Not Available</p>",
+        "value": "<p>VPN, Browser GUI</p>",
         "label": "Access Locations",
         "weight": 8
       },
@@ -1071,9 +1049,6 @@
       "storage-capacity.medium",
       "storage-capacity.large",
       "access-location.vpn",
-      "access-location.public-cloud",
-      "access-location.off-campus",
-      "access-location.browser",
       "special-requirements.project-approval"
     ],
     "summary": null,
@@ -1109,7 +1084,7 @@
         "weight": 7
       },
       "field_access_location": {
-        "value": "<p>Not Available</p>",
+        "value": "<p>VPN</p>",
         "label": "Access Locations",
         "weight": 8
       },
@@ -1157,9 +1132,6 @@
       "storage-capacity.medium",
       "storage-capacity.large",
       "access-location.vpn",
-      "access-location.public-cloud",
-      "access-location.off-campus",
-      "access-location.browser",
       "special-requirements.faculty-sponsorship"
     ],
     "summary": null,
@@ -1195,7 +1167,7 @@
         "weight": 7
       },
       "field_access_location": {
-        "value": "<p>Not Available</p>",
+        "value": "<p>VPN</p>",
         "label": "Access Locations",
         "weight": 8
       },
@@ -1243,7 +1215,6 @@
       "storage-capacity.large",
       "access-location.vpn",
       "access-location.public-cloud",
-      "access-location.off-campus",
       "access-location.browser",
       "special-requirements.data-stewardship"
     ],
@@ -1280,7 +1251,7 @@
         "weight": 7
       },
       "field_access_location": {
-        "value": "<p>Not Available</p>",
+        "value": "<p>VPN, Public Cloud, Browser GUI</p>",
         "label": "Access Locations",
         "weight": 8
       },
@@ -1363,7 +1334,7 @@
         "weight": 7
       },
       "field_access_location": {
-        "value": "<p>Not Available</p>",
+        "value": "<p>All</p>",
         "label": "Access Locations",
         "weight": 8
       },
@@ -1448,7 +1419,7 @@
         "weight": 7
       },
       "field_access_location": {
-        "value": "<p>Not Available</p>",
+        "value": "<p>All</p>",
         "label": "Access Locations",
         "weight": 8
       },
