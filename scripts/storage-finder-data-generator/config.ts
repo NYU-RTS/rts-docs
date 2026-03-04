@@ -75,7 +75,7 @@ export const FIELD_DEFINITIONS: ServiceFieldDefinition[] = [
   {
     fieldKey: "field_additional_features",
     column:
-      "Additional capabilites (Access controls, \nautomated workflows, code sharing,\n data replication, instrument data transfer,\n DOI generation, large data transfers,\n version control)\n",
+      "Additional capabilites (Access controls, \nautomated workflows, code sharing,\n data replication, instrument data transfer,\n DOI generation, large data transfers,\n version control)",
     label: "Additional Features",
     weight: 12,
     formatter: (value) => toHtmlBlocks(value),
