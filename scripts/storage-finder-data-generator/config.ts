@@ -72,6 +72,14 @@ export const FIELD_DEFINITIONS: ServiceFieldDefinition[] = [
     weight: 11,
     formatter: (value) => toHtmlBlocks(value),
   },
+  {
+    fieldKey: "field_additional_features",
+    column:
+      "Additional capabilites (Access controls, \nautomated workflows, code sharing,\n data replication, instrument data transfer,\n DOI generation, large data transfers,\n version control)\n",
+    label: "Additional Features",
+    weight: 12,
+    formatter: (value) => toHtmlBlocks(value),
+  },
 ];
 
 export const FACET_CONFIGS: FacetConfig[] = [
@@ -582,5 +590,90 @@ export const FACET_CONFIGS: FacetConfig[] = [
       },
     ],
     fallback: "all",
+  },
+  {
+    id: "additional-features",
+    name: "What additional features do you need?",
+    description: null,
+    column:
+      "Additional capabilites (Access controls, \nautomated workflows, code sharing,\n data replication, instrument data transfer,\n DOI generation, large data transfers,\n version control)\n",
+    controlType: "checkbox",
+    choices: [
+      {
+        id: "additional-features.access-controls",
+        name: "Access controls",
+        weight: 0,
+      },
+      {
+        id: "additional-features.automated-workflows",
+        name: "Automated workflows",
+        weight: 1,
+      },
+      {
+        id: "additional-features.code-sharing",
+        name: "Code sharing",
+        weight: 2,
+      },
+      {
+        id: "additional-features.data-replication",
+        name: "Data replication",
+        weight: 3,
+      },
+      {
+        id: "additional-features.instrument-data-transfer",
+        name: "Instrument data transfer",
+        weight: 4,
+      },
+      {
+        id: "additional-features.doi-generation",
+        name: "DOI generation",
+        weight: 5,
+      },
+      {
+        id: "additional-features.large-data-transfers",
+        name: "Large data transfers",
+        weight: 6,
+      },
+      {
+        id: "additional-features.version-control",
+        name: "Version control",
+        weight: 7,
+      },
+    ],
+    matchers: [
+      {
+        pattern: /(?:^|,\s*)Access controls(?:\s*,|$)/i,
+        choices: ["additional-features.access-controls"],
+      },
+      {
+        pattern: /(?:^|,\s*)Automated workflows(?:\s*,|$)/i,
+        choices: ["additional-features.automated-workflows"],
+      },
+      {
+        pattern: /(?:^|,\s*)Code sharing(?:\s*,|$)/i,
+        choices: ["additional-features.code-sharing"],
+      },
+      {
+        pattern: /(?:^|,\s*)Data replication(?:\s*,|$)/i,
+        choices: ["additional-features.data-replication"],
+      },
+      {
+        pattern: /(?:^|,\s*)Instrument data transfer(?:\s*,|$)/i,
+        choices: ["additional-features.instrument-data-transfer"],
+      },
+      {
+        pattern: /(?:^|,\s*)DOI generation(?:\s*,|$)/i,
+        choices: ["additional-features.doi-generation"],
+      },
+      {
+        pattern: /(?:^|,\s*)Large data transfers(?:\s*,|$)/i,
+        choices: ["additional-features.large-data-transfers"],
+      },
+      {
+        pattern: /(?:^|,\s*)Version control(?:\s*,|$)/i,
+        choices: ["additional-features.version-control"],
+      },
+    ],
+    fallback: [],
   },
 ];
