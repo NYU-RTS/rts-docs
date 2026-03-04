@@ -490,5 +490,88 @@
         "description": null
       }
     ]
+  },
+  {
+    "id": "additional-features",
+    "name": "What additional features do you need?",
+    "control_type": "checkbox",
+    "parent": "0",
+    "weight": "24",
+    "selected": false,
+    "description": null,
+    "choices": [
+      {
+        "id": "additional-features.access-controls",
+        "name": "Access controls",
+        "control_type": "checkbox",
+        "parent": "additional-features",
+        "weight": "0",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "additional-features.automated-workflows",
+        "name": "Automated workflows",
+        "control_type": "checkbox",
+        "parent": "additional-features",
+        "weight": "1",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "additional-features.code-sharing",
+        "name": "Code sharing",
+        "control_type": "checkbox",
+        "parent": "additional-features",
+        "weight": "2",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "additional-features.data-replication",
+        "name": "Data replication",
+        "control_type": "checkbox",
+        "parent": "additional-features",
+        "weight": "3",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "additional-features.instrument-data-transfer",
+        "name": "Instrument data transfer",
+        "control_type": "checkbox",
+        "parent": "additional-features",
+        "weight": "4",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "additional-features.doi-generation",
+        "name": "DOI generation",
+        "control_type": "checkbox",
+        "parent": "additional-features",
+        "weight": "5",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "additional-features.large-data-transfers",
+        "name": "Large data transfers",
+        "control_type": "checkbox",
+        "parent": "additional-features",
+        "weight": "6",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "additional-features.version-control",
+        "name": "Version control",
+        "control_type": "checkbox",
+        "parent": "additional-features",
+        "weight": "7",
+        "selected": false,
+        "description": null
+      }
+    ]
   }
 ]
