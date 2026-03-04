@@ -507,17 +507,20 @@ export const FACET_CONFIGS: FacetConfig[] = [
       },
     ],
     matchers: [
-      { pattern: /\bVPN\b/i, choices: ["access-location.vpn"] },
       {
-        pattern: /\bPublic Cloud\b/i,
+        pattern: /(?:^|,\s*)VPN(?:\s*,|$)/i,
+        choices: ["access-location.vpn"],
+      },
+      {
+        pattern: /(?:^|,\s*)Public Cloud(?:\s*,|$)/i,
         choices: ["access-location.public-cloud"],
       },
       {
-        pattern: /\bOff Campus\b/i,
+        pattern: /(?:^|,\s*)Off Campus(?:\s*,|$)/i,
         choices: ["access-location.off-campus"],
       },
       {
-        pattern: /\bBrowser GUI\b/i,
+        pattern: /(?:^|,\s*)Browser GUI(?:\s*,|$)/i,
         choices: ["access-location.browser"],
       },
     ],
