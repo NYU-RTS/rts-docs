@@ -17,3 +17,21 @@ Below is a list of modules and their associated functions:
 | module avail                      | check what software packages are available                            |
 | module help `<module-name>`         | A module file may include more detailed help for the software package |
 
+
+## Bioinformatics modules
+Common bioinformatics packages are made available via wrapper scripts that can be loaded as modules. Users can then invoke individual programs through that wrapper.
+```bash
+/share/apps/bioinformatics/20260224/run-bioinformatics.bash which samtools
+/ext3/mamba/envs/bioinformatics/bin/samtools
+
+/share/apps/bioinformatics/20260224/run-bioinformatics.bash which vcftools
+/ext3/mamba/envs/bioinformatics/bin/vcftools
+```
+
+Alternatively, load the module to get these tools on your `$PATH`. This approach keeps the user experience consistent while allowing us to manage the underlying environments through containers.
+
+You can list the packages available within each bioinformatics stack by running:
+```bash
+/share/apps/bioinformatics/20260224/bin/run-bioinformatics micromamba list
+```
+It will print a list of packages within that `micromamba` environment.
