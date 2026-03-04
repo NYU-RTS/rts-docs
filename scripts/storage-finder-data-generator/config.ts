@@ -46,7 +46,7 @@ export const FIELD_DEFINITIONS: ServiceFieldDefinition[] = [
   },
   {
     fieldKey: "field_access_location",
-    column: "Access locations (VPN, Public Cloud, Off Campus, Browser GUI)",
+    column: "Access locations (VPN, Public Cloud, \nOff Campus, Browser GUI)",
     label: "Access Locations",
     weight: 8,
     formatter: (value) => toHtmlBlocks(value),
@@ -482,7 +482,7 @@ export const FACET_CONFIGS: FacetConfig[] = [
     id: "access-location",
     name: "From where will the data be accessed?",
     description: null,
-    column: "Access locations (VPN, Public Cloud, Off Campus, Browser GUI)",
+    column: "Access locations (VPN, Public Cloud, \nOff Campus, Browser GUI)",
     controlType: "checkbox",
     choices: [
       {
