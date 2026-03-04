@@ -389,11 +389,58 @@
     ]
   },
   {
+    "id": "access-location",
+    "name": "From where will the data be accessed?",
+    "control_type": "checkbox",
+    "parent": "0",
+    "weight": "20",
+    "selected": false,
+    "description": null,
+    "choices": [
+      {
+        "id": "access-location.vpn",
+        "name": "On a NYU campus network or remotely through a VPN",
+        "control_type": "checkbox",
+        "parent": "access-location",
+        "weight": "0",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "access-location.public-cloud",
+        "name": "Public Cloud Provider",
+        "control_type": "checkbox",
+        "parent": "access-location",
+        "weight": "1",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "access-location.off-campus",
+        "name": "Off campus without a VPN",
+        "control_type": "checkbox",
+        "parent": "access-location",
+        "weight": "2",
+        "selected": false,
+        "description": null
+      },
+      {
+        "id": "access-location.browser",
+        "name": "From a web browser",
+        "control_type": "checkbox",
+        "parent": "access-location",
+        "weight": "3",
+        "selected": false,
+        "description": null
+      }
+    ]
+  },
+  {
     "id": "special-requirements",
     "name": "Do you have any special requirements or restrictions?",
     "control_type": "checkbox",
     "parent": "0",
-    "weight": "20",
+    "weight": "22",
     "selected": false,
     "description": null,
     "choices": [
