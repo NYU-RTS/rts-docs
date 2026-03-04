@@ -26,7 +26,13 @@
       "special-requirements.active-directory",
       "special-requirements.faculty-sponsorship",
       "special-requirements.data-stewardship",
-      "special-requirements.project-approval"
+      "special-requirements.project-approval",
+      "additional-features.access-controls",
+      "additional-features.automated-workflows",
+      "additional-features.data-replication",
+      "additional-features.instrument-data-transfer",
+      "additional-features.large-data-transfers",
+      "additional-features.version-control"
     ],
     "summary": null,
     "field_data": {
@@ -119,7 +125,8 @@
       "special-requirements.active-directory",
       "special-requirements.faculty-sponsorship",
       "special-requirements.data-stewardship",
-      "special-requirements.project-approval"
+      "special-requirements.project-approval",
+      "additional-features.access-controls"
     ],
     "summary": null,
     "field_data": {
@@ -207,7 +214,11 @@
       "storage-capacity.medium",
       "storage-capacity.large",
       "access-location.vpn",
-      "special-requirements.active-directory"
+      "special-requirements.active-directory",
+      "additional-features.access-controls",
+      "additional-features.automated-workflows",
+      "additional-features.instrument-data-transfer",
+      "additional-features.large-data-transfers"
     ],
     "summary": null,
     "field_data": {
@@ -299,7 +310,8 @@
       "special-requirements.active-directory",
       "special-requirements.faculty-sponsorship",
       "special-requirements.data-stewardship",
-      "special-requirements.project-approval"
+      "special-requirements.project-approval",
+      "additional-features.access-controls"
     ],
     "summary": null,
     "field_data": {
@@ -381,7 +393,9 @@
       "storage-capacity.medium",
       "storage-capacity.large",
       "access-location.vpn",
-      "special-requirements.none"
+      "special-requirements.none",
+      "additional-features.access-controls",
+      "additional-features.large-data-transfers"
     ],
     "summary": null,
     "field_data": {
@@ -472,7 +486,8 @@
       "special-requirements.active-directory",
       "special-requirements.faculty-sponsorship",
       "special-requirements.data-stewardship",
-      "special-requirements.project-approval"
+      "special-requirements.project-approval",
+      "additional-features.access-controls"
     ],
     "summary": null,
     "field_data": {
@@ -568,7 +583,8 @@
       "special-requirements.active-directory",
       "special-requirements.faculty-sponsorship",
       "special-requirements.data-stewardship",
-      "special-requirements.project-approval"
+      "special-requirements.project-approval",
+      "additional-features.access-controls"
     ],
     "summary": null,
     "field_data": {
@@ -760,7 +776,9 @@
       "special-requirements.active-directory",
       "special-requirements.faculty-sponsorship",
       "special-requirements.data-stewardship",
-      "special-requirements.project-approval"
+      "special-requirements.project-approval",
+      "additional-features.access-controls",
+      "additional-features.version-control"
     ],
     "summary": null,
     "field_data": {
@@ -932,7 +950,10 @@
       "storage-capacity.large",
       "access-location.vpn",
       "access-location.browser",
-      "special-requirements.none"
+      "special-requirements.none",
+      "additional-features.access-controls",
+      "additional-features.automated-workflows",
+      "additional-features.version-control"
     ],
     "summary": null,
     "field_data": {
@@ -1197,7 +1218,8 @@
       "storage-capacity.medium",
       "storage-capacity.large",
       "access-location.vpn",
-      "special-requirements.faculty-sponsorship"
+      "special-requirements.faculty-sponsorship",
+      "additional-features.access-controls"
     ],
     "summary": null,
     "field_data": {
@@ -1286,7 +1308,11 @@
       "access-location.vpn",
       "access-location.public-cloud",
       "access-location.browser",
-      "special-requirements.data-stewardship"
+      "special-requirements.data-stewardship",
+      "additional-features.access-controls",
+      "additional-features.automated-workflows",
+      "additional-features.code-sharing",
+      "additional-features.large-data-transfers"
     ],
     "summary": null,
     "field_data": {
@@ -1374,7 +1400,12 @@
       "special-requirements.active-directory",
       "special-requirements.faculty-sponsorship",
       "special-requirements.data-stewardship",
-      "special-requirements.project-approval"
+      "special-requirements.project-approval",
+      "additional-features.access-controls",
+      "additional-features.code-sharing",
+      "additional-features.data-replication",
+      "additional-features.doi-generation",
+      "additional-features.version-control"
     ],
     "summary": null,
     "field_data": {
@@ -1464,7 +1495,8 @@
       "special-requirements.active-directory",
       "special-requirements.faculty-sponsorship",
       "special-requirements.data-stewardship",
-      "special-requirements.project-approval"
+      "special-requirements.project-approval",
+      "additional-features.access-controls"
     ],
     "summary": null,
     "field_data": {
