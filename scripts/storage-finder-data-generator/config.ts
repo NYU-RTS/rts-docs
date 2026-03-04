@@ -642,23 +642,23 @@ export const FACET_CONFIGS: FacetConfig[] = [
     ],
     matchers: [
       {
-        pattern: /(?:^|,\s*)Access controls(?:\s*,|$)/i,
+        pattern: /(?:^|,\s*)access controls(?:\s*,|$)/i,
         choices: ["additional-features.access-controls"],
       },
       {
-        pattern: /(?:^|,\s*)Automated workflows(?:\s*,|$)/i,
+        pattern: /(?:^|,\s*)automated workflows(?:\s*,|$)/i,
         choices: ["additional-features.automated-workflows"],
       },
       {
-        pattern: /(?:^|,\s*)Code sharing(?:\s*,|$)/i,
+        pattern: /(?:^|,\s*)code sharing(?:\s*,|$)/i,
         choices: ["additional-features.code-sharing"],
       },
       {
-        pattern: /(?:^|,\s*)Data replication(?:\s*,|$)/i,
+        pattern: /(?:^|,\s*)data replication(?:\s*,|$)/i,
         choices: ["additional-features.data-replication"],
       },
       {
-        pattern: /(?:^|,\s*)Instrument data transfer(?:\s*,|$)/i,
+        pattern: /(?:^|,\s*)instrument data transfer(?:\s*,|$)/i,
         choices: ["additional-features.instrument-data-transfer"],
       },
       {
@@ -666,11 +666,11 @@ export const FACET_CONFIGS: FacetConfig[] = [
         choices: ["additional-features.doi-generation"],
       },
       {
-        pattern: /(?:^|,\s*)Large data transfers(?:\s*,|$)/i,
+        pattern: /(?:^|,\s*)large data transfers(?:\s*,|$)/i,
         choices: ["additional-features.large-data-transfers"],
       },
       {
-        pattern: /(?:^|,\s*)Version control(?:\s*,|$)/i,
+        pattern: /(?:^|,\s*)version control(?:\s*,|$)/i,
         choices: ["additional-features.version-control"],
       },
     ],
