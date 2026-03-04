@@ -60,6 +60,11 @@
         "label": "Eligibility",
         "weight": 7
       },
+      "field_access_location": {
+        "value": "<p>Not Available</p>",
+        "label": "Access Locations",
+        "weight": 8
+      },
       "field_synchronous_access": {
         "value": "<p>Not Available</p>",
         "label": "Synchronous Access",
@@ -146,6 +151,11 @@
         "label": "Eligibility",
         "weight": 7
       },
+      "field_access_location": {
+        "value": "<p>Not Available</p>",
+        "label": "Access Locations",
+        "weight": 8
+      },
       "field_synchronous_access": {
         "value": "<p>Yes</p>",
         "label": "Synchronous Access",
@@ -226,6 +236,11 @@
         "value": "<p>NYU Units, Faculty, Staff, Researchers</p>",
         "label": "Eligibility",
         "weight": 7
+      },
+      "field_access_location": {
+        "value": "<p>Not Available</p>",
+        "label": "Access Locations",
+        "weight": 8
       },
       "field_synchronous_access": {
         "value": "<p>Unlimited access to the file share but files can only be editable by one person unless the application allows otherwise.</p>",
@@ -312,6 +327,11 @@
         "label": "Eligibility",
         "weight": 7
       },
+      "field_access_location": {
+        "value": "<p>Not Available</p>",
+        "label": "Access Locations",
+        "weight": 8
+      },
       "field_synchronous_access": {
         "value": "<p>Yes</p>",
         "label": "Synchronous Access",
@@ -386,6 +406,11 @@
         "value": "<p>Faculty, Researcher, and Graduate Student HPC user account holders.</p>",
         "label": "Eligibility",
         "weight": 7
+      },
+      "field_access_location": {
+        "value": "<p>Not Available</p>",
+        "label": "Access Locations",
+        "weight": 8
       },
       "field_synchronous_access": {
         "value": "<p>Not Available.</p>",
@@ -470,6 +495,11 @@
         "value": "<p>Faculty sponsored</p>",
         "label": "Eligibility",
         "weight": 7
+      },
+      "field_access_location": {
+        "value": "<p>Not Available</p>",
+        "label": "Access Locations",
+        "weight": 8
       },
       "field_synchronous_access": {
         "value": "<p>Yes</p>",
@@ -557,6 +587,11 @@
         "label": "Eligibility",
         "weight": 7
       },
+      "field_access_location": {
+        "value": "<p>Not Available</p>",
+        "label": "Access Locations",
+        "weight": 8
+      },
       "field_synchronous_access": {
         "value": "<p>Up to 20 users can edit and comment simultaneously</p>",
         "label": "Synchronous Access",
@@ -642,6 +677,11 @@
         "value": "<p>Faculty, Staff, Students, Researchers</p>",
         "label": "Eligibility",
         "weight": 7
+      },
+      "field_access_location": {
+        "value": "<p>Not Available</p>",
+        "label": "Access Locations",
+        "weight": 8
       },
       "field_synchronous_access": {
         "value": "<p>Up to 100 users can edit &amp; comment simultaneously</p>",
@@ -729,6 +769,11 @@
         "label": "Eligibility",
         "weight": 7
       },
+      "field_access_location": {
+        "value": "<p>Not Available</p>",
+        "label": "Access Locations",
+        "weight": 8
+      },
       "field_synchronous_access": {
         "value": "<p>Up to 100 users can edit &amp; comment simultaneously</p>",
         "label": "Synchronous Access",
@@ -806,6 +851,11 @@
         "value": "<p>Students, Faculty, Staff</p>",
         "label": "Eligibility",
         "weight": 7
+      },
+      "field_access_location": {
+        "value": "<p>Not Available</p>",
+        "label": "Access Locations",
+        "weight": 8
       },
       "field_synchronous_access": {
         "value": "<p>Not Available</p>",
@@ -885,6 +935,11 @@
         "value": "<p>Current Faculty, Retired Faculty, Staff, Students &amp; Researchers</p>",
         "label": "Eligibility",
         "weight": 7
+      },
+      "field_access_location": {
+        "value": "<p>Not Available</p>",
+        "label": "Access Locations",
+        "weight": 8
       },
       "field_synchronous_access": {
         "value": "<p>Yes</p>",
@@ -970,6 +1025,11 @@
         "label": "Eligibility",
         "weight": 7
       },
+      "field_access_location": {
+        "value": "<p>Not Available</p>",
+        "label": "Access Locations",
+        "weight": 8
+      },
       "field_synchronous_access": {
         "value": "<p>Yes</p>",
         "label": "Synchronous Access",
@@ -1047,6 +1107,11 @@
         "value": "<p>Faculty, and Researchers</p>",
         "label": "Eligibility",
         "weight": 7
+      },
+      "field_access_location": {
+        "value": "<p>Not Available</p>",
+        "label": "Access Locations",
+        "weight": 8
       },
       "field_synchronous_access": {
         "value": "<p>Yes</p>",
@@ -1129,6 +1194,11 @@
         "label": "Eligibility",
         "weight": 7
       },
+      "field_access_location": {
+        "value": "<p>Not Available</p>",
+        "label": "Access Locations",
+        "weight": 8
+      },
       "field_synchronous_access": {
         "value": "<p>Not Available</p>",
         "label": "Synchronous Access",
@@ -1209,6 +1279,11 @@
         "label": "Eligibility",
         "weight": 7
       },
+      "field_access_location": {
+        "value": "<p>Not Available</p>",
+        "label": "Access Locations",
+        "weight": 8
+      },
       "field_synchronous_access": {
         "value": "<p>Not Available</p>",
         "label": "Synchronous Access",
@@ -1286,6 +1361,11 @@
         "value": "<p>Faculty, Staff, Students &amp; Researchers</p>",
         "label": "Eligibility",
         "weight": 7
+      },
+      "field_access_location": {
+        "value": "<p>Not Available</p>",
+        "label": "Access Locations",
+        "weight": 8
       },
       "field_synchronous_access": {
         "value": "<p>Not Available</p>",
@@ -1366,6 +1446,11 @@
         "value": "<p>Faculty, Staff, Students &amp; Researchers</p>",
         "label": "Eligibility",
         "weight": 7
+      },
+      "field_access_location": {
+        "value": "<p>Not Available</p>",
+        "label": "Access Locations",
+        "weight": 8
       },
       "field_synchronous_access": {
         "value": "<p>Not Available</p>",
