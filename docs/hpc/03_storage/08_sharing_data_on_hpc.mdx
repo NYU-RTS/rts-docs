@@ -60,6 +60,24 @@ A::EVERYONE@:rtncy
 ```
 where `collaborator-netid` refers to the `NetID` of your collaborator.
 
+#### New NFS4 FACL Example
+This example will grant a user, kevin, access to a shared directory in susie's /scratch directory. 
+
+To share a specific directory and all subdirectories a user would run something like this:
+
+```sh
+nfs4_setfacl -a "A::kevin:RX" /scratch/susie
+```
+
+The above grants kevin basic read/execute to /scratch susie, which is required to see directories and files below `/scratch/susie`.
+
+```sh
+nfs4_setfacl -R -a "A:df:kevin:RWX" /scratch/susie/share
+```
+
+The above would allow kevin to have have read, write, and execute access for *all directories* and files inside `/scratch/susie/share`
+
+
 ## Linux Groups for Group Permissions
 The HPC team allows teams to manage group membership using a IPA Linux Group. This is a good choice for when all users need the same read/write/execute permissions for a directory and subdirectories.
 
