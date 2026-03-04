@@ -472,6 +472,51 @@ export const FACET_CONFIGS: FacetConfig[] = [
     fallback: "all",
   },
   {
+    id: "access-location",
+    name: "From where will the data be accessed?",
+    description: null,
+    column: "Access locations (VPN, Public Cloud, Off Campus, Browser GUI)",
+    controlType: "checkbox",
+    choices: [
+      {
+        id: "access-location.vpn",
+        name: "On a NYU campus network or remotely through a VPN",
+        weight: 0,
+      },
+      {
+        id: "access-location.public-cloud",
+        name: "Public Cloud Provider",
+        weight: 1,
+      },
+      {
+        id: "access-location.off-campus",
+        name: "Off campus without a VPN",
+        weight: 2,
+      },
+      {
+        id: "access-location.browser",
+        name: "From a web browser",
+        weight: 3,
+      },
+    ],
+    matchers: [
+      { pattern: /\bVPN\b/i, choices: ["access-location.vpn"] },
+      {
+        pattern: /\bPublic Cloud\b/i,
+        choices: ["access-location.public-cloud"],
+      },
+      {
+        pattern: /\bOff Campus\b/i,
+        choices: ["access-location.off-campus"],
+      },
+      {
+        pattern: /\bBrowser GUI\b/i,
+        choices: ["access-location.browser"],
+      },
+    ],
+    fallback: "all",
+  },
+  {
     id: "special-requirements",
     name: "Do you have any special requirements or restrictions?",
     description: null,
