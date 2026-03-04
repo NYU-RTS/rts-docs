@@ -45,6 +45,13 @@ export const FIELD_DEFINITIONS: ServiceFieldDefinition[] = [
     formatter: (value) => toHtmlBlocks(value),
   },
   {
+    fieldKey: "field_access_location",
+    column: "Access locations (VPN, Public Cloud, Off Campus, Browser GUI)",
+    label: "Access Locations",
+    weight: 8,
+    formatter: (value) => toHtmlBlocks(value),
+  },
+  {
     fieldKey: "field_synchronous_access",
     column: "Synchronous Access",
     label: "Synchronous Access",
