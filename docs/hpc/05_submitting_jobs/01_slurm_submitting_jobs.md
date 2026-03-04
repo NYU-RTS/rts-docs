@@ -5,7 +5,7 @@ If you are new to using HPC resources and would like to learn about the principl
 :::
 
 :::warning Active allocation in the HPC projects portal
-An active allocation in the HPC projects portal is needed to submit any jobs on Torch. For more information on how to get one, please refer to [this section](../01_getting_started/07_hpc_project_management_portal.mdx). All job submissions must include the `--account` parameter.
+An active allocation in the HPC projects portal is needed to submit any jobs on Torch. For more information on how to get one, please refer to [this section](../01_getting_started/07_hpc_project_management_portal.mdx). All job submissions must include the `--account` parameter. On Torch, you can list the SLURM accounts you have access to by running the command `my_slurm_accounts`.
 ::: 
 
 ## Partitions
