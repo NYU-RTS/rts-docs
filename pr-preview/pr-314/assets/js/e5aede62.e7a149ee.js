@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkrts_docs=self.webpackChunkrts_docs||[]).push([["3723"],{16110(e){e.exports=JSON.parse('{"metadata":{"permalink":"/pr-preview/pr-314/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":2,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);
