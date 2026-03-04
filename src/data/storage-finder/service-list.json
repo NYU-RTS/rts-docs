@@ -81,7 +81,7 @@
         "weight": 11
       },
       "field_additional_features": {
-        "value": "<p>Access controls, automated workflows, data replication, instrument data transfer, large data transfers, version control</p>",
+        "value": "<p>access controls, automated workflows, data replication, instrument data transfer, large data transfers, version control</p>",
         "label": "Additional Features",
         "weight": 12
       }
@@ -174,7 +174,7 @@
         "weight": 11
       },
       "field_additional_features": {
-        "value": "<p>Access controls</p>",
+        "value": "<p>access controls</p>",
         "label": "Additional Features",
         "weight": 12
       }
@@ -262,7 +262,7 @@
         "weight": 11
       },
       "field_additional_features": {
-        "value": "<p>Access controls, automated workflows, instrument data transfer, large data transfers, version control</p>",
+        "value": "<p>access controls, automated workflows, instrument data transfer, large data transfers, version control</p>",
         "label": "Additional Features",
         "weight": 12
       }
@@ -354,7 +354,7 @@
         "weight": 11
       },
       "field_additional_features": {
-        "value": "<p>Access controls</p>",
+        "value": "<p>access controls</p>",
         "label": "Additional Features",
         "weight": 12
       }
@@ -436,7 +436,7 @@
         "weight": 11
       },
       "field_additional_features": {
-        "value": "<p>Access controls, large data transfers</p>",
+        "value": "<p>access controls, large data transfers</p>",
         "label": "Additional Features",
         "weight": 12
       }
@@ -527,7 +527,7 @@
         "weight": 11
       },
       "field_additional_features": {
-        "value": "<p>Access controls</p>",
+        "value": "<p>access controls</p>",
         "label": "Additional Features",
         "weight": 12
       }
@@ -623,7 +623,7 @@
         "weight": 11
       },
       "field_additional_features": {
-        "value": "<p>Access controls</p>",
+        "value": "<p>access controls</p>",
         "label": "Additional Features",
         "weight": 12
       }
@@ -719,7 +719,7 @@
         "weight": 11
       },
       "field_additional_features": {
-        "value": "<p>Access controls</p>",
+        "value": "<p>access controls</p>",
         "label": "Additional Features",
         "weight": 12
       }
@@ -815,7 +815,7 @@
         "weight": 11
       },
       "field_additional_features": {
-        "value": "<p>Access controls, version control</p>",
+        "value": "<p>access controls, version control</p>",
         "label": "Additional Features",
         "weight": 12
       }
@@ -900,7 +900,7 @@
         "weight": 11
       },
       "field_additional_features": {
-        "value": "<p>Access controls</p>",
+        "value": "<p>access controls</p>",
         "label": "Additional Features",
         "weight": 12
       }
@@ -987,7 +987,7 @@
         "weight": 11
       },
       "field_additional_features": {
-        "value": "<p>Access controls, automated workflows, version control</p>",
+        "value": "<p>access controls, automated workflows, version control</p>",
         "label": "Additional Features",
         "weight": 12
       }
@@ -1079,7 +1079,7 @@
         "weight": 11
       },
       "field_additional_features": {
-        "value": "<p>Access controls</p>",
+        "value": "<p>access controls</p>",
         "label": "Additional Features",
         "weight": 12
       }
@@ -1164,7 +1164,7 @@
         "weight": 11
       },
       "field_additional_features": {
-        "value": "<p>Access controls</p>",
+        "value": "<p>access controls</p>",
         "label": "Additional Features",
         "weight": 12
       }
@@ -1252,7 +1252,7 @@
         "weight": 11
       },
       "field_additional_features": {
-        "value": "<p>Access controls, large data transfer</p>",
+        "value": "<p>access controls, large data transfer</p>",
         "label": "Additional Features",
         "weight": 12
       }
@@ -1341,7 +1341,7 @@
         "weight": 11
       },
       "field_additional_features": {
-        "value": "<p>Access controls, automated workflows, code sharing, large data transfers, version control</p>",
+        "value": "<p>access controls, automated workflows, code sharing, large data transfers, version control</p>",
         "label": "Additional Features",
         "weight": 12
       }
@@ -1429,7 +1429,7 @@
         "weight": 11
       },
       "field_additional_features": {
-        "value": "<p>Access controls, code sharing, data replication, DOI generation, version control</p>",
+        "value": "<p>access controls, code sharing, data replication, DOI generation, version control</p>",
         "label": "Additional Features",
         "weight": 12
       }
@@ -1519,7 +1519,7 @@
         "weight": 11
       },
       "field_additional_features": {
-        "value": "<p>Access controls</p>",
+        "value": "<p>access controls</p>",
         "label": "Additional Features",
         "weight": 12
       }
