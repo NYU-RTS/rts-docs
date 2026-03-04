@@ -1021,87 +1021,6 @@
     }
   },
   {
-    "id": "research-archival-storage",
-    "title": "Research Archival Storage",
-    "facet_matches": [
-      "risk-classification.public-low",
-      "risk-classification.sensitive-moderate",
-      "affiliation.faculty",
-      "access-needs.individual",
-      "access-needs.public",
-      "access-needs.shared-link",
-      "access-needs.netid-collaborators",
-      "access-needs.external-collaborators",
-      "backup-availability.yes",
-      "synchronous-access.yes",
-      "alumni-access.yes",
-      "storage-duration.long-term",
-      "use-case-purpose.archive",
-      "use-case-purpose.active-research",
-      "use-case-purpose.collaboration",
-      "use-case-purpose.surveys",
-      "use-case-purpose.media",
-      "use-case-purpose.repository",
-      "cost-model.free",
-      "cost-model.paid",
-      "storage-capacity.small",
-      "storage-capacity.medium",
-      "special-requirements.none",
-      "special-requirements.active-directory",
-      "special-requirements.faculty-sponsorship",
-      "special-requirements.data-stewardship",
-      "special-requirements.project-approval"
-    ],
-    "summary": null,
-    "field_data": {
-      "field_links": {
-        "value": "<p><a href=\"http://hpc.nyu.edu/\">Research Archival Storage</a></p>",
-        "label": "Links",
-        "weight": 2
-      },
-      "field_storable_files": {
-        "value": "<p>Moderate</p>",
-        "label": "Storable Files",
-        "weight": 3
-      },
-      "field_use_case": {
-        "value": "<p>Long term storage</p>",
-        "label": "Use Case",
-        "weight": 4
-      },
-      "field_limitations": {
-        "value": "<p>2TB limit</p>",
-        "label": "Limitations",
-        "weight": 5
-      },
-      "field_permission_settings": {
-        "value": "<p>User controlled using facl</p>",
-        "label": "Permission Settings",
-        "weight": 6
-      },
-      "field_eligibility": {
-        "value": "<p>Faculty sponsored</p>",
-        "label": "Eligibility",
-        "weight": 7
-      },
-      "field_synchronous_access": {
-        "value": "<p>Yes</p>",
-        "label": "Synchronous Access",
-        "weight": 9
-      },
-      "field_alumni_access": {
-        "value": "<p>Available</p>",
-        "label": "Alumni Access",
-        "weight": 10
-      },
-      "field_backup": {
-        "value": "<p>Yes</p>",
-        "label": "Backup",
-        "weight": 11
-      }
-    }
-  },
-  {
     "id": "research-data-lake-pilot",
     "title": "Research Data Lake (Pilot)",
     "facet_matches": [
@@ -1329,84 +1248,11 @@
     }
   },
   {
-    "id": "spatial-data-repository",
-    "title": "Spatial Data Repository",
-    "facet_matches": [
-      "risk-classification.public-low",
-      "affiliation.faculty",
-      "affiliation.staff",
-      "access-needs.individual",
-      "access-needs.public",
-      "access-needs.shared-link",
-      "access-needs.netid-collaborators",
-      "access-needs.external-collaborators",
-      "backup-availability.yes",
-      "synchronous-access.no",
-      "alumni-access.no",
-      "storage-duration.long-term",
-      "storage-duration.temporary",
-      "use-case-purpose.repository",
-      "cost-model.free",
-      "cost-model.paid",
-      "storage-capacity.small",
-      "storage-capacity.medium",
-      "storage-capacity.large",
-      "special-requirements.none"
-    ],
-    "summary": null,
-    "field_data": {
-      "field_links": {
-        "value": "<p><a href=\"https://geo.nyu.edu/\">Spatial Data Repository</a></p>",
-        "label": "Links",
-        "weight": 2
-      },
-      "field_storable_files": {
-        "value": "<p>Low</p>",
-        "label": "Storable Files",
-        "weight": 3
-      },
-      "field_use_case": {
-        "value": "<p>A collection of Geospatial Data from Open Data and proprietary resources. Users can download layers and work with them in many GIS platforms</p>",
-        "label": "Use Case",
-        "weight": 4
-      },
-      "field_limitations": {
-        "value": "<p>Not Available</p>",
-        "label": "Limitations",
-        "weight": 5
-      },
-      "field_permission_settings": {
-        "value": "<p>Not Available</p>",
-        "label": "Permission Settings",
-        "weight": 6
-      },
-      "field_eligibility": {
-        "value": "<p>Current Faculty, Staff, Students &amp; Researchers</p>",
-        "label": "Eligibility",
-        "weight": 7
-      },
-      "field_synchronous_access": {
-        "value": "<p>Not Available</p>",
-        "label": "Synchronous Access",
-        "weight": 9
-      },
-      "field_alumni_access": {
-        "value": "<p>Not Available</p>",
-        "label": "Alumni Access",
-        "weight": 10
-      },
-      "field_backup": {
-        "value": "<p>Yes</p>",
-        "label": "Backup",
-        "weight": 11
-      }
-    }
-  },
-  {
     "id": "ultraviolet-repository",
     "title": "Ultraviolet Repository",
     "facet_matches": [
       "risk-classification.public-low",
+      "risk-classification.sensitive-moderate",
       "affiliation.faculty",
       "affiliation.staff",
       "access-needs.public",
@@ -1429,17 +1275,17 @@
     "summary": null,
     "field_data": {
       "field_links": {
-        "value": "<p><a href=\"https://www.nyu.edu/life/information-technology/web-and-digital-publishing/collections-and-repositories/ultraviolet.html\">Ultraviolet Repository</a></p>",
+        "value": "<p><a href=\"https://ultraviolet.library.nyu.edu/\">Ultraviolet Repository</a></p>",
         "label": "Links",
         "weight": 2
       },
       "field_storable_files": {
-        "value": "<p>Low</p>",
+        "value": "<p>Moderate</p>",
         "label": "Storable Files",
         "weight": 3
       },
       "field_use_case": {
-        "value": "<p>To deposit scholarly materials as open access publication and long-term preservation</p>",
+        "value": "<p>A repository for scholarly materials which are deposited for open access publication and long-term preservation</p>",
         "label": "Use Case",
         "weight": 4
       },
@@ -1465,6 +1311,82 @@
       },
       "field_alumni_access": {
         "value": "<p>Available</p>",
+        "label": "Alumni Access",
+        "weight": 10
+      },
+      "field_backup": {
+        "value": "<p>Yes</p>",
+        "label": "Backup",
+        "weight": 11
+      }
+    }
+  },
+  {
+    "id": "faculty-digital-archive",
+    "title": "Faculty Digital Archive",
+    "facet_matches": [
+      "risk-classification.public-low",
+      "risk-classification.sensitive-moderate",
+      "affiliation.faculty",
+      "affiliation.staff",
+      "access-needs.public",
+      "backup-availability.yes",
+      "synchronous-access.yes",
+      "synchronous-access.no",
+      "alumni-access.no",
+      "storage-duration.long-term",
+      "use-case-purpose.archive",
+      "use-case-purpose.repository",
+      "cost-model.free",
+      "cost-model.paid",
+      "storage-capacity.small",
+      "storage-capacity.medium",
+      "storage-capacity.large",
+      "special-requirements.none",
+      "special-requirements.active-directory",
+      "special-requirements.faculty-sponsorship",
+      "special-requirements.data-stewardship",
+      "special-requirements.project-approval"
+    ],
+    "summary": null,
+    "field_data": {
+      "field_links": {
+        "value": "<p><a href=\"https://archive.nyu.edu/\">Faculty Digital Archive</a></p>",
+        "label": "Links",
+        "weight": 2
+      },
+      "field_storable_files": {
+        "value": "<p>Moderate</p>",
+        "label": "Storable Files",
+        "weight": 3
+      },
+      "field_use_case": {
+        "value": "<p>A repository for scholarly materials which are deposited for open access publication and long-term preservation</p>",
+        "label": "Use Case",
+        "weight": 4
+      },
+      "field_limitations": {
+        "value": "<p>Not Available</p>",
+        "label": "Limitations",
+        "weight": 5
+      },
+      "field_permission_settings": {
+        "value": "<p>Public visibility by default</p>",
+        "label": "Permission Settings",
+        "weight": 6
+      },
+      "field_eligibility": {
+        "value": "<p>Faculty, Staff, Students &amp; Researchers</p>",
+        "label": "Eligibility",
+        "weight": 7
+      },
+      "field_synchronous_access": {
+        "value": "<p>Not Available</p>",
+        "label": "Synchronous Access",
+        "weight": 9
+      },
+      "field_alumni_access": {
+        "value": "<p>Not Available</p>",
         "label": "Alumni Access",
         "weight": 10
       },
