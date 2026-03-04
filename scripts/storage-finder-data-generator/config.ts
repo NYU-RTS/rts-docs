@@ -596,7 +596,7 @@ export const FACET_CONFIGS: FacetConfig[] = [
     name: "What additional features do you need?",
     description: null,
     column:
-      "Additional capabilites (Access controls, \nautomated workflows, code sharing,\n data replication, instrument data transfer,\n DOI generation, large data transfers,\n version control)\n",
+      "Additional capabilites (Access controls, \nautomated workflows, code sharing,\n data replication, instrument data transfer,\n DOI generation, large data transfers,\n version control)",
     controlType: "checkbox",
     choices: [
       {
