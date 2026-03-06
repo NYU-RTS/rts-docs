@@ -479,8 +479,6 @@ export const FACET_CONFIGS: FacetConfig[] = [
         pattern: /\b(not available)\b/i,
         choices: [
           "storage-capacity.small",
-          "storage-capacity.medium",
-          "storage-capacity.large",
         ],
       },
     ],
