@@ -660,7 +660,8 @@
       "special-requirements.active-directory",
       "special-requirements.faculty-sponsorship",
       "special-requirements.data-stewardship",
-      "special-requirements.project-approval"
+      "special-requirements.project-approval",
+      "additional-features.access-controls"
     ],
     "summary": null,
     "field_data": {
