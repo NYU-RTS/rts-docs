@@ -1438,7 +1438,7 @@
       "backup-availability.yes",
       "synchronous-access.yes",
       "synchronous-access.no",
-      "alumni-access.no",
+      "alumni-access.yes",
       "storage-duration.long-term",
       "use-case-purpose.archive",
       "use-case-purpose.repository",
@@ -1476,7 +1476,7 @@
         "weight": 4
       },
       "field_limitations": {
-        "value": "<p>Not Available</p>",
+        "value": "<p>Small sized projects</p>",
         "label": "Limitations",
         "weight": 5
       },
@@ -1501,7 +1501,7 @@
         "weight": 9
       },
       "field_alumni_access": {
-        "value": "<p>Not Available</p>",
+        "value": "<p>Available</p>",
         "label": "Alumni Access",
         "weight": 10
       },
