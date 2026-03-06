@@ -28,9 +28,7 @@
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-tooltip": "^1.2.8",
     "clsx": "^2.1.1",
-    "docusaurus-lunr-search": "^3.6.0",
     "lucide-react": "^0.514.0",
-    "lunr": "^2.3.9",
     "prism-react-renderer": "^2.4.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
@@ -44,7 +42,7 @@
     "@eslint/compat": "^1.4.1",
     "@types/react": "^19.2.14",
     "csv-parse": "^6.1.0",
-    "eslint": "^9.39.2",
+    "eslint": "^9.39.3",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import": "^2.32.0",
@@ -62,7 +60,7 @@
     "stylelint-config-standard": "^38.0.0",
     "stylelint-order": "^7.0.1",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.55.0"
+    "typescript-eslint": "^8.56.0"
   },
   "browserslist": {
     "production": [
