@@ -103,7 +103,7 @@
       "access-needs.netid-collaborators",
       "backup-availability.yes",
       "synchronous-access.yes",
-      "alumni-access.no",
+      "alumni-access.yes",
       "storage-duration.long-term",
       "use-case-purpose.archive",
       "use-case-purpose.active-research",
@@ -167,7 +167,7 @@
         "weight": 9
       },
       "field_alumni_access": {
-        "value": "<p>Not Available</p>",
+        "value": "<p>Available</p>",
         "label": "Alumni Access",
         "weight": 10
       },
@@ -214,7 +214,8 @@
       "additional-features.access-controls",
       "additional-features.automated-workflows",
       "additional-features.instrument-data-transfer",
-      "additional-features.large-data-transfers"
+      "additional-features.large-data-transfers",
+      "additional-features.version-control"
     ],
     "summary": null,
     "field_data": {
@@ -840,7 +841,8 @@
       "special-requirements.active-directory",
       "special-requirements.faculty-sponsorship",
       "special-requirements.data-stewardship",
-      "special-requirements.project-approval"
+      "special-requirements.project-approval",
+      "additional-features.access-controls"
     ],
     "summary": null,
     "field_data": {
@@ -1014,7 +1016,8 @@
       "special-requirements.active-directory",
       "special-requirements.faculty-sponsorship",
       "special-requirements.data-stewardship",
-      "special-requirements.project-approval"
+      "special-requirements.project-approval",
+      "additional-features.access-controls"
     ],
     "summary": null,
     "field_data": {
@@ -1099,7 +1102,8 @@
       "storage-capacity.medium",
       "storage-capacity.large",
       "access-location.vpn",
-      "special-requirements.project-approval"
+      "special-requirements.project-approval",
+      "additional-features.access-controls"
     ],
     "summary": null,
     "field_data": {
@@ -1273,7 +1277,8 @@
       "additional-features.access-controls",
       "additional-features.automated-workflows",
       "additional-features.code-sharing",
-      "additional-features.large-data-transfers"
+      "additional-features.large-data-transfers",
+      "additional-features.version-control"
     ],
     "summary": null,
     "field_data": {
