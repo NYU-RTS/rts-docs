@@ -601,7 +601,7 @@ export const FACET_CONFIGS: FacetConfig[] = [
     choices: [
       {
         id: "additional-features.access-controls",
-        name: "Access controls",
+        name: "Restrict access to data via programmatic access controls",
         weight: 0,
       },
       {
