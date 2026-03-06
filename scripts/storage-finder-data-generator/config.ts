@@ -300,7 +300,7 @@ export const FACET_CONFIGS: FacetConfig[] = [
         choices: ["alumni-access.no"],
       },
       {
-        pattern: /^Available$/i,
+        pattern: /^\s*Available\s*$/im,
         choices: ["alumni-access.yes"],
       },
     ],
@@ -516,19 +516,19 @@ export const FACET_CONFIGS: FacetConfig[] = [
     ],
     matchers: [
       {
-        pattern: /(?:^|,\s*)VPN(?:\s*,|$)/i,
+        pattern: /(?:^\s*|,\s*)VPN(?:\s*,|\s*$)/im,
         choices: ["access-location.vpn"],
       },
       {
-        pattern: /(?:^|,\s*)Public Cloud(?:\s*,|$)/i,
+        pattern: /(?:^\s*|,\s*)Public Cloud(?:\s*,|\s*$)/im,
         choices: ["access-location.public-cloud"],
       },
       {
-        pattern: /(?:^|,\s*)Off Campus(?:\s*,|$)/i,
+        pattern: /(?:^\s*|,\s*)Off Campus(?:\s*,|\s*$)/im,
         choices: ["access-location.off-campus"],
       },
       {
-        pattern: /(?:^|,\s*)Browser GUI(?:\s*,|$)/i,
+        pattern: /(?:^\s*|,\s*)Browser GUI(?:\s*,|\s*$)/im,
         choices: ["access-location.browser"],
       },
     ],
@@ -642,35 +642,35 @@ export const FACET_CONFIGS: FacetConfig[] = [
     ],
     matchers: [
       {
-        pattern: /(?:^|,\s*)access controls(?:\s*,|$)/i,
+        pattern: /(?:^\s*|,\s*)access controls(?:\s*,|\s*$)/im,
         choices: ["additional-features.access-controls"],
       },
       {
-        pattern: /(?:^|,\s*)automated workflows(?:\s*,|$)/i,
+        pattern: /(?:^\s*|,\s*)automated workflows(?:\s*,|\s*$)/im,
         choices: ["additional-features.automated-workflows"],
       },
       {
-        pattern: /(?:^|,\s*)code sharing(?:\s*,|$)/i,
+        pattern: /(?:^\s*|,\s*)code sharing(?:\s*,|\s*$)/im,
         choices: ["additional-features.code-sharing"],
       },
       {
-        pattern: /(?:^|,\s*)data replication(?:\s*,|$)/i,
+        pattern: /(?:^\s*|,\s*)data replication(?:\s*,|\s*$)/im,
         choices: ["additional-features.data-replication"],
       },
       {
-        pattern: /(?:^|,\s*)instrument data transfer(?:\s*,|$)/i,
+        pattern: /(?:^\s*|,\s*)instrument data transfer(?:\s*,|\s*$)/im,
         choices: ["additional-features.instrument-data-transfer"],
       },
       {
-        pattern: /(?:^|,\s*)DOI generation(?:\s*,|$)/i,
+        pattern: /(?:^\s*|,\s*)DOI generation(?:\s*,|\s*$)/im,
         choices: ["additional-features.doi-generation"],
       },
       {
-        pattern: /(?:^|,\s*)large data transfers(?:\s*,|$)/i,
+        pattern: /(?:^\s*|,\s*)large data transfers(?:\s*,|\s*$)/im,
         choices: ["additional-features.large-data-transfers"],
       },
       {
-        pattern: /(?:^|,\s*)version control(?:\s*,|$)/i,
+        pattern: /(?:^\s*|,\s*)version control(?:\s*,|\s*$)/im,
         choices: ["additional-features.version-control"],
       },
     ],
