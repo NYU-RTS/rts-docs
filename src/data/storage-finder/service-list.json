@@ -167,7 +167,7 @@
         "weight": 9
       },
       "field_alumni_access": {
-        "value": "<p>Available</p>",
+        "value": "<p>Available, via affiliate status</p>",
         "label": "Alumni Access",
         "weight": 10
       },
@@ -349,7 +349,7 @@
         "weight": 9
       },
       "field_alumni_access": {
-        "value": "<p>Available</p>",
+        "value": "<p>Available, via affiliate status</p>",
         "label": "Alumni Access",
         "weight": 10
       },
@@ -521,7 +521,7 @@
         "weight": 9
       },
       "field_alumni_access": {
-        "value": "<p>Available</p>",
+        "value": "<p>Available, via affiliate status</p>",
         "label": "Alumni Access",
         "weight": 10
       },
@@ -547,7 +547,7 @@
       "access-needs.netid-collaborators",
       "backup-availability.yes",
       "synchronous-access.yes",
-      "alumni-access.no",
+      "alumni-access.yes",
       "storage-duration.long-term",
       "storage-duration.temporary",
       "use-case-purpose.archive",
@@ -614,7 +614,7 @@
         "weight": 9
       },
       "field_alumni_access": {
-        "value": "<p>Not Available</p>",
+        "value": "<p>Available, via affiliate status</p>",
         "label": "Alumni Access",
         "weight": 10
       },
@@ -707,7 +707,7 @@
         "weight": 9
       },
       "field_alumni_access": {
-        "value": "<p>Available</p>",
+        "value": "<p>Available, via affiliate status</p>",
         "label": "Alumni Access",
         "weight": 10
       },
@@ -973,7 +973,7 @@
         "weight": 9
       },
       "field_alumni_access": {
-        "value": "<p>Available</p>",
+        "value": "<p>Available, via affiliate status</p>",
         "label": "Alumni Access",
         "weight": 10
       },
@@ -1323,7 +1323,7 @@
         "weight": 9
       },
       "field_alumni_access": {
-        "value": "<p>Available</p>",
+        "value": "<p>Available, via affiliate status</p>",
         "label": "Alumni Access",
         "weight": 10
       },
