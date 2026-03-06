@@ -1361,7 +1361,6 @@
       "special-requirements.faculty-sponsorship",
       "special-requirements.data-stewardship",
       "special-requirements.project-approval",
-      "additional-features.access-controls",
       "additional-features.code-sharing",
       "additional-features.data-replication",
       "additional-features.doi-generation",
@@ -1420,7 +1419,7 @@
         "weight": 11
       },
       "field_additional_features": {
-        "value": "<p>access controls, code sharing, data replication, DOI generation, version control</p>",
+        "value": "<p>code sharing, data replication, DOI generation, version control</p>",
         "label": "Additional Features",
         "weight": 12
       }
@@ -1455,8 +1454,7 @@
       "special-requirements.active-directory",
       "special-requirements.faculty-sponsorship",
       "special-requirements.data-stewardship",
-      "special-requirements.project-approval",
-      "additional-features.access-controls"
+      "special-requirements.project-approval"
     ],
     "summary": null,
     "field_data": {
@@ -1511,7 +1509,7 @@
         "weight": 11
       },
       "field_additional_features": {
-        "value": "<p>access controls</p>",
+        "value": "<p>Not Available</p>",
         "label": "Additional Features",
         "weight": 12
       }
