@@ -300,7 +300,7 @@ export const FACET_CONFIGS: FacetConfig[] = [
         choices: ["alumni-access.no"],
       },
       {
-        pattern: /^\s*Available\s*$/im,
+        pattern: /^\s*Available/im,
         choices: ["alumni-access.yes"],
       },
     ],
