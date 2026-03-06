@@ -460,11 +460,11 @@ export const FACET_CONFIGS: FacetConfig[] = [
     ],
     matchers: [
       {
-        pattern: /\b20\s*GB\b/i,
+        pattern: /\b(20\s*GB|small)\b/i,
         choices: ["storage-capacity.small"],
       },
       {
-        pattern: /\b(50\s*GB|2TB|2\s*TB)\b/i,
+        pattern: /\b(50\s*GB|2TB|2\s*TB|medium)\b/i,
         choices: ["storage-capacity.small", "storage-capacity.medium"],
       },
       {
