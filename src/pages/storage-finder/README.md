@@ -2,222 +2,205 @@
 
 ## Overview
 
-The Storage Finder is an interactive web application that helps users choose the most appropriate NYU storage service for their research data based on their specific requirements. Users answer a series of questions about their data characteristics, usage patterns, and compliance needs, and the application filters and highlights suitable storage options.
+The Storage Finder is an interactive web application that helps users choose the most appropriate NYU storage service for their research data. Users answer a series of questions about their data's risk classification, access needs, and usage patterns. The application filters storage services in real time and lets users select one or more services to view their details side by side in a comparison table.
+
+## How the Application Works
+
+The page has three main sections:
+
+1. **Question panel (left)** — A scrollable list of questions. Each question is either single-choice (radio) or multi-choice (checkbox). Answering a question immediately filters the service list on the right.
+2. **Service panel (right)** — A grid of storage service buttons. Services that match all answered questions are enabled. Services that do not match can be shown as disabled, highlighted, or hidden — controlled by a dropdown in the panel header. Click a service button to select it for comparison.
+3. **Comparison table (bottom)** — Appears when at least one service is selected. Shows each selected service's details in columns. Selecting a single service shows its details; selecting multiple services enables side-by-side comparison.
+
+A sticky info bar at the top of the page always shows the total number of services, how many match the current filters, and how many are selected. When services are selected, the bar provides a "Scroll to Details / Scroll to Comparison" button.
 
 ## Data Sources
 
-### Current Implementation
+All data comes from a shared Google Sheet that content editors maintain. A code generator script reads the sheet (or a local CSV export of it), applies matching rules defined in TypeScript configuration, and writes two JSON files consumed by the frontend.
 
-The storage finder uses static JSON files located in `src/data/storage-finder/`:
+| File | Purpose |
+|------|---------|
+| `src/data/storage-finder/facet-tree.json` | The questions and answer choices shown in the left panel |
+| `src/data/storage-finder/service-list.json` | The storage services, their filter matches, and their detail fields |
 
-- `facet-tree.json` - Contains the questions (facets) and their answer choices
-- `service-list.json` - Contains the storage services and their characteristics
+**Do not edit these JSON files directly.** They are generated output. Changes must be made either in the Google Sheet (for service data) or in `scripts/storage-finder-data-generator/config.ts` (for questions, choices, and matching rules), followed by running the generator script.
 
-### Original Data Source
+## Automated Data Sync
 
-The data structure is designed to be compatible with Drupal-based content management systems. Ideally, this data would be downloaded from a Drupal endpoint that provides:
+The JSON data files are kept up to date automatically by a GitHub Actions workflow defined in `.github/workflows/storage-finder-sync.yml`. The workflow runs **every Saturday at midnight UTC** and can also be triggered manually from the GitHub Actions tab.
 
-- **Facets taxonomy** - A two-level hierarchy representing questions and answer choices
-- **Services content type** - Storage services with their matching criteria and detailed information
-- **Service paragraphs** - Structured data fields for service comparison
+When it runs, the workflow:
 
-For organizations wanting to use a Drupal instance to manage this data:
+1. Checks out the repository
+2. Installs dependencies
+3. Runs the generator script against the Google Sheet (`--output src/data/storage-finder`)
+4. Lints and formats the output
+5. Commits any changes with the message `chore: sync storage finder data from sheet`
 
-1. Set up the Finder module in Drupal following the original Cornell documentation
-2. Configure your questions, answer choices, and services through the Drupal admin interface
-3. Download the data from the Drupal REST API endpoints:
-   - **Facet Tree**: `http://your-drupal-site.com/rest/facettree`
-   - **Service List**: `http://your-drupal-site.com/rest/servicelist`
-4. Save the downloaded JSON files to `src/data/storage-finder/`:
-   - Save facet tree data as `facet-tree.json`
-   - Save service list data as `service-list.json`
+This means **content editors only need to update the Google Sheet** — the next scheduled run (or a manual trigger) will automatically pull those changes into the site without any developer involvement.
 
-## Adding or Modifying Data
+> [!NOTE]
+> The workflow only commits when the generated output differs from what is already in the repository. If the sheet has not changed since the last run, no commit is made.
 
-> [!IMPORTANT]
-> Adding services and questions through the Drupal interface may be easier and provides a better user experience. If you have access to a Drupal instance with the Finder module, it is recommended to manage your data there. However, if you must modify the JSON files directly, follow the steps below carefully.
+### Triggering a manual sync
 
-### Adding a New Question (Facet)
+If you need changes to appear immediately rather than waiting for Saturday's scheduled run:
 
-To add a new question to the storage finder:
+1. Go to the repository on GitHub
+2. Navigate to **Actions → Sync Storage Finder Data**
+3. Click **Run workflow**
 
-1. **Edit `facet-tree.json`**:
+## Regenerating the Data Locally
 
-   ```json
-   {
-     "id": "unique-id",                    // Must be globally unique across all facets and choices
-     "name": "Your new question text?",    // The question displayed to users
-     "control_type": "radio",              // "radio" (exclusive selection) or "checkbox" (multiple selections)
-     "parent": "0",                        // Always "0" for top-level questions
-     "weight": "order-number",             // Controls display order; lower numbers appear first (e.g., "-1" appears before "0")
-     "selected": false,                    // Always false for new questions
-     "description": "Optional HTML description with help text",  // If provided, an info button appears next to the question; clicking it opens a dialog with this content
-     "choices": [
-       {
-         "id": "choice-id-1",              // Must be globally unique across all facets and choices
-         "name": "First answer choice",    // The answer text displayed to users
-         "control_type": "radio",          // Should match parent's control_type
-         "parent": "unique-id",            // Must match the parent question's id
-         "weight": "0",                    // Controls display order within the question; lower numbers appear first
-         "selected": false,                // Always false for new choices
-         "description": null               // Optional: HTML description for this specific choice
-       },
-       {
-         "id": "choice-id-2",
-         "name": "Second answer choice",
-         "control_type": "radio",
-         "parent": "unique-id",
-         "weight": "1",
-         "selected": false,
-         "description": null
-       }
-     ]
-   }
-   ```
+Run the generator any time you need to verify output locally or after editing `config.ts`:
 
-2. **Update existing services** in `service-list.json` by adding the appropriate choice IDs to their `facet_matches` arrays.
+```sh
+bun scripts/storage-finder-data-generator/generate.ts \
+  --output src/data/storage-finder
+```
 
-> [!WARNING]
-> When you add a new question, **all existing services** must be updated to include at least one choice ID from the new question in their `facet_matches` arrays. Otherwise, those services will be filtered out and hidden when users answer the new question.
+To use a locally downloaded CSV export instead of fetching the sheet automatically:
 
-#### Control Types
+```sh
+bun scripts/storage-finder-data-generator/generate.ts \
+  --csv "Datafinder Data - Sheet1.csv" \
+  --output src/data/storage-finder
+```
 
-- **`radio`** - Only one choice can be selected (exclusive). Users can select a different option by clicking it.
-- **`checkbox`** - Multiple choices can be selected (inclusive). Users can select multiple options from the same question.
+If you do not have Bun installed, get it from [https://bun.sh/](https://bun.sh/), or run the script with `pnpm dlx tsx` instead of `bun`.
 
-### Adding a New Storage Service
+### Environment variable
 
-To add a new storage service:
+The default Google Sheet URL is baked into `scripts/storage-finder-data-generator/constants.ts`. To override it without modifying the source, set the `STORAGE_FINDER_SHEET_URL` environment variable before running the script:
 
-1. **Edit `service-list.json`**:
+```sh
+STORAGE_FINDER_SHEET_URL="https://..." bun scripts/storage-finder-data-generator/generate.ts \
+  --output src/data/storage-finder
+```
 
-   ```json
-   {
-     "id": "unique-service-id",           // Must be unique across all services
-     "title": "Service Name",             // The service name displayed to users
-     "facet_matches": ["choice-id-1", "choice-id-2"],  // Array of choice IDs this service matches
-     "summary": null,                     // Currently unused, set to null
-     "field_data": {                      // Service details displayed in comparison table
-       "field_eligibility": {
-         "value": "Who can use this service",  // HTML content displayed in the table
-         "label": "Eligibility",               // Column header text
-         "weight": 1                           // Controls row display order; lower numbers appear first
-       },
-       "field_limitations": {
-         "value": "Any limitations or restrictions",
-         "label": "Limitations",
-         "weight": 2
-       },
-       "field_use_case": {
-         "value": "Typical use cases",
-         "label": "Use Case",
-         "weight": 3
-       },
-       "field_storable_files": {
-         "value": "Types of files that can be stored",
-         "label": "Storable Files",
-         "weight": 4
-       },
-       "field_permission_settings": {
-         "value": "Permission and access control info",
-         "label": "Permission Settings",
-         "weight": 5
-       },
-       "field_links": {
-         "value": "Relevant links and resources",
-         "label": "Links",
-         "weight": 6
-       },
-       "field_synchronous_access": {
-         "value": "Real-time access capabilities",
-         "label": "Synchronous Access",
-         "weight": 7
-       },
-       "field_alumni_access": {
-         "value": "Access after graduation/leaving",
-         "label": "Alumni Access",
-         "weight": 8
-       },
-       "field_backup": {
-         "value": "Backup and recovery information",
-         "label": "Backup",
-         "weight": 9
-       }
-     }
-   }
-   ```
+### CLI flags summary
 
-2. **Ensure facet_matches accuracy**: The `facet_matches` array must contain at least one choice ID from each question the user answers.
+| Flag | Description |
+|------|-------------|
+| `--csv <path>` | Use a local CSV file instead of downloading from the sheet |
+| `--output <dir>` | Write JSON files to a custom directory (default: `src/data/storage-finder/generated`) |
+| `--no-pretty` | Write minified JSON |
+| `--silent` | Suppress informational log output |
+| `--help` | Show usage information |
 
-   **Example**: If a service is for "Public/Low Risk" data (ID "5"), "Faculty" users (ID "28"), and can be used for any purpose from "For what purpose will you be using this storage?" (IDs "33", "32", "35", "34", "36"), then include: `["5", "28", "33", "32", "35", "34", "36"]`. This example is not comprehensive—you must also add choice IDs from all other questions in `facet-tree.json` to ensure the service remains available regardless of what users select.
+## Current Questions
+
+Questions are defined in `scripts/storage-finder-data-generator/config.ts` as entries in the `FACET_CONFIGS` array. They appear in the left panel in the order they are listed. The current questions are:
+
+| # | Question | Type | Sheet column used for matching |
+|---|----------|------|-------------------------------|
+| 1 | What is the risk classification of your data? | Radio | Storable Files |
+| 2 | What is your University affiliation? | Radio | Eligibility |
+| 3 | Who needs access to your data? | Checkbox | Permission Settings |
+| 4 | Do you need backups, snapshots or replication of your data? | Radio | Backup |
+| 5 | Do you need synchronous or simultaneous access to your data? | Radio | Synchronous Access |
+| 6 | Do you need alumni to have access to your data? | Radio | Alumni Access |
+| 7 | What is your storage duration need? | Radio | Use Case |
+| 8 | What is the primary purpose for your storage? | Checkbox | Use Case |
+| 9 | What is your budget for storage? | Radio | Limitations |
+| 10 | What storage capacity do you need? | Radio | Limitations |
+| 11 | From where will the data be accessed? | Checkbox | Access locations |
+| 12 | Do you have any special requirements or restrictions? | Checkbox | Limitations |
+| 13 | What additional features do you need? | Checkbox | Additional capabilities |
+
+## Current Service Detail Fields
+
+When a service is selected, the following fields appear as rows in the comparison table. They come from named columns in the Google Sheet and are defined in `FIELD_DEFINITIONS` in `config.ts`.
+
+| Field key | Sheet column | Display label |
+|-----------|-------------|---------------|
+| `field_links` | Links | Links |
+| `field_storable_files` | Storable Files | Storable Files |
+| `field_use_case` | Use Case | Use Case |
+| `field_limitations` | Limitations | Limitations |
+| `field_permission_settings` | Permission Settings | Permission Settings |
+| `field_eligibility` | Eligibility | Eligibility |
+| `field_access_location` | Access locations (VPN, Public Cloud, Off Campus, Browser GUI) | Access Locations |
+| `field_synchronous_access` | Synchronous Access | Synchronous Access |
+| `field_alumni_access` | Alumni Access | Alumni Access |
+| `field_backup` | Backup | Backup |
+| `field_additional_features` | Additional capabilities | Additional Features |
+
+## Making Changes
+
+### Updating service information
+
+Edit the corresponding row in the Google Sheet, then regenerate the data. Service IDs are automatically generated as URL-safe slugs from the `Title` column. If a title is duplicated, subsequent entries get a numeric suffix (e.g., `my-service-2`).
+
+### Adding a new service
+
+Add a new row to the Google Sheet with a unique value in the `Title` column and fill in all relevant columns. Then regenerate the data.
 
 > [!WARNING]
-> For each question in `facet-tree.json`, you must include at least one matching choice ID in `facet_matches`, otherwise the service will be filtered out and hidden when users answer that question.
+> Every cell in a row should be filled in accurately. The generator uses regex patterns to map cell text to facet choices. A blank cell causes the generator to apply the fallback behavior for that question (usually matching all choices for that facet, keeping the service visible regardless of what users select for that question).
 
-### Modifying Service Fields
+### Adding or changing a question
 
-To add, remove, or modify the fields shown in the service comparison table:
+1. If the question requires a new signal, add a column to the Google Sheet and populate it for all services.
+2. In `scripts/storage-finder-data-generator/config.ts`, add a new entry to the `FACET_CONFIGS` array (or modify an existing one):
+   - `id` — a stable kebab-case slug (never change this once data is published, as it affects URL state if used)
+   - `name` — the question text displayed to users
+   - `controlType` — `"radio"` (single answer) or `"checkbox"` (multiple answers)
+   - `column` — the exact column header from the Google Sheet
+   - `choices` — array of `{ id, name, weight }` entries for each answer option
+   - `matchers` — array of `{ pattern, choices }` entries mapping regex patterns on the cell text to choice IDs
+   - `fallback` — `"all"` to keep the service visible if nothing matches, or an array of specific choice IDs to match by default
+   - `allowMultipleMatches: true` — required on radio facets that legitimately match more than one choice
+3. Regenerate and verify in the app.
 
-1. **Update the field structure** in `service-list.json` for all services
-2. **Modify the TypeScript interface** in `storage-finder.tsx`:
+### Adding or changing a service detail field
 
-   ```typescript
-   interface ServiceFieldData {
-     [key: string]: FieldData;
-     field_your_new_field: FieldData;
-     // ... other fields
-   }
-   ```
+1. Ensure the column exists in the Google Sheet and is populated.
+2. In `scripts/storage-finder-data-generator/config.ts`, add or modify an entry in `FIELD_DEFINITIONS`:
+   - `fieldKey` — the key used in the generated JSON (e.g., `field_my_new_field`)
+   - `column` — the exact column header in the Google Sheet
+   - `label` — the row label shown in the comparison table
+   - `weight` — controls the row order (lower numbers appear first)
+   - `formatter` — optional function to transform the raw cell text; defaults to converting newlines into HTML paragraphs
+3. Regenerate the data.
 
 > [!TIP]
-> All services must have the same `field_data` structure for the comparison table to display correctly. If you add a new field, make sure to add it to every service in `service-list.json`.
+> Blank cells are rendered as `<p>Not Available</p>` by the default formatter. Use this intentionally in the sheet to signal that a feature is unavailable rather than leaving cells blank accidentally.
 
-### Data Structure Details
+## How Facet Matching Works
 
-#### Facet Structure
+The generator reads each service row from the CSV and, for each facet question, looks at the specified sheet column. It runs each configured regex pattern against the cell text. If a pattern matches, the associated choice IDs are added to the service's `facet_matches` array.
 
-- **id**: Unique identifier for the question
-- **name**: The question text displayed to users
-- **control_type**: "radio" or "checkbox"
-- **parent**: "0" for top-level questions
-- **weight**: Controls display order
-- **description**: Optional HTML help text
-- **choices**: Array of possible answers
+- If **no pattern matches** and `fallback` is `"all"`, all choice IDs for that facet are added — the service remains visible regardless of what the user picks for that question.
+- If **no pattern matches** and `fallback` is a specific array, only those choice IDs are added.
+- Radio facets throw an error during generation if more than one choice matches, unless `allowMultipleMatches: true` is set.
 
-#### Choice Structure
-
-- **id**: Unique identifier for the choice
-- **name**: Answer text displayed to users
-- **parent**: ID of the parent question
-- **weight**: Controls display order within the question
-
-#### Service Structure
-
-- **id**: Unique identifier for the service
-- **title**: Service name
-- **facet_matches**: Array of choice IDs this service is compatible with
-- **field_data**: Object containing service details for comparison table
+On the frontend, a service is shown as matching when, for every answered question, at least one of the user's selected choices appears in the service's `facet_matches` array.
 
 ## Troubleshooting
 
-### Common Issues
+**Services not filtering correctly**
 
-**Services not filtering correctly:**
+- Check that the regex matchers in `config.ts` for the relevant facet correctly match the cell text in the sheet. Run the generator locally with `--csv` and inspect the output JSON.
+- Confirm that the fallback setting is appropriate — `"all"` keeps services visible when unmatched, which may be intentional or may mask a missing pattern.
 
-- Verify `facet_matches` arrays contain correct choice IDs
-- Check that choice IDs in questions match those referenced in services
+**A new question is not appearing**
 
-**New questions not appearing:**
+- Verify the entry was added to `FACET_CONFIGS` in `config.ts` and the data was regenerated.
+- Confirm the `column` value exactly matches the column header in the sheet, including capitalization and whitespace.
 
-- Ensure the question has a unique ID
-- Verify `parent` is set to "0" for top-level questions
-- Check `weight` for proper ordering
+**Comparison table showing "N/A" or missing rows**
 
-**Comparison table missing data:**
+- Ensure the field is defined in `FIELD_DEFINITIONS` in `config.ts` with the correct `column` value.
+- Regenerate the data and verify the field appears in the generated `service-list.json`.
 
-- Confirm all services have the same `field_data` structure
-- Verify field names match the TypeScript interfaces
-- Check for JSON syntax errors
+**Generator fails with "matched multiple options for radio facet"**
+
+- A radio facet matched more than one choice for a service. Either fix the sheet data so only one regex pattern applies, or add `allowMultipleMatches: true` to the facet config if multiple matches are valid.
+
+**Generator fails with "CSV file did not contain any data rows"**
+
+- The sheet URL may be incorrect or the CSV export format may have changed. Check the URL in `constants.ts` or provide a local CSV via `--csv`.
 
 ## Inspiration
 
@@ -227,4 +210,4 @@ This storage finder was inspired by the **Finder Module** originally created by:
 
 ---
 
-Last updated: October 2025
+Last updated: March 2026
