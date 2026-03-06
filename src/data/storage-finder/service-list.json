@@ -100,11 +100,7 @@
       "risk-classification.public-low",
       "risk-classification.sensitive-moderate",
       "affiliation.faculty",
-      "access-needs.individual",
-      "access-needs.public",
-      "access-needs.shared-link",
       "access-needs.netid-collaborators",
-      "access-needs.external-collaborators",
       "backup-availability.yes",
       "synchronous-access.yes",
       "alumni-access.no",
@@ -151,7 +147,7 @@
         "weight": 5
       },
       "field_permission_settings": {
-        "value": "<p>User-controlled using facl</p>",
+        "value": "<p>NetID group permissions using facl</p>",
         "label": "Permission Settings",
         "weight": 6
       },
@@ -286,11 +282,7 @@
       "risk-classification.public-low",
       "risk-classification.sensitive-moderate",
       "affiliation.faculty",
-      "access-needs.individual",
-      "access-needs.public",
-      "access-needs.shared-link",
       "access-needs.netid-collaborators",
-      "access-needs.external-collaborators",
       "backup-availability.yes",
       "synchronous-access.yes",
       "alumni-access.yes",
@@ -336,7 +328,7 @@
         "weight": 5
       },
       "field_permission_settings": {
-        "value": "<p>User controlled using facl</p>",
+        "value": "<p>NetID group permissions using facl</p>",
         "label": "Permission Settings",
         "weight": 6
       },
@@ -462,11 +454,7 @@
     "facet_matches": [
       "risk-classification.public-low",
       "affiliation.faculty",
-      "access-needs.individual",
-      "access-needs.public",
-      "access-needs.shared-link",
       "access-needs.netid-collaborators",
-      "access-needs.external-collaborators",
       "backup-availability.no",
       "synchronous-access.yes",
       "alumni-access.yes",
@@ -512,7 +500,7 @@
         "weight": 5
       },
       "field_permission_settings": {
-        "value": "<p>User controlled using facl</p>",
+        "value": "<p>NetID group permissions using facl</p>",
         "label": "Permission Settings",
         "weight": 6
       },
@@ -555,11 +543,7 @@
       "risk-classification.hipaa",
       "affiliation.faculty",
       "affiliation.staff",
-      "access-needs.individual",
-      "access-needs.public",
-      "access-needs.shared-link",
       "access-needs.netid-collaborators",
-      "access-needs.external-collaborators",
       "backup-availability.yes",
       "synchronous-access.yes",
       "alumni-access.no",
@@ -609,7 +593,7 @@
         "weight": 5
       },
       "field_permission_settings": {
-        "value": "<p>Permissions granted by NYU IT Admin</p>",
+        "value": "<p>NetID group permissions granted by NYU IT Admin</p>",
         "label": "Permission Settings",
         "weight": 6
       },
@@ -653,11 +637,7 @@
       "risk-classification.sensitive-moderate",
       "affiliation.faculty",
       "affiliation.staff",
-      "access-needs.individual",
-      "access-needs.public",
       "access-needs.shared-link",
-      "access-needs.netid-collaborators",
-      "access-needs.external-collaborators",
       "backup-availability.yes",
       "synchronous-access.yes",
       "alumni-access.yes",
@@ -705,7 +685,7 @@
         "weight": 5
       },
       "field_permission_settings": {
-        "value": "<p>View, comment, edit and temp access to comment and view</p>",
+        "value": "<p>Shared link access for view, comment, edit and temp access to comment and view</p>",
         "label": "Permission Settings",
         "weight": 6
       },
@@ -749,11 +729,7 @@
       "risk-classification.sensitive-moderate",
       "affiliation.faculty",
       "affiliation.staff",
-      "access-needs.individual",
-      "access-needs.public",
       "access-needs.shared-link",
-      "access-needs.netid-collaborators",
-      "access-needs.external-collaborators",
       "backup-availability.yes",
       "synchronous-access.yes",
       "alumni-access.no",
@@ -803,7 +779,7 @@
         "weight": 5
       },
       "field_permission_settings": {
-        "value": "<p>View, comment, edit and temp access to comment and view</p>",
+        "value": "<p>Shared link access for view, comment, edit and temp access to comment and view</p>",
         "label": "Permission Settings",
         "weight": 6
       },
@@ -931,11 +907,7 @@
       "risk-classification.public-low",
       "affiliation.faculty",
       "affiliation.staff",
-      "access-needs.individual",
-      "access-needs.public",
-      "access-needs.shared-link",
       "access-needs.netid-collaborators",
-      "access-needs.external-collaborators",
       "backup-availability.yes",
       "synchronous-access.yes",
       "alumni-access.yes",
@@ -978,7 +950,7 @@
         "weight": 5
       },
       "field_permission_settings": {
-        "value": "<p>One owner, adjustable collaboration permissions for teamwork</p>",
+        "value": "<p>One owner, adjustable group collaboration permissions for teamwork</p>",
         "label": "Permission Settings",
         "weight": 6
       },
@@ -1023,11 +995,7 @@
       "affiliation.faculty",
       "affiliation.staff",
       "affiliation.student",
-      "access-needs.individual",
-      "access-needs.public",
-      "access-needs.shared-link",
       "access-needs.netid-collaborators",
-      "access-needs.external-collaborators",
       "backup-availability.yes",
       "synchronous-access.yes",
       "alumni-access.no",
@@ -1070,7 +1038,7 @@
         "weight": 5
       },
       "field_permission_settings": {
-        "value": "<p>Customizable rights, roles and access to data can be given for collaborators with an approved NYU REDCap account</p>",
+        "value": "<p>Customizable rights, roles and access to data can be given for netid collaborators with an approved NYU REDCap account</p>",
         "label": "Permission Settings",
         "weight": 6
       },
@@ -1155,7 +1123,7 @@
         "weight": 5
       },
       "field_permission_settings": {
-        "value": "<p>Project dependent, role-based permissions. Users added by PI request</p>",
+        "value": "<p>Project dependent, role-based permissions. NeiID users added by PI request</p>",
         "label": "Permission Settings",
         "weight": 6
       },
@@ -1200,11 +1168,7 @@
       "affiliation.faculty",
       "affiliation.staff",
       "affiliation.student",
-      "access-needs.individual",
-      "access-needs.public",
       "access-needs.shared-link",
-      "access-needs.netid-collaborators",
-      "access-needs.external-collaborators",
       "backup-availability.yes",
       "synchronous-access.no",
       "alumni-access.no",
@@ -1244,7 +1208,7 @@
         "weight": 5
       },
       "field_permission_settings": {
-        "value": "<p>Options for fully private, read only, or editable</p>",
+        "value": "<p>Options for fully private, read only, or editable through shared link</p>",
         "label": "Permission Settings",
         "weight": 6
       },
@@ -1288,11 +1252,7 @@
       "affiliation.faculty",
       "affiliation.staff",
       "affiliation.student",
-      "access-needs.individual",
-      "access-needs.public",
-      "access-needs.shared-link",
       "access-needs.netid-collaborators",
-      "access-needs.external-collaborators",
       "backup-availability.no",
       "synchronous-access.no",
       "alumni-access.yes",
@@ -1337,7 +1297,7 @@
         "weight": 5
       },
       "field_permission_settings": {
-        "value": "<p>Project dependent, role-based permissions, requires data steward role</p>",
+        "value": "<p>Project dependent, role-based permissions, requires data steward role and netid</p>",
         "label": "Permission Settings",
         "weight": 6
       },
