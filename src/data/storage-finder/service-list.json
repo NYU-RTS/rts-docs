@@ -127,7 +127,7 @@
     "summary": null,
     "field_data": {
       "field_links": {
-        "value": "<p><a href=\"https://hsrn.nyu.edu/docs/cephfs/\">HSRN Ceph</a></p>",
+        "value": "<p><a href=\"https://hsrn.nyu.edu/docs/ceph/\">HSRN Ceph</a></p>",
         "label": "Links",
         "weight": 2
       },
@@ -147,7 +147,7 @@
         "weight": 5
       },
       "field_permission_settings": {
-        "value": "<p>NetID group permissions using facl</p>",
+        "value": "<p>Restricted access by individual or group using facl (Linux access control lists) and Grouper for access and group membership.</p>",
         "label": "Permission Settings",
         "weight": 6
       },
