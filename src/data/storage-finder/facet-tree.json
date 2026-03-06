@@ -502,7 +502,7 @@
     "choices": [
       {
         "id": "additional-features.access-controls",
-        "name": "Access controls",
+        "name": "Restrict access to data via programmatic access controls",
         "control_type": "checkbox",
         "parent": "additional-features",
         "weight": "0",
