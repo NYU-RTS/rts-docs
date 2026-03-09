@@ -505,6 +505,9 @@
     "id": "nyu-box",
     "title": "NYU Box",
     "facet_matches": [
+      "risk-classification.public-low",
+      "risk-classification.sensitive-moderate",
+      "risk-classification.confidential-high",
       "risk-classification.hipaa",
       "affiliation.faculty",
       "affiliation.staff",
@@ -1168,6 +1171,9 @@
     "id": "secure-research-data-environment",
     "title": "Secure Research Data Environment",
     "facet_matches": [
+      "risk-classification.public-low",
+      "risk-classification.sensitive-moderate",
+      "risk-classification.confidential-high",
       "risk-classification.hipaa",
       "affiliation.faculty",
       "affiliation.staff",

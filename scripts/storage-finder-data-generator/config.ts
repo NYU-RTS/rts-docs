@@ -107,10 +107,23 @@ export const FACET_CONFIGS: FacetConfig[] = [
       },
     ],
     matchers: [
-      { pattern: /\bhipaa\b/i, choices: ["risk-classification.hipaa"] },
+      {
+        pattern: /\bhipaa\b/i,
+        choices: [
+          "risk-classification.public-low",
+          "risk-classification.sensitive-moderate",
+          "risk-classification.confidential-high",
+          "risk-classification.hipaa",
+        ],
+      },
       {
         pattern: /\b(confidential|restricted)\b/i,
-        choices: ["risk-classification.confidential-high"],
+        choices: [
+          "risk-classification.public-low",
+          "risk-classification.sensitive-moderate",
+          "risk-classification.confidential-high",
+          "risk-classification.hipaa",
+        ],
       },
       {
         pattern: /\bhigh\b/i,
@@ -132,7 +145,7 @@ export const FACET_CONFIGS: FacetConfig[] = [
         choices: ["risk-classification.public-low"],
       },
     ],
-    fallback: "all",
+    fallback: "risk-classficiation.public-low",
   },
   {
     id: "affiliation",
