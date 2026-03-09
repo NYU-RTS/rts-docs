@@ -199,40 +199,11 @@
     ]
   },
   {
-    "id": "alumni-access",
-    "name": "Do you need alumni to have access to your data?",
-    "control_type": "radio",
-    "parent": "0",
-    "weight": "10",
-    "selected": false,
-    "description": null,
-    "choices": [
-      {
-        "id": "alumni-access.yes",
-        "name": "Yes",
-        "control_type": "radio",
-        "parent": "alumni-access",
-        "weight": "0",
-        "selected": false,
-        "description": null
-      },
-      {
-        "id": "alumni-access.no",
-        "name": "No",
-        "control_type": "radio",
-        "parent": "alumni-access",
-        "weight": "1",
-        "selected": false,
-        "description": null
-      }
-    ]
-  },
-  {
     "id": "storage-duration",
     "name": "What is your storage duration need?",
     "control_type": "radio",
     "parent": "0",
-    "weight": "12",
+    "weight": "10",
     "selected": false,
     "description": null,
     "choices": [
@@ -261,7 +232,7 @@
     "name": "What is the primary purpose for your storage?",
     "control_type": "checkbox",
     "parent": "0",
-    "weight": "14",
+    "weight": "12",
     "selected": false,
     "description": null,
     "choices": [
@@ -326,7 +297,7 @@
     "name": "What is your budget for storage?",
     "control_type": "radio",
     "parent": "0",
-    "weight": "16",
+    "weight": "14",
     "selected": false,
     "description": null,
     "choices": [
@@ -355,7 +326,7 @@
     "name": "What storage capacity do you need?",
     "control_type": "radio",
     "parent": "0",
-    "weight": "18",
+    "weight": "16",
     "selected": false,
     "description": null,
     "choices": [
@@ -393,7 +364,7 @@
     "name": "From where will the data be accessed?",
     "control_type": "checkbox",
     "parent": "0",
-    "weight": "20",
+    "weight": "18",
     "selected": false,
     "description": null,
     "choices": [
@@ -440,7 +411,7 @@
     "name": "Do you have any special requirements or restrictions?",
     "control_type": "checkbox",
     "parent": "0",
-    "weight": "22",
+    "weight": "20",
     "selected": false,
     "description": null,
     "choices": [
@@ -496,7 +467,7 @@
     "name": "What additional features do you need?",
     "control_type": "checkbox",
     "parent": "0",
-    "weight": "24",
+    "weight": "22",
     "selected": false,
     "description": null,
     "choices": [

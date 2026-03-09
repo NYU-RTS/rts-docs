@@ -11,7 +11,6 @@
       "access-needs.netid-collaborators",
       "backup-availability.yes",
       "synchronous-access.no",
-      "alumni-access.no",
       "storage-duration.long-term",
       "use-case-purpose.archive",
       "cost-model.paid",
@@ -76,20 +75,15 @@
         "label": "Synchronous Access",
         "weight": 9
       },
-      "field_alumni_access": {
-        "value": "<p>Not Available</p>",
-        "label": "Alumni Access",
-        "weight": 10
-      },
       "field_backup": {
         "value": "<p>Yes</p>",
         "label": "Backup",
-        "weight": 11
+        "weight": 10
       },
       "field_additional_features": {
         "value": "<p>access controls, automated workflows, data replication, instrument data transfer, large data transfers, version control</p>",
         "label": "Additional Features",
-        "weight": 12
+        "weight": 11
       }
     }
   },
@@ -103,7 +97,6 @@
       "access-needs.netid-collaborators",
       "backup-availability.yes",
       "synchronous-access.yes",
-      "alumni-access.yes",
       "storage-duration.long-term",
       "use-case-purpose.archive",
       "use-case-purpose.active-research",
@@ -166,20 +159,15 @@
         "label": "Synchronous Access",
         "weight": 9
       },
-      "field_alumni_access": {
-        "value": "<p>Available, via affiliate status</p>",
-        "label": "Alumni Access",
-        "weight": 10
-      },
       "field_backup": {
         "value": "<p>Yes</p>",
         "label": "Backup",
-        "weight": 11
+        "weight": 10
       },
       "field_additional_features": {
         "value": "<p>access controls</p>",
         "label": "Additional Features",
-        "weight": 12
+        "weight": 11
       }
     }
   },
@@ -200,7 +188,6 @@
       "backup-availability.yes",
       "synchronous-access.yes",
       "synchronous-access.no",
-      "alumni-access.no",
       "storage-duration.long-term",
       "storage-duration.temporary",
       "use-case-purpose.collaboration",
@@ -259,20 +246,15 @@
         "label": "Synchronous Access",
         "weight": 9
       },
-      "field_alumni_access": {
-        "value": "<p>Not Available</p>",
-        "label": "Alumni Access",
-        "weight": 10
-      },
       "field_backup": {
         "value": "<p>Yes</p>",
         "label": "Backup",
-        "weight": 11
+        "weight": 10
       },
       "field_additional_features": {
         "value": "<p>access controls, automated workflows, instrument data transfer, large data transfers, version control</p>",
         "label": "Additional Features",
-        "weight": 12
+        "weight": 11
       }
     }
   },
@@ -286,7 +268,6 @@
       "access-needs.netid-collaborators",
       "backup-availability.yes",
       "synchronous-access.yes",
-      "alumni-access.yes",
       "storage-duration.long-term",
       "use-case-purpose.archive",
       "use-case-purpose.active-research",
@@ -348,20 +329,15 @@
         "label": "Synchronous Access",
         "weight": 9
       },
-      "field_alumni_access": {
-        "value": "<p>Available, via affiliate status</p>",
-        "label": "Alumni Access",
-        "weight": 10
-      },
       "field_backup": {
         "value": "<p>Yes</p>",
         "label": "Backup",
-        "weight": 11
+        "weight": 10
       },
       "field_additional_features": {
         "value": "<p>access controls</p>",
         "label": "Additional Features",
-        "weight": 12
+        "weight": 11
       }
     }
   },
@@ -377,7 +353,6 @@
       "access-needs.netid-collaborators",
       "backup-availability.yes",
       "synchronous-access.no",
-      "alumni-access.no",
       "storage-duration.long-term",
       "storage-duration.temporary",
       "use-case-purpose.active-research",
@@ -432,20 +407,15 @@
         "label": "Synchronous Access",
         "weight": 9
       },
-      "field_alumni_access": {
-        "value": "<p>Not Available</p>",
-        "label": "Alumni Access",
-        "weight": 10
-      },
       "field_backup": {
         "value": "<p>Yes</p>",
         "label": "Backup",
-        "weight": 11
+        "weight": 10
       },
       "field_additional_features": {
         "value": "<p>access controls, large data transfers</p>",
         "label": "Additional Features",
-        "weight": 12
+        "weight": 11
       }
     }
   },
@@ -458,7 +428,6 @@
       "access-needs.netid-collaborators",
       "backup-availability.no",
       "synchronous-access.yes",
-      "alumni-access.yes",
       "storage-duration.temporary",
       "use-case-purpose.archive",
       "use-case-purpose.active-research",
@@ -520,20 +489,15 @@
         "label": "Synchronous Access",
         "weight": 9
       },
-      "field_alumni_access": {
-        "value": "<p>Available, via affiliate status</p>",
-        "label": "Alumni Access",
-        "weight": 10
-      },
       "field_backup": {
         "value": "<p>No</p>",
         "label": "Backup",
-        "weight": 11
+        "weight": 10
       },
       "field_additional_features": {
         "value": "<p>access controls</p>",
         "label": "Additional Features",
-        "weight": 12
+        "weight": 11
       }
     }
   },
@@ -547,7 +511,6 @@
       "access-needs.netid-collaborators",
       "backup-availability.yes",
       "synchronous-access.yes",
-      "alumni-access.yes",
       "storage-duration.long-term",
       "storage-duration.temporary",
       "use-case-purpose.archive",
@@ -613,20 +576,15 @@
         "label": "Synchronous Access",
         "weight": 9
       },
-      "field_alumni_access": {
-        "value": "<p>Available, via affiliate status</p>",
-        "label": "Alumni Access",
-        "weight": 10
-      },
       "field_backup": {
         "value": "<p>Yes</p>",
         "label": "Backup",
-        "weight": 11
+        "weight": 10
       },
       "field_additional_features": {
         "value": "<p>access controls</p>",
         "label": "Additional Features",
-        "weight": 12
+        "weight": 11
       }
     }
   },
@@ -641,7 +599,6 @@
       "access-needs.shared-link",
       "backup-availability.yes",
       "synchronous-access.yes",
-      "alumni-access.yes",
       "storage-duration.long-term",
       "storage-duration.temporary",
       "use-case-purpose.archive",
@@ -706,20 +663,15 @@
         "label": "Synchronous Access",
         "weight": 9
       },
-      "field_alumni_access": {
-        "value": "<p>Available, via affiliate status</p>",
-        "label": "Alumni Access",
-        "weight": 10
-      },
       "field_backup": {
         "value": "<p>Yes</p>",
         "label": "Backup",
-        "weight": 11
+        "weight": 10
       },
       "field_additional_features": {
         "value": "<p>access controls</p>",
         "label": "Additional Features",
-        "weight": 12
+        "weight": 11
       }
     }
   },
@@ -734,7 +686,6 @@
       "access-needs.shared-link",
       "backup-availability.yes",
       "synchronous-access.yes",
-      "alumni-access.no",
       "storage-duration.long-term",
       "storage-duration.temporary",
       "use-case-purpose.archive",
@@ -800,20 +751,15 @@
         "label": "Synchronous Access",
         "weight": 9
       },
-      "field_alumni_access": {
-        "value": "<p>Not Available</p>",
-        "label": "Alumni Access",
-        "weight": 10
-      },
       "field_backup": {
         "value": "<p>Yes</p>",
         "label": "Backup",
-        "weight": 11
+        "weight": 10
       },
       "field_additional_features": {
         "value": "<p>access controls, version control</p>",
         "label": "Additional Features",
-        "weight": 12
+        "weight": 11
       }
     }
   },
@@ -827,7 +773,6 @@
       "access-needs.netid-collaborators",
       "backup-availability.yes",
       "synchronous-access.no",
-      "alumni-access.no",
       "storage-duration.long-term",
       "storage-duration.temporary",
       "use-case-purpose.media",
@@ -886,20 +831,15 @@
         "label": "Synchronous Access",
         "weight": 9
       },
-      "field_alumni_access": {
-        "value": "<p>Not Available</p>",
-        "label": "Alumni Access",
-        "weight": 10
-      },
       "field_backup": {
         "value": "<p>Yes</p>",
         "label": "Backup",
-        "weight": 11
+        "weight": 10
       },
       "field_additional_features": {
         "value": "<p>access controls</p>",
         "label": "Additional Features",
-        "weight": 12
+        "weight": 11
       }
     }
   },
@@ -913,7 +853,6 @@
       "access-needs.netid-collaborators",
       "backup-availability.yes",
       "synchronous-access.yes",
-      "alumni-access.yes",
       "storage-duration.long-term",
       "storage-duration.temporary",
       "use-case-purpose.active-research",
@@ -972,20 +911,15 @@
         "label": "Synchronous Access",
         "weight": 9
       },
-      "field_alumni_access": {
-        "value": "<p>Available, via affiliate status</p>",
-        "label": "Alumni Access",
-        "weight": 10
-      },
       "field_backup": {
         "value": "<p>Yes</p>",
         "label": "Backup",
-        "weight": 11
+        "weight": 10
       },
       "field_additional_features": {
         "value": "<p>access controls, automated workflows, version control</p>",
         "label": "Additional Features",
-        "weight": 12
+        "weight": 11
       }
     }
   },
@@ -1001,7 +935,6 @@
       "access-needs.netid-collaborators",
       "backup-availability.yes",
       "synchronous-access.yes",
-      "alumni-access.no",
       "storage-duration.long-term",
       "storage-duration.temporary",
       "use-case-purpose.surveys",
@@ -1060,20 +993,15 @@
         "label": "Synchronous Access",
         "weight": 9
       },
-      "field_alumni_access": {
-        "value": "<p>Not Available</p>",
-        "label": "Alumni Access",
-        "weight": 10
-      },
       "field_backup": {
         "value": "<p>Yes</p>",
         "label": "Backup",
-        "weight": 11
+        "weight": 10
       },
       "field_additional_features": {
         "value": "<p>access controls</p>",
         "label": "Additional Features",
-        "weight": 12
+        "weight": 11
       }
     }
   },
@@ -1091,7 +1019,6 @@
       "access-needs.external-collaborators",
       "backup-availability.yes",
       "synchronous-access.yes",
-      "alumni-access.no",
       "storage-duration.long-term",
       "storage-duration.temporary",
       "use-case-purpose.active-research",
@@ -1146,26 +1073,21 @@
         "label": "Synchronous Access",
         "weight": 9
       },
-      "field_alumni_access": {
-        "value": "<p>Not Available</p>",
-        "label": "Alumni Access",
-        "weight": 10
-      },
       "field_backup": {
         "value": "<p>Yes</p>",
         "label": "Backup",
-        "weight": 11
+        "weight": 10
       },
       "field_additional_features": {
         "value": "<p>access controls</p>",
         "label": "Additional Features",
-        "weight": 12
+        "weight": 11
       }
     }
   },
   {
-    "id": "research-workshop",
-    "title": "Research Workshop",
+    "id": "research-workspace",
+    "title": "Research Workspace",
     "facet_matches": [
       "risk-classification.public-low",
       "risk-classification.sensitive-moderate",
@@ -1175,7 +1097,6 @@
       "access-needs.shared-link",
       "backup-availability.yes",
       "synchronous-access.no",
-      "alumni-access.no",
       "storage-duration.long-term",
       "storage-duration.temporary",
       "use-case-purpose.active-research",
@@ -1192,7 +1113,7 @@
     "summary": null,
     "field_data": {
       "field_links": {
-        "value": "<p><a href=\"https://nyu.edu/it/research-workspace\">Research Workshop</a></p>",
+        "value": "<p><a href=\"https://nyu.edu/it/research-workspace\">Research Workspace</a></p>",
         "label": "Links",
         "weight": 2
       },
@@ -1231,20 +1152,15 @@
         "label": "Synchronous Access",
         "weight": 9
       },
-      "field_alumni_access": {
-        "value": "<p>Not Available</p>",
-        "label": "Alumni Access",
-        "weight": 10
-      },
       "field_backup": {
         "value": "<p>Yes</p>",
         "label": "Backup",
-        "weight": 11
+        "weight": 10
       },
       "field_additional_features": {
         "value": "<p>access controls, large data transfer</p>",
         "label": "Additional Features",
-        "weight": 12
+        "weight": 11
       }
     }
   },
@@ -1259,7 +1175,6 @@
       "access-needs.netid-collaborators",
       "backup-availability.no",
       "synchronous-access.no",
-      "alumni-access.yes",
       "storage-duration.long-term",
       "storage-duration.temporary",
       "use-case-purpose.active-research",
@@ -1321,20 +1236,15 @@
         "label": "Synchronous Access",
         "weight": 9
       },
-      "field_alumni_access": {
-        "value": "<p>Available, via affiliate status</p>",
-        "label": "Alumni Access",
-        "weight": 10
-      },
       "field_backup": {
         "value": "<p>No</p>",
         "label": "Backup",
-        "weight": 11
+        "weight": 10
       },
       "field_additional_features": {
         "value": "<p>access controls, automated workflows, code sharing, large data transfers, version control</p>",
         "label": "Additional Features",
-        "weight": 12
+        "weight": 11
       }
     }
   },
@@ -1349,7 +1259,6 @@
       "access-needs.public",
       "backup-availability.yes",
       "synchronous-access.no",
-      "alumni-access.yes",
       "storage-duration.long-term",
       "use-case-purpose.archive",
       "use-case-purpose.repository",
@@ -1413,20 +1322,15 @@
         "label": "Synchronous Access",
         "weight": 9
       },
-      "field_alumni_access": {
-        "value": "<p>Available</p>",
-        "label": "Alumni Access",
-        "weight": 10
-      },
       "field_backup": {
         "value": "<p>Yes</p>",
         "label": "Backup",
-        "weight": 11
+        "weight": 10
       },
       "field_additional_features": {
         "value": "<p>code sharing, data replication, DOI generation, version control</p>",
         "label": "Additional Features",
-        "weight": 12
+        "weight": 11
       }
     }
   },
@@ -1442,7 +1346,6 @@
       "backup-availability.yes",
       "synchronous-access.yes",
       "synchronous-access.no",
-      "alumni-access.yes",
       "storage-duration.long-term",
       "use-case-purpose.archive",
       "use-case-purpose.repository",
@@ -1501,20 +1404,15 @@
         "label": "Synchronous Access",
         "weight": 9
       },
-      "field_alumni_access": {
-        "value": "<p>Available</p>",
-        "label": "Alumni Access",
-        "weight": 10
-      },
       "field_backup": {
         "value": "<p>Yes</p>",
         "label": "Backup",
-        "weight": 11
+        "weight": 10
       },
       "field_additional_features": {
         "value": "<p>Not Available</p>",
         "label": "Additional Features",
-        "weight": 12
+        "weight": 11
       }
     }
   }
