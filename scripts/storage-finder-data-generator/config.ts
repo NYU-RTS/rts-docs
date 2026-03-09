@@ -59,17 +59,10 @@ export const FIELD_DEFINITIONS: ServiceFieldDefinition[] = [
     formatter: (value) => toHtmlBlocks(value),
   },
   {
-    fieldKey: "field_alumni_access",
-    column: "Alumni Access",
-    label: "Alumni Access",
-    weight: 10,
-    formatter: (value) => toHtmlBlocks(value),
-  },
-  {
     fieldKey: "field_backup",
     column: "Backup",
     label: "Backup",
-    weight: 11,
+    weight: 10,
     formatter: (value) => toHtmlBlocks(value),
   },
   {
@@ -77,7 +70,7 @@ export const FIELD_DEFINITIONS: ServiceFieldDefinition[] = [
     column:
       "Additional capabilites (Access controls, \nautomated workflows, code sharing,\n data replication, instrument data transfer,\n DOI generation, large data transfers,\n version control)",
     label: "Additional Features",
-    weight: 12,
+    weight: 11,
     formatter: (value) => toHtmlBlocks(value),
   },
 ];
@@ -285,28 +278,6 @@ export const FACET_CONFIGS: FacetConfig[] = [
     fallback: "all",
   },
   {
-    id: "alumni-access",
-    name: "Do you need alumni to have access to your data?",
-    description: null,
-    column: "Alumni Access",
-    controlType: "radio",
-    choices: [
-      { id: "alumni-access.yes", name: "Yes", weight: 0 },
-      { id: "alumni-access.no", name: "No", weight: 1 },
-    ],
-    matchers: [
-      {
-        pattern: /\bNot Available\b/i,
-        choices: ["alumni-access.no"],
-      },
-      {
-        pattern: /^\s*Available/im,
-        choices: ["alumni-access.yes"],
-      },
-    ],
-    fallback: "all",
-  },
-  {
     id: "storage-duration",
     name: "What is your storage duration need?",
     description: null,
@@ -477,9 +448,7 @@ export const FACET_CONFIGS: FacetConfig[] = [
       },
       {
         pattern: /\b(not available)\b/i,
-        choices: [
-          "storage-capacity.small",
-        ],
+        choices: ["storage-capacity.small"],
       },
     ],
     fallback: "all",
