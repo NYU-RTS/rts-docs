@@ -34,15 +34,6 @@
         "weight": "2",
         "selected": false,
         "description": null
-      },
-      {
-        "id": "risk-classification.hipaa",
-        "name": "HIPAA-Regulated",
-        "control_type": "radio",
-        "parent": "risk-classification",
-        "weight": "3",
-        "selected": false,
-        "description": null
       }
     ]
   },

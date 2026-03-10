@@ -100,29 +100,14 @@ export const FACET_CONFIGS: FacetConfig[] = [
         name: "Confidential or Restricted / High Risk",
         weight: 2,
       },
-      {
-        id: "risk-classification.hipaa",
-        name: "HIPAA-Regulated",
-        weight: 3,
-      },
     ],
     matchers: [
-      {
-        pattern: /\bhipaa\b/i,
-        choices: [
-          "risk-classification.public-low",
-          "risk-classification.sensitive-moderate",
-          "risk-classification.confidential-high",
-          "risk-classification.hipaa",
-        ],
-      },
       {
         pattern: /\b(confidential|restricted)\b/i,
         choices: [
           "risk-classification.public-low",
           "risk-classification.sensitive-moderate",
           "risk-classification.confidential-high",
-          "risk-classification.hipaa",
         ],
       },
       {
