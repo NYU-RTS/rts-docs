@@ -76,7 +76,7 @@
         "weight": 9
       },
       "field_backup": {
-        "value": "<p>Yes</p>",
+        "value": "<p>Yes, available for additional cost.</p>",
         "label": "Backup",
         "weight": 10
       },
@@ -580,7 +580,7 @@
         "weight": 9
       },
       "field_backup": {
-        "value": "<p>Yes</p>",
+        "value": "<p>Yes, Retains up to 100 previous versions of a single file</p>",
         "label": "Backup",
         "weight": 10
       },
