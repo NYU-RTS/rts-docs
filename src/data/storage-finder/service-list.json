@@ -41,7 +41,7 @@
         "weight": 2
       },
       "field_storable_files": {
-        "value": "<p>High</p>",
+        "value": "<p>High, Moderate, &amp; Low Risk</p>",
         "label": "Storable Files",
         "weight": 3
       },
@@ -125,7 +125,7 @@
         "weight": 2
       },
       "field_storable_files": {
-        "value": "<p>Moderate</p>",
+        "value": "<p>Moderate, &amp; Low Risk</p>",
         "label": "Storable Files",
         "weight": 3
       },
@@ -212,7 +212,7 @@
         "weight": 2
       },
       "field_storable_files": {
-        "value": "<p>High</p>",
+        "value": "<p>High, Moderate, &amp; Low Risk</p>",
         "label": "Storable Files",
         "weight": 3
       },
@@ -295,7 +295,7 @@
         "weight": 2
       },
       "field_storable_files": {
-        "value": "<p>Moderate</p>",
+        "value": "<p>Moderate, &amp; Low Risk</p>",
         "label": "Storable Files",
         "weight": 3
       },
@@ -373,7 +373,7 @@
         "weight": 2
       },
       "field_storable_files": {
-        "value": "<p>Moderate</p>",
+        "value": "<p>Moderate, &amp; Low Risk</p>",
         "label": "Storable Files",
         "weight": 3
       },
@@ -424,6 +424,7 @@
     "title": "HPC Scratch",
     "facet_matches": [
       "risk-classification.public-low",
+      "risk-classification.sensitive-moderate",
       "affiliation.faculty",
       "access-needs.netid-collaborators",
       "backup-availability.no",
@@ -455,7 +456,7 @@
         "weight": 2
       },
       "field_storable_files": {
-        "value": "<p>Low</p>",
+        "value": "<p>Moderate, &amp; Low Risk</p>",
         "label": "Storable Files",
         "weight": 3
       },
@@ -508,7 +509,6 @@
       "risk-classification.public-low",
       "risk-classification.sensitive-moderate",
       "risk-classification.confidential-high",
-      "risk-classification.hipaa",
       "affiliation.faculty",
       "affiliation.staff",
       "access-needs.netid-collaborators",
@@ -545,7 +545,7 @@
         "weight": 2
       },
       "field_storable_files": {
-        "value": "<p>HIPAA</p>",
+        "value": "<p>High, Moderate, &amp; Low Risk</p>",
         "label": "Storable Files",
         "weight": 3
       },
@@ -632,7 +632,7 @@
         "weight": 2
       },
       "field_storable_files": {
-        "value": "<p>Moderate</p>",
+        "value": "<p>Moderate, &amp; Low Risk</p>",
         "label": "Storable Files",
         "weight": 3
       },
@@ -720,7 +720,7 @@
         "weight": 2
       },
       "field_storable_files": {
-        "value": "<p>Moderate</p>",
+        "value": "<p>Moderate, &amp; Low Risk</p>",
         "label": "Storable Files",
         "weight": 3
       },
@@ -800,7 +800,7 @@
         "weight": 2
       },
       "field_storable_files": {
-        "value": "<p>Low</p>",
+        "value": "<p>Low Risk</p>",
         "label": "Storable Files",
         "weight": 3
       },
@@ -851,6 +851,8 @@
     "title": "Qualtrics",
     "facet_matches": [
       "risk-classification.public-low",
+      "risk-classification.sensitive-moderate",
+      "risk-classification.confidential-high",
       "affiliation.faculty",
       "affiliation.staff",
       "access-needs.netid-collaborators",
@@ -880,7 +882,7 @@
         "weight": 2
       },
       "field_storable_files": {
-        "value": "<p>Low</p>",
+        "value": "<p>High, Moderate, &amp; Low Risk</p>",
         "label": "Storable Files",
         "weight": 3
       },
@@ -932,6 +934,7 @@
     "facet_matches": [
       "risk-classification.public-low",
       "risk-classification.sensitive-moderate",
+      "risk-classification.confidential-high",
       "affiliation.faculty",
       "affiliation.staff",
       "affiliation.student",
@@ -962,7 +965,7 @@
         "weight": 2
       },
       "field_storable_files": {
-        "value": "<p>Moderate</p>",
+        "value": "<p>High, Moderate, &amp; Low Risk</p>",
         "label": "Storable Files",
         "weight": 3
       },
@@ -1042,7 +1045,7 @@
         "weight": 2
       },
       "field_storable_files": {
-        "value": "<p>Moderate</p>",
+        "value": "<p>Moderate, &amp; Low Risk</p>",
         "label": "Storable Files",
         "weight": 3
       },
@@ -1121,7 +1124,7 @@
         "weight": 2
       },
       "field_storable_files": {
-        "value": "<p>Moderate</p>",
+        "value": "<p>Moderate, &amp; Low Risk</p>",
         "label": "Storable Files",
         "weight": 3
       },
@@ -1174,7 +1177,6 @@
       "risk-classification.public-low",
       "risk-classification.sensitive-moderate",
       "risk-classification.confidential-high",
-      "risk-classification.hipaa",
       "affiliation.faculty",
       "affiliation.staff",
       "affiliation.student",
@@ -1208,7 +1210,7 @@
         "weight": 2
       },
       "field_storable_files": {
-        "value": "<p>HIPAA</p>",
+        "value": "<p>High, Moderate, &amp; Low Risk</p>",
         "label": "Storable Files",
         "weight": 3
       },
@@ -1294,7 +1296,7 @@
         "weight": 2
       },
       "field_storable_files": {
-        "value": "<p>Moderate</p>",
+        "value": "<p>Moderate, &amp; Low Risk</p>",
         "label": "Storable Files",
         "weight": 3
       },
@@ -1376,7 +1378,7 @@
         "weight": 2
       },
       "field_storable_files": {
-        "value": "<p>Moderate</p>",
+        "value": "<p>Moderate, &amp; Low Risk</p>",
         "label": "Storable Files",
         "weight": 3
       },
