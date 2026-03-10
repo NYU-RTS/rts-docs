@@ -160,7 +160,7 @@
         "weight": 9
       },
       "field_backup": {
-        "value": "<p>Yes</p>",
+        "value": "<p>Yes, 30 day retention</p>",
         "label": "Backup",
         "weight": 10
       },
@@ -247,7 +247,7 @@
         "weight": 9
       },
       "field_backup": {
-        "value": "<p>Yes</p>",
+        "value": "<p>Yes, backed up daily, retains last 30 days; monitored 24x7</p>",
         "label": "Backup",
         "weight": 10
       },
@@ -330,7 +330,7 @@
         "weight": 9
       },
       "field_backup": {
-        "value": "<p>Yes</p>",
+        "value": "<p>Yes, 30 day retention</p>",
         "label": "Backup",
         "weight": 10
       },
@@ -408,7 +408,7 @@
         "weight": 9
       },
       "field_backup": {
-        "value": "<p>Yes</p>",
+        "value": "<p>Yes, retains past 30 days.</p>",
         "label": "Backup",
         "weight": 10
       },
@@ -667,7 +667,7 @@
         "weight": 9
       },
       "field_backup": {
-        "value": "<p>Yes</p>",
+        "value": "<p>Yes, retains last 30 days or 100 revisions</p>",
         "label": "Backup",
         "weight": 10
       },
@@ -755,7 +755,7 @@
         "weight": 9
       },
       "field_backup": {
-        "value": "<p>Yes</p>",
+        "value": "<p>Yes, retains last 30 days or 100 revisions</p>",
         "label": "Backup",
         "weight": 10
       },
@@ -917,7 +917,7 @@
         "weight": 9
       },
       "field_backup": {
-        "value": "<p>Yes</p>",
+        "value": "<p>Yes, Yes, backed up daily by Qualtrics</p>",
         "label": "Backup",
         "weight": 10
       },
@@ -1000,7 +1000,7 @@
         "weight": 9
       },
       "field_backup": {
-        "value": "<p>Yes</p>",
+        "value": "<p>Yes, backed up daily.</p>",
         "label": "Backup",
         "weight": 10
       },
@@ -1080,7 +1080,7 @@
         "weight": 9
       },
       "field_backup": {
-        "value": "<p>Yes</p>",
+        "value": "<p>Yes, available as configurable snapshotting</p>",
         "label": "Backup",
         "weight": 10
       },
@@ -1159,7 +1159,7 @@
         "weight": 9
       },
       "field_backup": {
-        "value": "<p>Yes</p>",
+        "value": "<p>Yes, Retains last 30 days</p>",
         "label": "Backup",
         "weight": 10
       },
@@ -1331,7 +1331,7 @@
         "weight": 9
       },
       "field_backup": {
-        "value": "<p>Yes</p>",
+        "value": "<p>Yes, backed up as different versions</p>",
         "label": "Backup",
         "weight": 10
       },
