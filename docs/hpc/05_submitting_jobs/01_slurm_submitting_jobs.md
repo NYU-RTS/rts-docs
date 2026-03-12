@@ -21,6 +21,12 @@ Jobs within the same partition cannot exceed their assigned resources (`QOSGrpGR
 
 Non-stakeholders to temporarily use stakeholder resources (a stakeholder group to temporarily use another group’s resources). Stakeholders retain normal access to their own resources. If non-stakeholders (or other stakeholders) are using them, their jobs may be preempted (canceled) once stakeholders submit new jobs. Public users are allowed to use stakeholder resources only with preemption partitions. Refer to the section below for details on preemptible jobs.
 
+:::tip
+
+`QOSGrpGRES` indicates that there are currently no GPUs available in the partition; it does not reflect an issue with your individual account. In contrast, messages such as `QOSMaxMemoryPerUser` and `QOSMaxCpuPerUserLimit` indicate limits imposed on a user’s account.
+
+:::
+
 ## Job Submission on Torch
 As stated in the tuturial, always only request the compute resources (e.g., GPUs, CPUs, memory) needed for the job. Requesting too many resources can prevent your job from being scheduled within an adequate time. The `SLURM` scheduler will automatically dispatch jobs to all accessible GPU partitions that match resource requests.
 
