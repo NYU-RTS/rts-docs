@@ -51,7 +51,6 @@ interface ServiceFieldData {
   field_permission_settings: FieldData;
   field_links: FieldData;
   field_synchronous_access: FieldData;
-  field_alumni_access: FieldData;
   field_backup: FieldData;
 }
 
@@ -593,10 +592,10 @@ export default function StorageFinderPage() {
                             content="This service is highlighted because it does not match your filter criteria"
                           >
                             <button
+                              aria-pressed={isSelected}
                               aria-label={`${service.title}${
                                 isSelected ? " (selected)" : ""
                               } (doesn't match filters)`}
-                              aria-pressed={isSelected}
                               className={`${styles.serviceButton} ${styles.nonMatching} ${
                                 isSelected ? styles.selected : ""
                               }`}
@@ -621,10 +620,10 @@ export default function StorageFinderPage() {
                     return (
                       <button
                         key={service.id}
+                        aria-pressed={isSelected}
                         aria-label={`${service.title}${
                           isSelected ? " (selected)" : ""
                         }`}
-                        aria-pressed={isSelected}
                         className={`${styles.serviceButton} ${
                           isSelected ? styles.selected : ""
                         }`}
