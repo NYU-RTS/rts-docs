@@ -18,7 +18,7 @@ The first step in using a cluster is to establish a connection from your compute
 
 If you have ever opened the Windows Command Prompt or macOS Terminal, you have seen a CLI.  This is the CLI on your *local machine*. The only leap to be made here is to open a CLI on a *remote machine*, while taking some precautions so that other folks on the network can’t see (or change) the commands you’re running or the results the remote machine sends back. We will use the Secure SHell protocol (or SSH) to open an encrypted network connection between two machines, allowing you to send & receive text and data without having to worry about prying eyes.
 
-![connect-to-remote](./static/connect-to-remote.svg)
+![connect-to-remote](./static/connect-to-remote.png)
 
 SSH clients are usually command-line tools, where you provide the remote machine address as the only required argument. If your username on the remote system differs from what you use locally, you must provide that as well. If your SSH client has a graphical front-end, such as PuTTY or MobaXterm, you will set these arguments before clicking “connect.” From the terminal, you’ll write something like ssh userName@hostname, where the argument is just like an email address: the “@” symbol is used to separate the personal ID from the address of the remote machine.
 
