@@ -139,7 +139,7 @@ async function loadCsvSource(
   const url =
     process.env[STORAGE_FINDER_ENV_URL_KEY] ?? DEFAULT_STORAGE_FINDER_SHEET_URL;
   logger.log(`Downloading CSV from ${url}`);
-  const response = await fetch(url);
+  const response = await fetch(url, { redirect: "follow" });
   if (!response.ok) {
     throw new Error(
       `Failed to download CSV. HTTP ${response.status} ${response.statusText}`,

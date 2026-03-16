@@ -1,5 +1,8 @@
 name: Sync Storage Finder Data
 
+permissions:
+  contents: read
+
 on:
   schedule:
     - cron: "0 0 * * 6"
