@@ -1352,7 +1352,6 @@
       "affiliation.staff",
       "access-needs.public",
       "backup-availability.yes",
-      "synchronous-access.yes",
       "synchronous-access.no",
       "storage-duration.long-term",
       "use-case-purpose.archive",
@@ -1368,7 +1367,9 @@
       "special-requirements.active-directory",
       "special-requirements.faculty-sponsorship",
       "special-requirements.data-stewardship",
-      "special-requirements.project-approval"
+      "special-requirements.project-approval",
+      "additional-features.code-sharing",
+      "additional-features.data-replication"
     ],
     "summary": null,
     "field_data": {
@@ -1418,7 +1419,7 @@
         "weight": 10
       },
       "field_additional_features": {
-        "value": "<p>Not Available</p>",
+        "value": "<p>code sharing, data replication</p>",
         "label": "Additional Features",
         "weight": 11
       }
