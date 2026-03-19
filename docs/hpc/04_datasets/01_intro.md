@@ -2,10 +2,7 @@
 
 ## General
 The HPC team makes available a number of public sets that are commonly used in analysis jobs. The data sets are available Read-Only under
--   `/scratch/work/public/ml-datasets/`
--   `/vast/work/public/ml-datasets/`
-
-We recommend to use version stored at `/vast` (when available) to have better read performance
+-   `/projects/work/public/ml-datasets/`
 
 :::note
 For some of the datasets users must provide a signed usage agreement before accessing
@@ -17,17 +14,17 @@ For example, in order to use coco dataset, one can run the following commands
 ```sh
 $ singularity exec \
   --overlay /<path>/pytorch1.8.0-cuda11.1.ext3:ro \
-  --overlay /vast/work/public/ml-datasets/coco/coco-2014.sqf:ro \
-  --overlay /vast/work/public/ml-datasets/coco/coco-2015.sqf:ro \
-  --overlay /vast/work/public/ml-datasets/coco/coco-2017.sqf:ro \
-  /scratch/work/public/singularity/cuda11.1-cudnn8-devel-ubuntu18.04.sif /bin/bash
+  --overlay /projects/work/public/ml-datasets/coco/coco-2014.sqf:ro \
+  --overlay /projects/work/public/ml-datasets/coco/coco-2015.sqf:ro \
+  --overlay /projects/work/public/ml-datasets/coco/coco-2017.sqf:ro \
+  /projects/work/public/singularity/cuda11.1-cudnn8-devel-ubuntu18.04.sif /bin/bash
 
 $ singularity exec \
   --overlay /<path>/pytorch1.8.0-cuda11.1.ext3:ro \
-  --overlay /vast/work/public/ml-datasets/coco/coco-2014.sqf:ro \
-  --overlay /vast/work/public/ml-datasets/coco/coco-2015.sqf:ro \
-  --overlay /vast/work/public/ml-datasets/coco/coco-2017.sqf:ro \
-  /scratch/work/public/singularity/cuda11.1-cudnn8-devel-ubuntu18.04.sif find /coco | wc -l
+  --overlay /projects/work/public/ml-datasets/coco/coco-2014.sqf:ro \
+  --overlay /projects/work/public/ml-datasets/coco/coco-2015.sqf:ro \
+  --overlay /projects/work/public/ml-datasets/coco/coco-2017.sqf:ro \
+  /projects/work/public/singularity/cuda11.1-cudnn8-devel-ubuntu18.04.sif find /coco | wc -l
 
 532896
 ```
@@ -39,15 +36,9 @@ $ singularity exec \
 Common Objects in Context (COCO) is a large-scale object detection, segmentation, and captioning dataset. 
 
 *Dataset is available under*
-`/scratch`
--   `/scratch/work/public/ml-datasets/coco/coco-2014.sqf`
--   `/scratch/work/public/ml-datasets/coco/coco-2015.sqf`
--   `/scratch/work/public/ml-datasets/coco/coco-2017.sqf`
-
-`/vast`
--   `/vast/work/public/ml-datasets/coco/coco-2014.sqf`
--   `/vast/work/public/ml-datasets/coco/coco-2015.sqf`
--   `/vast/work/public/ml-datasets/coco/coco-2017.sqf`
+-   `/projects/work/public/ml-datasets/coco/coco-2014.sqf`
+-   `/projects/work/public/ml-datasets/coco/coco-2015.sqf`
+-   `/projects/work/public/ml-datasets/coco/coco-2017.sqf`
 
 ### ImageNet and ILSVRC
 About data set: [ImageNet (image-net.org)](https://image-net.org/)
@@ -70,8 +61,7 @@ ILSVRC uses a subset of ImageNet images for training the algorithms and some of 
 -   Size of data is about 150 GB (for train and validation)
 
 *Dataset is available under*
--   `/scratch/work/public/ml-datasets/imagenet`
--   `/vast/work/public/ml-datasets/imagenet`
+-   `/projects/work/public/ml-datasets/imagenet`
 
 ##### Get access to Data
 
@@ -84,8 +74,7 @@ Please open the ImageNet site, find the terms of use ([http://image-net.org/down
 
 *Dataset is available under*
 
--   `/scratch/work/public/MillionSongDataset`
--   `/vast/work/public/ml-datasets/millionsongdataset/`
+-   `/projects/work/public/ml-datasets/millionsongdataset/`
 
 ### ProQuest Congressional Record
 About data set: [ProQuest Congressional Record](https://guides.nyu.edu/govdocs/congressional#s-lg-box-14137380)
@@ -93,7 +82,7 @@ About data set: [ProQuest Congressional Record](https://guides.nyu.edu/govdocs/c
 The ProQuest Congressional Record text-as-data collection consists of machine-readable files capturing the full text and a small number of metadata fields for a full run of the Congressional Record between 1789 and 2005. Metadata fields include the date of publication, subjects (for issues for which such information exists in the ProQuest system), and URLs linking the full text to the canonical online record for that issue on the ProQuest Congressional platform. A total of 31,952 issues are available.
 
 *Dataset is available under*: 
--   `/scratch/work/public/proquest/`
+-   `/projects/work/public/proquest/`
 
 ### C4
 *About data set*: [c4  |  TensorFlow Datasets](https://www.tensorflow.org/datasets/catalog/c4)
@@ -101,8 +90,7 @@ The ProQuest Congressional Record text-as-data collection consists of machine-re
 A colossal, cleaned version of Common Crawl's web crawl corpus.  Based on Common Crawl dataset: [https://commoncrawl.org](https://commoncrawl.org)
 
 *Dataset is available under*
--   `/scratch/work/public/ml-datasets/c4`
--   `/vast/work/public/ml-datasets/c4`
+-   `/projects/work/public/ml-datasets/c4`
 
 ### GQA
 *About data set*: [GQA: Visual Reasoning in the Real World (stanford.edu)](https://cs.stanford.edu/people/dorarad/gqa/index.html)
@@ -110,8 +98,7 @@ A colossal, cleaned version of Common Crawl's web crawl corpus.  Based on Common
 Question Answering on Image Scene Graphs
 
 *Dataset is available under*
--   `/scratch/work/public/ml-datasets/gqa`
--   `/vast/work/public/ml-datasets/gqa`
+-   `/projects/work/public/ml-datasets/gqa`
 
 ### MJSynth
 *About data set*: [Visual Geometry Group - University of Oxford](https://www.robots.ox.ac.uk/~vgg/data/text/)
@@ -121,7 +108,7 @@ This is synthetically generated dataset which found to be sufficient for trainin
 This dataset consists of 9 million images covering 90k English words, and includes the training, validation and test splits used in the author's work (archived dataset is about 10 GB)
 
 *Dataset is available under*
--   `/vast/work/public/ml-datasets/mjsynth`
+-   `/projects/work/public/ml-datasets/mjsynth`
 
 ### open-images-dataset
 *About data set*: [Open Images Dataset – opensource.google](https://storage.googleapis.com/openimages/web/index.html)
@@ -131,8 +118,7 @@ A dataset of ~9 million varied images with rich annotations
 The images are very diverse and often contain complex scenes with several objects (8.4 per image on average). It contains 	image-level labels annotations, object bounding boxes, object segmentations, visual relationships, localized narratives, and 	more
 
 *Dataset is available under*
--   `/scratch/work/public/ml-datasets/open-images-dataset`
--   `/vast/work/public/ml-datasets/open-images-dataset`
+-   `/projects/work/public/ml-datasets/open-images-dataset`
 
 ### Pile
 *About data set*: [The Pile (eleuther.ai)](https://pile.eleuther.ai/)
@@ -140,8 +126,7 @@ The images are very diverse and often contain complex scenes with several object
 The Pile is a 825 GiB diverse, open source language modeling data set that consists of 22 smaller, high-quality datasets combined together.
 
 *Dataset is available under*
--   `/scratch/work/public/ml-datasets/pile`
--   `/vast/work/public/ml-datasets/pile`
+-   `/projects/work/public/ml-datasets/pile`
 
 ### Waymo open dataset
 *About data set*: [Open Dataset – Waymo](https://waymo.com/open/)
@@ -149,8 +134,8 @@ The Pile is a 825 GiB diverse, open source language modeling data set that consi
 The field of machine learning is changing rapidly. Waymo is in a unique position to contribute to the research community with 	some of the largest and most diverse autonomous driving datasets ever released.
 
 *Dataset is available under*
--   `/vast/work/public/ml-datasets/waymo_open_dataset_scene_flow`
--   `/vast/work/public/ml-datasets/waymo_open_dataset_v_1_2_0_individual_files`
--   `/vast/work/public/ml-datasets/waymo_open_dataset_v_1_3_2_individual_files`
--   `/vast/work/public/ml-datasets/waymo_open_dataset_v_1_4_1_individual_files`
+-   `/projects/work/public/ml-datasets/waymo_open_dataset_scene_flow`
+-   `/projects/work/public/ml-datasets/waymo_open_dataset_v_1_2_0_individual_files`
+-   `/projects/work/public/ml-datasets/waymo_open_dataset_v_1_3_2_individual_files`
+-   `/projects/work/public/ml-datasets/waymo_open_dataset_v_1_4_1_individual_files`
 
