@@ -47,7 +47,7 @@ The LLM now has the associated context it needs to generate an relevant response
 
 You can run it to ask a question about a recent event that occurred after the knowledge cutoff for the dataset used to train the LLM:
 ```sh
-ss19980@ITS-JQKQGQQMTX ~/D/p/r/g/rag (main)> uv run rag_basic.py \
+uv run rag_basic.py \
                                                  https://en.wikipedia.org/wiki/2025_London_Marathon \
                                                  "Which athletes won the 2025 London Marathon?"
 ...
@@ -76,5 +76,4 @@ The athletes who won the 2025 London Marathon are:
 *   **Wheelchair men:** Marcel Hug
 *   **Wheelchair women:** Catherine Debrunner
 E20250611 14:32:54.595919 362220 server.cpp:47] [SERVER][BlockLock][] Process exit
-ss19980@ITS-JQKQGQQMTX ~/D/p/r/g/rag (main)>
 ```

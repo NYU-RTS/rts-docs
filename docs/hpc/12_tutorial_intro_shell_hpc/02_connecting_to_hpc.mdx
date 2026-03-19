@@ -202,25 +202,16 @@ Once you are on the NYU WiFi or VPN you can connect with:
 ssh <NetID>@login.torch.hpc.nyu.edu
 ```
 
-When you are logged in you will see information about your last login, the host you've connected to, and your storage quota.  It should look something like this:
+When you are logged in you will see information about your last login. It should look something like this:
 
 ```bash
-Last login: Fri May  9 09:45:18 2025 from 0.0.0.0
-
-Hostname: log-1 at Mon May 12 10:48:19 EDT 2025
-
-Filesystem   Environment   Backed up?   Allocation       Current Usage
-Space        Variable      /Flushed?    Space / Files    Space(%) / Files(%)
-
-/home        $HOME         Yes/No       50.0GB/30.0K      23.74GB(47.48%)/4913(16.38%)
-/scratch     $SCRATCH      No/Yes        5.0TB/1.0M      35.91GB(0.70%)/19585(1.96%)
-/archive     $ARCHIVE      Yes/No        2.0TB/20.0K       0.00GB(0.00%)/1(0.00%)
-/vast        $VAST         NO/YES        2TB/5.0M           0.0TB(0.0%)/2(0%)
-
-[NetID@log-1 ~]$
+> ssh login.torch.hpc.nyu.edu
+(NetID@login.torch.hpc.nyu.edu) Authenticate with PIN ... at https://login.microsoft.com/device and press ENTER.
+Last login: Tue Mar 17 17:16:15 2026 from 10.27.3.62
+[NetID@torch-login-4 ~]$ 
 ```
 
-By looking at the information after *Hostname:* and in the prompt you'll notice that the machine you're currently logged into is not Torch.  This is expected.  You've just logged into a _login node_ that is connected to Torch.  It is from the login nodes that you will submit jobs to Torch.
+By looking at the information after *Hostname:* and in the prompt you'll notice that the machine you're currently logged into is not Torch. This is expected.  You've just logged into a _login node_ that is connected to Torch.  It is from the login nodes that you will submit jobs to Torch.
 
 If you logged in using PuTTY this will not apply because it does not offer a local terminal.
 
