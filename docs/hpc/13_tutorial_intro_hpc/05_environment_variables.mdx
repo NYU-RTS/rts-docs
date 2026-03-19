@@ -20,26 +20,45 @@ The shell is just a program, and like other programs, it has variables. Those va
 
 Variables are a great way of saving information under a name you can access later. In programming languages like Python and R, variables can store pretty much anything you can think of. In the shell, they usually just store text. The best way to understand how they work is to see them in action.
 
-Let’s start by running the command `set` and looking at some of the variables in a typical shell session:
+Let’s start by running the command `printenv` and looking at some of the variables in a typical shell session:
 ```bash
-$ set
+$ printenv
+[NetID@torch-login-4 ~]$ printenv
 SHELL=/bin/bash
-WINDOWID=87
-SINGULARITY_CACHEDIR=/state/partition1/NYUNetID-singularity-cache
-COLORTERM=truecolor
+SINGULARITY_CACHEDIR=/scratch/NetID/singularity-cache
 HISTCONTROL=ignoredups
 HISTSIZE=1000
-HOSTNAME=log-3
-FPATH=/usr/share/zsh/5.5.1/functions:/usr/share/zsh/5.5.1/functions:/share/apps/lmod/8.4.9/lmod/lmod/init/ksh_funcs
-SSH_AUTH_SOCK=/tmp/ssh-XXXXb32gan/agent.3025643
-__LMOD_REF_COUNT_MODULEPATH=/share/apps/modulefiles:1
-VAST=/vast/NYUNetID
-LMOD_DIR=/share/apps/lmod/8.4.9/lmod/lmod/libexec
+HOSTNAME=torch-login-4.hpc-infra.svc.cluster.local
+SSH_AUTH_SOCK=/tmp/ssh-XXXXSgS6Tp/agent.120512
+LMOD_DIR=/share/apps/lua-modules/lmod/lmod/libexec
+PWD=/home/NetID
+LOGNAME=NetID
+XDG_SESSION_TYPE=tty
+MODULESHOME=/share/apps/lua-modules/lmod/lmod
+SBATCH_IGNORE_PBS=1
+MOTD_SHOWN=pam
+SCRATCH=/scratch/NetID
+LMOD_SETTARG_FULL_SUPPORT=no
+APPTAINER_BINDPATH=/scratch,/projects,/share/apps,/mnt,/state/partition1
+LMOD_DISABLE_SAME_NAME_AUTOSWAP=yes
+LMOD_VERSION=8.7.64
+HF_HOME=/scratch/NetID/.huggingface
+ARCHIVE=/archive/NetID
+XDG_SESSION_CLASS=user
+LMOD_PKG=/share/apps/lua-modules/lmod/lmod
+SELINUX_ROLE_REQUESTED=
+TERM=xterm-256color
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+USER=NetID
+SELINUX_USE_CURRENT_RANGE=
+LMOD_ROOT=/share/apps/lua-modules/lmod
+SHLVL=1
+BASH_ENV=/etc/profile.d/cluster.sh
+APPTAINER_CACHEDIR=/scratch/NetID/apptainer-cache
 ...
 ```
-As you can see, there are quite a few — in fact, four or five times more than what’s shown here. And yes, using `set` to *show* things might seem a little strange, even for Unix, but if you don’t give it any arguments, it might as well show you things you *could* set.
 
-Every variable has a name. All shell variables’ values are strings, even those (like `UID`) that look like numbers. It’s up to programs to convert these strings to other types when necessary. For example, if a program wanted to find out how many processors the computer had, it would convert the value of the `NUMBER_OF_PROCESSORS` variable from a string to an integer.
+As you can see, there are quite a few — in fact, four or five times more than what’s shown here. Every variable has a name. All shell variables’ values are strings, even those (like `UID`) that look like numbers. It’s up to programs to convert these strings to other types when necessary. For example, if a program wanted to find out how many processors the computer had, it would convert the value of the `NUMBER_OF_PROCESSORS` variable from a string to an integer.
 
 ## Showing the Value of a Variable
 Let’s show the value of the variable HOME:

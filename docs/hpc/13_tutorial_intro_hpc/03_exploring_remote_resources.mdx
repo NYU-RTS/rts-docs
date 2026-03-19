@@ -43,18 +43,19 @@ The remote computer’s home directory shares almost nothing in common with the 
 
 Most high-performance computing systems run the Linux operating system, which is built around the [UNIX Filesystem Hierarchy Standard](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard). Instead of having a separate root for each hard drive or storage medium, all files and devices are anchored to the “root” directory, which is `/`:
 ```bash
-[NetID@log-1 ~]$ ls /
-afs      bin@  dev  gpfs  lib@    media  mnt  opt   root  sbin@    share  state  tmp  var
-archive  boot  etc  home  lib64@  misc   net  proc  run   scratch  srv    sys    usr  vast
+[NetID@torch-login-4 ~]$ ls /
+afs      boot  home   media  net   projects  sbin     srv    tmp
+archive  dev   lib    misc   opt   root      scratch  state  usr
+bin      etc   lib64  mnt    proc  run       share    sys    var
+[NetID@torch-login-4 ~]$ 
 ```
-The `/home/NetID`, `/scratch/NetID`, `/archive/NetID`, and `/vast/NetID` directories are created for you by default and they are where you'll probably store most of your files, but there are other options as well. Please see the tip below and our [storage documentation](../03_storage/01_intro_and_data_management.mdx) for details about how these directories differ, as well as other storage options available.  Other folders on a UNIX OS contain system files and change as you install new software or upgrade your OS.
+The `/home/NetID`, `/scratch/NetID` and `/archive/NetID` directories are created for you by default and they are where you'll probably store most of your files, but there are other options as well. Please see the tip below and our [storage documentation](../03_storage/01_intro_and_data_management.mdx) for details about how these directories differ, as well as other storage options available.  Other folders on a UNIX OS contain system files and change as you install new software or upgrade your OS.
 
 :::tip[Using the HPC filesystems]
 On Geene, you have a number of places where you can store your files. These differ in both the amount of space allocated and whether or not they are backed up.
 
 -   **Home** – data stored here is available throughout the HPC system, and often backed up periodically. Please note the limit on the number of files (inodes) which can get used up easily. Use the `myquota` command to ensure that you are not running out of inodes!
 -   **Scratch** – used for temporary file storage while running jobs. It is not backed up and files that are unused for over 60 days are purged. It should not be used for long term storage.
--   **Vast** – flash-drive based system that is optimal for workloads with high I/O rates. Like the `scratch` storage, it is also not backed up and files that are unused for over 60 days are purged.
 -   **Research Project Space (RPS)** – provides data storage space for research projects that is easily shared amongst collaborators, backed up, and not subject to the old file purging policy. Note that it is a paid service.
 -   **Archive** – provides a space for long-term storage of research output. It is only accessible from the login nodes, so it is inaccessible by running jobs.
 :::
