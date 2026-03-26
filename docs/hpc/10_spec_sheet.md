@@ -3,6 +3,7 @@
 
 The Torch cluster has 518 [Intel "Xeon Platinum 8592+ 64C"](https://www.intel.com/content/www/us/en/products/sku/237261/intel-xeon-platinum-8592-processor-320m-cache-1-90-ghz/specifications.html) CPUs, 29 NVIDIA [H200](https://nvdam.widen.net/s/nb5zzzsjdf/hpc-datasheet-sc23-h200-datasheet-3002446) GPUs & 68 NVIDIA [L40S](https://resources.nvidia.com/en-us-l40s/l40s-datasheet-28413) GPUs connected together via Infiniband NDR400 interconnect. Further details on each kind of node is provided in the table below.
 
+## Torch System Resources
 | Type | Nodes  | CPU Cores  | GPUs  | Memory (GB) | CPUs per Node | GPUs per Node | Memory per Node (GB) |
 |---|---|---|---|---|---|---|---|
 | Standard Memory | 186 | 23,808 | N/A | 95,232 | 128 | N/A | 512 |
@@ -24,7 +25,8 @@ Torch was tested in June 2025 using the [LINPACK benchmark system](https://top50
 
  Torch was recently ranked [#40 on the Green 500 list](https://top500.org/lists/green500/list/2025/06/), a global list of the most energy efficient supercomputers in the world thanks to its advanced liquid cooling system.
 
- The breakdown of these GPUs into stakeholder buckets is as follows:
+## Torch Stakeholder Resources
+Many GPUs on Torch are owned by stakeholder groups who have prioirty access to the resources. The breakdown of these GPUs into stakeholder groups is as follows:
 
 | Stakeholders | H200 | L40S | H100 | A100 | RTX Pro 6000 | Total |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
