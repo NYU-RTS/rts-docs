@@ -1,4 +1,4 @@
-# How to approve an HPC Account Request
+# How to Approve an HPC Account Request
 
 When someone nominates you as their HPC sponsor, you should be notified by email.
 
