@@ -57,7 +57,8 @@ The above code automatically makes your environment look for the default shared 
 ### Prepare Overlay File 
 First, start a job to work on the compute nodes.
 ```bash
-[NetID@log-1 my_env]$ sbatch --cpus-per-task=2 --mem=10GB --time=04:00:00 --wrap "sleep infinity"
+# From a login node:
+sbatch --cpus-per-task=2 --mem=10GB --time=04:00:00 --wrap "sleep infinity"
 
 # wait to be assigned a node then SSH to the node
 ```
@@ -66,16 +67,16 @@ Once you SSH to the node, you can begin setting up the environment.
 :::note Files will not properly compile on the login nodes as they have different Red Hat OS images than the compute nodes. All compilation and package installation must be done on the compute nodes. 
 
 ```bash
-[NetID@log-1 ~]$ mkdir /scratch/$USER/my_env
-[NetID@log-1 ~]$ cd /scratch/$USER/my_env
-[NetID@log-1 my_env]$ cp -rp /share/apps/overlay-fs-ext3/overlay-15GB-500K.ext3.gz .
-[NetID@log-1 my_env]$ gunzip overlay-15GB-500K.ext3.gz
+mkdir /scratch/$USER/my_env
+cd /scratch/$USER/my_env
+cp -rp /share/apps/overlay-fs-ext3/overlay-15GB-500K.ext3.gz .
+gunzip overlay-15GB-500K.ext3.gz
 ```
 Above we used the overlay file `overlay-15GB-500K.ext3.gz` which will contain all of the installed packages. There are more optional overlay files. You can find instructions on the following pages: [Singularity with Conda](../07_containers/03_singularity_with_conda.md), [Squash File System and Singularity](../07_containers/04_squash_file_system_and_singularity.md). 
 
 ### Launch Singularity Environment for Installation
 ```bash
-[NetID@log-1 ~]$ singularity exec --fakeroot --overlay /scratch/$USER/my_env/overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif /bin/bash
+singularity exec --fakeroot --overlay /scratch/$USER/my_env/overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif /bin/bash
 ```
 Above we used the Singularity OS image `cuda12.3.2-cudnn9.0.0-ubuntu-22.04.4.sif` which provides the base operating system environment for the conda environment. There are other Singularity OS images available at `/share/apps/images`
 
@@ -84,6 +85,7 @@ Launching Singularity with the `--overlay` flag mounts the overlay file to a new
 :::warning
 Be sure that you have the Singularity prompt (`Singularity>`) and that `/ext3` is available before the next step.
 ```bash
+# Example of what it should look like inside Singularity:
 Singularity> ls -lah /ext3
 total 8.5K
 drwxrwxr-x.  2 root root 4.0K Oct 19 10:01 .
@@ -93,17 +95,19 @@ drwx------. 29 root root 8.0K Oct 19 10:01 ..
 
 ### Install Miniforge to Overlay File
 ```bash
-Singularity> wget --no-check-certificate https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
-Singularity> sh Miniforge3-Linux-x86_64.sh -b -p /ext3/miniforge3
+# Make sure you have the Singularity> prompt!
+wget --no-check-certificate https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
+sh Miniforge3-Linux-x86_64.sh -b -p /ext3/miniforge3
 ```
 Next, create a wrapper script at `/ext3/env.sh`:
 ```bash
-Singularity> touch /ext3/env.sh
-Singularity> echo '#!/bin/bash' >> /ext3/env.sh
-Singularity> echo 'unset -f which' >> /ext3/env.sh
-Singularity> echo 'source /ext3/miniforge3/etc/profile.d/conda.sh' >> /ext3/env.sh
-Singularity> echo 'export PATH=/ext3/miniforge3/bin:$PATH'         >> /ext3/env.sh
-Singularity> echo 'export PYTHONPATH=/ext3/miniforge3/bin:$PATH'   >> /ext3/env.sh
+# Make sure you have the Singularity> prompt!
+touch /ext3/env.sh
+echo '#!/bin/bash' >> /ext3/env.sh
+echo 'unset -f which' >> /ext3/env.sh
+echo 'source /ext3/miniforge3/etc/profile.d/conda.sh' >> /ext3/env.sh
+echo 'export PATH=/ext3/miniforge3/bin:$PATH'         >> /ext3/env.sh
+echo 'export PYTHONPATH=/ext3/miniforge3/bin:$PATH'   >> /ext3/env.sh
 ```
 Your `/ext3/env.sh` file should now contain the following:
 ```bash
@@ -117,22 +121,25 @@ The wrapper script will activate your conda environment, to which you will be in
 
 Next, activate your conda environment with the following:
 ```bash
-Singularity> source /ext3/env.sh
+# Make sure you have the Singularity> prompt!
+source /ext3/env.sh
 ```
 
 ### Install Packages to Miniforge Environment
 Now that your environment is activated, you can update and install packages:
 ```bash
-Singularity> conda config --remove channels defaults
-Singularity> conda update -n base conda -y
-Singularity> conda clean --all --yes
-Singularity> conda install pip --yes
-Singularity> conda install ipykernel --yes # Note: ipykernel is required to run as a kernel in the Open OnDemand Jupyter Notebooks
+# Make sure you have the Singularity> prompt!
+conda config --remove channels defaults
+conda update -n base conda -y
+conda clean --all --yes
+conda install pip --yes
+conda install ipykernel --yes # Note: ipykernel is required to run as a kernel in the Open OnDemand Jupyter Notebooks
 ```
 To confirm that your environment is appropriately referencing your Miniforge installation, try out the following:
 ```bash
-Singularity> unset which
-Singularity> which conda
+# Make sure you have the Singularity> prompt!
+unset which
+which conda
 # output: /ext3/miniforge3/bin/conda
 
 Singularity> which python
@@ -169,13 +176,13 @@ After it is running, you’ll be redirected to a compute node. From there, run s
 To create a kernel named my_env copy the template files to your home directory.
 Please note that kernel_template on Greene is stored under `/share/apps/mypy/src/kernel_template`
 ```bash sh
-Singularity> mkdir -p ~/.local/share/jupyter/kernels
-Singularity> cd ~/.local/share/jupyter/kernels
-Singularity> cp -R /share/apps/kernel_template ./my_env # this should be the name of your Singularity env
+mkdir -p ~/.local/share/jupyter/kernels
+cd ~/.local/share/jupyter/kernels
+cp -R /share/apps/kernel_template ./my_env # this should be the name of your Singularity env
 
-Singularity> cd ./my_env 
+cd ./my_env 
 
-Singularity> ls
+ls
 #kernel.json  logo-32x32.png  logo-64x64.png  python # files in the ~/.local/share/jupyter/kernels directory
 ```
 
