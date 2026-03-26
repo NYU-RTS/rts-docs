@@ -1,6 +1,6 @@
 # Sharing Data on HPC
 
-## Introduction
+## Access Control Lists (ACL)
 To share files on the cluster with other users, we recommend using NFSv4 Access Control Lists (ACL) for a user to share access to their data with others. NFSv4 ACL mechanism allows for fine-grained control access to any files by any users or groups of users.
 :::warning
 We discourage users from setting `777` permissions with `chmod`, because this can lead to data loss (by a malicious user or unintentionally, by accident).
@@ -81,7 +81,7 @@ The above would allow kevin to have have read, write, and execute access for *al
 ## Linux Groups for Group Permissions
 The HPC team allows teams to manage group membership using a IPA Linux Group. This is a good choice for when all users need the same read/write/execute permissions for a directory and subdirectories.
 
-Please email hpc@nyu.edu if your team would like to use a Linux Group. Generally this will follow some kind of naming convention along the lines of:
+Please email [hpc@nyu.edu](mailto:hpc@nyu.edu) if your team would like to use a Linux Group. Generally this will follow some kind of naming convention along the lines of:
 
 g-DEPT-LABNAME
 
@@ -129,3 +129,15 @@ Number of entries returned 2
   Member users: mdw303, sw77
   Membership managed by users: mdw303
 ```
+
+## Globus File Sharing
+
+You can also share file using Globus.  One advantage of using Globus to share files is that you can share with people who do not have HPC accounts.
+
+See instructions in the [Globus documentation](https://docs.globus.org/guides/tutorials/manage-files/share-files/).
+
+:::note
+Please be aware that it is possible when you select to create a collection that you will see an error message stating that you failed to authenticate.  Please just select the 'Continue' button and you should be taken through the reauthentication process before proceeding to create the collection.
+
+Let us know if you have any questions or problems at [hpc@nyu.edu](mailto:hpc@nyu.edu).
+:::
