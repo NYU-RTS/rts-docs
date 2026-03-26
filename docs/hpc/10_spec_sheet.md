@@ -23,3 +23,16 @@ The Torch cluster has 518 [Intel "Xeon Platinum 8592+ 64C"](https://www.intel.co
 Torch was tested in June 2025 using the [LINPACK benchmark system](https://top500.org/project/linpack/), which is the basis for all HPC systems ranked on the Top500 list. It had a theoretical maximum performance of 12.25 PF/s thanks to its powerful GPU resources, of which LINPACK was able to use 10.79 PF/s, thus placing it at [#133 on the listed](https://top500.org/system/180363/).
 
  Torch was recently ranked [#40 on the Green 500 list](https://top500.org/lists/green500/list/2025/06/), a global list of the most energy efficient supercomputers in the world thanks to its advanced liquid cooling system.
+
+ The breakdown of these GPUs into stakeholder buckets is as follows:
+
+| Stakeholders | H200 | L40S | H100 | A100 | RTX Pro 6000 | Total |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| Tandon SoE | 112 | | 60 | 60 | | 232 |
+| Courant (CS) | 48 | 52 | | | | 100 |
+| CDS | 24 | | | 24 | | 48 |
+| Chemistry | | | | 56 | | 56 |
+| CILVR | | | | 32 | | 32 |
+| Individual PIs | 24 | 12 | | | 16 | 52 |
+| IT Public | 24 | 208 | | | | 232 |
+| **Total** | **232** | **272** | **60** | **172** | **16** | **752** |
