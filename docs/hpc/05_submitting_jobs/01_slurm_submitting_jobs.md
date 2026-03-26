@@ -38,7 +38,7 @@ Jobs with low GPU utilization will be automatically canceled. The exact threshol
 On Torch, users may run "preemptible" jobs on stakeholder resources that their group does not own. This allows the stakeholder resources to be utilized by non-stakeholders which may otherwise be idle. To make the best use of these resources, you are encouraged to adopt checkpoint/restart to allow for resumption of the workload in subsequent jobs.
 
 :::warning Preemption Policy
-Jobs become eligible for preemption after 1 hour of runtime. Jobs will not be canceled within the first hour.
+Jobs become eligible for preemption after 1 hour of runtime. Jobs will not be canceled within the first 30 minutes.
 :::
 
 The preemption order is:
