@@ -18,11 +18,11 @@ Here were train the ResNet-50 model on the Cassava dataset (see [video](https://
 [NetID@log-1 ~]$ cd /scratch/<NetID>/tensorflow-example
 
 # copy over an overlay file with sufficient resources and unzip it
-[NetID@cm001 tensorflow-example]$ cp -rp /scratch/work/public/overlay-fs-ext3/overlay-15GB-500K.ext3.gz .
+[NetID@cm001 tensorflow-example]$ cp -rp /share/apps/overlay-fs-ext3/overlay-15GB-500K.ext3.gz .
 [NetID@cm001 tensorflow-example]$ gunzip overlay-15GB-500K.ext3.gz
 
 # start the singularity environment
-[NetID@cm001 tensorflow-example]$ singularity exec --overlay overlay-15GB-500K.ext3:rw /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
+[NetID@cm001 tensorflow-example]$ singularity exec --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
 
 # install miniforge in singularity environment
 Singularity> wget --no-check-certificate https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
@@ -88,7 +88,7 @@ Run the command below to download the data (4 GB in size):
 # switch to a data transfer node
 [NetID@log-1 tensorflow_example]$ ssh gdtn
 [NetID@dtn-1 ~]$ cd /scratch/NetID/tensorflow_example
-[NetID@dtn-1 tensorflow_example]$ singularity exec --nv --overlay /scratch/NetID/pytorch-example/my_pytorch.ext3:ro /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash -c "source /ext3/env.sh; python download_data_and_weights.py"
+[NetID@dtn-1 tensorflow_example]$ singularity exec --nv --overlay /scratch/NetID/pytorch-example/my_pytorch.ext3:ro /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash -c "source /ext3/env.sh; python download_data_and_weights.py"
 ```
 
 ### Step 3: Inspect the Script
@@ -181,7 +181,7 @@ module purge
 
 srun singularity exec --nv \
 	    --overlay /scratch/NetID/pytorch_examples_new/tensorflow-example/tensorflow.ext3:ro \
-	    /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif\
+	    /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif\
 	    /bin/bash -c "source /ext3/env.sh; python mnist_classify.py --batch-size-per-replica=32 --epochs=15"
 ```
 :::note
