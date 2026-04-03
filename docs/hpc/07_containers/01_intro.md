@@ -21,7 +21,7 @@ $ apptainer pull docker://godlovedc/lolcow
 # image name can be for example docker://godlovedc/lolcow
 ```
 
-![singularity1](./static/singularity1.png)
+![apptainer1](./static/apptainer1.png)
 
 ### 2. build the image (optional)
 ```sh
@@ -31,7 +31,7 @@ $ apptainer build <a name of your choosing>.sif <image name>
 
 Building an image is optional for most use cases. In many cases, users can directly run containers pulled from Docker Hub without building a local image.
 
-![singularity2](./static/singularity2.png)
+![apptainer2](./static/apptainer2.png)
 
 You can now run your container using the built image.
 
@@ -49,7 +49,7 @@ Write access is not typically required when running containers. Read-only execut
 
 running this would yield a menu for output:
 
-![singularity3](./static/singularity3.png)
+![apptainer3](./static/apptainer3.png)
 
 #### Enter Container
 ```sh
@@ -57,11 +57,11 @@ apptainer shell <image name>.sif
 # after this step, you will be going into the container and start your programming
 ```
 
-![singularity4](./static/singularity4.png)
+![apptainer4](./static/apptainer4.png)
 
 :::tip
 
-#### Run commands outside the container
+Run commands outside the container
 
 You can run commands for the container using exec arguments without actually going into the container
 
@@ -69,11 +69,15 @@ You can run commands for the container using exec arguments without actually goi
 $ apptainer exec <image name>.sif <commands>
 # adding commands to the back will return the display result of these commands in the container without actually going into the container
 ```
-
-Example:
-
-![singularity5](./static/singularity5.png)
 :::
+
+### Using fakeroot
+
+In some cases, you may need elevated permissions inside the container to install software or modify system files. Apptainer provides a `--fakeroot` option that allows you to run commands inside the container with root-like privileges, without requiring actual root access on the system.
+
+```sh
+$ apptainer exec --fakeroot <image name>.sif <commands>
+```
 
 That's it! Now you're good to go and can just use these simple steps to run Apptainer images and run your programs.
 
