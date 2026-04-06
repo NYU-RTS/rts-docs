@@ -15,6 +15,10 @@ There are multiple reasons to use Apptainer on the HPC clusters:
 ## How to run an Apptainer container
 There are 3 steps to run an Apptainer container on our clusters:
 
+:::warning
+Running containers on login nodes is not encouraged, as processes may be terminated due to resource limits; please use compute nodes instead.
+:::
+
 ### 1. pull an image from Docker hub
 ```sh
 $ apptainer pull docker://godlovedc/lolcow
