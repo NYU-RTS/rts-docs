@@ -10,8 +10,8 @@
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2DXB3BDH70"></script>
 <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-2DXB3BDH70",{anonymize_ip:!0})</script><link rel="stylesheet" href="/pr-preview/pr-335/assets/css/styles.6a11ecd8.css">
-<script src="/pr-preview/pr-335/assets/js/runtime~main.8140a873.js" defer="defer"></script>
-<script src="/pr-preview/pr-335/assets/js/main.0b3ac839.js" defer="defer"></script>
+<script src="/pr-preview/pr-335/assets/js/runtime~main.392fb841.js" defer="defer"></script>
+<script src="/pr-preview/pr-335/assets/js/main.b4f234d5.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -31,6 +31,7 @@
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_EexU" id="how-to-run-an-apptainer-container">How to run an Apptainer container<a href="#how-to-run-an-apptainer-container" class="hash-link" aria-label="Direct link to How to run an Apptainer container" title="Direct link to How to run an Apptainer container" translate="no">​</a></h2>
 <p>There are 3 steps to run an Apptainer container on our clusters:</p>
+<div class="theme-admonition theme-admonition-warning admonition_Ywjx alert alert--warning"><div class="admonitionHeading_RXll"><span class="admonitionIcon_jDWK"><svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>warning</div><div class="admonitionContent_aaxw"><p>Running containers on login nodes is not encouraged, as processes may be terminated due to resource limits; please use compute nodes instead.</p></div></div>
 <h3 class="anchor anchorTargetStickyNavbar_EexU" id="1-pull-an-image-from-docker-hub">1. pull an image from Docker hub<a href="#1-pull-an-image-from-docker-hub" class="hash-link" aria-label="Direct link to 1. pull an image from Docker hub" title="Direct link to 1. pull an image from Docker hub" translate="no">​</a></h3>
 <div class="language-sh codeBlockContainer_FZTC theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_xuaH"><pre tabindex="0" class="prism-code language-sh codeBlock_TaDR thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_vw_9"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ apptainer pull docker://godlovedc/lolcow</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain"></span><span class="token comment" style="color:hsl(230, 4%, 64%)"># image name can be for example docker://godlovedc/lolcow</span><br></span></code></pre></div></div>
 <p><img decoding="async" loading="lazy" alt="apptainer1" src="/pr-preview/pr-335/assets/images/apptainer1-8bf742fa09f865d0045e48f3ab5ab958.png" width="1342" height="226" class="img_tGFx"></p>
