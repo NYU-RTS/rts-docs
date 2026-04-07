@@ -48,7 +48,7 @@ $ ./<image name>.sif
 ```
 
 :::warning
-Write access is not typically required when running containers. Read-only execution is recommended for stability.
+Apptainer images are immutable by default and do not support write access. To modify files within a container, an overlay must be used.
 :::
 
 running this would yield a menu for output:
