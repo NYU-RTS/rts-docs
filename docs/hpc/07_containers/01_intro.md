@@ -1,25 +1,25 @@
 # Custom Applications with Containers
 
 ## What is Apptainer?
-Apptainer is a container based Linux kernel workspace that works just like Docker.  You can run pre-built programs in containers without having to worry about the pre-install environment.  You can even run Docker containers with Apptainer.  Please see the [Apptainer and Docker](https://apptainer.org/docs/user/main/docker_and_oci.html) documentation by Syslabs for details about all the ways Apptainer supports Docker.  For a detailed introduction on Apptainer, visit their [official site](https://apptainer.org/documentation/).
+Apptainer is a container based Linux kernel workspace that works just like Docker. You can run pre-built programs in containers without having to worry about the pre-install environment. You can even run Docker containers with Apptainer. Please see the [Apptainer and Docker](https://apptainer.org/docs/user/main/docker_and_oci.html) documentation by Syslabs for details about all the ways Apptainer supports Docker. For a detailed introduction on Apptainer, visit their [official site](https://apptainer.org/documentation/).
 
-Apptainer is the continuation of the Singularity project.  When we transition to the new Torch cluster you will only see reference to Apptainer.  The reason for this is that there were two container projects with the name Singularity.  The original free and open-source (FOSS) project and a closed-source corporate fork.  The FOSS version has renamed itself to Apptainer to avoid confusion and this is the version we use.
+Apptainer is the continuation of the Singularity project. When we transition to the new Torch cluster you will only see reference to Apptainer.  The reason for this is that there were two container projects with the name Singularity. The original free and open-source (FOSS) project and a closed-source corporate fork.  The FOSS version has renamed itself to Apptainer to avoid confusion and this is the version we use.
 
-## Why do we use Apptainer
+## Why Do We Use Apptainer
 There are multiple reasons to use Apptainer on the HPC clusters:
 -   **Security**: Apptainer provides a layer of security as it does not require any root access on our clusters. This makes it safer against malware and bad scripts that might jeopardize the outer system. Thus we only support Apptainer on our clusters (there are not other options such as Kubernetes or Docker on our clusters right now).
--   **Containerization**: Apptainer will run all your images (packaged and pre-built programs) inside of its containers, each container works like a small vm. They contain all the required environment and files of a single Linux kernel and you don't have to worry about any pre-installation issues.
+-   **Containerization**: Apptainer will run all your images (packaged and prebuilt programs) inside of its containers, each container works like a small vm. They contain all the required environment and files of a single Linux kernel and you don't have to worry about any pre-installation issues.
 -   **Inter-connectivity**: Containers are able to talk to each other, as well as the home system, so while each container has its own small space, they are still a part of a big interconnected structure. Thus enabling you to connect your programs.
 -   **Accessibility**: Probably the most important feature of all, Apptainer allows you to run your program in 2 to 3 simple steps, as shown below. 
 
-## How to run an Apptainer container
+## How to Run an Apptainer Container
 There are 3 steps to run an Apptainer container on our clusters:
 
 :::warning
 Running containers on login nodes is not encouraged, as processes may be terminated due to resource limits; please use compute nodes instead.
 :::
 
-### 1. pull an image from Docker hub
+### 1. Pull an Image from Docker Hub
 ```sh
 $ apptainer pull docker://godlovedc/lolcow
 # image name can be for example docker://godlovedc/lolcow
@@ -27,7 +27,7 @@ $ apptainer pull docker://godlovedc/lolcow
 
 ![apptainer1](./static/apptainer1.png)
 
-### 2. build the image (optional)
+### 2. Build the Image (Optional)
 ```sh
 $ apptainer build <a name of your choosing>.sif <image name>
 # the image name can be a local image or an image from a hub
@@ -39,7 +39,7 @@ Building an image is optional for most use cases. In many cases, users can direc
 
 You can now run your container using the built image.
 
-### 3. run container
+### 3. Run Container
 ```sh
 # this is one way of running a container
 $ apptainer run <image name>.sif
@@ -47,8 +47,8 @@ $ apptainer run <image name>.sif
 $ ./<image name>.sif
 ```
 
-:::warning
-Apptainer images are immutable by default and do not support write access. To modify files within a container, an overlay must be used.
+:::info
+Apptainer images are immutable by default. You can mount an writeable overlay file and edit files within the overlay.
 :::
 
 running this would yield a menu for output:
@@ -75,7 +75,7 @@ $ apptainer exec <image name>.sif <commands>
 ```
 :::
 
-### Using fakeroot
+### Using `fakeroot`
 
 In some cases, you may need elevated permissions inside the container to install software or modify system files. Apptainer provides a `--fakeroot` option that allows you to run commands inside the container with root-like privileges, without requiring actual root access on the system.
 
@@ -92,7 +92,7 @@ So what if you want to create an image from your container and save it for a rai
 
 Apptainer documentation has [instructions for building containers](https://apptainer.org/docs/user/latest/build_a_container.html) for your convenience.  Please read through them to create your own Apptainer container and package it into an image!
 
-Similarly, you can build docker containers using the information from [Docker's documentation](https://docs.docker.com/get-started/docker-concepts/building-images/). You can then upload them onto docker hub and pull them using Apptainer. Apptainer supports all docker images!
+Similarly, you can build docker containers using the information from [Docker's documentation](https://docs.docker.com/get-started/docker-concepts/building-images/). You can then upload them onto docker hub and pull them using Apptainer. Apptainer supports all Docker images!
 
 ## Apptainer vs Docker
 Why are there so many mentions of Docker? The reason is that Apptainer is essentially compatible with Docker and you don't need to relearn Apptainer if you already have experience with Docker. Now let's get into some pros and cons between the two programs.
