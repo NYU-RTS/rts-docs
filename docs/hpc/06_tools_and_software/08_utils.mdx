@@ -1,0 +1,64 @@
+# Torch Utility Applications
+
+Torch has several utility applications that can give you information related to your account on the cluster:
+
+## myquota
+
+Users can check their current utilization of quota using the myquota command. The myquota command provides a report of the current quota limits on mounted file systems, the user's quota utilization, as well as the percentage of quota utilization.
+
+In the following example the user who executes the myquota command is out of inodes in their home directory. The user inode quota limit on the `/home` file system **30.0K inodes** and the user has **33000 inodes**, thus **110%** of the inode quota limit.
+```sh
+$ myquota
+Quota Information for NetID
+Hostname: torch-login-2 at 2025-12-09 17:18:24
+
+Filesystem   Environment       Backed up?   Allocation           Current Usage
+Space        Variable          /Flushed?    Space / Files        Space(%) / Files(%)
+
+/home        $HOME             YES/NO       0.05TB/0.03M         0.0TB(0.0%)/33000(110%)
+/scratch     $SCRATCH          NO/YES       5.0TB/5.0M           0.0TB(0.0%)/1(0%)
+/archive     $ARCHIVE          YES/NO       2.0TB/0.02M          0.0TB(0.0%)/1(0%)
+```
+
+## my_slurm_accounts
+
+my_slurm_accounts returns a list of slurm accounts associated with your HPC account.  For more information about slurm accounts please see [Slurm Accounts](../01_getting_started/03_Slurm_Accounts/01_intro_slurm_accounts.mdx)
+
+## nvidia-smi
+nvidia-smi (NVIDIA System Management Interface) is a command-line utility, based on the NVIDIA Management Library (NVML), used to monitor and manage NVIDIA GPU devices
+
+It will provide detailed information like:
+-   GPU utilization
+-   Memory usage
+-   P-States: Performance states from P0 (max performance) to P12 (minimum idle)
+-   device details like power consumption and temperature
+
+:::tip
+To monitor running jobs, use:
+```bash
+[NetID@gl001 ~]$ watch -n 1 nvidia-smi
+```
+on the compute node
+:::
+
+:::tip
+You can get very detailed information about the GPU with:
+```bash
+[NetID@gl001 ~]$ nvidia-smi -q
+```
+:::
+
+## seff
+
+The seff script can be used to display status information about a user’s historical or running jobs.
+
+It shows information about:
+-   CPU efficiency
+-   memory efficiency
+
+
+{/* coming soon
+## rpsquota
+
+rpsquota returns detailed inforamtion about how much of your Research Project Space quota you're using (if you have RPS space).  To use it just type `rpsquota` in the base RPS directory or give the base RPS path as an input argument like `rpsquota /path/to/rps/space`.
+*/}
