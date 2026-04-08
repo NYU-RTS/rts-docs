@@ -48,7 +48,7 @@ $ ./<image name>.sif
 ```
 
 :::info
-Apptainer images are immutable by default. You can mount an writeable overlay file and edit files within the overlay.
+Apptainer images are immutable by default. You can mount an writable overlay file and edit files within the overlay.
 :::
 
 running this would yield a menu for output:
