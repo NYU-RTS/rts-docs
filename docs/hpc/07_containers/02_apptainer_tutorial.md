@@ -4,7 +4,7 @@ This tutorial walks you through running your first container on the Torch HPC cl
 
 ## Step 1: Pull a Container Image
 
-Make sure you are on a compute node (via `srun --pty bash`) before proceeding, as running containers on login nodes is not recommended.
+Make sure you are on a compute node before proceeding, as running containers on login nodes is not recommended.
 
 Pull a container image from Docker Hub:
 
