@@ -20,6 +20,13 @@ Space        Variable          /Flushed?    Space / Files        Space(%) / File
 /archive     $ARCHIVE          YES/NO       2.0TB/0.02M          0.0TB(0.0%)/1(0%)
 ```
 
+:::tip
+Here's how you can see which folders contain the most files:
+```bash
+echo -e "${RED}The following 5 folders are impacting this quota the most.${NC}"
+find $HOME -xdev | cut -d "/" -f 1-4 | sort | uniq -c | sort -nr | head -n 5
+```
+:::
 ## my_slurm_accounts
 
 my_slurm_accounts returns a list of slurm accounts associated with your HPC account.  For more information about slurm accounts please see [Slurm Accounts](../01_getting_started/03_Slurm_Accounts/01_intro_slurm_accounts.mdx)
