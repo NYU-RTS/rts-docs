@@ -49,7 +49,7 @@ apptainer shell <image>.sif
 ```
 
 For a step-by-step tutorial on running containers on Torch, see:
-[Getting Started with Apptainer on Torch](./02_apptainer_tutorial)
+[Getting Started with Apptainer on Torch](../02_apptainer_tutorial/)
 
 For full information and documentation please visit [Apptainer](https://apptainer.org/).
 Good luck with Apptainer, and have fun!
