@@ -33,6 +33,9 @@ python_3.10.sif
 ```
 
 ## Step 2: Run the Container
+:::info
+Apptainer images are immutable by default. You can mount an writable overlay file and edit files within the overlay.
+:::
 
 Every container image has a default command defined by its creator. You can run it with:
 
@@ -65,6 +68,14 @@ Hello from container
 ```
 
 The command ran inside the containerized environment, then returned control to your shell.
+
+### Using `fakeroot`
+
+In some cases, you may need elevated permissions inside the container to install software or modify system files. Apptainer provides a `--fakeroot` option that allows you to run commands inside the container with root-like privileges, without requiring actual root access on the system.
+
+```sh
+$ apptainer exec --fakeroot <image name>.sif <commands>
+```
 
 ## Step 4: Run a Simple Scientific Example
 
