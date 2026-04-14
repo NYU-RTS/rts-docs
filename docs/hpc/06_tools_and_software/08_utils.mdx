@@ -80,10 +80,25 @@ You can get very detailed information about the GPU with:
 
 The seff script can be used to display status information about a user’s historical or running jobs.
 
-It shows information about:
--   CPU efficiency
--   memory efficiency
+Here's example output for a job:
+```bash
+[NetID@torch-login-b-1 ~]$ seff 6239104
+Job ID: 6239104
+Cluster: torch
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 5
+CPU Utilized: 00:00:07
+CPU Efficiency: 28.00% of 00:00:25 core-walltime
+Job Wall-clock time: 00:00:05
+Memory Utilized: 50.54 MB
+Memory Efficiency: 4.94% of 1.00 GB
 
+```
+As you can see above, seff gives information about CPU and memory efficiency to help you more efficiently use our cluster resources.
+:::tip
+Requesting the minimum resources needed for your job can help it spend less time in the queue.
+:::
 
 {/* coming soon
 ## rpsquota
