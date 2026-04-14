@@ -2,11 +2,11 @@
 
 Torch has several utility applications that can give you information related to your account and jobs on the cluster:
 
-## myquota
+## `myquota`
 
-Users can check their current utilization of quota using the myquota command. The myquota command provides a report of the current quota limits on mounted file systems, the user's quota utilization, as well as the percentage of quota utilization.
+Users can check their current utilization of quota using the `myquota` command. The `myquota` command provides a report of the current quota limits on mounted file sys tems, the user's quota utilization, as well as the percentage of quota utilization.
 
-In the following example the user who executes the myquota command is out of inodes in their home directory. The user inode quota limit on the `/home` file system **30.0K inodes** and the user has **33000 inodes**, thus **110%** of the inode quota limit.
+In the following example the user who executes the `myquota` command is out of inodes in their home directory. The user inode quota limit on the `/home` file system **30.0K inodes** and the user has **33000 inodes**, thus **110%** of the inode quota limit.
 ```sh
 $ myquota
 Quota Information for NetID
@@ -27,9 +27,9 @@ echo -e "${RED}The following 5 folders are impacting this quota the most.${NC}"
 find $HOME -xdev | cut -d "/" -f 1-4 | sort | uniq -c | sort -nr | head -n 5
 ```
 :::
-## my_slurm_accounts
+## `my_slurm_accounts`
 
-my_slurm_accounts returns a list of slurm accounts associated with your HPC account:
+`my_slurm_accounts` returns a list of `SLURM` accounts associated with your HPC account:
 ```bash
 [NetID@torch-login-b-1 ~]$ my_slurm_accounts
 Account                          Descr                                                        
@@ -42,7 +42,7 @@ You will need to specify the account on the command line like:
 srun --account=torch_pr_XXX_XXXXX --pty bash
 sbatch -c4 -t2:00:00 --mem=4G --account=torch_pr_XXX_XXXXX my_script.sh
 ```
-or in your sbatch file you'll need to add a line like:
+or in your `sbatch` file you'll need to add a line like:
 ```
 #SBATCH --account=torch_pr_XXX_XXXXX
 ```
@@ -52,8 +52,8 @@ Please see [Slurm: Command reference](http://localhost:3000/docs/hpc/submitting_
 
 For more information about slurm accounts please see [Slurm Accounts](../01_getting_started/03_Slurm_Accounts/01_intro_slurm_accounts.mdx).
 
-## nvidia-smi
-nvidia-smi (NVIDIA System Management Interface) is a command-line utility, based on the NVIDIA Management Library (NVML), used to monitor and manage NVIDIA GPU devices
+## `nvidia-smi`
+`nvidia-smi` (NVIDIA System Management Interface) is a command-line utility, based on the NVIDIA Management Library (NVML), used to monitor and manage NVIDIA GPU devices
 
 It will provide detailed information like:
 -   GPU utilization
@@ -76,9 +76,9 @@ You can get very detailed information about the GPU with:
 ```
 :::
 
-## seff
+## `seff`
 
-The seff script can be used to display status information about a user’s historical or running jobs.
+The `seff` script can be used to display status information about a user’s historical or running jobs.
 
 Here's example output for a job:
 ```bash
@@ -95,13 +95,13 @@ Memory Utilized: 50.54 MB
 Memory Efficiency: 4.94% of 1.00 GB
 
 ```
-As you can see above, seff gives information about CPU and memory efficiency to help you more efficiently use our cluster resources.
+As you can see above, `seff` gives information about CPU and memory efficiency to help you more efficiently use our cluster resources.
 :::tip
 Requesting the minimum resources needed for your job can help it spend less time in the queue.
 :::
 
 {/* coming soon
-## rpsquota
+## `rpsquota`
 
-rpsquota returns detailed information about how much of your Research Project Space quota you're using (if you have RPS space).  To use it just type `rpsquota` in the base RPS directory or give the base RPS path as an input argument like `rpsquota /path/to/rps/space`.
+`rpsquota` returns detailed information about how much of your Research Project Space quota you're using (if you have RPS space). To use it just type `rpsquota` in the base RPS directory or give the base RPS path as an input argument like `rpsquota /path/to/rps/space`.
 */}
