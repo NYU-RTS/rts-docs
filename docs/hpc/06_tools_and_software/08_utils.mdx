@@ -23,10 +23,14 @@ Space        Variable          /Flushed?    Space / Files        Space(%) / File
 :::tip
 Here's how you can see which folders contain the most files:
 ```bash
-echo -e "${RED}The following 5 folders are impacting this quota the most.${NC}"
-find $HOME -xdev | cut -d "/" -f 1-4 | sort | uniq -c | sort -nr | head -n 5
+du --inodes -h -s -- * .[!.]* ..?* 2>/dev/null | sort -hr | head -n 5
+```
+and here's how you can see which ones most contribute to your disk usage:
+```bash
+du -h -s -- * .[!.]* ..?* 2>/dev/null | sort -hr | head -n 5
 ```
 :::
+
 ## `my_slurm_accounts`
 
 `my_slurm_accounts` returns a list of `SLURM` accounts associated with your HPC account:
