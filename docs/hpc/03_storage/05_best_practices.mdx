@@ -6,21 +6,8 @@ All users have quote limits set on HPC fie systems. There are several types of q
 _One of the common issues users report is running out of inodes in their home directory._ This usually occurs during software installation, for example installing conda environment under their home directory. Running out of quota causes a variety of issues such as running user jobs being interrupted or users being unable to finish the installation of packages under their home directory.
 :::
 
-Users can check their current utilization of quota using the myquota command. The myquota command provides a report of the current quota limits on mounted file systems, the user's quota utilization, as well as the percentage of quota utilization.
+Users can check their current utilization of quota using the myquota command. The myquota command provides a report of the current quota limits on mounted file systems, the user's quota utilization, as well as the percentage of quota utilization.  For details, please see [myquota](../06_tools_and_software/08_utils.mdx#myquota)
 
-In the following example the user who executes the `myquota` command is out of inodes in their home directory. The user inode quota limit on the `/home` file system **30.0K inodes** and the user has **33000 inodes**, thus **110%** of the inode quota limit.
-```sh
-$ myquota
-Quota Information for NetID
-Hostname: torch-login-2 at 2025-12-09 17:18:24
-
-Filesystem   Environment       Backed up?   Allocation           Current Usage
-Space        Variable          /Flushed?    Space / Files        Space(%) / Files(%)
-
-/home        $HOME             YES/NO       0.05TB/0.03M         0.0TB(0.0%)/54(0%)
-/scratch     $SCRATCH          NO/YES       5.0TB/5.0M           0.0TB(0.0%)/1(0%)
-/archive     $ARCHIVE          YES/NO       2.0TB/0.02M          0.0TB(0.0%)/1(0%)
-```
 You can use the following command to print the list of files within each sub-folder for a given directory:
 ```sh
 $cd $HOME
