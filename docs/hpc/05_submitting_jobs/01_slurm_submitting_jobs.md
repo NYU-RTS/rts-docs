@@ -28,10 +28,26 @@ Non-stakeholders to temporarily use stakeholder resources (a stakeholder group t
 :::
 
 ## Job Submission on Torch
-As stated in the tuturial, always only request the compute resources (e.g., GPUs, CPUs, memory) needed for the job. Requesting too many resources can prevent your job from being scheduled within an adequate time. The `SLURM` scheduler will automatically dispatch jobs to all accessible GPU partitions that match resource requests.
+As stated in the tutorial, be sure to only request the compute resources (e.g., GPUs, CPUs, memory) needed for the job. Requesting too many resources can prevent your job from being scheduled within an adequate time. The `SLURM` scheduler will automatically dispatch jobs to all accessible GPU partitions that match resource requests.
 
 :::danger Low GPU Utilization Policy
 Jobs with low GPU utilization will be automatically canceled. The exact threshold is TBD, but enforcement will be very aggressive.
+:::
+
+:::info Maximum number of jobs a user can submit
+This depends on the requested wall time.<br />
+You can check it with the following command:
+```bash
+[NetID@torch-login-b-1 ~]$ sacctmgr show qos cpu48,cpu168,gpu48,gpu168,interactive format=name%16,maxTresPU%32,MaxWall,MaxSubmitJobsPerUser
+            Name                        MaxTRESPU     MaxWall MaxSubmitPU 
+---------------- -------------------------------- ----------- ----------- 
+          cpu168               cpu=1000,mem=2000G  7-00:00:00         500 
+           cpu48               cpu=3000,mem=6000G  2-00:00:00        5000 
+          gpu168                       gres/gpu=4  7-00:00:00          50 
+           gpu48                      gres/gpu=16  2-00:00:00        2000 
+     interactive                   cpu=16,mem=60G    06:00:00          20 
+```
+The values above are just an example and they may change without notice, so please check within your account for the most up to date results.
 :::
 
 ## Preemptible jobs on Torch
