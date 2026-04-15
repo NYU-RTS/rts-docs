@@ -34,22 +34,6 @@ As stated in the tutorial, be sure to only request the compute resources (e.g., 
 Jobs with low GPU utilization will be automatically canceled. The exact threshold is TBD, but enforcement will be very aggressive.
 :::
 
-:::info Maximum number of jobs a user can submit
-This depends on the requested wall time.<br />
-You can check it with the following command:
-```bash
-[NetID@torch-login-b-1 ~]$ sacctmgr show qos cpu48,cpu168,gpu48,gpu168,interactive format=name%16,maxTresPU%32,MaxWall,MaxSubmitJobsPerUser
-            Name                        MaxTRESPU     MaxWall MaxSubmitPU 
----------------- -------------------------------- ----------- ----------- 
-          cpu168               cpu=1000,mem=2000G  7-00:00:00         500 
-           cpu48               cpu=3000,mem=6000G  2-00:00:00        5000 
-          gpu168                       gres/gpu=4  7-00:00:00          50 
-           gpu48                      gres/gpu=16  2-00:00:00        2000 
-     interactive                   cpu=16,mem=60G    06:00:00          20 
-```
-The values above are just an example and they may change without notice, so please check within your account for the most up to date results.
-:::
-
 ## Preemptible jobs on Torch
 On Torch, users may run "preemptible" jobs on stakeholder resources that their group does not own. This allows the stakeholder resources to be utilized by non-stakeholders which may otherwise be idle. To make the best use of these resources, you are encouraged to adopt checkpoint/restart to allow for resumption of the workload in subsequent jobs.
 
