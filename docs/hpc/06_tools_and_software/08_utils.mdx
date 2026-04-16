@@ -20,17 +20,6 @@ Space        Variable          /Flushed?    Space / Files        Space(%) / File
 /archive     $ARCHIVE          YES/NO       2.0TB/0.02M          0.0TB(0.0%)/1(0%)
 ```
 
-:::tip
-Here's how you can see which folders contain the most files:
-```bash
-du --inodes -h -s -- * .[!.]* ..?* 2>/dev/null | sort -hr | head -n 5
-```
-and here's how you can see which ones most contribute to your disk usage:
-```bash
-du -h -s -- * .[!.]* ..?* 2>/dev/null | sort -hr | head -n 5
-```
-:::
-
 ## `my_slurm_accounts`
 
 `my_slurm_accounts` returns a list of `SLURM` accounts associated with your HPC account:
