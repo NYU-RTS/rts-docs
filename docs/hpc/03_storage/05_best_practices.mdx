@@ -37,9 +37,9 @@ du -h -s -- * .[!.]* ..?* 2>/dev/null | sort -hr | head -n 5
 
 ### Moving common dot directories from `/home` to `/scratch`
 
-As mentioned elsewhere in our documentation, a common problem for our users is that of filling their `/home` directories by using common tools like VSCode, Cursor, R, etc.  They all put a dot directory in your `/home` directory and it can quickly overwhelm your quota.
+As mentioned elsewhere in our documentation, a problem we often see for our users is that of filling their `/home` directories by using common tools like VSCode, Cursor, etc.  These applications put a dot directory in your `/home` directory and it can quickly overwhelm your quota.
 
-Our recommended fix for this is to make a directory for these files in your `/scratch` directory and then make a symbolic link in your `/home` directory to this directory in your `/scratch` directory.  This allows these applications to write to what appears to be your `/home` directory, but to actually store the files in your `/scratch` directory.  This can be accomplished with the following commands:
+Our recommended fix for this is to make a directory for these files in your `/scratch` directory and then make a symbolic link in your `/home` that points to the one you just created in `/scratch`.  This allows these applications to write to what appears to be your `/home` directory, but is actually stored in your `/scratch` directory.  This can be accomplished with the following commands:
 
 For VSCode:
 ```bash
