@@ -62,7 +62,7 @@ Let's first switch to a compute node, so we don't overly tax our login node:
 
 This uses the `torchvision` package, so you'll need to run it with our overlay file:
 ```bash
-[NetID@cm001 pytorch_single_gpu]$ singularity exec --nv --overlay /scratch/rjy1/pytorch-example/my_pytorch.ext3:ro /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash -c "source /ext3/env.sh; python download_data.py"
+[NetID@cm001 pytorch_single_gpu]$ singularity exec --nv --overlay /scratch/NetID/pytorch-example/my_pytorch.ext3:ro /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash -c "source /ext3/env.sh; python download_data.py"
 ```
 After running the command above you should see that it has created a subdirectory named `data` that contains the data we'll use in this example.
 
