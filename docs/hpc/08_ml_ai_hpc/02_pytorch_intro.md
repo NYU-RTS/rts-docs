@@ -31,7 +31,7 @@ We also need to add the profiler `kernprof` (in the line_profiler package) to th
 [NetID@log-1 ~]$ srun --pty -c 2 --mem=5GB /bin/bash
 [NetID@cm001 ~]$ singularity exec \
 	            --overlay /scratch/NetID/pytorch-example/my_pytorch.ext3:rw \
-	            /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif \
+	            /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif \
 	            /bin/bash
 Singularity> source /ext3/env.sh
 Singularity> pip install line_profiler
@@ -62,7 +62,7 @@ Let's first switch to a compute node, so we don't overly tax our login node:
 
 This uses the `torchvision` package, so you'll need to run it with our overlay file:
 ```bash
-[NetID@cm001 pytorch_single_gpu]$ singularity exec --nv --overlay /scratch/NetID/pytorch-example/my_pytorch.ext3:ro /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash -c "source /ext3/env.sh; python download_data.py"
+[NetID@cm001 pytorch_single_gpu]$ singularity exec --nv --overlay /scratch/NetID/pytorch-example/my_pytorch.ext3:ro /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash -c "source /ext3/env.sh; python download_data.py"
 ```
 After running the command above you should see that it has created a subdirectory named `data` that contains the data we'll use in this example.
 
@@ -243,7 +243,7 @@ module purge
 
 srun singularity exec --nv \
 	    --overlay /scratch/NetID/pytorch-example/my_pytorch.ext3:ro \
-	    /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif\
+	    /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif\
 	    /bin/bash -c "source /ext3/env.sh; kernprof -o ${SLURM_JOBID}.lprof -l mnist_classify.py --epochs=3"
 ```
 
@@ -279,7 +279,7 @@ We installed [line_profiler](https://researchcomputing.princeton.edu/python-prof
 [NetID@log-1 ~]$ srun --pty -c 2 --mem=5GB /bin/bash
 [NetID@cm001 ~]$ singularity exec \
 	            --overlay /scratch/NetID/pytorch-example/my_pytorch.ext3:rw \
-	            /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif \
+	            /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif \
 	            /bin/bash -c "source /ext3/env.sh; python -m line_profiler -rmt *.lprof"
 Timer unit: 1e-06 s
 
