@@ -66,6 +66,17 @@ It will provide detailed information like:
 -   device details like power consumption and temperature
 
 :::tip
+You can get output refreshed every 5 seconds with:
+```bash
+nvidia-smi -l 5
+```
+Alternatively, you can use:
+```bash
+/share/apps/images/run-nvtop-3.2.0.bash nvtop
+```
+:::
+
+:::tip
 You can get very detailed information about the GPU with:
 ```bash
 [NetID@gl001 ~]$ nvidia-smi -q
