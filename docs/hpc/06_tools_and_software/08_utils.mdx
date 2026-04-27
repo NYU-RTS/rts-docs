@@ -66,11 +66,14 @@ It will provide detailed information like:
 -   device details like power consumption and temperature
 
 :::tip
-To monitor running jobs, use:
+You can get output refreshed every 5 seconds with:
 ```bash
-[NetID@gl001 ~]$ watch -n 1 nvidia-smi
+nvidia-smi -l 5
 ```
-on the compute node
+Alternatively, you can use:
+```bash
+/share/apps/images/run-nvtop-3.2.0.bash nvtop
+```
 :::
 
 :::tip
