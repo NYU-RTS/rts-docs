@@ -28,7 +28,7 @@ Non-stakeholders to temporarily use stakeholder resources (a stakeholder group t
 :::
 
 ## Job Submission on Torch
-As stated in the tuturial, always only request the compute resources (e.g., GPUs, CPUs, memory) needed for the job. Requesting too many resources can prevent your job from being scheduled within an adequate time. The `SLURM` scheduler will automatically dispatch jobs to all accessible GPU partitions that match resource requests.
+As stated in the tutorial, be sure to only request the compute resources (e.g., GPUs, CPUs, memory) needed for the job. Requesting too many resources can prevent your job from being scheduled within an adequate time. The `SLURM` scheduler will automatically dispatch jobs to all accessible GPU partitions that match resource requests.
 
 :::danger Low GPU Utilization Policy
 Jobs with low GPU utilization will be automatically canceled. The exact threshold is TBD, but enforcement will be very aggressive.
