@@ -51,8 +51,15 @@ For Cursor:
 rm -rf ${HOME}/.cursor-server && mkdir -p ${SCRATCH}/cursor-server && ln -s ${SCRATCH}/cursor-server ${HOME}/.cursor-server
 ```
 
+For RStudio:
+```bash
+rm -rf ${HOME}/.local/share/rstudio && mkdir -p ${SCRATCH}/.local/share/rstudio && ln -s ${SCRATCH}/.local/share/rstudio ${HOME}/.local/share/rstudio
+```
+
 :::warning
 The first part of the commands above will remove the contents of the dot directory in your `${HOME}` directory.  Be sure to copy anything you'd like to save from that directory before running the commands above.
 :::
+
+For details about changing your default RStudio directory please see [User state storage](https://docs.posit.co/ide/server-pro/admin/rstudio_pro_sessions/workspace_management.html#user-state-storage).
 
 Please contact [hpc@nyu.edu](mailto:hpc@nyu.edu) if you have any questions.
