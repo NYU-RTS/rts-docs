@@ -31,7 +31,7 @@ bun scripts/storage-finder-data-generator/generate.ts \
 
 ## Service fields
 
-Field definitions live in `scripts/storage-finder-data-generator/config.ts` (`FIELD_DEFINITIONS`). They map sheet columns to service detail rows (Links, Use Case, Limitations, Permission Settings, Eligibility, Synchronous Access, Alumni Access, Backup). Adjust labels or formatters there if the sheet schema changes.
+Field definitions live in `scripts/storage-finder-data-generator/config.ts` (`FIELD_DEFINITIONS`). They map sheet columns to service detail rows (Links, Use Case, Limitations, Permission Settings, Eligibility, Alumni Access, Backup). Adjust labels or formatters there if the sheet schema changes.
 
 ## Naming and IDs
 
