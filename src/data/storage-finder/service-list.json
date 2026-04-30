@@ -10,7 +10,6 @@
       "affiliation.staff",
       "access-needs.netid-collaborators",
       "backup-availability.yes",
-      "synchronous-access.no",
       "storage-duration.long-term",
       "use-case-purpose.archive",
       "cost-model.paid",
@@ -61,7 +60,7 @@
         "weight": 6
       },
       "field_eligibility": {
-        "value": "<p>Staff and Faculty.</p>",
+        "value": "<p>Faculty; Staff</p>",
         "label": "Eligibility",
         "weight": 7
       },
@@ -69,11 +68,6 @@
         "value": "<p>All</p>",
         "label": "Access Locations",
         "weight": 8
-      },
-      "field_synchronous_access": {
-        "value": "<p>Not Available</p>",
-        "label": "Synchronous Access",
-        "weight": 9
       },
       "field_backup": {
         "value": "<p>Yes, available for additional cost.</p>",
@@ -96,7 +90,6 @@
       "affiliation.faculty",
       "access-needs.netid-collaborators",
       "backup-availability.yes",
-      "synchronous-access.yes",
       "storage-duration.long-term",
       "use-case-purpose.archive",
       "use-case-purpose.active-research",
@@ -145,7 +138,7 @@
         "weight": 6
       },
       "field_eligibility": {
-        "value": "<p>Faculty sponsored</p>",
+        "value": "<p>Faculty; Faculty sponsored</p>",
         "label": "Eligibility",
         "weight": 7
       },
@@ -153,11 +146,6 @@
         "value": "<p>VPN</p>",
         "label": "Access Locations",
         "weight": 8
-      },
-      "field_synchronous_access": {
-        "value": "<p>Yes</p>",
-        "label": "Synchronous Access",
-        "weight": 9
       },
       "field_backup": {
         "value": "<p>Yes, 30 day retention</p>",
@@ -186,8 +174,6 @@
       "access-needs.netid-collaborators",
       "access-needs.external-collaborators",
       "backup-availability.yes",
-      "synchronous-access.yes",
-      "synchronous-access.no",
       "storage-duration.long-term",
       "storage-duration.temporary",
       "use-case-purpose.collaboration",
@@ -232,7 +218,7 @@
         "weight": 6
       },
       "field_eligibility": {
-        "value": "<p>NYU Units, Faculty, Staff, Researchers</p>",
+        "value": "<p>Faculty; Staff; Students</p>",
         "label": "Eligibility",
         "weight": 7
       },
@@ -240,11 +226,6 @@
         "value": "<p>VPN</p>",
         "label": "Access Locations",
         "weight": 8
-      },
-      "field_synchronous_access": {
-        "value": "<p>Unlimited access to the file share but files can only be editable by one person unless the application allows otherwise.</p>",
-        "label": "Synchronous Access",
-        "weight": 9
       },
       "field_backup": {
         "value": "<p>Yes, backed up daily, retains last 30 days; monitored 24x7</p>",
@@ -267,7 +248,6 @@
       "affiliation.faculty",
       "access-needs.netid-collaborators",
       "backup-availability.yes",
-      "synchronous-access.yes",
       "storage-duration.long-term",
       "use-case-purpose.archive",
       "use-case-purpose.active-research",
@@ -315,7 +295,7 @@
         "weight": 6
       },
       "field_eligibility": {
-        "value": "<p>Faculty sponsored</p>",
+        "value": "<p>Faculty; Faculty sponsored</p>",
         "label": "Eligibility",
         "weight": 7
       },
@@ -323,11 +303,6 @@
         "value": "<p>VPN</p>",
         "label": "Access Locations",
         "weight": 8
-      },
-      "field_synchronous_access": {
-        "value": "<p>Yes</p>",
-        "label": "Synchronous Access",
-        "weight": 9
       },
       "field_backup": {
         "value": "<p>Yes, 30 day retention</p>",
@@ -352,7 +327,6 @@
       "access-needs.external-collaborators",
       "access-needs.netid-collaborators",
       "backup-availability.yes",
-      "synchronous-access.no",
       "storage-duration.long-term",
       "storage-duration.temporary",
       "use-case-purpose.active-research",
@@ -393,7 +367,7 @@
         "weight": 6
       },
       "field_eligibility": {
-        "value": "<p>Faculty, Researcher, and Graduate Student HPC user account holders.</p>",
+        "value": "<p>Faculty; and Graduate Student HPC user account holders</p>",
         "label": "Eligibility",
         "weight": 7
       },
@@ -401,11 +375,6 @@
         "value": "<p>VPN</p>",
         "label": "Access Locations",
         "weight": 8
-      },
-      "field_synchronous_access": {
-        "value": "<p>Not Available.</p>",
-        "label": "Synchronous Access",
-        "weight": 9
       },
       "field_backup": {
         "value": "<p>Yes, retains past 30 days.</p>",
@@ -428,7 +397,6 @@
       "affiliation.faculty",
       "access-needs.netid-collaborators",
       "backup-availability.no",
-      "synchronous-access.yes",
       "storage-duration.temporary",
       "use-case-purpose.archive",
       "use-case-purpose.active-research",
@@ -476,7 +444,7 @@
         "weight": 6
       },
       "field_eligibility": {
-        "value": "<p>Faculty sponsored</p>",
+        "value": "<p>Faculty; Faculty sponsored</p>",
         "label": "Eligibility",
         "weight": 7
       },
@@ -484,11 +452,6 @@
         "value": "<p>VPN</p>",
         "label": "Access Locations",
         "weight": 8
-      },
-      "field_synchronous_access": {
-        "value": "<p>Yes</p>",
-        "label": "Synchronous Access",
-        "weight": 9
       },
       "field_backup": {
         "value": "<p>No</p>",
@@ -513,7 +476,6 @@
       "affiliation.staff",
       "access-needs.netid-collaborators",
       "backup-availability.yes",
-      "synchronous-access.yes",
       "storage-duration.long-term",
       "storage-duration.temporary",
       "use-case-purpose.archive",
@@ -565,7 +527,7 @@
         "weight": 6
       },
       "field_eligibility": {
-        "value": "<p>Faculty, Staff, Researchers</p>",
+        "value": "<p>Faculty; Staff; Faculty sponsored; External collaborators</p>",
         "label": "Eligibility",
         "weight": 7
       },
@@ -573,11 +535,6 @@
         "value": "<p>All</p>",
         "label": "Access Locations",
         "weight": 8
-      },
-      "field_synchronous_access": {
-        "value": "<p>Up to 20 users can edit and comment simultaneously</p>",
-        "label": "Synchronous Access",
-        "weight": 9
       },
       "field_backup": {
         "value": "<p>Yes, Retains up to 100 previous versions of a single file</p>",
@@ -601,7 +558,6 @@
       "affiliation.staff",
       "access-needs.shared-link",
       "backup-availability.yes",
-      "synchronous-access.yes",
       "storage-duration.long-term",
       "storage-duration.temporary",
       "use-case-purpose.archive",
@@ -652,7 +608,7 @@
         "weight": 6
       },
       "field_eligibility": {
-        "value": "<p>Faculty, Staff, Students, Researchers</p>",
+        "value": "<p>Faculty; Staff; Students; External collaborators</p>",
         "label": "Eligibility",
         "weight": 7
       },
@@ -660,11 +616,6 @@
         "value": "<p>All</p>",
         "label": "Access Locations",
         "weight": 8
-      },
-      "field_synchronous_access": {
-        "value": "<p>Up to 100 users can edit &amp; comment simultaneously</p>",
-        "label": "Synchronous Access",
-        "weight": 9
       },
       "field_backup": {
         "value": "<p>Yes, retains last 30 days or 100 revisions</p>",
@@ -688,7 +639,6 @@
       "affiliation.staff",
       "access-needs.shared-link",
       "backup-availability.yes",
-      "synchronous-access.yes",
       "storage-duration.long-term",
       "storage-duration.temporary",
       "use-case-purpose.archive",
@@ -740,7 +690,7 @@
         "weight": 6
       },
       "field_eligibility": {
-        "value": "<p>Faculty, Staff, Students, Researchers</p>",
+        "value": "<p>Faculty; Staff; Students</p>",
         "label": "Eligibility",
         "weight": 7
       },
@@ -748,11 +698,6 @@
         "value": "<p>All</p>",
         "label": "Access Locations",
         "weight": 8
-      },
-      "field_synchronous_access": {
-        "value": "<p>Up to 100 users can edit &amp; comment simultaneously</p>",
-        "label": "Synchronous Access",
-        "weight": 9
       },
       "field_backup": {
         "value": "<p>Yes, retains last 30 days or 100 revisions</p>",
@@ -775,7 +720,6 @@
       "affiliation.staff",
       "access-needs.netid-collaborators",
       "backup-availability.yes",
-      "synchronous-access.no",
       "storage-duration.long-term",
       "storage-duration.temporary",
       "use-case-purpose.media",
@@ -820,7 +764,7 @@
         "weight": 6
       },
       "field_eligibility": {
-        "value": "<p>Students, Faculty, Staff</p>",
+        "value": "<p>Faculty; Staff; Students</p>",
         "label": "Eligibility",
         "weight": 7
       },
@@ -828,11 +772,6 @@
         "value": "<p>VPN</p>",
         "label": "Access Locations",
         "weight": 8
-      },
-      "field_synchronous_access": {
-        "value": "<p>Not Available</p>",
-        "label": "Synchronous Access",
-        "weight": 9
       },
       "field_backup": {
         "value": "<p>Yes</p>",
@@ -852,12 +791,10 @@
     "facet_matches": [
       "risk-classification.public-low",
       "risk-classification.sensitive-moderate",
-      "risk-classification.confidential-high",
       "affiliation.faculty",
       "affiliation.staff",
       "access-needs.netid-collaborators",
       "backup-availability.yes",
-      "synchronous-access.yes",
       "storage-duration.long-term",
       "storage-duration.temporary",
       "use-case-purpose.active-research",
@@ -882,7 +819,7 @@
         "weight": 2
       },
       "field_storable_files": {
-        "value": "<p>High, Moderate &amp; Low Risk</p>",
+        "value": "<p>Moderate &amp; Low Risk</p>",
         "label": "Storable Files",
         "weight": 3
       },
@@ -902,7 +839,7 @@
         "weight": 6
       },
       "field_eligibility": {
-        "value": "<p>Current Faculty, Retired Faculty, Staff, Students &amp; Researchers</p>",
+        "value": "<p>Faculty; Retired Faculty; Staff; Students; External collaborators</p>",
         "label": "Eligibility",
         "weight": 7
       },
@@ -910,11 +847,6 @@
         "value": "<p>VPN, Browser GUI</p>",
         "label": "Access Locations",
         "weight": 8
-      },
-      "field_synchronous_access": {
-        "value": "<p>Yes</p>",
-        "label": "Synchronous Access",
-        "weight": 9
       },
       "field_backup": {
         "value": "<p>Yes, Yes, backed up daily by Qualtrics</p>",
@@ -937,10 +869,8 @@
       "risk-classification.confidential-high",
       "affiliation.faculty",
       "affiliation.staff",
-      "affiliation.student",
       "access-needs.netid-collaborators",
       "backup-availability.yes",
-      "synchronous-access.yes",
       "storage-duration.long-term",
       "storage-duration.temporary",
       "use-case-purpose.surveys",
@@ -985,7 +915,7 @@
         "weight": 6
       },
       "field_eligibility": {
-        "value": "<p>Faculty, Research staff, Student research affiliates &amp; External research collaborators</p>",
+        "value": "<p>Faculty; Staff; Faculty sponsored; External collaborators</p>",
         "label": "Eligibility",
         "weight": 7
       },
@@ -993,11 +923,6 @@
         "value": "<p>VPN, Browser GUI</p>",
         "label": "Access Locations",
         "weight": 8
-      },
-      "field_synchronous_access": {
-        "value": "<p>Yes</p>",
-        "label": "Synchronous Access",
-        "weight": 9
       },
       "field_backup": {
         "value": "<p>Yes, backed up daily.</p>",
@@ -1024,7 +949,6 @@
       "access-needs.netid-collaborators",
       "access-needs.external-collaborators",
       "backup-availability.yes",
-      "synchronous-access.yes",
       "storage-duration.long-term",
       "storage-duration.temporary",
       "use-case-purpose.active-research",
@@ -1065,7 +989,7 @@
         "weight": 6
       },
       "field_eligibility": {
-        "value": "<p>Faculty, and Researchers</p>",
+        "value": "<p>Faculty; Faculty sponsored</p>",
         "label": "Eligibility",
         "weight": 7
       },
@@ -1073,11 +997,6 @@
         "value": "<p>VPN</p>",
         "label": "Access Locations",
         "weight": 8
-      },
-      "field_synchronous_access": {
-        "value": "<p>Yes</p>",
-        "label": "Synchronous Access",
-        "weight": 9
       },
       "field_backup": {
         "value": "<p>Yes, available as configurable snapshotting</p>",
@@ -1099,21 +1018,31 @@
       "risk-classification.sensitive-moderate",
       "affiliation.faculty",
       "affiliation.staff",
-      "affiliation.student",
+      "access-needs.individual",
+      "access-needs.public",
       "access-needs.shared-link",
+      "access-needs.netid-collaborators",
+      "access-needs.external-collaborators",
       "backup-availability.yes",
-      "synchronous-access.no",
       "storage-duration.long-term",
       "storage-duration.temporary",
+      "use-case-purpose.archive",
       "use-case-purpose.active-research",
       "use-case-purpose.collaboration",
+      "use-case-purpose.surveys",
+      "use-case-purpose.media",
+      "use-case-purpose.repository",
       "cost-model.free",
       "cost-model.paid",
       "storage-capacity.small",
       "storage-capacity.medium",
       "storage-capacity.large",
       "access-location.vpn",
+      "special-requirements.none",
+      "special-requirements.active-directory",
       "special-requirements.faculty-sponsorship",
+      "special-requirements.data-stewardship",
+      "special-requirements.project-approval",
       "additional-features.access-controls"
     ],
     "summary": null,
@@ -1129,22 +1058,22 @@
         "weight": 3
       },
       "field_use_case": {
-        "value": "<p>Storage of NYU research data &amp; collaboration with non-NYU researchers</p>",
+        "value": "<p>Mountable storage with a focus on fast access to actively used datasets.</p>",
         "label": "Use Case",
         "weight": 4
       },
       "field_limitations": {
-        "value": "<p>Requires faculty, staff; or student with full-time NYU faculty sponsorship</p>",
+        "value": "<p>VPN needed when off-campus.</p>",
         "label": "Limitations",
         "weight": 5
       },
       "field_permission_settings": {
-        "value": "<p>Options for fully private, read only, or editable through shared link</p>",
+        "value": "<p>Done via Grouper; can give collaborators read access, read/write access, or administrator priveleges for a share.</p>",
         "label": "Permission Settings",
         "weight": 6
       },
       "field_eligibility": {
-        "value": "<p>Faculty; or Staff/Student with full-time faculty sponsorship</p>",
+        "value": "<p>Faculty; Staff; Faculty sponsored</p>",
         "label": "Eligibility",
         "weight": 7
       },
@@ -1152,11 +1081,6 @@
         "value": "<p>VPN</p>",
         "label": "Access Locations",
         "weight": 8
-      },
-      "field_synchronous_access": {
-        "value": "<p>Not Available</p>",
-        "label": "Synchronous Access",
-        "weight": 9
       },
       "field_backup": {
         "value": "<p>Yes, Retains last 30 days</p>",
@@ -1178,11 +1102,8 @@
       "risk-classification.sensitive-moderate",
       "risk-classification.confidential-high",
       "affiliation.faculty",
-      "affiliation.staff",
-      "affiliation.student",
       "access-needs.netid-collaborators",
       "backup-availability.no",
-      "synchronous-access.no",
       "storage-duration.long-term",
       "storage-duration.temporary",
       "use-case-purpose.active-research",
@@ -1230,7 +1151,7 @@
         "weight": 6
       },
       "field_eligibility": {
-        "value": "<p>Faculty; or Staff/Student with full-time faculty sponsorship</p>",
+        "value": "<p>Faculty; Faculty sponsored</p>",
         "label": "Eligibility",
         "weight": 7
       },
@@ -1238,11 +1159,6 @@
         "value": "<p>VPN, Public Cloud, Browser GUI</p>",
         "label": "Access Locations",
         "weight": 8
-      },
-      "field_synchronous_access": {
-        "value": "<p>Not Available</p>",
-        "label": "Synchronous Access",
-        "weight": 9
       },
       "field_backup": {
         "value": "<p>No</p>",
@@ -1266,7 +1182,6 @@
       "affiliation.staff",
       "access-needs.public",
       "backup-availability.yes",
-      "synchronous-access.no",
       "storage-duration.long-term",
       "use-case-purpose.archive",
       "use-case-purpose.repository",
@@ -1316,7 +1231,7 @@
         "weight": 6
       },
       "field_eligibility": {
-        "value": "<p>Faculty, Staff, Students &amp; Researchers</p>",
+        "value": "<p>Faculty; Staff; Students</p>",
         "label": "Eligibility",
         "weight": 7
       },
@@ -1324,11 +1239,6 @@
         "value": "<p>All</p>",
         "label": "Access Locations",
         "weight": 8
-      },
-      "field_synchronous_access": {
-        "value": "<p>Not Available</p>",
-        "label": "Synchronous Access",
-        "weight": 9
       },
       "field_backup": {
         "value": "<p>Yes, backed up as different versions</p>",
@@ -1352,13 +1262,14 @@
       "affiliation.staff",
       "access-needs.public",
       "backup-availability.yes",
-      "synchronous-access.no",
       "storage-duration.long-term",
       "use-case-purpose.archive",
       "use-case-purpose.repository",
       "cost-model.free",
       "cost-model.paid",
       "storage-capacity.small",
+      "storage-capacity.medium",
+      "storage-capacity.large",
       "access-location.vpn",
       "access-location.public-cloud",
       "access-location.off-campus",
@@ -1389,7 +1300,7 @@
         "weight": 4
       },
       "field_limitations": {
-        "value": "<p>Small sized projects</p>",
+        "value": "<p>Not Available</p>",
         "label": "Limitations",
         "weight": 5
       },
@@ -1399,7 +1310,7 @@
         "weight": 6
       },
       "field_eligibility": {
-        "value": "<p>Faculty, Staff, Students &amp; Researchers</p>",
+        "value": "<p>Faculty; Staff; Students</p>",
         "label": "Eligibility",
         "weight": 7
       },
@@ -1407,11 +1318,6 @@
         "value": "<p>All</p>",
         "label": "Access Locations",
         "weight": 8
-      },
-      "field_synchronous_access": {
-        "value": "<p>Not Available</p>",
-        "label": "Synchronous Access",
-        "weight": 9
       },
       "field_backup": {
         "value": "<p>Yes</p>",
