@@ -52,13 +52,6 @@ export const FIELD_DEFINITIONS: ServiceFieldDefinition[] = [
     formatter: (value) => toHtmlBlocks(value),
   },
   {
-    fieldKey: "field_synchronous_access",
-    column: "Synchronous Access",
-    label: "Synchronous Access",
-    weight: 9,
-    formatter: (value) => toHtmlBlocks(value),
-  },
-  {
     fieldKey: "field_backup",
     column: "Backup",
     label: "Backup",
@@ -240,37 +233,6 @@ export const FACET_CONFIGS: FacetConfig[] = [
       {
         pattern: /\b(no|not available)\b/i,
         choices: ["backup-availability.no"],
-      },
-    ],
-    fallback: "all",
-  },
-  {
-    id: "synchronous-access",
-    name: "Do you need synchronous or simultaneous access to your data?",
-    description: null,
-    column: "Synchronous Access",
-    controlType: "radio",
-    allowMultipleMatches: true,
-    choices: [
-      {
-        id: "synchronous-access.yes",
-        name: "Yes",
-        weight: 0,
-      },
-      {
-        id: "synchronous-access.no",
-        name: "No",
-        weight: 1,
-      },
-    ],
-    matchers: [
-      {
-        pattern: /\b(yes|users can edit|simultaneously)\b/i,
-        choices: ["synchronous-access.yes"],
-      },
-      {
-        pattern: /\bnot available\b/i,
-        choices: ["synchronous-access.no"],
       },
     ],
     fallback: "all",
