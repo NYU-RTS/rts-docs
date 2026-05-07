@@ -189,6 +189,59 @@ We can also cancel all of our jobs at once using the `-u` option. This will dele
 Try submitting multiple jobs and then cancelling them all with `scancel -u NetID`.
 :::
 
+## Job Arrays
+> Job arrays offer a mechanism for submitting and managing collections of similar jobs quickly and easily, useful for repetitive workloads that follow a common job pattern. This greatly improves overall performance, since job arrays with millions of tasks can be submitted in milliseconds (subject to configured size limits) and the scheduler can quickly identify cases when no more array tasks are eligible to start.<br />
+-- [Slurm documentation](https://slurm.schedmd.com/job_array.html)
+
+### Job Array Example
+As stated above, you can have a single sbatch job submit multiple jobs by using Job Arrays.  This example show how you can run the same python file with a range of input parameters from a single sbatch file.
+
+Copy the following code into a file named `run_array.sh`:
+```bash
+#!/bin/bash
+#SBATCH --job-name=array_test
+#SBATCH --output=array_%j.out
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=1M
+#SBATCH --time=00:10:00
+#SBATCH --account=torch_pr_XXX_XXXXX
+#SBATCH --array=0-4
+
+LEARNING_RATES=(0.01 0.05 0.1 0.5 1.0)
+CURRENT_LR=${LEARNING_RATES[$SLURM_ARRAY_TASK_ID]}
+
+python array_test.py --lr $CURRENT_LR
+
+```
+Be aware that you'll need to put in your own account.
+
+Copy the following code into a file named `array_test.py`:
+```bash
+import argparse
+
+def main():
+    parser = argparse.ArgumentParser(description="Job Array Demo")
+    parser.add_argument('--lr', type=float, default=0.01,
+                        help="Learning Rate")
+    args = parser.parse_args()
+    current_lr = args.lr
+    print(f"Starting training with learing rate: {current_lr}")
+
+if __name__ == '__main__':
+    main()
+
+```
+
+Place those files in the same directory and then submit with the command:
+```bash
+sbatch run_array.sh
+```
+When they're done running you should find 5 files in your directory named `array_job_id.out` where the `job_id` will be a long integer.  Each of those files will contain one of the values in the learning rate array in `run_array.sh`
+
+Please see the [Slurm Documentation](https://slurm.schedmd.com/job_array.html) for more details.
+
 ## Other Types of Jobs
 Up to this point, we’ve focused on running jobs in batch mode. Slurm also provides the ability to start an interactive session.
 
