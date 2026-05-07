@@ -72,6 +72,92 @@ You can get very detailed information about the GPU with:
 ```
 :::
 
+## `sdiag`
+
+A scheduling diagnostic tool for Slurm.  It shows information related to slurmctld execution about: threads, agents, jobs, and scheduling algorithms.
+
+```bash
+[NetID@torch-login-b-2 ~]$ sdiag
+*******************************************************
+sdiag output at Tue May 05 17:03:58 2026 (1778015038)
+Data since      Mon May 04 20:00:00 2026 (1777939200)
+*******************************************************
+Server thread count:  1
+RPC queue enabled:    0
+Agent queue size:     0
+Agent count:          0
+Agent thread count:   0
+DBD Agent queue size: 3928
+
+Jobs submitted: 68600
+Jobs started:   47338
+Jobs completed: 46650
+Jobs canceled:  3004
+Jobs failed:    0
+
+Job states ts:  Tue May 05 17:03:55 2026 (1778015035)
+Jobs pending:   25570
+Jobs running:   3531
+
+Main schedule statistics (microseconds):
+	Last cycle:   439197
+	Max cycle:    213062424
+	Total cycles: 23887
+	Mean cycle:   147838
+	Mean depth cycle:  3901
+	Cycles per minute: 18
+	Last queue length: 8588
+
+Main scheduler exit:
+	End of job queue:22329
+	Hit default_queue_depth: 0
+	Hit sched_max_job_start: 0
+	Blocked on licenses: 0
+	Hit max_rpc_cnt: 0
+	Timeout (max_sched_time):761
+
+Backfilling stats
+	Total backfilled jobs (since last slurm start): 2491
+	Total backfilled jobs (since last stats cycle start): 2144
+	Total backfilled heterogeneous job components: 0
+	Total cycles: 1132
+  etc....
+
+Backfill exit
+	End of job queue: 0
+	Hit bf_max_job_start: 0
+	Hit bf_max_job_test:1117
+	System state changed:15
+	Hit table size limit (bf_node_space_size): 0
+	Timeout (bf_max_time): 0
+
+Latency for 1000 calls to gettimeofday(): 37 microseconds
+
+Remote Procedure Call statistics by message type
+	REQUEST_PARTITION_INFO                  ( 2009) count:265039 ave_time:862    total_time:228596549
+	REQUEST_JOB_INFO_SINGLE                 ( 2021) count:148070 ave_time:177411 total_time:26269388019
+	REQUEST_FED_INFO                        ( 2049) count:109863 ave_time:131    total_time:14500296
+  etc....
+
+Remote Procedure Call statistics by user
+	root            (       0) count:641281 ave_time:136950 total_time:87823642922
+	NetID1          ( 3316908) count:35412  ave_time:206086 total_time:7297919561
+	NetID2          ( 4704548) count:32959  ave_time:152431 total_time:5023999046
+	NetID3          ( 3511186) count:32373  ave_time:102614 total_time:3321933704
+  etc....
+
+Pending RPC statistics
+	No pending RPCs
+```
+::::warning
+Being high on the list in `Remote Procedure Call statistics by user` can cause you to be throttled by Slurm for using too many resources.
+:::tip
+If you find yourself in this position please try to reduce the number of calls you make to slurm services like `squeue` and `sacct`.  Do not use these commands with `watch`.  As an alternative you can use the slurm [mail-type flag](https://slurm.schedmd.com/sbatch.html#OPT_mail-type) to see when jobs start and end.
+
+If you're running a number of similar jobs, please look into using [array jobs](https://slurm.schedmd.com/job_array.html) as this will reduce your procedure call statistics.
+:::
+::::
+
 ## `seff`
 
 The `seff` script can be used to display status information about a user’s historical or running jobs.
