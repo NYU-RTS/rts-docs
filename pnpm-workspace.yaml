@@ -1,3 +1,5 @@
 allowBuilds:
+  core: true
   core-js: true
+  core-js-pure: true
   unrs-resolver: true
