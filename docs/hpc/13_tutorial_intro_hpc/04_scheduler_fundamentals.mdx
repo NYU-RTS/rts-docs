@@ -64,9 +64,9 @@ To submit this task to the scheduler, we use the `sbatch` command. This creates 
 Submitted batch job 137860
 ```
 
-And that’s all we need to do to submit a job. Our work is done – now the scheduler takes over and tries to run the job for us. While the job is waiting to run, it goes into a list of jobs called the `queue`. To check on our job’s status, we check the queue using the command `squeue -u NetID`.
+And that’s all we need to do to submit a job. Our work is done – now the scheduler takes over and tries to run the job for us. While the job is waiting to run, it goes into a list of jobs called the `queue`. To check on our job’s status, we check the queue using the command `squeue --me`.
 ```bash
-[NetID@log-1 ~]$ squeue -u NetID
+[NetID@log-1 ~]$ squeue --me
 JOBID   PARTITION NAME      USER    ST  TIME  NODES  NODELIST(REASON)
 137860  normal    example-  usernm  R   0:02  1      c5-59
 ```
@@ -93,7 +93,7 @@ hostname
 Submit the job and monitor its status:
 ```bash
 [NetID@log-1 ~]$ sbatch example-job.sh
-[NetID@log-1 ~]$ squeue -u NetID
+[NetID@log-1 ~]$ squeue --me
 JOBID ACCOUNT     NAME     ST REASON   START_TIME TIME TIME_LEFT NODES CPUS
 38191 yourAccount hello-wo PD Priority N/A        0:00 1:00:00   1     1
 ```
@@ -156,7 +156,7 @@ hostname
 Submit the job and wait for it to finish. Once it is has finished, check the log file.
 ```bash
 [NetID@log-1 ~]$ sbatch example-job.sh
-[NetID@log-1 ~]$ squeue -u NetID
+[NetID@log-1 ~]$ squeue --me
 cat slurm-38193.out
 This job is running on: c1-14
 slurmstepd: error: *** JOB 38193 ON gra533 CANCELLED AT 2017-07-02T16:35:48
@@ -169,7 +169,7 @@ Our job was killed for exceeding the amount of resources it requested. Although 
 Sometimes we’ll make a mistake and need to cancel a job. This can be done with the `scancel` command. Let’s submit a job and then cancel it using its job number (remember to change the walltime so that it runs long enough for you to cancel it before it is killed!).
 ```bash
 [NetID@log-1 ~]$ sbatch example-job.sh
-[NetID@log-1 ~]$ squeue -u NetID
+[NetID@log-1 ~]$ squeue --me
 Submitted batch job 38759
 
 JOBID ACCOUNT     NAME           ST REASON   TIME TIME_LEFT NODES CPUS
@@ -179,7 +179,7 @@ Now cancel the job with its job number (printed in your terminal). A clean retur
 ```bash
 [NetID@log-1 ~]$ scancel 38759
 # It might take a minute for the job to disappear from the queue...
-[NetID@log-1 ~]$ squeue -u NetID
+[NetID@log-1 ~]$ squeue --me
 JOBID  USER  ACCOUNT  NAME  ST  REASON  START_TIME  TIME  TIME_LEFT  NODES CPUS
 ```
 
@@ -188,6 +188,59 @@ We can also cancel all of our jobs at once using the `-u` option. This will dele
 
 Try submitting multiple jobs and then cancelling them all with `scancel -u NetID`.
 :::
+
+## Job Arrays
+> Job arrays offer a mechanism for submitting and managing collections of similar jobs quickly and easily, useful for repetitive workloads that follow a common job pattern. This greatly improves overall performance, since job arrays with millions of tasks can be submitted in milliseconds (subject to configured size limits) and the scheduler can quickly identify cases when no more array tasks are eligible to start.<br />
+-- [Slurm documentation](https://slurm.schedmd.com/job_array.html)
+
+### Job Array Example
+As stated above, you can have a single sbatch job submit multiple jobs by using Job Arrays.  This example shows how you can run the same python file with a range of input parameters from a single sbatch file.
+
+Copy the following code into a file named `run_array.sh`:
+```bash
+#!/bin/bash
+#SBATCH --job-name=array_test
+#SBATCH --output=array_%j.out
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=1M
+#SBATCH --time=00:10:00
+#SBATCH --account=torch_pr_XXX_XXXXX
+#SBATCH --array=0-4
+
+LEARNING_RATES=(0.01 0.05 0.1 0.5 1.0)
+CURRENT_LR=${LEARNING_RATES[$SLURM_ARRAY_TASK_ID]}
+
+python array_test.py --lr $CURRENT_LR
+
+```
+Be aware that you'll need to put in your own account.
+
+Copy the following code into a file named `array_test.py`:
+```bash
+import argparse
+
+def main():
+    parser = argparse.ArgumentParser(description="Job Array Demo")
+    parser.add_argument('--lr', type=float, default=0.01,
+                        help="Learning Rate")
+    args = parser.parse_args()
+    current_lr = args.lr
+    print(f"Starting training with learning rate: {current_lr}")
+
+if __name__ == '__main__':
+    main()
+
+```
+
+Place those files in the same directory and then submit with the command:
+```bash
+sbatch run_array.sh
+```
+When they're done running you should find 5 files in your directory named `array_job_id.out` where the `job_id` will be a long integer.  Each of those files will contain one of the values in the learning rate array in `run_array.sh`
+
+Please see the [Slurm Documentation](https://slurm.schedmd.com/job_array.html) for more details.
 
 ## Other Types of Jobs
 Up to this point, we’ve focused on running jobs in batch mode. Slurm also provides the ability to start an interactive session.

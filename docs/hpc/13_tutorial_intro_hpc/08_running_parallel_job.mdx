@@ -109,7 +109,7 @@ srun amdahl
 ```
 As before, use the Slurm status commands to check whether your job is running and when it ends:
 ```bash
-[NetID@log-1 amdahl]$ squeue -u NetID
+[NetID@log-1 amdahl]$ squeue --me
 ```
 Use `ls` to locate the output file. The `-t` flag sorts in reverse-chronological order: newest first. What was the output?
 
