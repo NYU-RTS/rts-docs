@@ -1,5 +1,5 @@
 allowBuilds:
-  core: true
+  "@swc/core": true
   core-js: true
   core-js-pure: true
   unrs-resolver: true
