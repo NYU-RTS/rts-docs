@@ -169,8 +169,7 @@ const config: Config = {
           items: [
             {
               label: "Feedback",
-              to:
-                "https://docs.google.com/forms/d/e/1FAIpQLSeHnmkPdR_IvWnT6a7U_V3RpfmQrpS8hjxI11FNnsZMlrBa4g/viewform",
+              to: "https://docs.google.com/forms/d/e/1FAIpQLSeHnmkPdR_IvWnT6a7U_V3RpfmQrpS8hjxI11FNnsZMlrBa4g/viewform",
             },
             {
               label: "Announcements",
@@ -199,6 +198,7 @@ const config: Config = {
     },
 
     algolia: {
+      askAi: "8ZKKd4FtQw2e",
       appId: "5Y8Q0MVP6Y",
       apiKey: "765882f24d95c1462561a66b67f33fb8",
       indexName: "algolia-crawler",
@@ -209,7 +209,7 @@ const config: Config = {
 
   future: {
     v4: true, // opt-in to v4 to ease transition in the future
-    experimental_faster: {
+    faster: {
       rspackBundler: true, // required flag
       rspackPersistentCache: true, // new flag
     },
