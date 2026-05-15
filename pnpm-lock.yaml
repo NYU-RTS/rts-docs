@@ -35,9 +35,6 @@ importers:
       lucide-react:
         specifier: ^0.514.0
         version: 0.514.0(react@19.2.4)
-      lunr:
-        specifier: ^2.3.9
-        version: 2.3.9
       prism-react-renderer:
         specifier: ^2.4.1
         version: 2.4.1(react@19.2.4)
@@ -5748,9 +5745,6 @@ packages:
     resolution: {integrity: sha512-HXD0OAMd+JM2xCjlwG1EGW9Nuab64dhjO3+MvdyD+pSUeOTBaVAPhQblKIYmmX4RyBYbdzW0VWnJpjJmxWGr6w==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
-
-  lunr@2.3.9:
-    resolution: {integrity: sha512-zTU3DaZaF3Rt9rhN3uBMGQD3dD2/vFQqnvZCDv4dl5iOzq2IZQqTxu90r4E5J+nP70J3ilqVCrbho2eWaeW8Ow==}
 
   map-cache@0.2.2:
     resolution: {integrity: sha512-8y/eV9QQZCiyn1SprXSrCmqJN0yNRATe+PO8ztwqrvrbdRLA3eYJF0yaR0YayLWkMbsQSKWS9N2gPcGEc4UsZg==}
@@ -15440,8 +15434,6 @@ snapshots:
   lucide-react@0.514.0(react@19.2.4):
     dependencies:
       react: 19.2.4
-
-  lunr@2.3.9: {}
 
   map-cache@0.2.2: {}
 
