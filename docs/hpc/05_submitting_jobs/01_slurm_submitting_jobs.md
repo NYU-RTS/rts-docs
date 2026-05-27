@@ -1,12 +1,49 @@
 # Submitting Jobs on Torch
 
 :::tip Beginner tutorial available
-If you are new to using HPC resources and would like to learn about the principles of using the `SLURM` scheduler for submitting batch jobs, please refer to [this section](../13_tutorial_intro_hpc/04_scheduler_fundamentals.mdx). This section focuses on the specifics of the Torch cluster and assumes familiarity with the tutorial.
+If you are new to using HPC resources and would like to learn about the principles of using the `SLURM` scheduler for submitting batch jobs, please refer to [this section](../13_tutorial_intro_hpc/04_scheduler_fundamentals.mdx). It focuses on the specifics of the Torch cluster and assumes familiarity with the tutorial.
 :::
 
 :::warning Active allocation in the HPC projects portal
-An active allocation in the HPC projects portal is needed to submit any jobs on Torch. For more information on how to get one, please refer to [this section](../../hpc/01_getting_started/03_Slurm_Accounts/02_hpc_project_management_portal.mdx). All job submissions must include the `--account` parameter. On Torch, you can list the SLURM accounts you have access to by running the command `my_slurm_accounts`.
+An active allocation in the HPC projects portal is needed to submit any jobs on Torch. For more information on how to get one, please refer to [this section](../../hpc/01_getting_started/03_Slurm_Accounts/02_hpc_project_management_portal.mdx). All job submissions must include the `--account` parameter. On Torch, you can list the SLURM accounts you have access to by running the command [`my_slurm_accounts`](https://services.rt.nyu.edu/docs/hpc/tools_and_software/utils/#my_slurm_accounts).
 ::: 
+
+## GPUs
+
+To request GPUs on Torch you'll need to use the `--gres=gpu:number` flag in either your sbatch file or the command line, where you'll replace `number` with the number of GPUs you're requesting.
+
+For example, in an sbatch file you'd do something like:
+```bash
+#!/bin/bash
+#SBATCH --job-name=gpu_test
+#SBATCH --output=gpu_test.out
+#SBATCH --gres=gpu:1
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=1M
+#SBATCH --time=00:10:00
+#SBATCH --account=torch_pr_XXX_XXXXX
+
+python gpu_test.py
+```
+
+and to start an interactive job with a GPU you would do something like:
+```bash
+srun --account=torch_pr_XXXX_XXXXX --gres=gpu:1 --cpus-per-task=1 --mem=8GB --time=1:00:00 --pty /bin/bash
+```
+
+If you'd like a specific type of GPU you can specify that with the `--constraint='type'` flag.  You'll need to replace `type` with the type of GPU or a `|` separated list of acceptable GPUs.
+Here are a couple of examples using `srun`, but you can also use the same syntax in an sbatch file:
+```bash
+ srun --account=torch_pr_XXXX_XXXXX --gres=gpu:1 --constraint='h200' --cpus-per-task=1 --mem=8GB --time=1:00:00 --pty /bin/bash
+ ```
+ or
+ ```bash
+ srun --account=torch_pr_XXXX_XXXXX --gres=gpu:1 --constraint='h200|l40s' --cpus-per-task=1 --mem=8GB --time=1:00:00 --pty /bin/bash
+ ```
+
+You can find the available types of GPUs at [Torch Spec Sheet](../10_spec_sheet.md)
 
 ## Partitions
 
@@ -31,7 +68,17 @@ Non-stakeholders to temporarily use stakeholder resources (a stakeholder group t
 As stated in the tutorial, be sure to only request the compute resources (e.g., GPUs, CPUs, memory) needed for the job. Requesting too many resources can prevent your job from being scheduled within an adequate time. The `SLURM` scheduler will automatically dispatch jobs to all accessible GPU partitions that match resource requests.
 
 :::danger Low GPU Utilization Policy
-Jobs with low GPU utilization will be automatically canceled. The exact threshold is TBD, but enforcement will be very aggressive.
+Jobs with low GPU utilization will be automatically canceled:
+| Node Pattern | Cancellation Criteria | Warning Criteria |
+| :----------- | :-------------------: | :--------------: |
+| gl*          | 50%                   | 70%              |
+| gh*          | 60%                   | 75%              |
+| ga*          | 50%                   | 70%              |
+| gr*          | 50%                   | 70%              |
+| * (default)  | 10%                   | 50%              |
+
+
+Enforcement will be very aggressive.
 :::
 
 ## Preemptible jobs on Torch
