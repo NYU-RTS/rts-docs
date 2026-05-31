@@ -1,0 +1,18 @@
+# Introduction to Apptainer on Torch
+
+## Why containers?
+Researchers often rely on complex software stacks that include programming languages and libraries. Installing and maintaining these dependencies can be challenging when different projects require different software versions.
+
+Containers provide a way to package software together with the environment it needs to run. Instead of manually installing every dependency on a system, users can run software inside a container that already includes the required libraries and tools.
+
+## What is Apptainer?
+
+Apptainer is a container platform designed for Linux and HPC environments. It allows users to run software inside isolated environments without requiring administrator privileges on the host system.
+
+Apptainer is the continuation of the Singularity project. The open-source Singularity project was renamed to Apptainer and continues to be developed under the Linux Foundation.
+
+Unlike Docker, Apptainer does not require a privileged daemon running on the system. This makes it well suited for shared HPC environments where security and multi-user access are important considerations.
+
+Torch uses Apptainer as its supported container platform. Many container images distributed through Docker registries can be used directly with Apptainer, allowing researchers to take advantage of existing software environments while working on the cluster.
+
+
