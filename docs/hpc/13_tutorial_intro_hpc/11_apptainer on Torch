@@ -178,3 +178,182 @@ For commonly used software, it is often easier to use a cluster-provided image.
 
 If the software you need is not available, you can pull an image directly from Docker Hub and run it with Apptainer.
 
+## Using Containers in Batch Jobs
+
+So far, we have run containers interactively from the command line. In practice, most work on Torch is submitted through Slurm batch jobs.
+
+Containers can be used directly inside a Slurm job script in the same way as any other command.
+
+Create a file named `container_job.sh`:
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=container-demo
+#SBATCH --account=torch_pr_XXX_XXXXX
+#SBATCH --time=00:05:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=1G
+
+apptainer exec \
+    /share/apps/images/ubuntu-24.04.3.sif \
+    cat /etc/os-release
+```
+
+Replace the account name with your own project account.
+
+Submit the job:
+
+```bash
+sbatch container_job.sh
+```
+
+When the job starts running, Slurm will launch the container and execute the command inside it.
+
+You can monitor the job using:
+
+```bash
+squeue --me
+```
+
+After the job completes, inspect the output file:
+
+```bash
+cat slurm-<jobid>.out
+```
+
+You should see output similar to:
+
+```text
+PRETTY_NAME="Ubuntu 24.04.3 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+```
+
+## Running Software from a Container in a Batch Job
+
+Instead of running a simple command, a batch job can also execute software provided by a container image.
+
+For example:
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=python-demo
+#SBATCH --account=torch_pr_XXX_XXXXX
+#SBATCH --time=00:05:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=1G
+
+/share/apps/images/run-anaconda3-2024.10-1.bash \
+    python --version
+```
+
+Submit the job:
+
+```bash
+sbatch python_job.sh
+```
+
+When the job completes, the output file should contain:
+
+```text
+Python 3.12.7
+```
+
+This approach allows you to use containerized software in batch jobs without installing packages in your home directory.
+
+## Containers and Slurm
+
+From Slurm's perspective, a container is simply another program being executed within the job allocation.
+
+This means that containers can be used together with the same Slurm workflows discussed in previous tutorials, including:
+
+- CPU jobs
+- GPU jobs
+- Interactive jobs
+- Job arrays
+
+In most cases, the only difference is that the application is launched through Apptainer rather than directly from the host operating system.
+
+## Writable Containers and Overlays
+
+Apptainer images are immutable by default. This means that files inside the image cannot be modified.
+
+For example, if you start a shell inside a container:
+
+```bash
+apptainer shell \
+    /share/apps/images/ubuntu-24.04.3.sif
+```
+
+you can view files inside the image, but changes made to the image itself will not be saved.
+
+This behavior helps ensure that container images remain reproducible and consistent across users.
+
+## Why Use Overlays?
+
+In some situations, you may want to install additional software or save files inside a container environment.
+
+Examples include:
+
+- Installing Python packages
+- Creating Conda environments
+- Saving configuration files
+- Building custom software
+
+Rather than modifying the image itself, Apptainer provides writable overlays.
+
+An overlay acts as a writable layer that sits on top of a read-only container image.
+
+```text
+Ubuntu Image (.sif)
+        +
+Writable Overlay
+        =
+Custom Environment
+```
+
+Changes are written to the overlay while the original image remains unchanged.
+
+## Using an Overlay
+
+A container can be started with an overlay using the `--overlay` option:
+
+```bash
+apptainer shell \
+    --overlay overlay.ext3:rw \
+    /share/apps/images/ubuntu-24.04.3.sif
+```
+
+Files created during the session are stored in the overlay rather than inside the image.
+
+The next time the same overlay is attached, those files will still be available.
+
+## Using Fakeroot
+
+Some software installation workflows expect root privileges.
+
+Apptainer provides a `--fakeroot` option that gives root-like permissions inside the container without requiring administrative access on the cluster.
+
+For example:
+
+```bash
+apptainer shell \
+    --fakeroot \
+    --overlay overlay.ext3:rw \
+    /share/apps/images/ubuntu-24.04.3.sif
+```
+
+This is commonly used when creating Conda environments or installing software into a writable overlay.
+
+## When Should You Use an Overlay?
+
+For most users, Torch-provided container images are sufficient.
+
+Consider using an overlay when:
+
+- You need additional packages that are not included in an image.
+- You want to save changes between container sessions.
+- You need a custom software environment for a project.
+
+Using overlays allows you to customize your environment while continuing to use centrally maintained container images.
+
