@@ -6,8 +6,7 @@ Researchers often rely on complex software stacks that include programming langu
 Containers provide a way to package software together with the environment it needs to run. Instead of manually installing every dependency on a system, users can run software inside a container that already includes the required libraries and tools.
 
 ## What is Apptainer?
-
-Apptainer is a container platform designed for Linux and HPC environments. It allows users to run software inside isolated environments without requiring administrator privileges on the host system.
+Apptainer is a container platform that allows users to run software inside isolated environments. It allows users to run software inside isolated environments without requiring administrator privileges on the host system.
 
 Apptainer is the continuation of the Singularity project. The open-source Singularity project was renamed to Apptainer and continues to be developed under the Linux Foundation.
 
@@ -15,4 +14,167 @@ Unlike Docker, Apptainer does not require a privileged daemon running on the sys
 
 Torch uses Apptainer as its supported container platform. Many container images distributed through Docker registries can be used directly with Apptainer, allowing researchers to take advantage of existing software environments while working on the cluster.
 
+# Using Apptainer to run commands on Torch
+## Running Specific Commands Within a Container
+
+In the previous episode, we launched a container using a prebuilt Ubuntu image available on Torch. By default, a container may be configured to run a specific application when it starts. What if we want to run a different command inside the container?
+
+If we know the path of an executable we want to run, we can use the `apptainer exec` command. For example, using the Ubuntu container image provided on Torch:
+
+```bash
+apptainer exec /share/apps/images/ubuntu-24.04.3.sif /bin/echo "Hello World!"
+```
+
+Output:
+
+```text
+Hello World!
+```
+
+Here, Apptainer starts a container from the Ubuntu image and executes the `/bin/echo` command inside the container. Once the command finishes, the container exits.
+
+We can also run other commands inside the container. For example:
+
+```bash
+apptainer exec /share/apps/images/ubuntu-24.04.3.sif cat /etc/os-release
+```
+
+Example output:
+
+```text
+PRETTY_NAME="Ubuntu 24.04.3 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+...
+```
+
+This confirms that the command is being executed within the Ubuntu container environment.
+
+## The Difference Between `apptainer run` and `apptainer exec`
+
+Above we used the `apptainer exec` command. In the previous episode we used `apptainer run`. To clarify, the difference between these two commands is:
+
+### `apptainer run`
+
+This starts a container and executes the default application configured within the image. You do not specify a command. Instead, Apptainer runs whatever application the image creator configured as the default.
+
+```bash
+apptainer run image.sif
+```
+
+### `apptainer exec`
+
+This starts a container and runs a command that you provide on the command line.
+
+```bash
+apptainer exec image.sif command
+```
+
+Any default application configured within the image is ignored, and the command you specify is executed instead.
+
+## Opening an Interactive Shell Within a Container
+
+Sometimes it is useful to explore a container interactively. Apptainer provides the `apptainer shell` command for this purpose.
+
+Launch a shell inside the Ubuntu container:
+
+```bash
+apptainer shell /share/apps/images/ubuntu-24.04.3.sif
+```
+
+You should see a prompt similar to:
+
+```text
+Apptainer>
+```
+
+You can now run commands inside the container:
+
+```bash
+whoami
+pwd
+cat /etc/os-release
+```
+
+Example output:
+
+```text
+PRETTY_NAME="Ubuntu 24.04.3 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+...
+```
+
+Notice that the prompt changes to indicate that you are working inside the container environment.
+
+When you are finished, leave the container with:
+
+```bash
+exit
+```
+
+This returns you to your normal shell on Torch.
+
+## Pulling Container Images
+
+So far, we have used container images that are already available on Torch under `/share/apps/images`.
+
+In practice, you may also want to run software that is not provided by the cluster. Apptainer can pull images directly from Docker registries and convert them into the Apptainer SIF format.
+
+For example, we can pull the official Ubuntu Docker image:
+
+```bash
+apptainer pull ubuntu-24.04.sif docker://ubuntu:24.04
+```
+
+During the pull process, Apptainer downloads the Docker image layers and converts them into a single SIF image:
+
+```text
+INFO:    Converting OCI blobs to SIF format
+INFO:    Starting build...
+...
+INFO:    Creating SIF file...
+```
+
+When the command completes, a new image named `ubuntu-24.04.sif` will be created in the current directory.
+
+You can verify that the image exists:
+
+```bash
+ls -lh ubuntu-24.04.sif
+```
+
+The image can now be used like any other Apptainer image.
+
+For example:
+
+```bash
+apptainer exec ubuntu-24.04.sif cat /etc/os-release
+```
+
+or
+
+```bash
+apptainer shell ubuntu-24.04.sif
+```
+
+## Docker Images and Apptainer
+
+Although Apptainer can pull images directly from Docker registries, it does not run Docker containers directly.
+
+Instead, Apptainer downloads the Docker image layers and converts them into a single Apptainer image file (`.sif`). Once converted, the image can be used without Docker.
+
+This allows researchers to take advantage of the large software ecosystem available through Docker Hub while continuing to use Apptainer on shared HPC systems.
+
+## Torch Images vs Docker Images
+
+Torch already provides many prebuilt container images:
+
+```bash
+ls /share/apps/images/
+```
+
+For commonly used software, it is often easier to use a cluster-provided image.
+
+If the software you need is not available, you can pull an image directly from Docker Hub and run it with Apptainer.
 
