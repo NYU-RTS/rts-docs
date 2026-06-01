@@ -14,12 +14,54 @@ Unlike Docker, Apptainer does not require a privileged daemon running on the sys
 
 Torch uses Apptainer as its supported container platform. Many container images distributed through Docker registries can be used directly with Apptainer, allowing researchers to take advantage of existing software environments while working on the cluster.
 
-# Using Apptainer to run commands on Torch
+# Using Apptainer to Run Commands on Torch
+
+:::warning
+
+Container workloads should be run on compute nodes rather than login nodes.
+
+While simple commands may work on a login node, pulling images, launching software, installing packages, or building environments can consume significant CPU, memory, and storage resources. These activities should be performed within an interactive Slurm allocation or a batch job.
+:::
+
+Torch provides many prebuilt container images under:
+
+```bash
+ls /share/apps/images/
+```
+
+:::note
+
+Torch provides container images with both `.sif` and `.sqf` extensions.
+
+`.sif` is the standard Apptainer image format. Some Torch-provided application images use `.sqf` and may be intended to be launched through wrapper scripts such as `run-anaconda3-2024.10-1.bash`.
+
+When available, use the wrapper script documented for that application. For general Apptainer examples in this tutorial, we use `.sif` images because they work directly with `apptainer exec`, `apptainer run`, and `apptainer shell`.
+
+:::
+
+For this tutorial, we will use the Ubuntu 24.04 image that is already available on the cluster.
+
+## Running Your First Container
+
+Apptainer images can define a default action that runs when the container starts.
+
+To launch a container and execute its default action, use `apptainer run`:
+
+```bash
+apptainer run /share/apps/images/ubuntu-24.04.3.sif
+```
+
+Depending on how the image was built, this command may produce output, launch an application, or simply start and exit.
+
+The important point is that with `apptainer run`, Apptainer executes the default action defined by the image creator.
+
+Sometimes, however, we want to run a specific command instead of the image's default action. In those cases, we use `apptainer exec`.
+
 ## Running Specific Commands Within a Container
 
-In the previous episode, we launched a container using a prebuilt Ubuntu image available on Torch. By default, a container may be configured to run a specific application when it starts. What if we want to run a different command inside the container?
+Unlike `apptainer run`, which executes the image's default action, `apptainer exec` allows us to specify exactly what command should run inside the container.
 
-If we know the path of an executable we want to run, we can use the `apptainer exec` command. For example, using the Ubuntu container image provided on Torch:
+For example:
 
 ```bash
 apptainer exec /share/apps/images/ubuntu-24.04.3.sif /bin/echo "Hello World!"
@@ -31,46 +73,15 @@ Output:
 Hello World!
 ```
 
-Here, Apptainer starts a container from the Ubuntu image and executes the `/bin/echo` command inside the container. Once the command finishes, the container exits.
-
-We can also run other commands inside the container. For example:
-
-```bash
-apptainer exec /share/apps/images/ubuntu-24.04.3.sif cat /etc/os-release
-```
-
-Example output:
-
-```text
-PRETTY_NAME="Ubuntu 24.04.3 LTS"
-NAME="Ubuntu"
-VERSION_ID="24.04"
-...
-```
-
-This confirms that the command is being executed within the Ubuntu container environment.
-
 ## The Difference Between `apptainer run` and `apptainer exec`
 
-Above we used the `apptainer exec` command. In the previous episode we used `apptainer run`. To clarify, the difference between these two commands is:
+Both `apptainer run` and `apptainer exec` start a container, but they serve different purposes.
 
-### `apptainer run`
+`apptainer run` executes the default action defined by the image creator. Depending on how the image was built, this may launch an application, run a script, or perform another predefined task.
 
-This starts a container and executes the default application configured within the image. You do not specify a command. Instead, Apptainer runs whatever application the image creator configured as the default.
+`apptainer exec` allows you to specify exactly which command should run inside the container. Rather than relying on the image's default behavior, you provide the command directly.
 
-```bash
-apptainer run image.sif
-```
-
-### `apptainer exec`
-
-This starts a container and runs a command that you provide on the command line.
-
-```bash
-apptainer exec image.sif command
-```
-
-Any default application configured within the image is ignored, and the command you specify is executed instead.
+In practice, `apptainer exec` is often used when working on HPC systems because it provides more control over what is executed inside the container environment.
 
 ## Opening an Interactive Shell Within a Container
 
@@ -85,7 +96,7 @@ apptainer shell /share/apps/images/ubuntu-24.04.3.sif
 You should see a prompt similar to:
 
 ```text
-Apptainer>
+Singularity>
 ```
 
 You can now run commands inside the container:
@@ -115,16 +126,16 @@ exit
 
 This returns you to your normal shell on Torch.
 
-## Pulling Container Images
+## Using Docker images with Apptainer
 
 So far, we have used container images that are already available on Torch under `/share/apps/images`.
 
 In practice, you may also want to run software that is not provided by the cluster. Apptainer can pull images directly from Docker registries and convert them into the Apptainer SIF format.
 
-For example, we can pull the official Ubuntu Docker image:
+For example, we can pull an official PyTorch image from Docker Hub:
 
 ```bash
-apptainer pull ubuntu-24.04.sif docker://ubuntu:24.04
+apptainer pull pytorch.sif docker://pytorch/pytorch:latest
 ```
 
 During the pull process, Apptainer downloads the Docker image layers and converts them into a single SIF image:
@@ -132,16 +143,17 @@ During the pull process, Apptainer downloads the Docker image layers and convert
 ```text
 INFO:    Converting OCI blobs to SIF format
 INFO:    Starting build...
+INFO:    Fetching OCI image...
 ...
 INFO:    Creating SIF file...
 ```
 
-When the command completes, a new image named `ubuntu-24.04.sif` will be created in the current directory.
+When the command completes, a new image named `pytorch.sif` will be created in the current directory.
 
 You can verify that the image exists:
 
 ```bash
-ls -lh ubuntu-24.04.sif
+ls -lh pytorch.sif
 ```
 
 The image can now be used like any other Apptainer image.
@@ -149,211 +161,12 @@ The image can now be used like any other Apptainer image.
 For example:
 
 ```bash
-apptainer exec ubuntu-24.04.sif cat /etc/os-release
+apptainer exec pytorch.sif python --version
 ```
 
 or
 
 ```bash
-apptainer shell ubuntu-24.04.sif
+apptainer exec pytorch.sif python -c "import torch; print(torch.__version__)"
 ```
-
-## Docker Images and Apptainer
-
-Although Apptainer can pull images directly from Docker registries, it does not run Docker containers directly.
-
-Instead, Apptainer downloads the Docker image layers and converts them into a single Apptainer image file (`.sif`). Once converted, the image can be used without Docker.
-
-This allows researchers to take advantage of the large software ecosystem available through Docker Hub while continuing to use Apptainer on shared HPC systems.
-
-## Torch Images vs Docker Images
-
-Torch already provides many prebuilt container images:
-
-```bash
-ls /share/apps/images/
-```
-
-For commonly used software, it is often easier to use a cluster-provided image.
-
-If the software you need is not available, you can pull an image directly from Docker Hub and run it with Apptainer.
-
-## Using Containers in Batch Jobs
-
-So far, we have run containers interactively from the command line. In practice, most work on Torch is submitted through Slurm batch jobs.
-
-Containers can be used directly inside a Slurm job script in the same way as any other command.
-
-Create a file named `container_job.sh`:
-
-```bash
-#!/bin/bash
-#SBATCH --job-name=container-demo
-#SBATCH --account=torch_pr_XXX_XXXXX
-#SBATCH --time=00:05:00
-#SBATCH --cpus-per-task=1
-#SBATCH --mem=1G
-
-apptainer exec \
-    /share/apps/images/ubuntu-24.04.3.sif \
-    cat /etc/os-release
-```
-
-Replace the account name with your own project account.
-
-Submit the job:
-
-```bash
-sbatch container_job.sh
-```
-
-When the job starts running, Slurm will launch the container and execute the command inside it.
-
-You can monitor the job using:
-
-```bash
-squeue --me
-```
-
-After the job completes, inspect the output file:
-
-```bash
-cat slurm-<jobid>.out
-```
-
-You should see output similar to:
-
-```text
-PRETTY_NAME="Ubuntu 24.04.3 LTS"
-NAME="Ubuntu"
-VERSION_ID="24.04"
-```
-
-## Running Software from a Container in a Batch Job
-
-Instead of running a simple command, a batch job can also execute software provided by a container image.
-
-For example:
-
-```bash
-#!/bin/bash
-#SBATCH --job-name=python-demo
-#SBATCH --account=torch_pr_XXX_XXXXX
-#SBATCH --time=00:05:00
-#SBATCH --cpus-per-task=1
-#SBATCH --mem=1G
-
-/share/apps/images/run-anaconda3-2024.10-1.bash \
-    python --version
-```
-
-Submit the job:
-
-```bash
-sbatch python_job.sh
-```
-
-When the job completes, the output file should contain:
-
-```text
-Python 3.12.7
-```
-
-This approach allows you to use containerized software in batch jobs without installing packages in your home directory.
-
-## Containers and Slurm
-
-From Slurm's perspective, a container is simply another program being executed within the job allocation.
-
-This means that containers can be used together with the same Slurm workflows discussed in previous tutorials, including:
-
-- CPU jobs
-- GPU jobs
-- Interactive jobs
-- Job arrays
-
-In most cases, the only difference is that the application is launched through Apptainer rather than directly from the host operating system.
-
-## Writable Containers and Overlays
-
-Apptainer images are immutable by default. This means that files inside the image cannot be modified.
-
-For example, if you start a shell inside a container:
-
-```bash
-apptainer shell \
-    /share/apps/images/ubuntu-24.04.3.sif
-```
-
-you can view files inside the image, but changes made to the image itself will not be saved.
-
-This behavior helps ensure that container images remain reproducible and consistent across users.
-
-## Why Use Overlays?
-
-In some situations, you may want to install additional software or save files inside a container environment.
-
-Examples include:
-
-- Installing Python packages
-- Creating Conda environments
-- Saving configuration files
-- Building custom software
-
-Rather than modifying the image itself, Apptainer provides writable overlays.
-
-An overlay acts as a writable layer that sits on top of a read-only container image.
-
-```text
-Ubuntu Image (.sif)
-        +
-Writable Overlay
-        =
-Custom Environment
-```
-
-Changes are written to the overlay while the original image remains unchanged.
-
-## Using an Overlay
-
-A container can be started with an overlay using the `--overlay` option:
-
-```bash
-apptainer shell \
-    --overlay overlay.ext3:rw \
-    /share/apps/images/ubuntu-24.04.3.sif
-```
-
-Files created during the session are stored in the overlay rather than inside the image.
-
-The next time the same overlay is attached, those files will still be available.
-
-## Using Fakeroot
-
-Some software installation workflows expect root privileges.
-
-Apptainer provides a `--fakeroot` option that gives root-like permissions inside the container without requiring administrative access on the cluster.
-
-For example:
-
-```bash
-apptainer shell \
-    --fakeroot \
-    --overlay overlay.ext3:rw \
-    /share/apps/images/ubuntu-24.04.3.sif
-```
-
-This is commonly used when creating Conda environments or installing software into a writable overlay.
-
-## When Should You Use an Overlay?
-
-For most users, Torch-provided container images are sufficient.
-
-Consider using an overlay when:
-
-- You need additional packages that are not included in an image.
-- You want to save changes between container sessions.
-- You need a custom software environment for a project.
-
-Using overlays allows you to customize your environment while continuing to use centrally maintained container images.
 
