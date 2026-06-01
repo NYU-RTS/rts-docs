@@ -1,0 +1,223 @@
+# Introduction to Apptainer on Torch
+
+## Why containers?
+Researchers often rely on complex software stacks that include programming languages and libraries. Installing and maintaining these dependencies can be challenging when different projects require different software versions.
+
+Containers provide a way to package software together with the environment it needs to run. Instead of manually installing every dependency on a system, users can run software inside a container that already includes the required libraries and tools.
+
+## What is Apptainer?
+Apptainer is a container platform that allows users to run software inside isolated environments. It allows users to run software inside isolated environments without requiring administrator privileges on the host system.
+
+Apptainer is the continuation of the Singularity project. The open-source Singularity project was renamed to Apptainer and continues to be developed under the Linux Foundation.
+
+Unlike Docker, Apptainer does not require a privileged daemon running on the system. This makes it well suited for shared HPC environments where security and multi-user access are important considerations.
+
+Torch uses Apptainer as its supported container platform. Many container images distributed through Docker registries can be used directly with Apptainer, allowing researchers to take advantage of existing software environments while working on the cluster.
+
+# Files in Apptainer Containers
+Apptainer is designed to work closely with the host filesystem. In most cases, your home directory and current working directory remain accessible from within the container.
+
+## Accessing Your Files
+
+While inside a container, check your current directory:
+
+```bash
+pwd
+```
+
+You can also list files in your home directory:
+
+```bash
+ls ~
+```
+
+The files and directories you see should match those available outside the container.
+
+Files created in these mounted directories remain available after the container exits.
+
+## Binding Additional Directories
+
+Sometimes you may need access to additional directories that are not automatically available inside the container.
+
+Apptainer allows additional directories to be mounted using the `-B` option:
+
+```bash
+apptainer shell \
+    -B /scratch:/scratch \
+    /share/apps/images/ubuntu-24.04.3.sif
+```
+
+This makes `/scratch` available inside the container.
+
+You can also mount a directory at a different location:
+
+```bash
+apptainer shell \
+    -B /scratch:/data \
+    /share/apps/images/ubuntu-24.04.3.sif
+```
+
+In this example, files stored in `/scratch` on the host system are accessible through `/data` inside the container.
+
+## Why This Matters
+
+Container images are typically read-only. Research data, scripts, notebooks, and output files usually remain outside the container.
+
+By making host directories available inside the container, Apptainer allows applications to access data stored on Torch while maintaining a reproducible software environment.
+
+# Using Apptainer to Run Commands on Torch
+
+:::warning
+
+Container workloads should be run on compute nodes rather than login nodes.
+
+While simple commands may work on a login node, pulling images, launching software, installing packages, or building environments can consume significant CPU, memory, and storage resources. These activities should be performed within an interactive Slurm allocation or a batch job.
+:::
+
+Torch provides many prebuilt container images under:
+
+```bash
+ls /share/apps/images/
+```
+
+:::note
+
+Torch provides container images with both `.sif` and `.sqf` extensions.
+
+`.sif` is the standard Apptainer image format. Some Torch-provided application images use `.sqf` and may be intended to be launched through wrapper scripts such as `run-anaconda3-2024.10-1.bash`.
+
+When available, use the wrapper script documented for that application. For general Apptainer examples in this tutorial, we use `.sif` images because they work directly with `apptainer exec`, `apptainer run`, and `apptainer shell`.
+
+:::
+
+For this tutorial, we will use the Ubuntu 24.04 image that is already available on the cluster.
+
+## Running Your First Container
+
+Apptainer images can define a default action that runs when the container starts.
+
+To launch a container and execute its default action, use `apptainer run`:
+
+```bash
+apptainer run /share/apps/images/ubuntu-24.04.3.sif
+```
+
+Depending on how the image was built, this command may produce output, launch an application, or simply start and exit.
+
+The important point is that with `apptainer run`, Apptainer executes the default action defined by the image creator.
+
+Sometimes, however, we want to run a specific command instead of the image's default action. In those cases, we use `apptainer exec`.
+
+## Running Specific Commands Within a Container
+
+Unlike `apptainer run`, which executes the image's default action, `apptainer exec` allows us to specify exactly what command should run inside the container.
+
+For example:
+
+```bash
+apptainer exec /share/apps/images/ubuntu-24.04.3.sif /bin/echo "Hello World!"
+```
+
+Output:
+
+```text
+Hello World!
+```
+
+## The Difference Between `apptainer run` and `apptainer exec`
+
+Both `apptainer run` and `apptainer exec` start a container, but they serve different purposes.
+
+`apptainer run` executes the default action defined by the image creator. Depending on how the image was built, this may launch an application, run a script, or perform another predefined task.
+
+`apptainer exec` allows you to specify exactly which command should run inside the container. Rather than relying on the image's default behavior, you provide the command directly.
+
+In practice, `apptainer exec` is often used when working on HPC systems because it provides more control over what is executed inside the container environment.
+
+## Opening an Interactive Shell Within a Container
+
+Sometimes it is useful to explore a container interactively. Apptainer provides the `apptainer shell` command for this purpose.
+
+Launch a shell inside the Ubuntu container:
+
+```bash
+apptainer shell /share/apps/images/ubuntu-24.04.3.sif
+```
+
+You should see a prompt similar to:
+
+```text
+Singularity>
+```
+
+You can now run commands inside the container:
+
+```bash
+whoami
+pwd
+cat /etc/os-release
+```
+
+Example output:
+
+```text
+PRETTY_NAME="Ubuntu 24.04.3 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+...
+```
+
+Notice that the prompt changes to indicate that you are working inside the container environment.
+
+When you are finished, leave the container with:
+
+```bash
+exit
+```
+
+This returns you to your normal shell on Torch.
+
+## Using Docker images with Apptainer
+
+So far, we have used container images that are already available on Torch under `/share/apps/images`.
+
+In practice, you may also want to run software that is not provided by the cluster. Apptainer can pull images directly from Docker registries and convert them into the Apptainer SIF format.
+
+For example, we can pull an official PyTorch image from Docker Hub:
+
+```bash
+apptainer pull pytorch.sif docker://pytorch/pytorch:latest
+```
+
+During the pull process, Apptainer downloads the Docker image layers and converts them into a single SIF image:
+
+```text
+INFO:    Converting OCI blobs to SIF format
+INFO:    Starting build...
+INFO:    Fetching OCI image...
+...
+INFO:    Creating SIF file...
+```
+
+The output shows that Apptainer is downloading the Docker image layers and converting them into a single SIF image. Once the conversion completes, the resulting SIF file can be used without Docker.
+When the command completes, a new image named `pytorch.sif` will be created in the current directory.
+
+You can verify that the image exists:
+
+```bash
+ls -lh pytorch.sif
+```
+
+The image can now be used like any other Apptainer image.
+
+For example:
+
+```bash
+apptainer exec pytorch.sif python --version
+```
+
+or
+
+```bash
+apptainer exec pytorch.sif python -c "import torch; print(torch.__version__)"
+```
