@@ -6,64 +6,13 @@ Researchers often rely on complex software stacks that include programming langu
 Containers provide a way to package software together with the environment it needs to run. Instead of manually installing every dependency on a system, users can run software inside a container that already includes the required libraries and tools.
 
 ## What is Apptainer?
-Apptainer is a container platform that allows users to run software inside isolated environments. It allows users to run software inside isolated environments without requiring administrator privileges on the host system.
+Apptainer is a container platform that allows users to run software inside isolated environments without requiring administrator privileges on the host system.
 
 Apptainer is the continuation of the Singularity project. The open-source Singularity project was renamed to Apptainer and continues to be developed under the Linux Foundation.
 
 Unlike Docker, Apptainer does not require a privileged daemon running on the system. This makes it well suited for shared HPC environments where security and multi-user access are important considerations.
 
 Torch uses Apptainer as its supported container platform. Many container images distributed through Docker registries can be used directly with Apptainer, allowing researchers to take advantage of existing software environments while working on the cluster.
-
-# Files in Apptainer Containers
-Apptainer is designed to work closely with the host filesystem. In most cases, your home directory and current working directory remain accessible from within the container.
-
-## Accessing Your Files
-
-While inside a container, check your current directory:
-
-```bash
-pwd
-```
-
-You can also list files in your home directory:
-
-```bash
-ls ~
-```
-
-The files and directories you see should match those available outside the container.
-
-Files created in these mounted directories remain available after the container exits.
-
-## Binding Additional Directories
-
-Sometimes you may need access to additional directories that are not automatically available inside the container.
-
-Apptainer allows additional directories to be mounted using the `-B` option:
-
-```bash
-apptainer shell \
-    -B /scratch:/scratch \
-    /share/apps/images/ubuntu-24.04.3.sif
-```
-
-This makes `/scratch` available inside the container.
-
-You can also mount a directory at a different location:
-
-```bash
-apptainer shell \
-    -B /scratch:/data \
-    /share/apps/images/ubuntu-24.04.3.sif
-```
-
-In this example, files stored in `/scratch` on the host system are accessible through `/data` inside the container.
-
-## Why This Matters
-
-Container images are typically read-only. Research data, scripts, notebooks, and output files usually remain outside the container.
-
-By making host directories available inside the container, Apptainer allows applications to access data stored on Torch while maintaining a reproducible software environment.
 
 # Using Apptainer to Run Commands on Torch
 
@@ -177,7 +126,58 @@ exit
 
 This returns you to your normal shell on Torch.
 
-## Using Docker images with Apptainer
+# Files in Apptainer Containers
+Apptainer is designed to work closely with the host filesystem. In most cases, your home directory and current working directory remain accessible from within the container.
+
+## Accessing Your Files
+
+While inside a container, check your current directory:
+
+```bash
+pwd
+```
+
+You can also list files in your home directory:
+
+```bash
+ls ~
+```
+
+The files and directories you see should match those available outside the container.
+
+Files created in these mounted directories remain available after the container exits.
+
+## Binding Additional Directories
+
+Sometimes you may need access to additional directories that are not automatically available inside the container.
+
+Apptainer allows additional directories to be mounted using the `-B` option:
+
+```bash
+apptainer shell \
+    -B /scratch:/scratch \
+    /share/apps/images/ubuntu-24.04.3.sif
+```
+
+This makes `/scratch` available inside the container.
+
+You can also mount a directory at a different location:
+
+```bash
+apptainer shell \
+    -B /scratch:/data \
+    /share/apps/images/ubuntu-24.04.3.sif
+```
+
+In this example, files stored in `/scratch` on the host system are accessible through `/data` inside the container.
+
+## Why This Matters
+
+Container images are typically read-only. Research data, scripts, notebooks, and output files usually remain outside the container.
+
+By making host directories available inside the container, Apptainer allows applications to access data stored on Torch while maintaining a reproducible software environment.
+
+# Using Docker images with Apptainer
 
 So far, we have used container images that are already available on Torch under `/share/apps/images`.
 
