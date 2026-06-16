@@ -21,27 +21,27 @@ Files created in these mounted directories remain available after the container 
 
 ## Binding Additional Directories
 
-Sometimes you may need access to additional directories that are not automatically available inside the container.
+Sometimes you may need access to directories through a different path inside the container.
 
 Apptainer allows additional directories to be mounted using the `-B` option:
 
 ```bash
 apptainer shell \
-    -B /scratch:/scratch \
+    -B /scratch/(NetID):/data \
     /share/apps/images/ubuntu-24.04.3.sif
 ```
 
-This makes `/scratch` available inside the container.
+In this example, your scratch directory on the host system is made available as `/data` inside the container.
 
-You can also mount a directory at a different location:
+After entering the container, you can verify the mount:
 
 ```bash
-apptainer shell \
-    -B /scratch:/data \
-    /share/apps/images/ubuntu-24.04.3.sif
+ls /data
 ```
 
-In this example, files stored in `/scratch` on the host system are accessible through `/data` inside the container.
+Any files stored in `/scratch <NetID>` on the host system will be accessible through `/data` inside the container.
+
+The source and destination paths do not need to be the same. This can be useful when an application expects data to be located in a specific directory within the container.
 
 ## Why This Matters
 
