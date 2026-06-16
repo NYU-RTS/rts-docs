@@ -39,11 +39,11 @@ Depending on how the image was built, this command may produce output, launch an
 
 The important point is that with `apptainer run`, Apptainer executes the default action defined by the image creator.
 
-Sometimes, however, we want to run a specific command instead of the image's default action. In those cases, we use `apptainer exec`.
+In cases we want to run a specific command, use `apptainer exec`.
 
 ## Running Specific Commands Within a Container
 
-Unlike `apptainer run`, which executes the image's default action, `apptainer exec` allows us to specify exactly what command should run inside the container.
+apptainer exec` allows us to specify exactly what command should run inside the container.
 
 For example:
 
@@ -65,11 +65,9 @@ Both `apptainer run` and `apptainer exec` start a container, but they serve diff
 
 `apptainer exec` allows you to specify exactly which command should run inside the container. Rather than relying on the image's default behavior, you provide the command directly.
 
-In practice, `apptainer exec` is often used when working on HPC systems because it provides more control over what is executed inside the container environment.
-
 ## Opening an Interactive Shell Within a Container
 
-Sometimes it is useful to explore a container interactively. Apptainer provides the `apptainer shell` command for this purpose.
+It is useful to explore a container interactively. Apptainer provides the `apptainer shell` command for this purpose.
 
 Launch a shell inside the Ubuntu container:
 
