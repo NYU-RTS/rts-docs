@@ -4,6 +4,12 @@ So far, we have used container images that are already available on Torch under 
 
 In practice, you may also want to run software that is not provided by the cluster. Apptainer can pull images directly from Docker registries and convert them into the Apptainer SIF format.
 
+:::warning
+
+Pulling container images can require significant network bandwidth and disk space. On Torch, image downloads should be performed on compute nodes rather than login nodes.
+
+:::
+
 For example, we can pull an official PyTorch image from Docker Hub:
 
 ```bash
