@@ -1,3 +1,141 @@
 # Using Containers on HPC
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRqcEPcx3N3tZtHlemuRoktVhRT-b3MQyVi8S7SJkzbCKWEt45hF3oeMyB6WHZA9WJsjeHcpsD_I_ao/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+A container is a _lightweight_, _standalone_, executable package of software that includes everything needed to run an application like code, runtime, system tools, system libraries etc.
+
+### Key features include
+
+- **Portability** :  Consistent environment across different systems.
+- **Isolation** : Encapsulates applications to prevent interference with other applications in the host systems.
+- **Efficiency** : They share the same OS Kernel and uses system resources more efficiently than virtualization.
+
+There are many Containerization tools out there, the most popular being **docker**, and most of them conform to the [**Open Container Initiative (OCI)**](https://opencontainers.org/) that is an industry standard for container formats.
+
+An opensource containerization tool called [**Aptainer**](https://apptainer.org/) is used over docker to package performant critical software on HPC Systems.
+
+## Why Apptainer
+
+Apptainer is an open source container platform designed to be simple, fast, and secure. Many container platforms are available, but Apptainer is designed for ease-of-use on shared systems and in high performance computing (HPC) environments. It is preferred over docker for serveral reasons that are:
+
+- **Safety and Mobility** : It provides an immutable single-file container image format, supporting cryptographic signatures and encryption. Enabling portability and reproducibility of research works.
+
+- **Integration over isolation** : It is specifically designed to utilize GPUs, high speed networks, parallel filesystems on a cluster, emphasizing integration over isolation.
+
+- **Security** : Apptainer runs as a deamonless process that is designed to be more secure for use on clusters shared by 100s or 1000s of users.
+
+## How to use Apptainer on NYU HPC
+
+Since docker and apptainer conform to the OCI standards, we can pull in images packaged with docker using apptainer on the HPC from docker hub. For example running the command,
+
+```sh
+apptainer pull docker://python
+```
+
+will pull in a latest python image from docker hub and saves it as a single file with an `.sif` file extension in the current working directory, this file format is called **singularity file format**. We use this image file to spawn containers with apptainer or singularity ( an older version of apptainer ).
+
+```sh
+[pp2959@log-3 ~]$ ls
+python_latest.sif
+[pp2959@log-3 ~]$
+```
+
+We can spawn or run a container from this image like,
+
+```sh
+apptainer run python_latest.sif python3
+``` 
+
+```sh
+[pp2959@log-3 rts-docs]$ apptainer run python_latest.sif python3
+Python 3.13.3 (main, Apr  9 2025, 00:27:54) [GCC 12.2.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+>>> print("hello there !")
+hello there !
+>>> exit()
+```
+
+Many pre-built singualrity images are available on the cluster at the location `/scratch/work/public/singularity/`, to view all available image files run:
+
+```sh
+ls /scratch/work/public/singularity/*.sif
+```
+
+To run an interactive bash shell within a container, try:
+
+```sh
+apptainer exec python_latest.sif /bin/bash
+```
+
+And this will return a bash shell running inside a new container spawned from `python_latest.sif` image file, with a default prompt "Apptainer" as shown:
+
+```sh
+[pp2959@log-3 rts-docs]$ apptainer exec python_latest.sif /bin/bash
+Apptainer>
+```
+
+:::note
+- An **Image** is a snapshot of a container saved in disk.
+- A **Container** is a spawned instance of an image that runs in the background.
+:::
+
+Containers are isolated. However, we get shared file-systems mounted with spawned containers by default on the HPC. This way we have access to the following filesystems from within our containers:
+
+- /home/**\<NET_ID>** 
+- /scratch/**\<ALL_NET_IDs>** 
+- /vast/**\<ALL_NET_IDs>** 
+
+And in addition to some of the system directories. However, we will not have access to the `/archive` filesystem from within.
+
+## Overlay filesystems
+
+Images are `read-only`. We can run containers from a SIF image file on the HPC however they are read-only. That means we can make use of containers but cannot make changes to them at runtime, like creating new directories, downloading pacakges, installing software etc.
+
+In-order to make changes, like to install a new software within our containers, we need to mount a **virtual filesystem** ( virtual disk ) along with it called **overlays** and install packages in it.
+
+An overlay is like a virtual disk that can be mounted along with containers to provide storage capabilities for installing applications.
+
+They are just files similar to the SIF image files, they are:
+- Compressible to a single file
+- Portable and
+- Mountable with different containers
+
+To use an overlay file first we must fetch it from the location `/scratch/work/public/overlay-fs-ext3/` and decompress it using `gunzip`:
+
+```sh
+cp /scratch/work/public/overlay-fs-ext3/overlay-2GB-100K.ext3.gz .
+gunzip overlay-2GB-100K.ext3.gz
+```
+
+Now we can mount this empty overlay filesystem with our container as:
+
+```sh
+apptainer exec --overlay overlay-2GB-100K.ext3:rw /scratch/work/public/singularity/cuda12.6.3-cudnn9.5.1-ubuntu22.04.5.sif /bin/bash
+```
+
+Here we run a ubuntu container with cuda installed and mount the 2GB overlay file using the `--overlay` flag.
+
+Once within the container shell, notice the `/ext3` directory.
+
+```sh
+cd /ext3
+```
+
+The `/ext3` directory our overlay mounted filesystem with 2GB storage that can be used as a space to save data, install packages and software, etc.
+
+:::note
+Use the `read-write` tag to give your container read-write permission to a mounted overlay at `/ext3`.
+:::
+
+| Tag | Permission type |
+| :--: | :---: |
+| **:rw** | Read and Write permissions |
+| **:ro** | Read only permissions | 
+
+To use a GPU from within containers we need to pass over the drivers using `--nv` argument with a apptainer command like :
+
+```sh
+apptainer exec --nv --overlay <PATH_TO_OVERLAY_FILE>:rw <PATH_TO_SIF_FILE> /bin/bash
+```
+
+Here is an example on [how to install miniconda at /ext3 directory](https://hpc.nyu.edu/hpc-systems/greene/software/singularity-with-miniconda#h.khwf3zrcxqth), in the overlay filesystem.
+
