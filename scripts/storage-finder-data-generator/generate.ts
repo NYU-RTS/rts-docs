@@ -316,32 +316,6 @@ function slugify(value: string): string {
   return trimmed;
 }
 
-function stripHtml(value: string | undefined): string {
-  return (value ?? "")
-    .replaceAll(/<[^>]+>/g, " ")
-    .replaceAll(/\s+/g, " ")
-    .trim();
-}
-
-function buildSearchMdx(services: ServiceRecord[]): string {
-  return [
-    "# Storage Finder Data",
-    "",
-    "This page is generated from the Storage Finder data so the search index can crawl service details.",
-    "",
-    ...services.map((service) =>
-      [
-        `## ${service.title}`,
-        "",
-        ...Object.values(service.field_data).map((field) =>
-          [`### ${field.label}`, "", stripHtml(field.value), ""].join("\n"),
-        ),
-      ].join("\n"),
-    ),
-    "",
-  ].join("\n");
-}
-
 async function main(): Promise<void> {
   const options = parseArgs(process.argv.slice(2));
   if (options.showHelp) {
