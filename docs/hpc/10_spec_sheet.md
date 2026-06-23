@@ -37,4 +37,4 @@ Many GPUs on Torch are owned by stakeholder groups who have prioirty access to t
 | CILVR | | | | 32 | | 32 |
 | Individual PIs | 24 | 12 | | | 16 | 52 |
 | IT Public | 24 | 208 | | | | 232 |
-| **Total** | **272** | **272** | **60** | **172** | **16** | **752** |
+| **Total** | **272** | **272** | **60** | **172** | **16** | **792** |
