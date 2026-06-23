@@ -337,10 +337,10 @@ async function main(): Promise<void> {
   await writeJson(serviceOutputPath, services, options.pretty);
   await writeJson(facetOutputPath, facetTree, options.pretty);
   await writeFile(
-  "src/pages/storage-finder-data.mdx",
-  buildSearchMdx(services),
-  "utf8",
-);
+    "src/pages/storage-finder-data.mdx",
+    buildSearchMdx(services),
+    "utf8",
+  );
   logger.log(`Wrote ${services.length} services to ${serviceOutputPath}`);
   logger.log(`Wrote ${facetTree.length} facets to ${facetOutputPath}`);
 }
