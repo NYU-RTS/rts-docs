@@ -336,8 +336,39 @@ async function main(): Promise<void> {
   const facetOutputPath = `${outputDirectory}/${FACET_TREE_FILENAME}`;
   await writeJson(serviceOutputPath, services, options.pretty);
   await writeJson(facetOutputPath, facetTree, options.pretty);
+  await writeFile(
+  "src/pages/storage-finder-data.mdx",
+  buildSearchMdx(services),
+  "utf8",
+);
   logger.log(`Wrote ${services.length} services to ${serviceOutputPath}`);
   logger.log(`Wrote ${facetTree.length} facets to ${facetOutputPath}`);
+}
+
+function stripHtml(value: string | undefined): string {
+  return (value ?? "")
+    .replaceAll(/<[^>]+>/g, " ")
+    .replaceAll(/\s+/g, " ")
+    .trim();
+}
+
+function buildSearchMdx(services: ServiceRecord[]): string {
+  return [
+    "# Storage Finder Data",
+    "",
+    "This page is generated from the Storage Finder data so the search index can crawl service details.",
+    "",
+    ...services.map((service) =>
+      [
+        `## ${service.title}`,
+        "",
+        ...Object.values(service.field_data).map((field) =>
+          [`### ${field.label}`, "", stripHtml(field.value), ""].join("\n"),
+        ),
+      ].join("\n"),
+    ),
+    "",
+  ].join("\n");
 }
 
 // eslint-disable-next-line unicorn/prefer-top-level-await
