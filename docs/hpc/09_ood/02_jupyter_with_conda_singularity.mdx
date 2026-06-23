@@ -1,17 +1,5 @@
 # Jupyter Notebook with Conda/Singularity in OOD
-Please note that Greene and Torch organize overlay files and Singularity images in different directories. 
-
-## Greene Directories
-Overlay Files:
-```
-/scratch/work/public/overlay-fs-ext3/
-```
-Singularity Files:
-```
-/scratch/work/public/singularity/
-```
-
-## Torch Directories
+:::info
 Overlay Files:
 ```
 /share/apps/overlay-fs-ext3
@@ -20,6 +8,8 @@ Singularity Files:
 ```
 /share/apps/images/
 ```
+:::
+
 ## OOD + Singularity + conda
 This page describes how to use your Singularity with conda environment in OOD GUI at Torch. 
 
@@ -174,7 +164,6 @@ After it is running, you’ll be redirected to a compute node. From there, run s
 
 ### Configure iPython Kernels
 To create a kernel named my_env copy the template files to your home directory.
-Please note that kernel_template on Greene is stored under `/share/apps/mypy/src/kernel_template`
 ```bash sh
 mkdir -p ~/.local/share/jupyter/kernels
 cd ~/.local/share/jupyter/kernels
