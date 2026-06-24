@@ -1,7 +1,7 @@
 name: Sync Storage Finder Data
 
 permissions:
-  contents: read
+  contents: write
 
 on:
   schedule:
