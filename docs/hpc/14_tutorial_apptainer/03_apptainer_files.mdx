@@ -1,0 +1,51 @@
+# Files in Apptainer Containers
+Apptainer is designed to work closely with the host filesystem. In most cases, your home directory and current working directory remain accessible from within the container.
+
+## Accessing Your Files
+
+While inside a container, check your current directory:
+
+```bash
+pwd
+```
+
+You can also list files in your home directory:
+
+```bash
+ls ~
+```
+
+The files and directories you see should match those available outside the container.
+
+Files created in these mounted directories remain available after the container exits.
+
+## Binding Additional Directories
+
+Sometimes you may need access to directories through a different path inside the container.
+
+Apptainer allows additional directories to be mounted using the `-B` option:
+
+```bash
+apptainer shell \
+    -B /scratch/<NetID>:/data \
+    /share/apps/images/ubuntu-24.04.3.sif
+```
+
+In this example, your scratch directory on the host system is made available as `/data` inside the container.
+
+After entering the container, you can verify the mount:
+
+```bash
+ls /data
+```
+
+Any files stored in `/scratch/<NetID>` on the host system will be accessible through `/data` inside the container.
+
+The source and destination paths do not need to be the same. This can be useful when an application expects data to be located in a specific directory within the container.
+
+::: info
+
+Container images are typically read-only. Research data, scripts, notebooks, and output files usually remain outside the container.
+
+By making host directories available inside the container, Apptainer allows applications to access data stored on Torch while maintaining a reproducible software environment.
+:::
