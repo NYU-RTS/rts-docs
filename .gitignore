@@ -1,3 +1,6 @@
+# agent memory
+.memsearch/*
+
 # pixi environments
 .pixi
 *.egg-info
