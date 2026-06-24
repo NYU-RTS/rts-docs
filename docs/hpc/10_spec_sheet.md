@@ -31,7 +31,7 @@ Many GPUs on Torch are owned by stakeholder groups who have prioirty access to t
 | Stakeholders | H200 | L40S | H100 | A100 | RTX Pro 6000 | Total |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | Tandon SoE | 112 | | 60 | 60 | | 232 |
-| Courant (CS) | 88 | 52 | | | | 100 |
+| Courant (CS) | 88 | 52 | | | | 140 |
 | CDS | 24 | | | 24 | | 48 |
 | Chemistry | | | | 56 | | 56 |
 | CILVR | | | | 32 | | 32 |
