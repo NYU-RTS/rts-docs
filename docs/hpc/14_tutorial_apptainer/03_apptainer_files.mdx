@@ -27,7 +27,7 @@ Apptainer allows additional directories to be mounted using the `-B` option:
 
 ```bash
 apptainer shell \
-    -B /scratch/(NetID):/data \
+    -B /scratch/<NetID>:/data \
     /share/apps/images/ubuntu-24.04.3.sif
 ```
 
@@ -39,12 +39,13 @@ After entering the container, you can verify the mount:
 ls /data
 ```
 
-Any files stored in `/scratch <NetID>` on the host system will be accessible through `/data` inside the container.
+Any files stored in `/scratch/<NetID>` on the host system will be accessible through `/data` inside the container.
 
 The source and destination paths do not need to be the same. This can be useful when an application expects data to be located in a specific directory within the container.
 
-## Why This Matters
+::: info
 
 Container images are typically read-only. Research data, scripts, notebooks, and output files usually remain outside the container.
 
 By making host directories available inside the container, Apptainer allows applications to access data stored on Torch while maintaining a reproducible software environment.
+:::

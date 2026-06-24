@@ -26,7 +26,7 @@ apptainer shell \
     python.sif
 ```
 
-Verify that numpy is not installed in the base image:
+Verify that `numpy` is not installed in the base image:
 
 ```bash
 python -c "import numpy"
@@ -38,7 +38,7 @@ You should see:
 ModuleNotFoundError: No module named 'numpy'
 ```
 
-Install numpy:
+Install `numpy`:
 
 ```bash
 pip install numpy
