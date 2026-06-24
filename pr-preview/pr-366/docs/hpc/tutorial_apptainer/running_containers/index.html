@@ -14,7 +14,7 @@
 
 
 <link rel="search" type="application/opensearchdescription+xml" title="Connecting researchers to computational resources." href="/pr-preview/pr-366/opensearch.xml"><link rel="stylesheet" href="/pr-preview/pr-366/assets/css/styles.35907c89.css">
-<script src="/pr-preview/pr-366/assets/js/runtime~main.a07a0652.js" defer="defer"></script>
+<script src="/pr-preview/pr-366/assets/js/runtime~main.30bae70a.js" defer="defer"></script>
 <script src="/pr-preview/pr-366/assets/js/main.3e27028e.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -35,7 +35,7 @@
 <p>The important point is that with <code>apptainer run</code>, Apptainer executes the default action defined by the image creator.</p>
 <p>In cases we want to run a specific command, use <code>apptainer exec</code>.</p>
 <h2 class="anchor anchorTargetStickyNavbar_EexU" id="running-specific-commands-within-a-container">Running Specific Commands Within a Container<a href="#running-specific-commands-within-a-container" class="hash-link" aria-label="Direct link to Running Specific Commands Within a Container" title="Direct link to Running Specific Commands Within a Container" translate="no">​</a></h2>
-<p>apptainer exec` allows us to specify exactly what command should run inside the container.</p>
+<p><code>apptainer exec</code> allows us to specify exactly what command should run inside the container.</p>
 <p>For example:</p>
 <div class="language-bash codeBlockContainer_FZTC theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_xuaH"><pre tabindex="0" class="prism-code language-bash codeBlock_TaDR thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_vw_9"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">apptainer </span><span class="token builtin class-name" style="color:hsl(35, 99%, 36%)">exec</span><span class="token plain"> /share/apps/images/ubuntu-24.04.3.sif /bin/echo </span><span class="token string" style="color:hsl(119, 34%, 47%)">&quot;Hello World!&quot;</span><br></span></code></pre></div></div>
 <p>Output:</p>
