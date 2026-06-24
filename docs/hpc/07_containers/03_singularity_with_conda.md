@@ -1,17 +1,5 @@
 # Singularity with Conda
-Please note that Greene and Torch organize overlay files and Singularity images in different directories. 
-
-## Greene Directories
-Overlay Files:
-```
-/scratch/work/public/overlay-fs-ext3/
-```
-Singularity Files:
-```
-/scratch/work/public/singularity/
-```
-
-## Torch Directories
+:::info
 Overlay Files:
 ```
 /share/apps/overlay-fs-ext3
@@ -20,6 +8,7 @@ Singularity Files:
 ```
 /share/apps/images/
 ```
+:::
 
 ## Using Singularity Overlays for Miniforge (Python & Julia)
 ### Preinstallation Warning
