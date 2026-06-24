@@ -1,12 +1,12 @@
 # Introduction to Apptainer on Torch
 
-## Why containers?
+## Why Containers?
 Researchers often rely on complex software stacks that include programming languages and libraries. Installing and maintaining these dependencies can be challenging when different projects require different software versions.
 
 Containers provide a way to package software together with the environment it needs to run. Instead of manually installing every dependency on a system, users can run software inside a container that already includes the required libraries and tools.
 
 
-## What is Apptainer?
+## What Is Apptainer?
 Apptainer is a container platform that allows users to run software inside isolated environments without requiring administrator privileges on the host system.
 
 Apptainer is the continuation of the Singularity project. The open-source Singularity project was renamed to Apptainer and continues to be developed under the Linux Foundation.
@@ -15,7 +15,7 @@ Unlike Docker, Apptainer does not require a privileged daemon running on the sys
 
 Torch uses Apptainer as its supported container platform. Many container images distributed through Docker registries can be used directly with Apptainer, allowing researchers to take advantage of existing software environments while working on the cluster.
 
-## What are .sif and .sqf files
+## What Are `.sif` And `.sqf` Files
 
 Torch provides container images with both `.sif` and `.sqf` extensions.
 
@@ -25,8 +25,8 @@ Some Torch-provided application images use `.sqf` files and are typically access
 
 When available, use the wrapper script documented for that application. For general Apptainer examples in this tutorial, we use `.sif` images because they can be launched directly with standard Apptainer commands.
 
-## Apptainer’s image cache
+## Apptainer Image Cache
 
-While Apptainer doesn’t have a local image repository in the same way as Docker, it does cache downloaded image files. As we saw in the previous episode, images are simply `.sif` files stored on your local disk.
+While Apptainer doesn’t have a local image repository in the same way as Docker, it does cache downloaded image files. Images are simply `.sif` files stored on your local disk.
 
 If you delete a local `.sif` image that you have pulled from a remote image repository and then pull it again, if the image is unchanged from the version you previously pulled, you will be given a copy of the image file from your local cache rather than the image being downloaded again from the remote source. This removes unnecessary network transfers and is particularly useful for large images which may take some time to transfer over the network. 
