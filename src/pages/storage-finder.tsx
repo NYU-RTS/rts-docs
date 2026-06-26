@@ -42,27 +42,17 @@ interface FieldData {
   weight: number;
 }
 
-interface ServiceFieldData {
-  [key: string]: FieldData;
-  field_eligibility: FieldData;
-  field_limitations: FieldData;
-  field_use_case: FieldData;
-  field_storable_files: FieldData;
-  field_permission_settings: FieldData;
-  field_links: FieldData;
-  field_synchronous_access: FieldData;
-  field_backup: FieldData;
-}
-
 interface Service {
   id: string;
   title: string;
   facet_matches: string[];
   summary: null;
-  field_data: ServiceFieldData;
+  field_data: Record<string, FieldData>;
 }
 
 export default function StorageFinderPage() {
+  const services: Service[] = serviceList;
+  const visibleFacets: Facet[] = facetTree;
   const [selectedFacets, setSelectedFacets] = useState<
     Record<string, string[]>
   >({});
@@ -114,7 +104,7 @@ export default function StorageFinderPage() {
   }, [comparisonSectionIntersection]);
 
   // Filter services based on selected facet options
-  const filteredServices = serviceList.filter((service: Service) => {
+  const filteredServices = services.filter((service) => {
     if (Object.keys(selectedFacets).length === 0) return true;
     return Object.entries(selectedFacets).every(([, choiceIds]) =>
       // For each facet, at least one selected choice must match
@@ -127,7 +117,7 @@ export default function StorageFinderPage() {
     const fields: { key: string; label: string }[] = [];
     const seenKeys = new Set();
 
-    for (const service of serviceList as Service[]) {
+    for (const service of services) {
       if (!service.field_data) continue;
 
       for (const [key, value] of Object.entries(service.field_data)) {
@@ -143,25 +133,19 @@ export default function StorageFinderPage() {
 
     // Sort by weight if available
     return fields.sort((a, b) => {
-      const serviceWithFieldA = (serviceList as Service[]).find(
+      const serviceWithFieldA = services.find(
         (s) => s.field_data && a.key in s.field_data,
       );
-      const serviceWithFieldB = (serviceList as Service[]).find(
+      const serviceWithFieldB = services.find(
         (s) => s.field_data && b.key in s.field_data,
       );
 
-      const weightA =
-        serviceWithFieldA?.field_data[a.key as keyof ServiceFieldData]
-          ?.weight ?? 999;
-      const weightB =
-        serviceWithFieldB?.field_data[b.key as keyof ServiceFieldData]
-          ?.weight ?? 999;
+      const weightA = serviceWithFieldA?.field_data[a.key]?.weight ?? 999;
+      const weightB = serviceWithFieldB?.field_data[b.key]?.weight ?? 999;
 
       return weightA - weightB;
     });
-  }, []);
-
-  const visibleFacets = facetTree;
+  }, [services]);
 
   // Handle facet change for checkbox-style radio buttons
   const handleFacetChange = useCallback(
@@ -204,7 +188,7 @@ export default function StorageFinderPage() {
       // Only auto-deselect services if we're not in "show-enabled" mode
       if (nonMatchingServiceDisplay !== "show-enabled") {
         // Calculate which services are valid with the new filters
-        const newFilteredServices = serviceList.filter((service: Service) => {
+        const newFilteredServices = services.filter((service) => {
           if (Object.keys(newFilters).length === 0) return true;
           return Object.entries(newFilters).every(([, filterChoiceIds]) =>
             filterChoiceIds.some((filterChoiceId) =>
@@ -313,7 +297,7 @@ export default function StorageFinderPage() {
             </div>
 
             <div className={styles.serviceStats}>
-              <span>{serviceList.length} Services In Total</span>
+              <span>{services.length} Services In Total</span>
 
               {/* Only show available count when filters are applied */}
               {Object.keys(selectedFacets).length > 0 && (
@@ -469,11 +453,11 @@ export default function StorageFinderPage() {
                         ) {
                           // Get IDs of services that don't match current filters
                           const nonMatchingServiceIds = new Set(
-                            serviceList
-                              .filter((service: Service) =>
+                            services
+                              .filter((service) =>
                                 isServiceDisabled(service.id),
                               )
-                              .map((service: Service) => service.id),
+                              .map((service) => service.id),
                           );
 
                           // Remove any non-matching services from the selection
@@ -551,7 +535,7 @@ export default function StorageFinderPage() {
               </div>
               <div className={`${styles.panelScrollContent} card__body`}>
                 <div className={styles.serviceGrid}>
-                  {serviceList.map((service: Service) => {
+                  {services.map((service) => {
                     const isSelected = selectedServices.includes(service.id);
                     const isNonMatching = isServiceDisabled(service.id);
 
@@ -677,7 +661,7 @@ export default function StorageFinderPage() {
                       <tr>
                         <th className={styles.attributeColumn}>Attribute</th>
                         {selectedServices.map((serviceId) => {
-                          const service = serviceList.find(
+                          const service = services.find(
                             (s) => s.id === serviceId,
                           );
                           return (
@@ -708,14 +692,14 @@ export default function StorageFinderPage() {
                             </Tooltip> */}
                           </td>
                           {selectedServices.map((serviceId) => {
-                            const service = serviceList.find(
+                            const service = services.find(
                               (s) => s.id === serviceId,
                             );
                             // Create a safer way to access the field data
                             const fieldData = service?.field_data
                               ? ((
                                   service.field_data[
-                                    field.key as keyof typeof service.field_data
+                                    field.key
                                   ] as FieldData | undefined
                                 )?.value ?? "N/A")
                               : "N/A";
