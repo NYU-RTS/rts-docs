@@ -14,7 +14,7 @@
 
 
 <link rel="search" type="application/opensearchdescription+xml" title="Connecting researchers to computational resources." href="/pr-preview/pr-366/opensearch.xml"><link rel="stylesheet" href="/pr-preview/pr-366/assets/css/styles.35907c89.css">
-<script src="/pr-preview/pr-366/assets/js/runtime~main.6e312848.js" defer="defer"></script>
+<script src="/pr-preview/pr-366/assets/js/runtime~main.f765f620.js" defer="defer"></script>
 <script src="/pr-preview/pr-366/assets/js/main.3e27028e.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -33,7 +33,7 @@
 <div class="language-bash codeBlockContainer_FZTC theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_xuaH"><pre tabindex="0" class="prism-code language-bash codeBlock_TaDR thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_vw_9"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">apptainer run /share/apps/images/ubuntu-24.04.3.sif</span><br></span></code></pre></div></div>
 <p>Depending on how the image was built, this command may produce output, launch an application, or simply start and exit.</p>
 <p>The important point is that with <code>apptainer run</code>, Apptainer executes the default action defined by the image creator.</p>
-<p>In cases we want to run a specific command, use <code>apptainer exec</code>.</p>
+<p>To run a specific command, use <code>apptainer exec</code>.</p>
 <h2 class="anchor anchorTargetStickyNavbar_EexU" id="running-specific-commands-within-a-container">Running Specific Commands Within a Container<a href="#running-specific-commands-within-a-container" class="hash-link" aria-label="Direct link to Running Specific Commands Within a Container" title="Direct link to Running Specific Commands Within a Container" translate="no">​</a></h2>
 <p><code>apptainer exec</code> allows us to specify exactly what command should run inside the container.</p>
 <p>For example:</p>
@@ -45,7 +45,14 @@
 <p><code>apptainer run</code> executes the default action defined by the image creator. Depending on how the image was built, this may launch an application, run a script, or perform another predefined task.</p>
 <p><code>apptainer exec</code> allows you to specify exactly which command should run inside the container. Rather than relying on the image&#x27;s default behavior, you provide the command directly.</p>
 <h2 class="anchor anchorTargetStickyNavbar_EexU" id="opening-an-interactive-shell-within-a-container">Opening an Interactive Shell Within a Container<a href="#opening-an-interactive-shell-within-a-container" class="hash-link" aria-label="Direct link to Opening an Interactive Shell Within a Container" title="Direct link to Opening an Interactive Shell Within a Container" translate="no">​</a></h2>
-<p>It is useful to explore a container interactively. Apptainer provides the <code>apptainer shell</code> command for this purpose.</p>
+<p>There are many reasons why you might want to use a container interactively.</p>
+<ul>
+<li class="">debugging (software, bind mounts, hardware integrations, etc.)</li>
+<li class="">testing software upgrades</li>
+<li class="">rapid Software Prototyping</li>
+<li class="">data exploration</li>
+</ul>
+<p>Apptainer provides the <code>apptainer shell</code> command for this purpose.</p>
 <p>Launch a shell inside the Ubuntu container:</p>
 <div class="language-bash codeBlockContainer_FZTC theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_xuaH"><pre tabindex="0" class="prism-code language-bash codeBlock_TaDR thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_vw_9"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">apptainer shell /share/apps/images/ubuntu-24.04.3.sif</span><br></span></code></pre></div></div>
 <p>You should see a prompt similar to:</p>
