@@ -14,7 +14,7 @@
 
 
 <link rel="search" type="application/opensearchdescription+xml" title="Connecting researchers to computational resources." href="/pr-preview/pr-366/opensearch.xml"><link rel="stylesheet" href="/pr-preview/pr-366/assets/css/styles.35907c89.css">
-<script src="/pr-preview/pr-366/assets/js/runtime~main.f765f620.js" defer="defer"></script>
+<script src="/pr-preview/pr-366/assets/js/runtime~main.0f830f50.js" defer="defer"></script>
 <script src="/pr-preview/pr-366/assets/js/main.3e27028e.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -33,7 +33,7 @@
 <h2 class="anchor anchorTargetStickyNavbar_EexU" id="what-are-sif-and-sqf-files">What Are <code>.sif</code> And <code>.sqf</code> Files<a href="#what-are-sif-and-sqf-files" class="hash-link" aria-label="Direct link to what-are-sif-and-sqf-files" title="Direct link to what-are-sif-and-sqf-files" translate="no">​</a></h2>
 <p>Torch provides container images with both <code>.sif</code> and <code>.sqf</code> extensions.</p>
 <p><code>.sif</code> is the standard Apptainer image format and can be used directly with commands such as <code>apptainer exec</code>, <code>apptainer run</code>, and <code>apptainer shell</code>.</p>
-<p>Some Torch-provided application images use <code>.sqf</code> files and are typically accessed through wrapper scripts such as <code>run-anaconda3-2024.10-1.bash</code>. These scripts handle the details of launching the application environment and are often the recommended interface for users.</p>
+<p>Some Torch-provided application images use <code>.sqf</code> (Squash File System) files and are typically accessed through wrapper scripts such as <code>run-anaconda3-2024.10-1.bash</code>. These scripts handle the details of launching the application environment and are often the recommended interface for users.</p>
 <p>When available, use the wrapper script documented for that application. For general Apptainer examples in this tutorial, we use <code>.sif</code> images because they can be launched directly with standard Apptainer commands.</p>
 <h2 class="anchor anchorTargetStickyNavbar_EexU" id="apptainer-image-cache">Apptainer Image Cache<a href="#apptainer-image-cache" class="hash-link" aria-label="Direct link to Apptainer Image Cache" title="Direct link to Apptainer Image Cache" translate="no">​</a></h2>
 <p>While Apptainer doesn’t have a local image repository in the same way as Docker, it does cache downloaded image files. Images are simply <code>.sif</code> files stored on your local disk.</p>
