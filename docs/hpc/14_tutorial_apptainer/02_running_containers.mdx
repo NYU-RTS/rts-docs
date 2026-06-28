@@ -67,7 +67,13 @@ Both `apptainer run` and `apptainer exec` start a container, but they serve diff
 
 ## Opening an Interactive Shell Within a Container
 
-It is useful to explore a container interactively. Apptainer provides the `apptainer shell` command for this purpose.
+There are many reasons why you might want to use a container interactively.
+- debugging (software, bind mounts, hardware integrations, etc.)
+- testing software upgrades
+- rapid Software Prototyping
+- data exploration
+
+Apptainer provides the `apptainer shell` command for this purpose.
 
 Launch a shell inside the Ubuntu container:
 
