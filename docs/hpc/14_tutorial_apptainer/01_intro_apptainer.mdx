@@ -21,7 +21,7 @@ Torch provides container images with both `.sif` and `.sqf` extensions.
 
 `.sif` is the standard Apptainer image format and can be used directly with commands such as `apptainer exec`, `apptainer run`, and `apptainer shell`.
 
-Some Torch-provided application images use `.sqf` files and are typically accessed through wrapper scripts such as `run-anaconda3-2024.10-1.bash`. These scripts handle the details of launching the application environment and are often the recommended interface for users.
+Some Torch-provided application images use `.sqf` (Squash File System) files and are typically accessed through wrapper scripts such as `run-anaconda3-2024.10-1.bash`. These scripts handle the details of launching the application environment and are often the recommended interface for users.
 
 When available, use the wrapper script documented for that application. For general Apptainer examples in this tutorial, we use `.sif` images because they can be launched directly with standard Apptainer commands.
 
