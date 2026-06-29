@@ -75,19 +75,3 @@ If you leave the overlay open in read-write mode no other process will be able t
 ::::
 read-only overlays can be used by multiple processes which is why they are useful for parallel processing.
 :::
-
-:::info
-
-In the examples above, the overlay is mounted in read-write mode (`:rw`) so that changes can be made to the container environment.
-
-Once you have finished installing packages or making modifications, it is recommended to mount the overlay in read-only mode (`:ro`).
-
-::::warning
-
-Only use read-write mode (`:rw`) when you need to modify the overlay. While an overlay is mounted in read-write mode, it cannot be opened by other processes.
-
-Read-only mode (`:ro`) allows multiple processes to use the same overlay simultaneously, making it the recommended choice for running applications and parallel workloads.
-
-::::
-
-:::
