@@ -67,9 +67,9 @@ apptainer shell \
 This demonstrates that software installed within the overlay persists across sessions, while the original `.sif` image remains unchanged.
 
 :::info
-In the examples above we started a shell session with the the overlay in read-write mode (`:rw`).  
+In the examples above we started a shell session with the overlay in read-write mode (`:rw`).
 ::::warning
-Only open the overlay in writeable mode when you are adding packages to it.  When not loading packages you should use read-only mode (`:ro`).
+Only open the overlay in writable mode when you are adding packages to it. When not loading packages you should use read-only mode (`:ro`).
 
 If you leave the overlay open in read-write mode no other process will be able to open it in either read-write or read-only mode.
 ::::
