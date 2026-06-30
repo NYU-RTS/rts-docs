@@ -1,0 +1,23 @@
+name: Harper
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  harper:
+    name: Grammar and Style Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install Harper CLI
+        run: cargo install harper-cli --locked
+
+      - name: Run Harper
+        run: harper-cli lint docs src/pages
