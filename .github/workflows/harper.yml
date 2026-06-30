@@ -17,4 +17,4 @@ jobs:
         run: cargo install --git https://github.com/Automattic/harper harper-cli --locked
 
       - name: Run Harper
-        run: harper-cli lint docs src/pages
+        run: find docs src/pages -type f \( -name "*.md" -o -name "*.mdx" \) -print0 | xargs -0 harper-cli lint
