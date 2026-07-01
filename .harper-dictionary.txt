@@ -1,1 +1,9 @@
 HPC
+DDP
+SPMD
+DPP
+GWDG
+SageMaker
+Slurm
+SBATCH
+py
