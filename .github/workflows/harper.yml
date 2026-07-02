@@ -16,12 +16,16 @@ jobs:
       - name: Install Harper CLI
         run: cargo install --git https://github.com/Automattic/harper harper-cli --locked
 
-      - name: Generate Harper compact report
+      - name: Generate Harper JSON Report
         run: |
           find docs src/pages -type f \( -name "*.md" -o -name "*.mdx" \) -print0 | \
           xargs -0 harper-cli lint \
             --user-dict-path ./.harper-dictionary.txt \
-            --format compact || true
+            --format json \
+            > harper-report.json || true
+
+      - name: Show Harper Report
+        run: cat harper-report.json
 
       - name: Run Harper
         run: |
