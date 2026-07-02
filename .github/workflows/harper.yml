@@ -16,6 +16,14 @@ jobs:
       - name: Install Harper CLI
         run: cargo install --git https://github.com/Automattic/harper harper-cli --locked
 
+      - name: Generate Harper spelling report
+        run: |
+          find docs src/pages -type f \( -name "*.md" -o -name "*.mdx" \) -print0 | \
+          xargs -0 harper-cli lint \
+            --user-dict-path ./.harper-dictionary.txt \
+            --only Spelling::SpellCheck \
+            --format compact || true
+
       - name: Run Harper
         run: |
           find docs src/pages -type f \( -name "*.md" -o -name "*.mdx" \) -print0 | \
