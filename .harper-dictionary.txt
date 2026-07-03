@@ -382,8 +382,6 @@ MacOS
 macs2
 macs3
 mafft
-Mathworks
-MathWorks
 mct
 md
 MD
@@ -738,3 +736,11 @@ up
 Keep
 vertexai
 webpage
+approver
+requestor’s
+ImageNet’s
+huggingface’s
+Slurm’s
+MobaXTerm
+Assefa
+JOBID
