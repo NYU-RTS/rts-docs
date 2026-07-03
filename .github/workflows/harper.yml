@@ -33,6 +33,7 @@ jobs:
               reports = json.load(f)
 
           words = set()
+
           for report in reports:
               for lint in report.get("lints", []):
                   if lint.get("kind") == "Spelling":
@@ -40,9 +41,12 @@ jobs:
                       if word:
                           words.add(word)
 
-          print("Suggested dictionary candidates:")
-          for word in sorted(words, key=str.lower):
-              print(word)
+          with open("dictionary-candidates.txt", "w", encoding="utf-8") as out:
+              out.write("Suggested dictionary candidates:\n")
+              for word in sorted(words, key=str.lower):
+                  out.write(word + "\n")
+
+          print(open("dictionary-candidates.txt", encoding="utf-8").read())
           PY
 
       - name: Check Selected Harper Rules
@@ -59,8 +63,8 @@ jobs:
 
           for report in reports:
               file = report.get("file")
-              path = Path(file)
-              lines = path.read_text(encoding="utf-8", errors="ignore").splitlines() if path.exists() else []
+              path = Path(file) if file else None
+              lines = path.read_text(encoding="utf-8", errors="ignore").splitlines() if path and path.exists() else []
 
               for lint in report.get("lints", []):
                   kind = lint.get("kind")
@@ -80,13 +84,28 @@ jobs:
                               keep = True
 
                   if keep:
-                      selected.append((file, line_no, kind, rule, text, message))
+                      selected.append(
+                          f"{file}:{line_no}: [{kind}::{rule}] {text!r} - {message}"
+                      )
+
+          with open("filtered-harper-report.txt", "w", encoding="utf-8") as out:
+              for item in selected:
+                  out.write(item + "\n")
 
           if selected:
               print("Selected Harper lints found:")
-              for file, line, kind, rule, text, message in selected:
-                  print(f"{file}:{line}: [{kind}::{rule}] {text!r} - {message}")
+              print(open("filtered-harper-report.txt", encoding="utf-8").read())
               sys.exit(1)
 
           print("No selected Harper lints found.")
           PY
+
+      - name: Upload Harper Reports
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: harper-reports
+          path: |
+            harper-report.json
+            filtered-harper-report.txt
+            dictionary-candidates.txt
