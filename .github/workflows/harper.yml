@@ -45,8 +45,48 @@ jobs:
               print(word)
           PY
 
-      - name: Run Harper
+      - name: Check Selected Harper Rules
         run: |
-          find docs src/pages -type f \( -name "*.md" -o -name "*.mdx" \) -print0 | \
-          xargs -0 harper-cli lint \
-            --user-dict-path ./.harper-dictionary.txt || true
+          python - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          with open("harper-report.json", encoding="utf-8") as f:
+              reports = json.load(f)
+
+          selected = []
+
+          for report in reports:
+              file = report.get("file")
+              path = Path(file)
+              lines = path.read_text(encoding="utf-8", errors="ignore").splitlines() if path.exists() else []
+
+              for lint in report.get("lints", []):
+                  kind = lint.get("kind")
+                  rule = lint.get("rule")
+                  line_no = lint.get("line")
+                  message = lint.get("message")
+                  text = lint.get("matched_text")
+
+                  keep = False
+
+                  if kind in {"Spelling", "Grammar", "Repetition"}:
+                      keep = True
+
+                  if kind == "Capitalization" and rule == "UseTitleCase":
+                      if line_no and 1 <= line_no <= len(lines):
+                          if lines[line_no - 1].lstrip().startswith("#"):
+                              keep = True
+
+                  if keep:
+                      selected.append((file, line_no, kind, rule, text, message))
+
+          if selected:
+              print("Selected Harper lints found:")
+              for file, line, kind, rule, text, message in selected:
+                  print(f"{file}:{line}: [{kind}::{rule}] {text!r} - {message}")
+              sys.exit(1)
+
+          print("No selected Harper lints found.")
+          PY
