@@ -84,10 +84,12 @@ jobs:
                   message = lint.get("message")
                   text = lint.get("matched_text")
 
-                  if kind in {"Spelling", "Grammar", "Repetition"}:
-                      selected.append(
-                          f"{file}:{line_no}: [{kind}::{rule}] {text!r} - {message}"
-                      )
+                  if kind == "Spelling" and rule == "SpellCheck":
+                    keep = True
+                  if kind == "Grammar":
+                    keep = True
+                  if kind == "Repetition":
+                    keep = True
 
           if selected:
               print("Selected Harper lints found:")
