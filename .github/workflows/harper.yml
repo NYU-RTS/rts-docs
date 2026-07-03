@@ -20,10 +20,9 @@ jobs:
             ~/.cargo/bin
             ~/.cargo/registry
             ~/.cargo/git
-            target
-          key: ${{ runner.os }}-cargo-harper-${{ hashFiles('.github/workflows/harper.yml') }}
+          key: ${{ runner.os }}-cargo-harper
           restore-keys: |
-            ${{ runner.os }}-cargo-harper-
+            ${{ runner.os }}-cargo-harper
 
       - name: Install Harper CLI
         run: |
@@ -53,10 +52,12 @@ jobs:
 
           for report in reports:
               for lint in report.get("lints", []):
-                  if lint.get("kind") == "Spelling":
-                      word = lint.get("matched_text")
-                      if word:
-                          words.add(word)
+                  kind = lint.get("kind")
+                  rule = lint.get("rule")
+                  word = lint.get("matched_text")
+
+                  if kind == "Spelling" and rule == "SpellCheck" and word:
+                      words.add(word)
 
           print("Suggested dictionary candidates:")
           for word in sorted(words, key=str.lower):
@@ -73,23 +74,35 @@ jobs:
               reports = json.load(f)
 
           selected = []
+          total_lints = 0
+
+          IGNORED_RULES = {
+              ("Spelling", "OkToOkay"),
+              ("Spelling", "DisjointPrefixes"),
+          }
 
           for report in reports:
               file = report.get("file")
 
               for lint in report.get("lints", []):
+                  total_lints += 1
+
                   kind = lint.get("kind")
                   rule = lint.get("rule")
                   line_no = lint.get("line")
                   message = lint.get("message")
                   text = lint.get("matched_text")
 
-                  if kind == "Spelling" and rule == "SpellCheck":
-                    keep = True
-                  if kind == "Grammar":
-                    keep = True
-                  if kind == "Repetition":
-                    keep = True
+                  if (kind, rule) in IGNORED_RULES:
+                      continue
+
+                  if kind in {"Spelling", "Grammar", "Repetition"}:
+                      selected.append(
+                          f"{file}:{line_no}: [{kind}::{rule}] {text!r} - {message}"
+                      )
+
+          print(f"Total Harper lint count: {total_lints}")
+          print(f"Selected lint count: {len(selected)}")
 
           if selected:
               print("Selected Harper lints found:")
