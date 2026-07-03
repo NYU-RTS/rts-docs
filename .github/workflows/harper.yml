@@ -24,11 +24,29 @@ jobs:
             --format json \
             > harper-report.json || true
 
-      - name: Show Harper Report
-        run: cat harper-report.json
+      - name: Extract Spelling Candidates
+        run: |
+          python - <<'PY'
+          import json
+
+          with open("harper-report.json", encoding="utf-8") as f:
+              reports = json.load(f)
+
+          words = set()
+          for report in reports:
+              for lint in report.get("lints", []):
+                  if lint.get("kind") == "Spelling":
+                      word = lint.get("matched_text")
+                      if word:
+                          words.add(word)
+
+          print("Suggested dictionary candidates:")
+          for word in sorted(words, key=str.lower):
+              print(word)
+          PY
 
       - name: Run Harper
         run: |
           find docs src/pages -type f \( -name "*.md" -o -name "*.mdx" \) -print0 | \
           xargs -0 harper-cli lint \
-           --user-dict-path ./.harper-dictionary.txt || true
+            --user-dict-path ./.harper-dictionary.txt || true
