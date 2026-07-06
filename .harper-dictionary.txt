@@ -28,6 +28,7 @@ gDTN
 conda
 QuickLinks
 QuickLink
+analyses
 req
 cvf
 rclone
