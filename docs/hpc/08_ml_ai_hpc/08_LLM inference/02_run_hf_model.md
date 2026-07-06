@@ -135,7 +135,7 @@ Create a python script using the following code from sections 1-9 and save it in
         ```
 
 ## Prepare Sbatch file
-After saving the above code in a script called `huggingface.py`, create a file called `run.SBATCH` with the the following code:
+After saving the above code in a script called `huggingface.py`, create a file called `run.SBATCH` with the following code:
 
 ```batch
 #!/bin/bash
