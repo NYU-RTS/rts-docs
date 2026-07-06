@@ -26,7 +26,7 @@ Torch was tested in June 2025 using the [LINPACK benchmark system](https://top50
  Torch was recently ranked [#40 on the Green 500 list](https://top500.org/lists/green500/list/2025/06/), a global list of the most energy efficient supercomputers in the world thanks to its advanced liquid cooling system.
 
 ## Torch Stakeholder Resources
-Many GPUs on Torch are owned by stakeholder groups who have prioirty access to the resources. The breakdown of these GPUs into stakeholder groups is as follows:
+Many GPUs on Torch are owned by stakeholder groups who have priority access to the resources. The breakdown of these GPUs into stakeholder groups is as follows:
 
 | Stakeholders | H200 | L40S | H100 | A100 | RTX Pro 6000 | Total |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
