@@ -68,6 +68,7 @@ jobs:
         run: |
           python - <<'PY'
           import json
+          import re
           import sys
 
           with open("harper-report.json", encoding="utf-8") as f:
@@ -80,6 +81,34 @@ jobs:
               ("Spelling", "OkToOkay"),
               ("Spelling", "DisjointPrefixes"),
           }
+
+          def should_ignore_spelling_text(text):
+              if not text:
+                  return False
+
+              stripped = text.strip()
+
+              # URLs and URL fragments
+              if stripped.startswith(("http://", "https://", "www.")):
+                  return True
+
+              # File paths / command paths
+              if "/" in stripped:
+                  return True
+
+              # Long hashes, IDs, tokens
+              if len(stripped) >= 16 and any(c.isdigit() for c in stripped):
+                  return True
+
+              # Hex-like strings, e.g. d5442a5dc4baadd48b32
+              if len(stripped) >= 8 and re.fullmatch(r"[a-fA-F0-9]+", stripped):
+                  return True
+
+              # Mostly random-looking alphanumeric tokens
+              if len(stripped) >= 12 and re.fullmatch(r"[A-Za-z0-9_-]+", stripped):
+                  return True
+
+              return False
 
           for report in reports:
               file = report.get("file")
@@ -94,6 +123,9 @@ jobs:
                   text = lint.get("matched_text")
 
                   if (kind, rule) in IGNORED_RULES:
+                      continue
+
+                  if kind == "Spelling" and should_ignore_spelling_text(text):
                       continue
 
                   if kind in {"Spelling", "Grammar", "Repetition"}:
