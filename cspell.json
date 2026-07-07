@@ -1,7 +1,7 @@
 {
   "version": "0.2",
   "language": "en",
-  "dictionaries": ["bash", "npm", "node", "softwareTerms"],
+  "dictionaries": ["project-words", "bash", "npm", "node", "softwareTerms"],
   "dictionaryDefinitions": [
     {
       "name": "project-words",
