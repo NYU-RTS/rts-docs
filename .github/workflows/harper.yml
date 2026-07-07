@@ -1,65 +1,130 @@
-name: Harper
+name: Docs Quality
 
 on:
   pull_request:
   workflow_dispatch:
+    inputs:
+      allow_failure:
+        type: boolean
+        default: false
 
 jobs:
-  harper:
-    name: Grammar and Style Check
+  spelling:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-cspell-${{ hashFiles('package-lock.json') }}
+          restore-keys: ${{ runner.os }}-npm-cspell-
+      - run: npm ci
+      - run: |
+          npx cspell lint \
+            "docs/**/*.{md,mdx}" \
+            "src/pages/**/*.{md,mdx}" \
+            --config cspell.json \
+            --no-progress \
+            --reporter json \
+            > cspell-report.json || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cspell-report
+          path: cspell-report.json
 
-      - name: Cache Cargo
-        uses: actions/cache@v4
+  grammar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/cache@v4
         with:
           path: |
             ~/.cargo/bin
             ~/.cargo/registry
             ~/.cargo/git
           key: ${{ runner.os }}-cargo-harper
-          restore-keys: |
-            ${{ runner.os }}-cargo-harper
-
-      - name: Install Harper CLI
-        run: |
-          if ! command -v harper-cli >/dev/null 2>&1; then
-            cargo install --git https://github.com/Automattic/harper harper-cli --locked
-          else
-            echo "Harper CLI found in cache."
-          fi
-
-      - name: Generate Harper JSON Report
-        run: |
+          restore-keys: ${{ runner.os }}-cargo-harper
+      - run: |
+          command -v harper-cli >/dev/null 2>&1 || \
+          cargo install --git https://github.com/Automattic/harper \
+            --rev <PIN_THIS_TO_A_COMMIT_SHA> \
+            harper-cli --locked
+      - run: |
           find docs src/pages -type f \( -name "*.md" -o -name "*.mdx" \) -print0 | \
-          xargs -0 harper-cli lint \
-            --user-dict-path ./.harper-dictionary.txt \
-            --format json \
-            > harper-report.json || true
+          xargs -0 harper-cli lint --format json > harper-report.json || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: harper-report
+          path: harper-report.json
 
-      - name: Extract Spelling Candidates
+  heading-case:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - id: check
+        continue-on-error: true
+        run: python check_heading_case.py docs src/pages
+      - run: echo "${{ steps.check.outcome }}" > heading-case-result.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: heading-case-result
+          path: heading-case-result.txt
+
+  aggregate:
+    needs: [spelling, grammar, heading-case]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+      - env:
+          ALLOW_FAILURE: ${{ github.event_name == 'workflow_dispatch' && inputs.allow_failure }}
         run: |
           python - <<'PY'
           import json
+          import os
+          import sys
 
-          with open("harper-report.json", encoding="utf-8") as f:
-              reports = json.load(f)
+          def load_json(path):
+              try:
+                  with open(path, encoding="utf-8") as f:
+                      return json.load(f)
+              except FileNotFoundError:
+                  return None
 
-          words = set()
+          issues = []
 
-          for report in reports:
+          cspell_data = load_json("cspell-report/cspell-report.json")
+          for issue in (cspell_data or {}).get("issues", []):
+              issues.append(
+                  f"[Spelling] {issue.get('uri')}:{issue.get('row')}: "
+                  f"{issue.get('text')!r} - {issue.get('message', 'unknown word')}"
+              )
+
+          ALLOWED_KINDS = {"Grammar", "Repetition"}
+          for report in load_json("harper-report/harper-report.json") or []:
+              file = report.get("file")
               for lint in report.get("lints", []):
                   kind = lint.get("kind")
-                  rule = lint.get("rule")
-                  word = lint.get("matched_text")
+                  if kind not in ALLOWED_KINDS:
+                      continue
+                  issues.append(
+                      f"[{kind}::{lint.get('rule')}] {file}:{lint.get('line')}: "
+                      f"{lint.get('matched_text')!r} - {lint.get('message')}"
+                  )
 
-                  if kind == "Spelling" and rule == "SpellCheck" and word:
-                      words.add(word)
+          with open("heading-case-result/heading-case-result.txt", encoding="utf-8") as f:
+              if f.read().strip() == "failure":
+                  issues.append("[HeadingCase] Title case violations found, see heading-case job log.")
 
-          print("Suggested dictionary candidates:")
+          for item in issues:
+              print(item)
+          print(f"\n{len(issues)} issue(s) found.")
+
+          allow_failure = os.environ.get("ALLOW_FAILURE") == "true"
+          sys.exit(1 if issues and not allow_failure else 0)
+          PY          print("Suggested dictionary candidates:")
           for word in sorted(words, key=str.lower):
               print(word)
           PY
