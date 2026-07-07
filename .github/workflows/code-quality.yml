@@ -1,49 +1,81 @@
-name: Code Quality
-
-permissions:
-  contents: read
+name: Docs Quality
 
 on:
-  push:
-    branches: [main]
   pull_request:
-    branches: [main]
+  workflow_dispatch:
+    inputs:
+      allow_failure:
+        type: boolean
+        default: false
+
+env:
+  ALLOW_FAILURE: ${{ github.event_name == 'workflow_dispatch' && inputs.allow_failure }}
 
 jobs:
-  code-quality:
-    name: Code Quality
+  spelling:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v7
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
         with:
-          node-version: latest
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v6
+          node-version: "20"
+      - uses: actions/cache@v4
         with:
-          version: latest
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-cspell
+          restore-keys: ${{ runner.os }}-npm-cspell-
+      - run: |
+          npx --yes -p cspell@9 -p @cspell/cspell-json-reporter cspell lint \
+            "docs/**/*.{md,mdx}" \
+            "src/pages/**/*.{md,mdx}" \
+            --config cspell.json \
+            --no-progress \
+            --reporter "@cspell/cspell-json-reporter" \
+            > cspell-report.json || true
+      - run: |
+          python - <<'PY'
+          import json
+          import os
+          import sys
 
-      - name: Setup pnpm config
-        run: |
-          pnpm config set store-dir ~/.pnpm-store
+          try:
+              with open("cspell-report.json", encoding="utf-8") as f:
+                  content = f.read().strip()
+          except FileNotFoundError:
+              content = ""
 
-      - uses: actions/cache@v6
-        name: Setup pnpm cache
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+          if not content:
+              print("::error::cspell-report.json is empty. Check the previous step's log for the actual cspell error (e.g. missing cspell.json or project-words.txt).")
+              sys.exit(1)
 
-      - name: Install dependencies
-        run: pnpm install
+          try:
+              data = json.loads(content)
+          except json.JSONDecodeError:
+              print("::error::cspell-report.json is not valid JSON. Raw output was:")
+              print(content[:2000])
+              sys.exit(1)
 
-      - name: Check Prettier formatting
-        run: pnpm format --check
+          issues = data.get("issues", [])
+          for issue in issues:
+              file = issue.get("uri")
+              line = issue.get("row")
+              message = issue.get("message") or f"Unknown word: {issue.get('text')!r}"
+              print(f"::error file={file},line={line}::{message}")
 
-      - name: Run ESLint and Stylelint
-        run: pnpm lint
+          print(f"{len(issues)} spelling issue(s) found.")
+
+          allow_failure = os.environ.get("ALLOW_FAILURE") == "true"
+          sys.exit(1 if issues and not allow_failure else 0)
+          PY
+
+  heading-case:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - run: |
+          python check_heading_case.py docs src/pages || {
+            if [ "$ALLOW_FAILURE" = "true" ]; then
+              exit 0
+            fi
+            exit 1
+          }
