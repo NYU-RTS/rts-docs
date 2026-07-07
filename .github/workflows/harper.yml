@@ -8,6 +8,9 @@ on:
         type: boolean
         default: false
 
+env:
+  ALLOW_FAILURE: ${{ github.event_name == 'workflow_dispatch' && inputs.allow_failure }}
+
 jobs:
   spelling:
     runs-on: ubuntu-latest
@@ -19,21 +22,37 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-npm-cspell-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-npm-cspell
           restore-keys: ${{ runner.os }}-npm-cspell-
-      - run: npm ci
       - run: |
-          npx cspell lint \
+          npx --yes cspell@9 lint \
             "docs/**/*.{md,mdx}" \
             "src/pages/**/*.{md,mdx}" \
             --config cspell.json \
             --no-progress \
             --reporter json \
             > cspell-report.json || true
-      - uses: actions/upload-artifact@v4
-        with:
-          name: cspell-report
-          path: cspell-report.json
+      - run: |
+          python - <<'PY'
+          import json
+          import os
+          import sys
+
+          with open("cspell-report.json", encoding="utf-8") as f:
+              data = json.load(f)
+
+          issues = data.get("issues", [])
+          for issue in issues:
+              file = issue.get("uri")
+              line = issue.get("row")
+              message = issue.get("message") or f"Unknown word: {issue.get('text')!r}"
+              print(f"::error file={file},line={line}::{message}")
+
+          print(f"{len(issues)} spelling issue(s) found.")
+
+          allow_failure = os.environ.get("ALLOW_FAILURE") == "true"
+          sys.exit(1 if issues and not allow_failure else 0)
+          PY
 
   grammar:
     runs-on: ubuntu-latest
@@ -50,162 +69,47 @@ jobs:
       - run: |
           command -v harper-cli >/dev/null 2>&1 || \
           cargo install --git https://github.com/Automattic/harper \
-            --rev <PIN_THIS_TO_A_COMMIT_SHA> \
+            --tag v2.1.0 \
             harper-cli --locked
       - run: |
           find docs src/pages -type f \( -name "*.md" -o -name "*.mdx" \) -print0 | \
           xargs -0 harper-cli lint --format json > harper-report.json || true
-      - uses: actions/upload-artifact@v4
-        with:
-          name: harper-report
-          path: harper-report.json
-
-  heading-case:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - id: check
-        continue-on-error: true
-        run: python check_heading_case.py docs src/pages
-      - run: echo "${{ steps.check.outcome }}" > heading-case-result.txt
-      - uses: actions/upload-artifact@v4
-        with:
-          name: heading-case-result
-          path: heading-case-result.txt
-
-  aggregate:
-    needs: [spelling, grammar, heading-case]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v4
-      - env:
-          ALLOW_FAILURE: ${{ github.event_name == 'workflow_dispatch' && inputs.allow_failure }}
-        run: |
+      - run: |
           python - <<'PY'
           import json
           import os
           import sys
 
-          def load_json(path):
-              try:
-                  with open(path, encoding="utf-8") as f:
-                      return json.load(f)
-              except FileNotFoundError:
-                  return None
-
-          issues = []
-
-          cspell_data = load_json("cspell-report/cspell-report.json")
-          for issue in (cspell_data or {}).get("issues", []):
-              issues.append(
-                  f"[Spelling] {issue.get('uri')}:{issue.get('row')}: "
-                  f"{issue.get('text')!r} - {issue.get('message', 'unknown word')}"
-              )
-
-          ALLOWED_KINDS = {"Grammar", "Repetition"}
-          for report in load_json("harper-report/harper-report.json") or []:
-              file = report.get("file")
-              for lint in report.get("lints", []):
-                  kind = lint.get("kind")
-                  if kind not in ALLOWED_KINDS:
-                      continue
-                  issues.append(
-                      f"[{kind}::{lint.get('rule')}] {file}:{lint.get('line')}: "
-                      f"{lint.get('matched_text')!r} - {lint.get('message')}"
-                  )
-
-          with open("heading-case-result/heading-case-result.txt", encoding="utf-8") as f:
-              if f.read().strip() == "failure":
-                  issues.append("[HeadingCase] Title case violations found, see heading-case job log.")
-
-          for item in issues:
-              print(item)
-          print(f"\n{len(issues)} issue(s) found.")
-
-          allow_failure = os.environ.get("ALLOW_FAILURE") == "true"
-          sys.exit(1 if issues and not allow_failure else 0)
-          PY          print("Suggested dictionary candidates:")
-          for word in sorted(words, key=str.lower):
-              print(word)
-          PY
-
-      - name: Check Selected Harper Rules
-        run: |
-          python - <<'PY'
-          import json
-          import re
-          import sys
-
           with open("harper-report.json", encoding="utf-8") as f:
               reports = json.load(f)
 
-          selected = []
-          total_lints = 0
-
-          IGNORED_RULES = {
-              ("Spelling", "OkToOkay"),
-              ("Spelling", "DisjointPrefixes"),
-          }
-
-          def should_ignore_spelling_text(text):
-              if not text:
-                  return False
-
-              stripped = text.strip()
-
-              # URLs and URL fragments
-              if stripped.startswith(("http://", "https://", "www.")):
-                  return True
-
-              # File paths / command paths
-              if "/" in stripped:
-                  return True
-
-              # Long hashes, IDs, tokens
-              if len(stripped) >= 16 and any(c.isdigit() for c in stripped):
-                  return True
-
-              # Hex-like strings, e.g. d5442a5dc4baadd48b32
-              if len(stripped) >= 8 and re.fullmatch(r"[a-fA-F0-9]+", stripped):
-                  return True
-
-              # Mostly random-looking alphanumeric tokens
-              if len(stripped) >= 12 and re.fullmatch(r"[A-Za-z0-9_-]+", stripped):
-                  return True
-
-              return False
+          ALLOWED_KINDS = {"Grammar", "Repetition"}
+          issues = []
 
           for report in reports:
               file = report.get("file")
-
               for lint in report.get("lints", []):
-                  total_lints += 1
-
-                  kind = lint.get("kind")
-                  rule = lint.get("rule")
-                  line_no = lint.get("line")
+                  if lint.get("kind") not in ALLOWED_KINDS:
+                      continue
+                  line = lint.get("line")
                   message = lint.get("message")
-                  text = lint.get("matched_text")
+                  print(f"::error file={file},line={line}::{message}")
+                  issues.append(lint)
 
-                  if (kind, rule) in IGNORED_RULES:
-                      continue
+          print(f"{len(issues)} grammar/repetition issue(s) found.")
 
-                  if kind == "Spelling" and should_ignore_spelling_text(text):
-                      continue
-
-                  if kind in {"Spelling", "Grammar", "Repetition"}:
-                      selected.append(
-                          f"{file}:{line_no}: [{kind}::{rule}] {text!r} - {message}"
-                      )
-
-          print(f"Total Harper lint count: {total_lints}")
-          print(f"Selected lint count: {len(selected)}")
-
-          if selected:
-              print("Selected Harper lints found:")
-              for item in selected:
-                  print(item)
-              sys.exit(1)
-
-          print("No selected Harper lints found.")
+          allow_failure = os.environ.get("ALLOW_FAILURE") == "true"
+          sys.exit(1 if issues and not allow_failure else 0)
           PY
+
+  heading-case:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - run: |
+          python check_heading_case.py docs src/pages || {
+            if [ "$ALLOW_FAILURE" = "true" ]; then
+              exit 0
+            fi
+            exit 1
+          }
