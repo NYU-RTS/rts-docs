@@ -25,12 +25,12 @@ jobs:
           key: ${{ runner.os }}-npm-cspell
           restore-keys: ${{ runner.os }}-npm-cspell-
       - run: |
-          npx --yes cspell@9 lint \
+          npx --yes -p cspell@9 -p @cspell/cspell-json-reporter cspell lint \
             "docs/**/*.{md,mdx}" \
             "src/pages/**/*.{md,mdx}" \
             --config cspell.json \
             --no-progress \
-            --reporter json \
+            --reporter "@cspell/cspell-json-reporter" \
             > cspell-report.json || true
       - run: |
           python - <<'PY'
@@ -57,9 +57,13 @@ jobs:
 
           issues = data.get("issues", [])
           for issue in issues:
-              file = issue.get("uri")
+              uri = issue.get("uri", "")
+              file = uri.replace("file://", "")
+              if "/rts-docs/" in file:
+                  file = file.split("/rts-docs/", 1)[-1]
               line = issue.get("row")
               message = issue.get("message") or f"Unknown word: {issue.get('text')!r}"
+              print(f"{file}:{line}: {message}")
               print(f"::error file={file},line={line}::{message}")
 
           print(f"{len(issues)} spelling issue(s) found.")
