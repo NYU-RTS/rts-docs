@@ -1,0 +1,20 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "dictionaries": ["bash", "npm", "node", "softwareTerms"],
+  "dictionaryDefinitions": [
+    {
+      "name": "project-words",
+      "path": "./project-words.txt",
+      "addWords": true
+    }
+  ],
+  "ignoreRegExpList": [
+    "https?:\\/\\/\\S+",
+    "[a-fA-F0-9]{8,}",
+    "\\b[A-Za-z0-9_-]{16,}\\b"
+  ],
+  "ignorePaths": [
+    "**/node_modules/**"
+  ]
+}
