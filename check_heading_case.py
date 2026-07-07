@@ -1,7 +1,16 @@
 import argparse
+import os
 import re
 import sys
 from pathlib import Path
+
+IN_GITHUB_ACTIONS = os.environ.get("GITHUB_ACTIONS") == "true"
+
+
+def emit(path, line, message):
+    print(f"{path}:{line}: {message}")
+    if IN_GITHUB_ACTIONS:
+        print(f"::error file={path},line={line}::{message}")
 
 SMALL_WORDS = {
     "a", "an", "the",
@@ -17,12 +26,13 @@ HEADING_ANCHOR_RE = re.compile(r"\s*\{#[\w-]+\}\s*$")
 INLINE_CODE_RE = re.compile(r"`[^`]*`")
 
 
+TOKEN_RE = re.compile(r"[A-Za-z0-9'’]+|[^A-Za-z0-9'’]+")
+
+
 def split_words_preserving_delims(text):
     tokens = []
-    for part in re.split(r"(\s+|-)", text):
-        if part == "":
-            continue
-        is_word = bool(re.match(r"^[A-Za-z][A-Za-z0-9'’]*$", part))
+    for part in TOKEN_RE.findall(text):
+        is_word = part[0].isalpha()
         tokens.append((part, is_word))
     return tokens
 
@@ -139,8 +149,8 @@ def main():
         issues = process_file(path, fix=args.fix)
         for lineno, hashes, raw_text, suggestion in issues:
             total_issues += 1
-            print(f"{path}:{lineno + 1}: {hashes} {raw_text}")
-            print(f"  suggestion -> {hashes} {suggestion}")
+            message = f"Heading case: '{hashes} {raw_text}' should be '{hashes} {suggestion}'"
+            emit(str(path), lineno + 1, message)
 
     if total_issues == 0:
         print("All headings pass title case check.")
