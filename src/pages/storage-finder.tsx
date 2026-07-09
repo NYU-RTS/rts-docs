@@ -44,14 +44,15 @@ interface FieldData {
 
 interface ServiceFieldData {
   [key: string]: FieldData;
-  field_eligibility: FieldData;
-  field_limitations: FieldData;
-  field_use_case: FieldData;
-  field_storable_files: FieldData;
-  field_permission_settings: FieldData;
   field_links: FieldData;
-  field_synchronous_access: FieldData;
+  field_storable_files: FieldData;
+  field_use_case: FieldData;
+  field_limitations: FieldData;
+  field_permission_settings: FieldData;
+  field_eligibility: FieldData;
+  field_access_location: FieldData;
   field_backup: FieldData;
+  field_additional_features: FieldData;
 }
 
 interface Service {
