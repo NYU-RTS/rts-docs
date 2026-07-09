@@ -1,42 +1,29 @@
-name: Docs Quality
+name: Harper
 
 on:
   pull_request:
-    paths:
-      - "docs/**/*.md"
-      - "docs/**/*.mdx"
-      - "_typos.toml"
-      - ".github/workflows/docs-quality.yml"
-  push:
-    branches: [main]
-  workflow_dispatch: {}
-
-permissions:
-  contents: read
+  workflow_dispatch:
 
 jobs:
-  typos:
-    name: Spelling (typos-cli)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: crate-ci/typos@master
-
   harper:
-    name: Grammar & headings (Harper)
+    name: Grammar and Style Check
     runs-on: ubuntu-latest
-    continue-on-error: true
-    steps:
-      - uses: actions/checkout@v4
 
-      - name: Cache harper-cli binary
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Cache Harper CLI
         id: cache-harper
         uses: actions/cache@v4
         with:
-          path: ~/.cargo/bin/harper-cli
-          key: harper-cli-${{ runner.os }}-v1
+          path: |
+            ~/.cargo/bin/harper-cli
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-harper-cli
 
-      - name: Install harper-cli
+      - name: Install Harper CLI
         if: steps.cache-harper.outputs.cache-hit != 'true'
         run: cargo install --locked --git https://github.com/Automattic/harper.git harper-cli
 
@@ -45,51 +32,62 @@ jobs:
           set -uo pipefail
 
           IGNORED_RULES=(
-            Formatting
-            Capitalization
             SpellCheck
             OrthographicConsistency
             ProperNouns
             CompaniesProductsAndTrademarks
-            GoogleNames AppleNames MicrosoftNames AzureNames AmazonNames MetaNames
-            JetpackNames TumblrNames PocketCastsNames DayOneNames GoggleBrand WordPressDotcom
-            LongSentences Hedging FillerWords
-            ExpandForward ExpandParameter ExpandMinimum ExpandVulnerability
-            ExpandConfiguration ExpandDereference ExpandArgument ExpandDependencies
-            ExpandPrevious ExpandThough ExpandDecl ExpandCoordinate ExpandPointer
-            ExpandStandardInputAndOutput ExpandThrough ExpandTimeShorthands
-            ExpandMemoryShorthands ExpandControl ExpandAlgorithm ExpandPeople
-            ExpandNotification ExpandGovt ExpandWith ExpandWithout ExpandBecause
-            ExpandPreference ExpandPerformance ExpandDirectory ExpandAlloc
+            OkToOkay
+            DisjointPrefixes
+            LongSentences
+            Hedging
+            FillerWords
+            EllipsisLength
+            SentenceCapitalization
+            Spaces
+            SplitWords
+            MassNouns
           )
+
           IGNORE_ARGS=()
-          for r in "${IGNORED_RULES[@]}"; do IGNORE_ARGS+=(--ignore "$r"); done
+          for rule in "${IGNORED_RULES[@]}"; do
+            IGNORE_ARGS+=(--ignore "$rule")
+          done
 
           out="$(mktemp)"
           total=0
           bad=0
+
           while IFS= read -r -d '' file; do
             total=$((total+1))
             echo "::group::$file"
+
             if harper-cli lint "${IGNORE_ARGS[@]}" "$file" 2>&1 | tee -a "$out"; then
               :
             else
               bad=$((bad+1))
             fi
+
             echo "::endgroup::"
-          done < <(find docs \( -name '*.md' -o -name '*.mdx' \) -print0)
+          done < <(
+            find docs src/pages \
+              -type f \( -name "*.md" -o -name "*.mdx" \) \
+              -print0 2>/dev/null
+          )
 
           titlecase=$(grep -c 'Capitalization::UseTitleCase' "$out" || true)
+
           {
             echo "### Harper summary"
             echo "- Files scanned: $total"
             echo "- Files with issues: $bad"
-            echo "- Heading (UseTitleCase) violations: $titlecase"
+            echo "- Heading title case violations: $titlecase"
             echo ""
             echo "### Violations by rule"
             echo '```'
-            grep -oE '\[[A-Za-z]+::[A-Za-z]+\]' "$out" | sort | uniq -c | sort -rn
+            grep -oE '$begin:math:display$\[A\-Za\-z\]\+\:\:\[A\-Za\-z\]\+$end:math:display$' "$out" | sort | uniq -c | sort -rn || true
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
+
           echo "== Harper: $bad/$total files with issues; $titlecase UseTitleCase violations =="
+
           [ "$bad" -eq 0 ]
