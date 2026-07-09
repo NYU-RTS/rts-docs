@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "docs/**/*.md"
+      - "docs/**/*.mdx"
       - "_typos.toml"
       - ".github/workflows/docs-quality.yml"
   push:
@@ -42,12 +43,25 @@ jobs:
       - name: Lint docs with Harper (spellcheck off)
         run: |
           set -uo pipefail
-          status=0
+          out="$(mktemp)"
+          total=0
+          bad=0
           while IFS= read -r -d '' file; do
+            total=$((total+1))
             echo "::group::$file"
-            if ! harper-cli lint --ignore SpellCheck "$file"; then
-              status=1
+            if harper-cli lint --ignore SpellCheck "$file" 2>&1 | tee -a "$out"; then
+              :
+            else
+              bad=$((bad+1))
             fi
             echo "::endgroup::"
-          done < <(find docs -name '*.md' -print0)
-          exit $status
+          done < <(find docs \( -name '*.md' -o -name '*.mdx' \) -print0)
+          titlecase=$(grep -c 'UseTitleCase' "$out" || true)
+          {
+            echo "### Harper summary"
+            echo "- Files scanned: $total"
+            echo "- Files with issues: $bad"
+            echo "- Heading (UseTitleCase) violations: $titlecase"
+          } >> "$GITHUB_STEP_SUMMARY"
+          echo "== Harper: $bad/$total files with issues; $titlecase heading (UseTitleCase) violations =="
+          [ "$bad" -eq 0 ]
