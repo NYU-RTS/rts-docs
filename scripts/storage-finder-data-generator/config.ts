@@ -123,7 +123,7 @@ export const FACET_CONFIGS: FacetConfig[] = [
         choices: ["risk-classification.public-low"],
       },
     ],
-    fallback: "risk-classficiation.public-low",
+    fallback: ["risk-classification.public-low"],
   },
   {
     id: "affiliation",
