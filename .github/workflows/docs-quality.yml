@@ -8,52 +8,41 @@ on:
       - ".github/workflows/docs-quality.yml"
   push:
     branches: [main]
-  workflow_dispatch: {}   # lets you run it manually from the Actions tab
+  workflow_dispatch: {}
 
 permissions:
   contents: read
 
 jobs:
-  # ── Spelling ────────────────────────────────────────────────
-  # typos-cli reads _typos.toml at the repo root automatically.
-  # This is the ONLY spelling dictionary we maintain.
   typos:
     name: Spelling (typos-cli)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Run typos
-        uses: crate-ci/typos@master   # consider pinning to a tag, e.g. @v1.29.0
+      - uses: crate-ci/typos@master
 
-  # ── Grammar / style + heading title-case ────────────────────
-  # Harper with SpellCheck disabled (typos-cli owns spelling).
-  # UseTitleCase is on by default in harper-cli.
   harper:
     name: Grammar & headings (Harper)
     runs-on: ubuntu-latest
-    # Report-only for now: the first run will flag every historical
-    # non-title-case heading, and we don't want that blocking PRs yet.
-    # Once the docs are cleaned up, remove this line to make it a gate.
     continue-on-error: true
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
-
-      - name: Cache cargo build
-        uses: Swatinem/rust-cache@v2
+      - name: Cache harper-cli binary
+        id: cache-harper
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/bin/harper-cli
+          key: harper-cli-${{ runner.os }}-v1
 
       - name: Install harper-cli
-        # Experimental CLI, source-installed. First build is slow (~5-10 min);
-        # the cache above makes subsequent runs fast.
+        if: steps.cache-harper.outputs.cache-hit != 'true'
         run: cargo install --locked --git https://github.com/Automattic/harper.git harper-cli
 
       - name: Lint docs with Harper (spellcheck off)
         run: |
           set -uo pipefail
           status=0
-          # harper-cli lint takes one file at a time, so loop over docs/**/*.md
           while IFS= read -r -d '' file; do
             echo "::group::$file"
             if ! harper-cli lint --ignore SpellCheck "$file"; then
