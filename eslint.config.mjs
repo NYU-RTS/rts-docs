@@ -110,7 +110,7 @@ const eslintConfig = tseslint.config(
         },
       ],
       "unicorn/no-null": "off",
-      "unicorn/name-replacements": [
+      "unicorn/prevent-abbreviations": [
         "warn",
         {
           replacements: {
