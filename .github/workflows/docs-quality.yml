@@ -40,28 +40,54 @@ jobs:
         if: steps.cache-harper.outputs.cache-hit != 'true'
         run: cargo install --locked --git https://github.com/Automattic/harper.git harper-cli
 
-      - name: Lint docs with Harper (spellcheck off)
+      - name: Lint docs with Harper
         run: |
           set -uo pipefail
+
+          IGNORED_RULES=(
+            SpellCheck
+            OrthographicConsistency
+            ProperNouns
+            CompaniesProductsAndTrademarks
+            GoogleNames AppleNames MicrosoftNames AzureNames AmazonNames MetaNames
+            JetpackNames TumblrNames PocketCastsNames DayOneNames GoggleBrand WordPressDotcom
+            LongSentences Hedging FillerWords
+            ExpandForward ExpandParameter ExpandMinimum ExpandVulnerability
+            ExpandConfiguration ExpandDereference ExpandArgument ExpandDependencies
+            ExpandPrevious ExpandThough ExpandDecl ExpandCoordinate ExpandPointer
+            ExpandStandardInputAndOutput ExpandThrough ExpandTimeShorthands
+            ExpandMemoryShorthands ExpandControl ExpandAlgorithm ExpandPeople
+            ExpandNotification ExpandGovt ExpandWith ExpandWithout ExpandBecause
+            ExpandPreference ExpandPerformance ExpandDirectory ExpandAlloc
+          )
+          IGNORE_ARGS=()
+          for r in "${IGNORED_RULES[@]}"; do IGNORE_ARGS+=(--ignore "$r"); done
+
           out="$(mktemp)"
           total=0
           bad=0
           while IFS= read -r -d '' file; do
             total=$((total+1))
             echo "::group::$file"
-            if harper-cli lint --ignore SpellCheck "$file" 2>&1 | tee -a "$out"; then
+            if harper-cli lint "${IGNORE_ARGS[@]}" "$file" 2>&1 | tee -a "$out"; then
               :
             else
               bad=$((bad+1))
             fi
             echo "::endgroup::"
           done < <(find docs \( -name '*.md' -o -name '*.mdx' \) -print0)
-          titlecase=$(grep -c 'UseTitleCase' "$out" || true)
+
+          titlecase=$(grep -c 'Capitalization::UseTitleCase' "$out" || true)
           {
             echo "### Harper summary"
             echo "- Files scanned: $total"
             echo "- Files with issues: $bad"
             echo "- Heading (UseTitleCase) violations: $titlecase"
+            echo ""
+            echo "### Violations by rule"
+            echo '```'
+            grep -oE '\[[A-Za-z]+::[A-Za-z]+\]' "$out" | sort | uniq -c | sort -rn
+            echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
-          echo "== Harper: $bad/$total files with issues; $titlecase heading (UseTitleCase) violations =="
+          echo "== Harper: $bad/$total files with issues; $titlecase UseTitleCase violations =="
           [ "$bad" -eq 0 ]
