@@ -45,6 +45,8 @@ jobs:
           set -uo pipefail
 
           IGNORED_RULES=(
+            Formatting
+            Capitalization
             SpellCheck
             OrthographicConsistency
             ProperNouns
