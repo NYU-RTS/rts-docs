@@ -56,13 +56,11 @@ jobs:
           while IFS= read -r -d '' file; do
             total=$((total+1))
             echo "::group::$file"
-            json_out="$(harper-cli lint $ONLY_ARG --format json "$file" 2>/dev/null)"
-            lint_count=$(printf '%s' "$json_out" | python3 -c "import json,sys;d=json.load(sys.stdin);print(sum(len(f.get('lints',[])) for f in d))" 2>/dev/null)
-            if [ "${lint_count:-0}" -gt 0 ]; then
-              bad=$((bad+1))
-              printf '%s' "$json_out" | python3 -c "import json,sys;d=json.load(sys.stdin);[print(l.get('rule','?'), file=sys.stderr) or print('['+l.get('rule','?')+'] '+l.get('message','')+(('  -> should be: '+str(l.get('suggestions')[0])) if l.get('suggestions') else '')) for f in d for l in f.get('lints',[])]" 2>>"$rules_seen"
-            else
+            if json_out="$(harper-cli lint $ONLY_ARG --format json "$file" 2>/dev/null)"; then
               echo "no issues"
+            else
+              bad=$((bad+1))
+              printf '%s' "$json_out" | python3 -c "import json,sys;d=json.load(sys.stdin);[print(l.get('rule','?'), file=sys.stderr) or print('['+l.get('rule','?')+'] '+l.get('message','')+(('  -> should be: '+str(l.get('suggestions')[0])) if l.get('suggestions') else '')) for f in d for l in f.get('lints',[])]" 2>>"$rules_seen" || true
             fi
             echo "::endgroup::"
           done < <(
