@@ -46,4 +46,4 @@ jobs:
           fail_level: "warning"
           level: "warning"
           install_deps: false
-          remark_args: "--use=remark-preset-lint-recommended --use=remark-mdx --ext .mdx"
+          remark_args: "--use=remark-preset-lint-recommended --use=remark-mdx --ext .md,.mdx"
