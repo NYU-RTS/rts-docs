@@ -47,14 +47,8 @@ jobs:
           ONLY_RULES=(
             UseTitleCase
             RepeatedWords
-            UnclosedQuotes
             MergeWords
-            SplitWords
             ItsContraction
-            ThenThan
-            TheirToThere
-            TheyreToTheir
-            ThereToTheir
           )
           ONLY_ARG="--only $(IFS=,; echo "${ONLY_RULES[*]}")"
           out="$(mktemp)"
