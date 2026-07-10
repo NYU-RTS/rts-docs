@@ -31,7 +31,7 @@ jobs:
         uses: reviewdog/action-remark-lint@v5
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: github-pr-check
+          reporter: github-pr-review
           fail_level: "warning"
           level: "warning"
           remark_args: "--use=remark-preset-lint-recommended --use=remark-mdx"
