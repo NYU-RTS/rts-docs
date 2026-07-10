@@ -28,7 +28,7 @@ jobs:
           version: latest
 
       - name: Install remark-mdx globally
-        run: pnpm add -g remark-mdx
+        run: npm install -g remark-mdx@2
 
       - name: remark-lint
         uses: reviewdog/action-remark-lint@v5
@@ -37,4 +37,5 @@ jobs:
           reporter: github-pr-review
           fail_level: "warning"
           level: "warning"
+          install_deps: false
           remark_args: "--use=remark-preset-lint-recommended --use=remark-mdx --ext .mdx"
