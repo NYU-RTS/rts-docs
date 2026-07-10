@@ -44,22 +44,50 @@ jobs:
       - name: Lint docs with Harper
         run: |
           set -uo pipefail
-          IGNORED_RULES=(
-            SpellCheck
-            OrthographicConsistency
-            ProperNouns
-            CompaniesProductsAndTrademarks
-            OkToOkay
-            DisjointPrefixes
-            LongSentences
-            Hedging
-            FillerWords
-            EllipsisLength
-            SentenceCapitalization
-            Spaces
+          ONLY_RULES=(
+            UseTitleCase
+            RepeatedWords
+            UnclosedQuotes
+            MergeWords
             SplitWords
-            MassNouns
-            ExpandMemoryShorthands
+            ItsContraction
+            ThenThan
+            TheirToThere
+            TheyreToTheir
+            ThereToTheir
+          )
+          ONLY_ARG="--only $(IFS=,; echo "${ONLY_RULES[*]}")"
+          out="$(mktemp)"
+          total=0
+          bad=0
+          while IFS= read -r -d '' file; do
+            total=$((total+1))
+            echo "::group::$file"
+            if harper-cli lint $ONLY_ARG "$file" 2>&1 | tee -a "$out"; then
+              :
+            else
+              bad=$((bad+1))
+            fi
+            echo "::endgroup::"
+          done < <(
+            find docs src/pages \
+              -type f \( -name "*.md" -o -name "*.mdx" \) \
+              -print0 2>/dev/null
+          )
+          titlecase=$(grep -c 'Capitalization::UseTitleCase' "$out" || true)
+          {
+            echo "### Harper summary"
+            echo "- Files scanned: $total"
+            echo "- Files with issues: $bad"
+            echo "- Heading title case violations: $titlecase"
+            echo ""
+            echo "### Violations by rule"
+            echo '```'
+            grep -oE '\[[A-Za-z]+::[A-Za-z]+\]' "$out" | sort | uniq -c | sort -rn || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          echo "== Harper: $bad/$total files with issues; $titlecase UseTitleCase violations =="
+          [ "$bad" -eq 0 ]            ExpandMemoryShorthands
             ExpandDirectory
             AnA
             NoFrenchSpaces
