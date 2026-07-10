@@ -1,15 +1,22 @@
-name: Harper
+name: Docs Quality
 on:
   pull_request:
   workflow_dispatch:
 jobs:
+  typos:
+    name: Spelling (typos-cli)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - uses: crate-ci/typos@master
+
   harper:
     name: Grammar and Style Check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-
       - name: Cache Harper CLI
         id: cache-harper
         uses: actions/cache@v4
@@ -21,7 +28,6 @@ jobs:
           key: ${{ runner.os }}-harper-cli
           restore-keys: |
             ${{ runner.os }}-harper-cli
-
       - name: Report cache status
         run: |
           echo "cache-hit output: '${{ steps.cache-harper.outputs.cache-hit }}'"
@@ -32,11 +38,9 @@ jobs:
           else
             echo "RESULT: harper-cli binary NOT present -- full reinstall will run"
           fi
-
       - name: Install Harper CLI
         if: steps.cache-harper.outputs.cache-hit != 'true'
         run: cargo install --locked --git https://github.com/Automattic/harper.git harper-cli
-
       - name: Lint docs with Harper
         run: |
           set -uo pipefail
@@ -62,7 +66,6 @@ jobs:
             InflectedVerbAfterTo
             CapitalizePersonalPronouns
             Dashes
-            
           )
           IGNORE_ARGS=()
           for rule in "${IGNORED_RULES[@]}"; do
