@@ -34,4 +34,4 @@ jobs:
           reporter: github-pr-review
           fail_level: "warning"
           level: "warning"
-          remark_args: "--use=remark-preset-lint-recommended --use=remark-mdx"
+          remark_args: "--use=remark-preset-lint-recommended --use=remark-mdx --ext .mdx"
