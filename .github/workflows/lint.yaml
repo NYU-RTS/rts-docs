@@ -27,11 +27,23 @@ jobs:
         with:
           version: latest
 
+      # npm (not pnpm) is intentional: remark-cli is installed globally by the
+      # action at /usr/local/lib/node_modules/. pnpm's global store is not on
+      # that resolution path, so remark-cli would fall back to resolving
+      # remark-mdx from the project's node_modules, where @mdx-js/react pulls
+      # in mdast-util-mdx-jsx@3 — incompatible with remark-cli@10's bundled
+      # unified v10 stack. npm -g puts remark-mdx@2 next to remark-cli so the
+      # versions stay compatible. install_deps: false prevents the action from
+      # running npm install and reintroducing the incompatible project deps.
+      - name: Install remark-mdx globally
+        run: npm install -g remark-mdx@2
+
       - name: remark-lint
         uses: reviewdog/action-remark-lint@v5
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: github-pr-check
+          reporter: github-pr-review
           fail_level: "warning"
           level: "warning"
-          remark_args: "--use=remark-preset-lint-recommended --use=remark-mdx"
+          install_deps: false
+          remark_args: "--use=remark-preset-lint-recommended --use=remark-mdx --ext .md,.mdx"
