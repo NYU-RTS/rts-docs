@@ -50,17 +50,18 @@ jobs:
             RepeatedWords
           )
           ONLY_ARG="--only $(IFS=,; echo "${ONLY_RULES[*]}")"
-          rules_seen="$(mktemp)"
+          out="$(mktemp)"
           total=0
           bad=0
           while IFS= read -r -d '' file; do
             total=$((total+1))
             echo "::group::$file"
-            if json_out="$(harper-cli lint $ONLY_ARG --format json "$file" 2>/dev/null)"; then
+            if harper_out="$(harper-cli lint $ONLY_ARG "$file" 2>&1)"; then
               echo "no issues"
             else
               bad=$((bad+1))
-              printf '%s' "$json_out" | python3 -c "import json,sys;d=json.load(sys.stdin);[print(l.get('rule','?'), file=sys.stderr) or print('['+l.get('rule','?')+'] '+l.get('message','')+(('  -> should be: '+str(l.get('suggestions')[0])) if l.get('suggestions') else '')) for f in d for l in f.get('lints',[])]" 2>>"$rules_seen" || true
+              echo "$harper_out"
+              echo "$harper_out" >> "$out"
             fi
             echo "::endgroup::"
           done < <(
@@ -75,7 +76,7 @@ jobs:
             echo ""
             echo "### Violations by rule"
             echo '```'
-            sort "$rules_seen" | uniq -c | sort -rn || true
+            grep -oE '\[[A-Za-z]+::[A-Za-z]+\]' "$out" | sort | uniq -c | sort -rn || true
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
