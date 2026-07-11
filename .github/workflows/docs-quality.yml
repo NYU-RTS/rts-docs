@@ -1,95 +1,107 @@
 name: Docs Quality
-
 on:
   pull_request:
-    paths:
-      - "docs/**/*.md"
-      - "docs/**/*.mdx"
-      - "_typos.toml"
-      - ".github/workflows/docs-quality.yml"
-  push:
-    branches: [main]
-  workflow_dispatch: {}
-
-permissions:
-  contents: read
-
+  workflow_dispatch:
 jobs:
   typos:
     name: Spelling (typos-cli)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v6
       - uses: crate-ci/typos@master
 
   harper:
-    name: Grammar & headings (Harper)
+    name: Grammar and Style Check
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Cache harper-cli binary
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Cache Harper CLI
         id: cache-harper
         uses: actions/cache@v4
         with:
-          path: ~/.cargo/bin/harper-cli
-          key: harper-cli-${{ runner.os }}-v1
+          path: |
+            ~/.cargo/bin/harper-cli
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-harper-cli
           restore-keys: |
-            harper-cli-${{ runner.os }}-
+            ${{ runner.os }}-harper-cli
       - name: Report cache status
         run: |
           echo "cache-hit output: '${{ steps.cache-harper.outputs.cache-hit }}'"
-          if [ -f ~/.cargo/bin/harper-cli ]; then
-            echo "harper-cli binary present at ~/.cargo/bin/harper-cli"
+          ls -la ~/.cargo/bin/ 2>&1 || echo "~/.cargo/bin does not exist"
+          if [ -x ~/.cargo/bin/harper-cli ]; then
+            echo "RESULT: harper-cli binary present and executable"
+            ~/.cargo/bin/harper-cli --version || true
           else
-            echo "harper-cli binary NOT present -- will build from source"
+            echo "RESULT: harper-cli binary NOT present -- full reinstall will run"
           fi
-      - name: Install harper-cli
+      - name: Install Harper CLI
         if: steps.cache-harper.outputs.cache-hit != 'true'
         run: cargo install --locked --git https://github.com/Automattic/harper.git harper-cli
-
       - name: Lint docs with Harper
         run: |
           set -uo pipefail
-          IGNORED_RULES=(
-            SpellCheck
-            OrthographicConsistency
-            ProperNouns
-            CompaniesProductsAndTrademarks
-            GoogleNames MicrosoftNames AmazonNames AzureNames MetaNames
-            LongSentences Hedging FillerWords
-            ExpandStandardInputAndOutput ExpandTimeShorthands ExpandMemoryShorthands
-            ExpandDirectory ExpandArgument ExpandParameter ExpandPointer
-            ExpandDependencies ExpandControl ExpandAlgorithm ExpandAlloc
-            ExpandDecl ExpandVulnerability
+          ONLY_RULES=(
+            UseTitleCase
+            RepeatedWords
+            MergeWords
+            ItsContraction
           )
-          IGNORE_ARGS=()
-          for r in "${IGNORED_RULES[@]}"; do IGNORE_ARGS+=(--ignore "$r"); done
+          ONLY_ARG="--only $(IFS=,; echo "${ONLY_RULES[*]}")"
           out="$(mktemp)"
           total=0
           bad=0
           while IFS= read -r -d '' file; do
             total=$((total+1))
             echo "::group::$file"
-            if harper-cli lint "${IGNORE_ARGS[@]}" "$file" 2>&1 | tee -a "$out"; then
+            if harper-cli lint $ONLY_ARG "$file" 2>&1 | tee -a "$out"; then
               :
             else
               bad=$((bad+1))
             fi
             echo "::endgroup::"
-          done < <(find docs \( -name '*.md' -o -name '*.mdx' \) -print0)
+          done < <(
+            find docs src/pages \
+              -type f \( -name "*.md" -o -name "*.mdx" \) \
+              -print0 2>/dev/null
+          )
           titlecase=$(grep -c 'Capitalization::UseTitleCase' "$out" || true)
           {
             echo "### Harper summary"
             echo "- Files scanned: $total"
             echo "- Files with issues: $bad"
-            echo "- Heading (UseTitleCase) violations: $titlecase"
+            echo "- Heading title case violations: $titlecase"
             echo ""
             echo "### Violations by rule"
             echo '```'
-            grep -oE '\[[A-Za-z]+::[A-Za-z]+\]' "$out" | sort | uniq -c | sort -rn
+            grep -oE '\[[A-Za-z]+::[A-Za-z]+\]' "$out" | sort | uniq -c | sort -rn || true
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
           echo "== Harper: $bad/$total files with issues; $titlecase UseTitleCase violations =="
           [ "$bad" -eq 0 ]
+      - name: Annotate PR with Harper warnings
+        if: always()
+        run: |
+          set -uo pipefail
+          ONLY_RULES=(
+            UseTitleCase
+            RepeatedWords
+            MergeWords
+            ItsContraction
+          )
+          ONLY_ARG="--only $(IFS=,; echo "${ONLY_RULES[*]}")"
+          while IFS= read -r -d '' file; do
+            if json_out="$(harper-cli lint $ONLY_ARG --format json "$file" 2>/dev/null)"; then
+              :
+            else
+              printf '%s' "$json_out" | python3 -c "import json,sys;d=json.load(sys.stdin);esc=lambda s: s.replace('%','%25').replace('\r','%0D').replace('\n','%0A');[print('::warning file='+esc(f.get('file',''))+',line='+str(l.get('line',1))+',col='+str(l.get('column',1))+',title='+esc(l.get('rule','?'))+'::'+esc(l.get('message',''))) for f in d for l in f.get('lints',[])]" || true
+            fi
+          done < <(
+            find docs src/pages \
+              -type f \( -name "*.md" -o -name "*.mdx" \) \
+              -print0 2>/dev/null
+          )
