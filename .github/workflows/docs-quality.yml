@@ -129,6 +129,11 @@ jobs:
         if: always()
         run: |
           set -uo pipefail
+          ONLY_RULES=(
+            UseTitleCase
+            RepeatedWords
+          )
+          ONLY_ARG="--only $(IFS=,; echo "${ONLY_RULES[*]}")"
           while IFS= read -r -d '' file; do
             if json_out="$(harper-cli lint $ONLY_ARG --format json "$file" 2>/dev/null)"; then
               :
