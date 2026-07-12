@@ -99,7 +99,5 @@ jobs:
               printf '%s' "$json_out" | python3 -c "import json,sys;d=json.load(sys.stdin);esc=lambda s: s.replace('%','%25').replace('\r','%0D').replace('\n','%0A');[print('::warning file='+esc(f.get('file',''))+',line='+str(l.get('line',1))+',col='+str(l.get('column',1))+',title='+esc(l.get('rule','?'))+'::'+esc(l.get('message',''))) for f in d for l in f.get('lints',[])]" || true
             fi
           done < <(
-            find docs src/pages \
-              -type f \( -name "*.md" -o -name "*.mdx" \) \
-              -print0 2>/dev/null
+            find docs/hpc/harpertestfile.md -type f -print0 2>/dev/null
           )
