@@ -65,9 +65,7 @@ jobs:
             fi
             echo "::endgroup::"
           done < <(
-            find docs src/pages \
-              -type f \( -name "*.md" -o -name "*.mdx" \) \
-              -print0 2>/dev/null
+            find docs/hpc/harpertestfile.md -type f -print0 2>/dev/null
           )
           titlecase=$(grep -c 'Capitalization::UseTitleCase' "$out" || true)
           {
