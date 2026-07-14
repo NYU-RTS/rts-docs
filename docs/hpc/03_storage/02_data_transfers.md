@@ -4,7 +4,7 @@
 Globus is the recommended tool to use for large-volume data transfers due to the efficiency, reliability, security and ease of use. Use other tools only if you really need to. Detailed instructions available at [Globus](./03_globus.md)
 :::
 
-## Data-Transfer nodes
+## Data-Transfer Nodes
 Attached to the NYU HPC cluster Torch, the Torch Data Transfer Node (DTN) are  nodes optimized for transferring data between cluster file systems (e.g. scratch)  and other endpoints outside the NYU HPC clusters, including user laptops and desktops. The gDTNs have 100-Gb/s Ethernet connections to the High Speed Research Network (HSRN) and are connected to the HDR Infiniband fabric of the HPC clusters. More information on the hardware characteristics is available at [Torch spec sheet](../10_spec_sheet.md).
 
 ### Data Transfer Node Access
@@ -25,7 +25,7 @@ logout
 ## Tools for Data Transfer
 
 ### Linux & Mac Tools
-#### scp and rsync
+#### Scp and Rsync
 :::warning
 Please use Data Transfer Nodes (DTNs) with these tools. While one can transfer data while on login nodes, it is  considered a bad practice because it can degrade the node's performance.
 :::
@@ -49,7 +49,7 @@ Globus is the recommended tool to use for large-volume data transfers. It featur
 
 The Globus endpoint for Torch is available at `nyu#torch`. Detailed instructions available at [Globus](./03_globus.md)
 
-### rclone
+### Rclone
 rclone - rsync for cloud storage, is a command line program to sync files and directories to and from cloud storage systems such as Google Drive, Amazon Drive, S3, B2 etc. rclone is available on DTNs. [Please see the documentation for how to use it.](https://rclone.org/)
 
 ### Open OnDemand (OOD)
