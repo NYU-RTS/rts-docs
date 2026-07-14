@@ -1,9 +1,9 @@
-# Basic LLM Inference with Hugging Face transformers
+# Basic LLM Inference with Hugging Face Transformers
 
 Here we provide an example of how one can run a Hugging Face Large-language model (LLM) on the NYU Torch cluster
 
-## Prepare environment
-### Create project directory
+## Prepare Environment
+### Create Project Directory
 
 After [logging on to a Torch login node](../../02_connecting_to_hpc/01_connecting_to_hpc.mdx), make a directory for this project:
 ```bash
@@ -14,30 +14,30 @@ After [logging on to a Torch login node](../../02_connecting_to_hpc/01_connectin
 You'll need to replace NetID above with your NetID
 :::
 
-### Move to a compute node
+### Move to a Compute Node
 Some of the following steps can require significant resources, so we'll move to a compute node.  This way we won't overload the login node we're on.
 ```bash
 [NetID@log-1 llm_example]$ srun --cpus-per-task=2 --mem=10GB --time=04:00:00 --pty /bin/bash
 ```
 
-### Copy appropriate overlay file to the project directory
+### Copy Appropriate Overlay File to the Project Directory
 ```bash
 [NetID@cm001 llm_example]$ cp -rp /share/apps/overlay-fs-ext3/overlay-50G-10M.ext3.gz .
 [NetID@cm001 llm_example]$ gunzip overlay-50G-10M.ext3.gz
 ```
 
-### Launch Singularity container in read/write mode
+### Launch Singularity container in Read/write Mode
 ```bash
 [NetID@cm001 llm_example]$ apptainer exec --fakeroot --overlay overlay-50G-10M.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
 ```
 
-### Install miniconda in the container
+### Install Miniconda in the Container
 ```bash
 Singularity> wget --no-check-certificate https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
 Singularity> bash Miniforge3-Linux-x86_64.sh -b -p /ext3/miniforge3
 ```
 
-### Create environment script
+### Create Environment Script
 Use an editor like nano or vim to create the file `/ext3/env.sh`.  The contents should be:
 ```bash
 #!/bin/bash
@@ -49,12 +49,12 @@ export PATH=/ext3/miniforge3/bin:$PATH
 export PYTHONPATH=/ext3/miniforge3/bin:$PATH
 ```
 
-### Activate the environment
+### Activate the Environment
 ```bash
 Singularity> source /ext3/env.sh
 ```
 
-### Install packages in environment
+### Install Packages in Environment
 ```bash
 Singularity> conda config --remove channels defaults
 Singularity> conda update -n base conda -y
@@ -63,7 +63,7 @@ Singularity> conda install pip -y
 Singularity> pip install torch numpy transformers
 ```
 
-### Exit from Singularity and the compute node
+### Exit from Singularity and the Compute Node
 ```bash
 Singularity> exit
 [NetID@cm001 llm_example]$ exit
@@ -73,7 +73,7 @@ Singularity> exit
 You can find more information about using Singularity and Conda on our HPC systems in our documentation [Singularity with Conda](https://sites.google.com/nyu.edu/nyu-hpc/hpc-systems/torch/software/singularity-with-miniconda).
 :::
 
-## Prepare script
+## Prepare Script
 Create a python script using the following code from sections 1-9 and save it in a file called `huggingface.py`:
 
 1.  Import necessary modules:
@@ -134,7 +134,7 @@ Create a python script using the following code from sections 1-9 and save it in
         print("Shape of the batch embedding: {}".format(sentence_embedding.shape))
         ```
 
-## Prepare Sbatch file
+## Prepare Sbatch File
 After saving the above code in a script called `huggingface.py`, create a file called `run.SBATCH` with the following code:
 
 ```batch
@@ -162,7 +162,7 @@ You'll need to change `NetID` in the script above to your NetID.
 If you're using a different directory name and/or path you'll also need to update that in the script above.
 :::
 
-## Run the run.SBATCH file
+## Run the run.SBATCH File
 ```batch
 [NetID@log-1 llm_example]$ sbatch run.SBATCH
 ```
