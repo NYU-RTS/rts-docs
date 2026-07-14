@@ -1,10 +1,10 @@
 # Submitting Jobs on Torch
 
-:::tip Beginner tutorial available
+:::tip[Beginner tutorial available]
 If you are new to using HPC resources and would like to learn about the principles of using the `SLURM` scheduler for submitting batch jobs, please refer to [this section](../13_tutorial_intro_hpc/04_scheduler_fundamentals.mdx). It focuses on the specifics of the Torch cluster and assumes familiarity with the tutorial.
 :::
 
-:::warning Active allocation in the HPC projects portal
+:::warning[Active allocation in the HPC projects portal]
 An active allocation in the HPC projects portal is needed to submit any jobs on Torch. For more information on how to get one, please refer to [this section](../../hpc/01_getting_started/03_Slurm_Accounts/02_hpc_project_management_portal.mdx). All job submissions must include the `--account` parameter. On Torch, you can list the SLURM accounts you have access to by running the command [`my_slurm_accounts`](https://services.rt.nyu.edu/docs/hpc/tools_and_software/utils/#my_slurm_accounts).
 ::: 
 
