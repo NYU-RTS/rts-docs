@@ -65,7 +65,9 @@ jobs:
             fi
             echo "::endgroup::"
           done < <(
-            find docs/hpc/harpertestfile.md -type f -print0 2>/dev/null
+            find docs src/pages \
+              -type f \( -name "*.md" -o -name "*.mdx" \) \
+              -print0 2>/dev/null
           )
           titlecase=$(grep -c 'Capitalization::UseTitleCase' "$out" || true)
           {
@@ -99,5 +101,7 @@ jobs:
               printf '%s' "$json_out" | FILE="$file" python3 -c "import json,sys,os;d=json.load(sys.stdin);fp=os.environ['FILE'];esc=lambda s: s.replace('%','%25').replace('\r','%0D').replace('\n','%0A');[print('::warning file='+esc(fp)+',line='+str(l.get('line',1))+',col='+str(l.get('column',1))+',title='+esc(l.get('rule','?'))+'::'+esc(l.get('message',''))) for f in d for l in f.get('lints',[])]" || true
             fi
           done < <(
-            find docs/hpc/harpertestfile.md -type f -print0 2>/dev/null
+            find docs src/pages \
+              -type f \( -name "*.md" -o -name "*.mdx" \) \
+              -print0 2>/dev/null
           )
