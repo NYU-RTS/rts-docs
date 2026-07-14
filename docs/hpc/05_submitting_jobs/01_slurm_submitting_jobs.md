@@ -53,7 +53,7 @@ You can find the available types of GPUs at [Torch Spec Sheet](../10_spec_sheet.
 Do not specify partitions manually, except for preemption which is described later.
 :::
 
-## Resource limits and restrictions
+## Resource Limits and Restrictions
 Jobs within the same partition cannot exceed their assigned resources (`QOSGrpGRES`). User GPU Quotas: Each user has a total GPU quota of 24 GPUs for jobs with wall time < 48 hours (`QOSMaxGRESPerUser`).
 
 Non-stakeholders to temporarily use stakeholder resources (a stakeholder group to temporarily use another group’s resources). Stakeholders retain normal access to their own resources. If non-stakeholders (or other stakeholders) are using them, their jobs may be preempted (canceled) once stakeholders submit new jobs. Public users are allowed to use stakeholder resources only with preemption partitions. Refer to the section below for details on preemptible jobs.
@@ -81,7 +81,7 @@ Jobs with low GPU utilization will be automatically canceled:
 Enforcement will be very aggressive.
 :::
 
-## Preemptible jobs on Torch
+## Preemptible Jobs on Torch
 On Torch, users may run "preemptible" jobs on stakeholder resources that their group does not own. This allows the stakeholder resources to be utilized by non-stakeholders which may otherwise be idle. To make the best use of these resources, you are encouraged to adopt checkpoint/restart to allow for resumption of the workload in subsequent jobs.
 
 :::warning Preemption Policy
@@ -109,19 +109,19 @@ Jobs in stakeholder partitions will not be canceled, but those in preemption par
 ```
 Jobs with preemption partitions only might be allowed to use more resources
 
-## Advanced options
+## Advanced Options
 
 ### GPU MPS
 Use GPU Multi-Process Service (MPS) to improve overall GPU utilization, as this allows multiple GPU jobs to share a single GPU concurrently by:
 ```
 #SBATCH --comment="gpu_mps=yes"
 ```
-### RAM disk
+### RAM Disk
 A portion of the RAM available can be mounted as a disk for fast `I/O` operations:
 ```
 #SBATCH --comment="ram_disk=1GB"
 ```
-### GPU MPS & RAM Disk in a preemptible job
+### GPU MPS & RAM Disk in a Preemptible Job
 Both of these can be combined with preemption as shown:
 ```
 #SBATCH --comment="preemption=yes;preemption_partitions_only=yes;requeue=true;gpu_mps=yes;ram_disk=1GB"
