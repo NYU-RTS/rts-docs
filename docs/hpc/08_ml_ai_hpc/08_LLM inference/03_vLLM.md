@@ -1,4 +1,4 @@
-# High-performance LLM inference with `vLLM`
+# High-performance LLM Inference with `vLLM`
 
 ## What is vLLM?
 [`vLLM`](https://docs.vllm.ai/en/latest/) is an easy-to-use library for LLM inference and serving which support a wide variety of models with optimized kernels ensuring optimal utilization of GPUs.
@@ -29,7 +29,7 @@ Create a `vLLM` directory in your /scratch directory, then install the vLLM imag
 ```
 apptainer pull docker://vllm/vllm-openai:latest
 ```
-### Avoid filling up your `$HOME` directory
+### Avoid Filling up your `$HOME` Directory
 To avoid exceeding your `$HOME` quota (50GB) and inode limits (30,000 files), you should redirect `vLLM`'s cache and Hugging Face's model downloads to your scratch space:
 ```sh
 export HF_HOME=/scratch/$USER/hf_cache
