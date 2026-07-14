@@ -36,7 +36,7 @@ Here are some webpages and videos:
 Do not use `DataParallel` in PyTorch for anything since it gives poor performance relative to `DistributedDataParallel`.
 :::
 
-## Main changes needed in going from single-GPU to multi-GPU training with DDP
+## Main Changes Needed in Going from Single-GPU to Multi-GPU Training with DDP
 
 This completely new piece is needed to form the process group:
 
@@ -192,7 +192,7 @@ The `local_rank` should be used everywhere in your script except when initializi
 
 # DDP and Slurm
 
-## Total number of tasks equals total number of GPUs
+## Total Number of Tasks Equals Total Number of GPUs
 
 When using DDP, the total number of tasks must equal the total number of allocated GPUs. Therefore, if `--ntasks-per-node=<N>` then you must have `--gres=gpu:<N>`. Here are two examples:
 
@@ -429,6 +429,6 @@ Execute the commands below to run the example above:
 [NetID@log-1 full-ddp-test]$ sbatch run-full.SBATCH
 ```
 
-## Memory issues
+## Memory Issues
 
 Use `gradient_as_bucket_view=True` when making the DDP model to decrease the required memory by 1/3.
