@@ -49,7 +49,7 @@ ImageNet is an image dataset organized according to the [WordNet](https://wordne
 WordNet® is a large lexical database of English. Nouns, verbs, adjectives and adverbs are grouped into sets of cognitive synonyms (synsets), each expressing a distinct concept ([https://wordnet.princeton.edu/](https://wordnet.princeton.edu/))
 :::
 
-#### ILSVRC (subset of ImageNet)
+#### ILSVRC (Subset of ImageNet)
 
 ILSVRC uses a subset of ImageNet images for training the algorithms and some of ImageNet’s image collection protocols for annotating additional images for testing the algorithms ([https://arxiv.org/abs/1409.0575](https://arxiv.org/abs/1409.0575)). The name comes from 'ImageNet Large Scale Visual Recognition Challenge ([ILSVRC](https://image-net.org/challenges/LSVRC/2017/))'. Competition was moved to Kaggle ([http://image-net.org/challenges/LSVRC/2017/](http://image-net.org/challenges/LSVRC/2017/))
 
@@ -63,7 +63,7 @@ ILSVRC uses a subset of ImageNet images for training the algorithms and some of 
 *Dataset is available under*
 -   `/projects/work/public/ml-datasets/imagenet`
 
-##### Get access to Data
+##### Get Access to Data
 
 New York University does not own this dataset.
 
@@ -110,7 +110,7 @@ This dataset consists of 9 million images covering 90k English words, and includ
 *Dataset is available under*
 -   `/projects/work/public/ml-datasets/mjsynth`
 
-### open-images-dataset
+### Open-images-dataset
 *About data set*: [Open Images Dataset – opensource.google](https://storage.googleapis.com/openimages/web/index.html)
 
 A dataset of ~9 million varied images with rich annotations
@@ -128,7 +128,7 @@ The Pile is a 825 GiB diverse, open source language modeling data set that consi
 *Dataset is available under*
 -   `/projects/work/public/ml-datasets/pile`
 
-### Waymo open dataset
+### Waymo Open Dataset
 *About data set*: [Open Dataset – Waymo](https://waymo.com/open/)
 
 The field of machine learning is changing rapidly. Waymo is in a unique position to contribute to the research community with 	some of the largest and most diverse autonomous driving datasets ever released.
