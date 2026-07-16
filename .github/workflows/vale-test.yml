@@ -20,29 +20,3 @@ jobs:
           files: |
             docs/
             src/pages/
-
-      - name: Install Vale
-        uses: vale-cli/vale-action@v2
-        with:
-          version: 3.12.0
-    
-      - name: Collect spelling candidates
-        run: |
-          set -uo pipefail
-
-          vale --output=JSON docs src/pages > vale-results.json || true
-
-          echo "### Spelling candidates" >> "$GITHUB_STEP_SUMMARY"
-          echo "" >> "$GITHUB_STEP_SUMMARY"
-
-          jq -r '
-            .[] 
-            | .alerts[]
-            | select(.Check == "Vale.Spelling")
-            | .Message
-          ' vale-results.json \
-          | sed -E "s/.*'([^']+)'.*/\1/" \
-          | sort -u \
-          | while read word; do
-              echo "- $word" >> "$GITHUB_STEP_SUMMARY"
-            done
