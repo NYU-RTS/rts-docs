@@ -1,0 +1,39 @@
+name: Vale Test
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  vale:
+    name: Vale Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install Vale
+        run: |
+          curl -fsSL https://github.com/errata-ai/vale/releases/latest/download/vale_3.12.0_Linux_64-bit.tar.gz \
+          | tar xz
+          sudo mv vale /usr/local/bin/
+
+      - name: Create Vale config
+        run: |
+          cat > .vale.ini <<EOF
+          StylesPath = styles
+
+          [formats]
+          mdx = md
+
+          [*.mdx]
+          BasedOnStyles = Vale
+
+          [*.md]
+          BasedOnStyles = Vale
+          EOF
+
+      - name: Run Vale
+        run: |
+          vale docs src/pages
