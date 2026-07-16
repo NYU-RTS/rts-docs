@@ -20,6 +20,12 @@ jobs:
           files: |
             docs/
             src/pages/
+
+      - name: Install Vale
+        uses: vale-cli/vale-action@v2
+        with:
+          version: 3.12.0
+    
       - name: Collect spelling candidates
         run: |
           set -uo pipefail
