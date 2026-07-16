@@ -4,6 +4,10 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pull-requests: write
+  
 jobs:
   vale:
     name: Vale Grammar and Style Check
@@ -20,3 +24,4 @@ jobs:
           files: |
             docs/
             src/pages/
+          reporter: github-pr-review
