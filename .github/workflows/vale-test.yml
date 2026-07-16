@@ -20,3 +20,16 @@ jobs:
           files: |
             docs/
             src/pages/
+      - name: Debug Vale paths
+        run: |
+          echo "Current directory:"
+          pwd
+
+          echo "Files:"
+          find config -maxdepth 3 -print || true
+          echo "Vocab directory:"
+          ls -la config/vocabularies || true
+          ls -la config/vocabularies/RTS || true
+
+          echo "Vale config:"
+          cat .vale.ini
