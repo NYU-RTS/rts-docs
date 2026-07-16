@@ -6,18 +6,12 @@ on:
 
 jobs:
   vale:
-    name: Vale Check
+    name: Vale Grammar and Style Check
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-
-      - name: Install Vale
-        run: |
-          curl -fsSL https://github.com/errata-ai/vale/releases/latest/download/vale_3.12.0_Linux_64-bit.tar.gz \
-          | tar xz
-          sudo mv vale /usr/local/bin/
 
       - name: Create Vale config
         run: |
@@ -27,13 +21,14 @@ jobs:
           [formats]
           mdx = md
 
-          [*.mdx]
-          BasedOnStyles = Vale
-
-          [*.md]
+          [*.{md,mdx}]
           BasedOnStyles = Vale
           EOF
 
       - name: Run Vale
-        run: |
-          vale docs src/pages
+        uses: errata-ai/vale-action@v2
+        with:
+          version: 3.12.0
+          files: |
+            docs/
+            src/pages/
