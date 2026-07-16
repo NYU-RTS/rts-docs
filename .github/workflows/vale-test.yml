@@ -20,16 +20,23 @@ jobs:
           files: |
             docs/
             src/pages/
-      - name: Debug Vale paths
+      - name: Collect spelling candidates
         run: |
-          echo "Current directory:"
-          pwd
+          set -uo pipefail
 
-          echo "Files:"
-          find config -maxdepth 3 -print || true
-          echo "Vocab directory:"
-          ls -la config/vocabularies || true
-          ls -la config/vocabularies/RTS || true
+          vale --output=JSON docs src/pages > vale-results.json || true
 
-          echo "Vale config:"
-          cat .vale.ini
+          echo "### Spelling candidates" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+
+          jq -r '
+            .[] 
+            | .alerts[]
+            | select(.Check == "Vale.Spelling")
+            | .Message
+          ' vale-results.json \
+          | sed -E "s/.*'([^']+)'.*/\1/" \
+          | sort -u \
+          | while read word; do
+              echo "- $word" >> "$GITHUB_STEP_SUMMARY"
+            done
