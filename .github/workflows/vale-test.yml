@@ -24,4 +24,4 @@ jobs:
           files: |
             docs/
             src/pages/
-          reporter: github-pr-review
+
