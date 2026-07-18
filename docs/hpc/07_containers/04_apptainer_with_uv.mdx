@@ -1,4 +1,4 @@
-# Apptainer with uv
+# Apptainer with `uv`
 
 ## Overview
 
@@ -6,7 +6,11 @@ This page describes a workflow for using `uv` with an Apptainer overlay on Torch
 
 This guide assumes you have already created an overlay and know how to launch it.
 
-## Install uv
+## `uv` vs. `conda`
+
+This guide uses `uv` when the Apptainer image already has the basic environment needed to run your code, and the overlay only needs to store the Python environment. `uv` creates a standard `.venv` under `/ext3` and installs Python packages there. Use `conda` instead if your project needs conda-forge packages, compiled non-Python libraries, or an existing `environment.yml`.
+
+## Install `uv`
 
 Launch an Apptainer container with your overlay mounted in read-write mode:
 
