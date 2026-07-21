@@ -8,7 +8,7 @@ This guide assumes you have already created an overlay and know how to launch it
 
 ## `uv` vs. `conda`
 
-This guide uses `uv` when the Apptainer image already has the basic environment needed to run your code, and the overlay only needs to store the Python environment. `uv` creates a standard `.venv` under `/ext3` and installs Python packages there. Use `conda` instead if your project needs conda-forge packages, compiled non-Python libraries, or an existing `environment.yml`.
+`uv` is a fast replacement for pip that can install an environment entirely into the overlay without any base image modifications. `uv` manages both Python version installation and package dependencies in a standard `.venv` under `/ext3`, keeping the environment self-contained and reproducible via a lockfile. Prefer `conda` if your project requires `conda-forge` packages or is already defined by an `environment.yml`.
 
 ## Install `uv`
 
