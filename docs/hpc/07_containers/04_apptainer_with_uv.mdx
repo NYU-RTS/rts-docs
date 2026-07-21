@@ -1,0 +1,131 @@
+# Apptainer with `uv`
+
+## Overview
+
+This page describes a workflow for using `uv` with an Apptainer overlay on Torch. Rather than installing packages directly into the container image, both `uv` and the Python environment are stored inside the writable overlay (`/ext3`), allowing the environment to persist across container sessions while leaving the base container unchanged.
+
+This guide assumes you have already created an overlay and know how to launch it.
+
+## `uv` vs. `conda`
+
+`uv` is a fast replacement for pip that can install an environment entirely into the overlay without any base image modifications. `uv` manages both Python version installation and package dependencies in a standard `.venv` under `/ext3`, keeping the environment self-contained and reproducible via a lockfile. Prefer `conda` if your project requires `conda-forge` packages or is already defined by an `environment.yml`.
+
+## Install `uv`
+
+Launch an Apptainer container with your overlay mounted in read-write mode:
+
+```bash
+
+apptainer exec --fakeroot \
+
+    --overlay overlay-15GB-500K.ext3:rw \
+
+    /share/apps/images/ubuntu-22.04.2.sif \
+
+    /bin/bash
+
+```
+
+Inside the container, install `uv` into the overlay:
+
+```bash
+
+curl -LsSf https://astral.sh/uv/install.sh | \
+
+env UV_INSTALL_DIR="/ext3/.uv" sh
+
+```
+
+Load `uv` into the current shell:
+
+```bash
+
+source /ext3/.uv/env
+
+```
+
+Configure where `uv` should install Python versions:
+
+```bash
+
+export UV_PYTHON_INSTALL_DIR="/ext3/.uv/python"
+
+```
+
+## Configure the Environment
+
+Configure where the project virtual environment should be stored:
+
+```bash
+
+export UV_PROJECT_ENVIRONMENT="/ext3/.venv"
+
+```
+
+If your project already contains a `pyproject.toml` file, install the project dependencies:
+
+```bash
+
+uv sync
+
+```
+
+## Create an Activation Script
+
+Create `/ext3/env.sh`:
+
+```bash
+
+touch /ext3/env.sh
+
+nano /ext3/env.sh
+
+```
+
+Add the following:
+
+```bash
+
+#!/bin/bash
+
+unset -f which
+
+source /ext3/.uv/env
+
+export UV_PYTHON_INSTALL_DIR="/ext3/.uv/python"
+
+export UV_PROJECT_ENVIRONMENT="/ext3/.venv"
+
+source /ext3/.venv/bin/activate
+
+export PATH=/ext3/.venv/bin:$PATH
+
+export PYTHONPATH=/ext3/.venv/bin:$PATH
+
+```
+
+## Reusing the Environment
+
+The next time you start the same container with the same overlay:
+
+```bash
+
+apptainer exec --fakeroot \
+
+    --overlay overlay-15GB-500K.ext3:rw \
+
+    /share/apps/images/ubuntu-22.04.2.sif \
+
+    /bin/bash
+
+```
+
+Reactivate the environment:
+
+```bash
+
+source /ext3/env.sh
+
+```
+
+This workflow also works with Open OnDemand JupyterLab.
