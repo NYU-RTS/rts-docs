@@ -276,7 +276,7 @@ cat slurm-3752662.out
 # True
 ```
 
-### Optional: Convert ext3 to a Compressed, Read-only Squashfs Filesystem
+### Optional: Convert `ext3` to a Compressed, Read-only `squashfs` Filesystem
 Singularity images can be compressed into read-only squashfs filesystems to conserve space in your environment. Use the following steps to convert your ext3 Singularity image into a smaller squashfs filesystem.
 ```sh
 srun -N1 -c4 singularity exec --overlay my_pytorch.ext3:ro /share/apps/images/centos-8.2.2004.sif mksquashfs /ext3 /scratch/<NetID>/pytorch-example/my_pytorch.sqf -keep-as-directory -processors 4 -noappend
@@ -291,7 +291,7 @@ ls -ltrsh my_pytorch.*
 
 Notice that it saves over 3GB of storage in this case, though your results may vary.
 
-#### Use a squashFS Image for Running Jobs
+#### Use a `squashFS` Image for Running Jobs
 
 You can use squashFS images similarly to the ext3 images:
 ```sh
@@ -301,7 +301,7 @@ singularity exec --overlay /scratch/<NetID>/pytorch-example/my_pytorch.sqf:ro /s
 #example output: 2.6.0+cu124
 ```
 
-#### Adding Packages to a Full ext3 or squashFS Image 
+#### Adding Packages to a Full `ext3` or `squashFS` Image 
 
 If the first ext3 overlay image runs out of space or you are using a squashFS conda environment, but need to install a new package inside, please copy another writable ext3 overlay image to work together.
 
