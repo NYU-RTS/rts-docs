@@ -42,7 +42,7 @@ This means **content editors only need to update the Google Sheet** — the next
 > [!NOTE]
 > The workflow only commits when the generated output differs from what is already in the repository. If the sheet has not changed since the last run, no commit is made.
 
-### Triggering a manual sync
+### Triggering a Manual `sync`
 
 If you need changes to appear immediately rather than waiting for Saturday's scheduled run:
 
@@ -69,7 +69,7 @@ bun scripts/storage-finder-data-generator/generate.ts \
 
 If you do not have Bun installed, get it from [https://bun.sh/](https://bun.sh/), or run the script with `pnpm dlx tsx` instead of `bun`.
 
-### Environment variable
+### Environment Variable
 
 The default Google Sheet URL is baked into `scripts/storage-finder-data-generator/constants.ts`. To override it without modifying the source, set the `STORAGE_FINDER_SHEET_URL` environment variable before running the script:
 
@@ -78,7 +78,7 @@ STORAGE_FINDER_SHEET_URL="https://..." bun scripts/storage-finder-data-generator
   --output src/data/storage-finder
 ```
 
-### CLI flags summary
+### CLI Flags Summary
 
 | Flag | Description |
 |------|-------------|
@@ -126,18 +126,18 @@ When a service is selected, the following fields appear as rows in the compariso
 
 ## Making Changes
 
-### Updating service information
+### Updating Service Information
 
 Edit the corresponding row in the Google Sheet, then regenerate the data. Service IDs are automatically generated as URL-safe slugs from the `Title` column. If a title is duplicated, subsequent entries get a numeric suffix (e.g., `my-service-2`).
 
-### Adding a new service
+### Adding a New Service
 
 Add a new row to the Google Sheet with a unique value in the `Title` column and fill in all relevant columns. Then regenerate the data.
 
 > [!WARNING]
 > Every cell in a row should be filled in accurately. The generator uses regex patterns to map cell text to facet choices. A blank cell causes the generator to apply the fallback behavior for that question (usually matching all choices for that facet, keeping the service visible regardless of what users select for that question).
 
-### Adding or changing a question
+### Adding or Changing a Question
 
 1. If the question requires a new signal, add a column to the Google Sheet and populate it for all services.
 2. In `scripts/storage-finder-data-generator/config.ts`, add a new entry to the `FACET_CONFIGS` array (or modify an existing one):
@@ -151,7 +151,7 @@ Add a new row to the Google Sheet with a unique value in the `Title` column and 
    - `allowMultipleMatches: true` — required on radio facets that legitimately match more than one choice
 3. Regenerate and verify in the app.
 
-### Adding or changing a service detail field
+### Adding or Changing a Service Detail Field
 
 1. Ensure the column exists in the Google Sheet and is populated.
 2. In `scripts/storage-finder-data-generator/config.ts`, add or modify an entry in `FIELD_DEFINITIONS`:
