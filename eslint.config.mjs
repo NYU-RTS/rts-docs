@@ -68,9 +68,7 @@ const eslintConfig = tseslint.config(
 
   {
     settings: {
-      react: {
-        version: "detect",
-      },
+      react: { version: "19" }, // Avoids auto-detection crash
     },
   },
 

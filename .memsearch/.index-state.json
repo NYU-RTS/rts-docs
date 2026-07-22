@@ -1,0 +1,16 @@
+{
+  "collection": "ms_rts_docs_f1cd2d40",
+  "failed_files": [],
+  "indexed_chunks": 1,
+  "indexed_files": 6,
+  "last_completed_at": "2026-07-21T18:32:57.171985Z",
+  "last_started_at": "2026-07-21T18:32:55.572924Z",
+  "last_success_at": "2026-07-21T18:32:57.171985Z",
+  "milvus_uri": "~/.memsearch/milvus.db",
+  "operation": "index",
+  "paths": ["/Users/ss19980/Documents/packages/rts-docs/.memsearch/memory"],
+  "schema_version": 1,
+  "status": "ok",
+  "total_files": 6,
+  "updated_at": "2026-07-21T18:32:57.171985Z"
+}
