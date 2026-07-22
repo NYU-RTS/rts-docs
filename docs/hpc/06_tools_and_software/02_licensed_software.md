@@ -157,7 +157,7 @@ SAS is a software package which enables programmers to perform many tasks, inclu
 
 There are licenses for 2 CPUs on the HPC Cluster.
 
-### Running a parallel SAS job on HPC cluster (Torch):
+### Running a Parallel SAS Job on HPC Cluster (Torch):
 
 To submit a SAS job for running on multiple processing elements, follow below steps:
 
@@ -180,7 +180,7 @@ sbatch run-sas.sbatch
 ## MATLAB
 [MATLAB](https://www.mathworks.com/products/matlab.html) is a technical computing environment for high performance numeric computation and visualization. MATLAB integrates numerical analysis, matrix computation, signal processing, and graphics in an easy to use environment without using traditional programming.
 
-### MATLAB on personal computers and laptops
+### MATLAB on Personal Computers and Laptops
 
 NYU has a Total Academic Headcount (TAH) license which provides campus-wide access to MATLAB, Simulink, and a variety of add-on products. All faculty, researchers, and students (on any NYU campus) can use MATLAB on their personal computers and laptops and may go to the following site to download the NYU site license software free of charge.
 
@@ -199,7 +199,7 @@ Mathworks has provided a [Torch Matlab User Guide](https://drive.google.com/file
 ## STATA
 Stata is a command and menu-driven software package for statistical analysis. It is available for Windows, Mac, and Linux operating systems. Most of its users work in research. Stata's capabilities include data management, statistical analysis, graphics, simulations, regression and custom programming. 
 
-### Running a parallel STATA job on HPC cluster (Torch):
+### Running a Parallel STATA Job on HPC Cluster (Torch):
 
 To submit a STATA job for running on multiple processing elements, follow below steps.
 
@@ -223,7 +223,7 @@ Gaussian uses basic quantum mechanic electronic structure programs. This softwar
 
 The NYU Gaussian license only covers PIs at the Washington Square Park campus. We will grant access to you after verifying your WSP affiliation. For access, please email [hpc@nyu.edu](mailto:hpc.nyu.edu).
 
-### Running a parallel Gaussian job on HPC cluster (Torch):
+### Running a Parallel Gaussian Job on HPC Cluster (Torch):
 
 To submit a Gaussian job for running on multiple processing elements, follow below steps.
 
@@ -242,7 +242,7 @@ sbatch run-gaussian.sbatch
 ## Knitro
 Knitro is a commercial software package for solving large scale mathematical optimization problems. Knitro is specialized for nonlinear optimization, but also solves linear programming problems, quadratic programming problems, systems of nonlinear equations, and problems with equilibrium constraints. The unknowns in these problems must be continuous variables in continuous functions; however, functions can be convex or nonconvex. Knitro computes a numerical solution to the problem—it does not find a symbolic mathematical solution. Knitro versions 9.0.1 and 10.1.1 are available.
 
-### Running a parallel Knitro job on HPC cluster (Torch):
+### Running a Parallel Knitro Job on HPC Cluster (Torch):
 
 To submit a Knitro job for running on multiple processing elements, follow below steps.
 
