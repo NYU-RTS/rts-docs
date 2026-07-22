@@ -1,4 +1,4 @@
-# Connecting to the remote HPC system Torch
+# Connecting to the Remote HPC System Torch
 
 :::note[Overview]
 Questions:
@@ -25,14 +25,14 @@ SSH clients are usually command-line tools, where you provide the remote machine
 When logging in to a laptop, tablet, or other personal device, a username, password, or pattern are normally required to prevent unauthorized access. In these situations, the likelihood of somebody else intercepting your password is low, since logging your keystrokes requires a malicious exploit or physical access. For systems like log-1 running an SSH server, anybody on the network can log in, or try to. Since usernames are often public or easy to guess, your password is often the weakest link in the security chain.
 
 ## Remote Connections with the NYU VPN
-If you are connecting from a remote location that is not on the NYU network (your home for example), you have have to set up your computer to use the NYU VPN. Once you’ve created a VPN connection, you can proceed as if you were connected to the NYU net.
+If you are connecting from a remote location that is not on the NYU network (your home for example), you have to set up your computer to use the NYU VPN. Once you’ve created a VPN connection, you can proceed as if you were connected to the NYU net.
 
 ## Connect to the NYU VPN
 To connect to VPN, please see the [NYU instructions](https://www.nyu.edu/life/information-technology/infrastructure/network-services/vpn.html).
 
 ## Log into the Torch Cluster
 
-### Inside the NYU network (non-Windows)
+### Inside the NYU Network (non-Windows)
 From within the NYU network, that is, from an on-campus location, or after you VPN inside NYU’s network, you can log in to the HPC clusters directly.
 
 To log in to the HPC cluster (Torch), simply use:
@@ -124,7 +124,7 @@ Under the clusters menu you can select the Torch Shell Access option to access t
 GUI based applications are accessible without the need for port or X11 forwarding. Select the Interactive Apps menu, select the desired application, and submit the job based on required resources and options.
 
 ### Troubleshooting Connections to Open OnDemand
-A common issue that can occur is receiving an error that the Open OnDemand page cannot be reached. Sometimes this can indicate that the service is down, but often this is an issue with the the local browser cache. You can test this by opening a private browser window and seeing if [https://ood.torch.hpc.nyu.edu](https://ood.torch.hpc.nyu.edu) will load. If it does, try deleting the cache for [https://ood.torch.hpc.nyu.edu](https://ood.torch.hpc.nyu.edu) in your browser history to resolve this issue.
+A common issue that can occur is receiving an error that the Open OnDemand page cannot be reached. Sometimes this can indicate that the service is down, but often this is an issue with the local browser cache. You can test this by opening a private browser window and seeing if [https://ood.torch.hpc.nyu.edu](https://ood.torch.hpc.nyu.edu) will load. If it does, try deleting the cache for [https://ood.torch.hpc.nyu.edu](https://ood.torch.hpc.nyu.edu) in your browser history to resolve this issue.
 
 In Chrome, this can be done by navigating to this page in your settings:
 
@@ -167,7 +167,7 @@ You could run each line of the `ssh-agent` output yourself, and achieve the same
 If you are using PuTTY on Windows, download and use `pageant` as the SSH agent. See the [PuTTY documentation](./02_connecting_to_hpc.mdx#opening-a-terminal).
 
 
-## Modifying your .ssh/config file
+## Modifying Your .ssh/config File
 Please add the following lines to your `~/.ssh/config` file:
 ```
 Host dtn.torch.hpc.nyu.edu
@@ -189,7 +189,7 @@ Host torch login.torch.hpc.nyu.edu
 ```
 You'll need to replace the sections above labelled `<Your NetID>` with your NetID.  You can find more details about this at the [Quickstart section of Accessing HPC at NYU](https://sites.google.com/nyu.edu/nyu-hpc/accessing-hpc#h.7t97br4zzvip)
 
-## Logging onto the system
+## Logging onto the System
 With all of this in mind, let’s connect to our remote HPC system. In this tutorial, we will connect to Torch — an HPC system located at New York University. Although it’s unlikely that every system will be exactly like Torch, it’s a very good example of what you can expect from an HPC installation. To connect to Torch we will use SSH (if you are using PuTTY see [details above](./02_connecting_to_hpc.mdx#opening-a-terminal)).
 
 SSH allows us to connect to UNIX computers remotely, and use them as if they were our own. The general syntax of the connection command follows the format:
@@ -225,12 +225,12 @@ This change presents a small complication that we will need to navigate througho
 -   `[NetID@glogin-1 ~]$` when the command is to be entered on a terminal connected to the remote system
 -   `$` when it really doesn’t matter which system the terminal is connected to
 
-### Being certain which system your terminal is connected to
+### Being Certain Which System Your Terminal is Connected to
 If you ever need to be certain which system a terminal you are using is connected to then use the following command: 
 ```bash
 $ hostname
 ```
 
-### Keep two terminal windows open
+### Keep Two Terminal Windows Open
 It is strongly recommended that you have two terminals open, one connected to the local system and one connected to the remote system that you can switch back and forth between. If you only use one terminal window then you will need to reconnect to the remote system using one of the methods above when you see a change from `[local]$` to `[NetID@login-1 ~]$` and disconnect when you see the reverse.
 
