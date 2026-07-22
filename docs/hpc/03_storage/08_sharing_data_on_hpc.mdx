@@ -30,14 +30,14 @@ The following commands are available:
 -   `nfs4_getfacl` to view ACLs
 with the usage described in the following examples.
 
-#### Give someone access to read a particular file
+#### Give Someone Access to Read a Particular File
 Append the ACL for that file by adding an ACE via 
 ```sh
 nfs4_setfacl -a "A::NetID:R" filename
 ```
 where the `-a` flag signifies "append". Since inheritance flags are only applicable to directories and the principal is not a group, no flags are needed.
 
-#### Show current access properties
+#### Show Current Access Properties
 
 Create an empty file and view the default ACEs it:
 ```sh
@@ -75,7 +75,7 @@ The above grants kevin basic read/execute to /scratch susie, which is required t
 nfs4_setfacl -R -a "A:df:kevin:RWX" /scratch/susie/share
 ```
 
-The above would allow kevin to have have read, write, and execute access for *all directories* and files inside `/scratch/susie/share`
+The above would allow kevin to have read, write, and execute access for *all directories* and files inside `/scratch/susie/share`
 
 
 ## Linux Groups for Group Permissions
