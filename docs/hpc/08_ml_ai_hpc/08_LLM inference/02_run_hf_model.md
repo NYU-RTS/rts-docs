@@ -26,7 +26,7 @@ Some of the following steps can require significant resources, so we'll move to 
 [NetID@cm001 llm_example]$ gunzip overlay-50G-10M.ext3.gz
 ```
 
-### Launch Singularity container in Read/write Mode
+### Launch Singularity Container in Read/write Mode
 ```bash
 [NetID@cm001 llm_example]$ apptainer exec --fakeroot --overlay overlay-50G-10M.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
 ```
