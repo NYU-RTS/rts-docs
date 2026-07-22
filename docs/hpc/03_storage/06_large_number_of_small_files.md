@@ -5,7 +5,7 @@ Many datasets contain a large number of files (for example [ImageNet](https://en
 
 Here are some ideas you can try and evaluate performance for your own project
 
-## Squash File System With Singularity
+## Squash File System with Singularity
 Please see [Squash File System and Singularity](../07_containers/04_squash_file_system_and_singularity.md)
 
 ## Use JPG/PNG Files On Disk
@@ -41,7 +41,7 @@ Store data in some binary file (say pickle in Python) which you load fully when 
 
 This option may require a lot of RAM - thus you may have to wait a long time for the scheduler to find resources for your job. Also this approach would not work on a regular PC without so much RAM, and thus your scripts are not transferable.
 
-## Container Files, One-File Databases
+## Container Files, One-file Databases
 Special containers, which allow to either load data fast fully or access chosen elements without loading the whole dataset into RAM.
 
 ### SQLite
