@@ -5,7 +5,7 @@ This page describes how you can create conda environments without containers in 
 :::
 
 
-## What is Conda?
+## What Is Conda?
 Package, dependency and environment management for any language—Python, R, Ruby, Lua, Scala, Java, JavaScript, C/ C++, FORTRAN, and more. Please find more information at [the official documentation page](https://docs.conda.io/en/latest/)
 
 Conda provides a great way to install packages that are already compiled, so you don't need to go over the long compilation process. If a package you need is not available, you can install it (and compile it when needed) using `pip` (Python) or `install.packages` (R).
@@ -15,7 +15,7 @@ Conda provides a great way to install packages that are already compiled, so you
 One of the ways to ensure the reproducibility of your results is to have an independent conda environment in the directory of each project (one of the options shown below). This will also keep conda environment files away from your `/home/$USER` directory.
 :::
 
-## Advantages/disadvantages of using Conda
+## Advantages/disadvantages of Using Conda
 ### Advantages
 
 -   A lot of pre-compiled packages (fast and easy to install)
@@ -63,7 +63,7 @@ NYU HPC recommends using prefix environments as a best practice because it makes
 :::
 
 ## Prefix Conda Environments
-You can store your program/project in `/scratch` and keep the conda environment with it by using the `-p` parameter. This will keep all the files inside the project's directory, instead of putting in in your `/home/$USER`. <br />
+You can store your program/project in `/scratch` and keep the conda environment with it by using the `-p` parameter. This will keep all the files inside the project's directory, instead of putting in your `/home/$USER`. <br />
 Here are details about how to do this for Python and R projects:
 
 ### Python
@@ -203,7 +203,7 @@ Don't forget to change `NetID` above to your `NetID`.
 You should now see that the `package cache` and `envs directories` entries have changed to your `/scratch` space when you run `conda info` and packages and environments will be saved on your `/scratch` space for all named conda environments.
 
 ## Reproducibility
-### Packages installed only using conda
+### Packages Installed Only Using Conda
 
 Save a list of packages (so you are able to report the environment in a publication, and to restore/reproduce the environment on another machine at any time)
 
@@ -218,7 +218,7 @@ This will not list packages installed by `pip` or `install.packages()`
 :::
 
 
-### Packages installed using conda and `pip` (Python)
+### Packages Installed Using Conda and `pip` (Python)
 
 In this case you can use:
 ```bash
@@ -239,7 +239,7 @@ However, this may fail if your conda environment is created as a sub-directory o
 :::
 ::::
 
-### Packages installed using `install.packages` (R)
+### Packages Installed Using `install.packages` (R)
 
 The command `conda list --export` will not include packages installed by `install.packages`. So, only use `conda install` to install R and use `renv` to maintain information about packages installed by `install.packages`.
 
@@ -247,11 +247,11 @@ The command `conda list --export` will not include packages installed by `instal
 
 Please see details of using `renv` with conda for reproducibilty on [R packages with `renv`](./05_r_packages_with_renv.mdx).
 
-## Use conda env in a batch script
+## Use Conda `env` in a Batch Script
 The part of the batch script that will call the command should look like:
 ### Python
 
-#### Single node
+#### Single Node
 ```bash
 #!/bin/bash
 #SBATCH --job-name=test
@@ -272,7 +272,7 @@ python test.py
 ```
 You'll need to replace `<full path to penv>` with the full path to your penv directory.  It's probably something like `/scratch/NetID/conda_tests/penv`
 
-#### Multiple nodes, using MPI
+#### Multiple Nodes, Using MPI
 ```sh
 #!/bin/bash
 #SBATCH --job-name=test
@@ -294,7 +294,7 @@ python test.py"
 ```
 Again, you'll need to replace `<full path to penv>` above with the full path to your penv directory.
 
-### R (conda packages only)
+### R (Conda Packages Only)
 ```bash
 #!/bin/bash
 #SBATCH --job-name=test
@@ -314,7 +314,7 @@ Rscript r_script.R
 ```
 You'll again need to replace `<full path to renv>` above with the full path to your renv directory.
 
-#### Multiple nodes, using MPI
+#### Multiple Nodes, Using MPI
 ```sh
 #!/bin/bash
 #SBATCH --job-name=test
@@ -334,7 +334,7 @@ Rscript test.R
 ```
 You'll again need to replace `<full path to renv>` above with the full path to your renv directory.
 
-### R (conda with renv combination)
+### R (Conda with `renv` Combination)
 
 In this case, when you use sbatch you would activate conda in sbatch script, and R script will pickup packages installed in renv
 ```sh
