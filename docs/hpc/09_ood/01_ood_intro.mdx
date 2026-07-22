@@ -34,7 +34,7 @@ You must be on the NYU VPN to be able to access the Open On Demand gateway! For 
 
 ### Connections to Open OnDemand
 
-A common issue that can occur is receiving an error that the Open OnDemand page cannot be reached. Sometimes this can indicate that the service is down, but often this is an issue with the the local browser cache. You can test this by opening a private browser window and seeing if https://ood.torch.hpc.nyu.edu will load. If it does, try deleting the cache for https://ood.torch.hpc.nyu.edu in your browser history to resolve this issue.
+A common issue that can occur is receiving an error that the Open OnDemand page cannot be reached. Sometimes this can indicate that the service is down, but often this is an issue with the local browser cache. You can test this by opening a private browser window and seeing if https://ood.torch.hpc.nyu.edu will load. If it does, try deleting the cache for https://ood.torch.hpc.nyu.edu in your browser history to resolve this issue.
 
 In Chrome, this can be done by navigating to this page in your settings:
 
@@ -65,6 +65,6 @@ Just click on the `Session ID` link and a tab will open with the contents of the
 
 `output.log` is probably the most informative for debugging.  Simply click on `output.log` and the contents will be displayed.
 
-#### From terminal
+#### From Terminal
 
 If your session is no longer visible from within OOD you may still be able to find your logs via the terminal.  Simply [log into Torch](../02_connecting_to_hpc/01_connecting_to_hpc.mdx) and `cd` to `/home/$USER/ondemand/data/sys/dashboard/batch_connect/sys/` and then `cd` into the directory for the app that you're interested in.  You should find the file `output.log` there.
