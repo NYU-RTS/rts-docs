@@ -25,7 +25,7 @@ logout
 ## Tools for Data Transfer
 
 ### Linux & Mac Tools
-#### Scp and Rsync
+#### `scp` and `rsync`
 :::warning
 Please use Data Transfer Nodes (DTNs) with these tools. While one can transfer data while on login nodes, it is  considered a bad practice because it can degrade the node's performance.
 :::
@@ -49,7 +49,7 @@ Globus is the recommended tool to use for large-volume data transfers. It featur
 
 The Globus endpoint for Torch is available at `nyu#torch`. Detailed instructions available at [Globus](./03_globus.md)
 
-### Rclone
+### `rclone`
 rclone - rsync for cloud storage, is a command line program to sync files and directories to and from cloud storage systems such as Google Drive, Amazon Drive, S3, B2 etc. rclone is available on DTNs. [Please see the documentation for how to use it.](https://rclone.org/)
 
 ### Open OnDemand (OOD)
