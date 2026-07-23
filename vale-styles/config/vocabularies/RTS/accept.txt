@@ -48,6 +48,8 @@ XQuartz
 walkthrough
 debian
 linux
+Linux
+Single-GPU
 sudo
 openconnect
 sms
@@ -150,6 +152,17 @@ dplyr
 sqlite
 row_number
 rsqlite
+SQLite
+SQLiteStudio
+UI
+multithreaded
+namd
+MacOS
+Anthropic
+VertexAI
+Jupyter
+reauthentication
+whatis
 csv
 Biologics
 Epik
@@ -192,6 +205,7 @@ Preinstallation
 Miniconda
 bioconda
 pytorch
+PyTorch
 gzipped
 nyu
 miniforge
@@ -297,3 +311,4 @@ Multi-node
 TensorFlow
 nonconvex
 Non-NYU
+Scaling
