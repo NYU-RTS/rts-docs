@@ -1,0 +1,25 @@
+name: Vale Test
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+  
+jobs:
+  vale:
+    name: Vale Grammar and Style Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Run Vale
+        uses: vale-cli/vale-action@v2
+        with:
+          version: 3.12.0
+          files: '["docs/", "src/pages/"]'
+          reporter: github-pr-review
