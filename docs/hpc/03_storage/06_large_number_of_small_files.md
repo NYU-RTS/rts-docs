@@ -5,10 +5,10 @@ Many datasets contain a large number of files (for example [ImageNet](https://en
 
 Here are some ideas you can try and evaluate performance for your own project
 
-## Squash file system with Singularity
+## Squash File System with Singularity
 Please see [Squash File System and Singularity](../07_containers/04_squash_file_system_and_singularity.md)
 
-## Use jpg/png files on disk
+## Use JPG/PNG Files On Disk
 One option is to store image files (like png or jpg) on the disk and read from disk directly.
 
 :::warning
@@ -36,12 +36,12 @@ You can also use the custom-made RAM mapped disk using `#SLURM_RAM_TMPDIR` while
 This basically requires you to use 2*(size of the data) size of RAM just to hold the data.
 :::
 
-## Binary files (pickle, etc)
+## Binary Files (Pickle, Etc.)
 Store data in some binary file (say pickle in Python) which you load fully when you start a SLURM job.
 
 This option may require a lot of RAM - thus you may have to wait a long time for the scheduler to find resources for your job. Also this approach would not work on a regular PC without so much RAM, and thus your scripts are not transferable.
 
-## Container files, one-file databases
+## Container Files, One-file Databases
 Special containers, which allow to either load data fast fully or access chosen elements without loading the whole dataset into RAM.
 
 ### SQLite
@@ -96,10 +96,10 @@ More info:
 
 LMDB supports reading by many readers and many parallel thread from the same file
 
-#### Formats inside HDF5/LMDB: binary, numpy, other..
+#### Formats Inside HDF5/LMDB: Binary, NumPy, Other...
 One can store data in different way inside LMDB or HDF5. For example we can store binary representation of jpeg, or we can store python numpy array. In the first case file can be read from any language, in the second - only from Python. We can also store objects from other languages - for example tibble in R
 
-#### Other formats
+#### Other Formats
 There are other formats like [Bcolz](http://bcolz.blosc.org/), [Zarr](https://github.com/alimanfoo/zarr-python), and others. Some examples can be found [here](https://alimanfoo.github.io/2016/04/14/to-hdf5-and-beyond.html).
 
 ## Benchmarking Code

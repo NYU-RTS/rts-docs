@@ -1,6 +1,6 @@
 # R Packages with renv
 
-## Is this needed:
+## Is this Needed:
 :::tip
 If you would like to use conda with `renv` you need to add following steps:
 
@@ -42,7 +42,7 @@ Thus you can consider the following options:
 </details>
 
 
-### Cache directory setup
+### Cache Directory Setup
 By default, renv will cache package installation files to your home directory (most likely either in `~/.local/share/renv` or `~/.cache/R/renv/` or something similar). 
 
 To avoid filling up your home directory, we advise to set up path to alternative cache directory (otherwise your home directory may fill up quickly)
@@ -51,7 +51,7 @@ To avoid filling up your home directory, we advise to set up path to alternative
 ```sh   
 mkdir -p /scratch/$USER/.cache/R/renv
 ```
--   Create a file in you project directory named `.Renviron` and put the following in in the file. It is the R project directory (`/scratch/$USER/projects/project1`) in this example.
+-   Create a file in you project directory named `.Renviron` and put the following in the file. It is the R project directory (`/scratch/$USER/projects/project1`) in this example.
 ```sh
 RENV_PATHS_ROOT=/scratch/<USER_NETID>/.cache/R/renv
 ```
@@ -87,7 +87,7 @@ renv::paths$cache()
 #[1] "/home/$USER/.cache/R/renv/cache/v5/R-4.1/x86_64-pc-linux-gnu"
 ```
 
-### Add/remove, etc. packages
+### Add/remove, etc. Packages
 Install a package, such as reshape2. Below we can see it is not yet installed and then install it.
 ```R
 R
@@ -136,7 +136,7 @@ No id variables; using all as measure variables
 [1] "hello again"
 ```
 
-### Clean up
+### Clean Up
 Keep only the packages that you use in this particular project (not all the packages available on the system)
 ```R
 R # launch R
@@ -201,6 +201,6 @@ In order to have your work reproducible by you and/or others:
 ### Migrating from Packrat
 The `renv` package has replaced the now deprecated `Packrat` package. The `renv::migrate()` function makes it possible to migrate projects from `Packrat` to `renv`. See the ?migrate documentation for more details. In essence, calling `renv::migrate("<project path>")` will be enough to migrate the `Packrat` library and lockfile such that they can then be used by `renv`.
 
-## Useful links
+## Useful Links
 -   [Introduction to `renv`](https://rstudio.github.io/renv/articles/renv.html)
 

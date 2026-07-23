@@ -145,7 +145,7 @@ $ ls
 files documents newname.testfile
 ```
 
-## Removing files
+## Removing Files
 We’ve begun to clutter up our workspace with all of the directories and files we’ve been making. Let’s learn how to get rid of them. One important note before we start… when you delete a file on UNIX systems, they are gone _forever_. There is no “recycle bin” or “trash”. Once a file is deleted, it is gone, never to return. So be ***very*** careful when deleting files.
 
 Files are deleted with `rm file [moreFiles]`. To delete the `newname.testfile` in our current directory:
@@ -187,7 +187,7 @@ Steam is a major online sales platform for PC video games with over 125 million 
 In January 2015, user kevyin on GitHub [reported that Steam’s Linux client had deleted every file on his computer](https://github.com/ValveSoftware/steam-for-linux/issues/3671). It turned out that one of the Steam programmers had added the following line: `rm -rf "$STEAMROOT/"*`. Due to the way that Steam was set up, the variable `$STEAMROOT` was never initialized, meaning the statement evaluated to `rm -rf /*`. This coding error in the Linux client meant that Steam deleted every single file on a computer when run in certain scenarios (including connected external hard drives). Moral of the story: be very careful when using `rm -rf`!
 :::
 
-## Looking at files
+## Looking at Files
 Sometimes it’s not practical to read an entire file with `cat`. The file might be way too large, take a long time to open, or maybe we want to only look at a certain part of the file. As an example, we are going to look at a large and complex file type used in bioinformatics, a `.gtf` file. The GTF2 format is commonly used to describe the location of genetic features in a genome.
 
 Let’s grab and unpack a set of demo files for use later. To do this, we’ll use [`wget`](https://www.gnu.org/software/wget/).

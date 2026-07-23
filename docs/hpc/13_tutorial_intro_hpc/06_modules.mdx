@@ -1,4 +1,4 @@
-# Accessing software via Modules
+# Accessing Software via Modules
 :::info[Overview]
 Questions
 - How do we load and unload software packages?
@@ -202,12 +202,13 @@ Create a job that is able to run `R --version`. Remember, no software is loaded 
 [NetID@log-1 ~]$ nano r-module.sh
 [NetID@log-1 ~]$ cat r-module.sh
 #!/bin/bash
-#SBATCH #SBATCH -t 00:00:30
+#SBATCH -t 00:00:30
 
 module load r/gcc/4.4.0
 
 R --version
 [NetID@log-1 ~]$ sbatch r-module.sh
+```
 :::
 </details>
 
@@ -215,3 +216,4 @@ R --version
 -   Load software with `module load softwareName`.
 -   Unload software with `module unload`
 -   The module system handles software versioning and package conflicts for you automatically.
+:::

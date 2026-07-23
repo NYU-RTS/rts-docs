@@ -8,18 +8,18 @@ This page describes how you can create virtual environments without containers i
 
 In order to be able to install new Python packages and make your work reproducible, please use virtual environments. There is more than one way to create a private environment in Python.
 
-## Create project directory and load Python module
+## Create Project Directory and Load Python Module
 ```sh
-## Find python version you need
+## Find Python Version You Need
 module avail python
-## created directory for your project and cd there
+## Created Directory for Your Project and cd There
 mkdir /scratch/$USER/my_project
 cd /scratch/$USER/my_project
-## load python module (different versions available)
+## Load Python Module (Different Versions Available)
 module load  python/intel/3.8.6
 ```
 
-## Automatic deletion of your files
+## Automatic Deletion of Your Files
 This page describes the installation of packages on /scratch. One has to remember, though, that files stored in the HPC scratch file system are subject to the HPC Scratch old file purging policy: <br />
 
 <details>
@@ -37,10 +37,10 @@ Thus you can consider the following options:
 :::
 </details>
 
-## Create virtual environment
+## Create Virtual Environment
 It is advisable to create private environment inside the project directory. This boosts reproducibility and does not use space in `/home/$USER`:
 ```sh
-## created directory for your project and cd there
+## Created Directory for Your Project and cd There
 mkdir /scratch/$USER/my_project
 cd /scratch/$USER/my_project
 ```
@@ -49,12 +49,12 @@ cd /scratch/$USER/my_project
 [`virtualenv`](https://virtualenv.pypa.io/en/latest/) is a tool to create isolated Python environments. Since Python 3.3, a subset of it has been integrated into the standard library under the venv module. You can create new virtual environment in two ways:
 -   empty
 ```sh
-## Create an EMPTY virtual environment
+## Create an EMPTY Virtual Environment
 virtualenv venv
 ```
 -   inherit all packages from those installed on HPC already (and available in PATH after you load python module)
 ```sh
-## Create an virtual environment that inherits system packages
+## Create an Virtual Environment that Inherits System Packages
 virtualenv venv --system-site-packages
 ```
 
@@ -73,11 +73,11 @@ python -m venv venv
 ```
 -   inherit all packages from those installed on HPC already (and available in PATH after you load python module)
 ```sh
-## Inhering all packages
+## Inhering All Packages
 python -m venv venv --system-site-packages
 ```
 
-## Install packages. Keep things reproducible
+## Install Packages. Keep Things Reproducible
 ```sh
 ## activate
 source venv/bin/activate

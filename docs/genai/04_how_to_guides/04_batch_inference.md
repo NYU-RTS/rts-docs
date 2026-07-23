@@ -6,14 +6,14 @@ When immediate results are not needed, for instance in transforming large datase
 Batch processing is only supported for LLMs that can be accessed via the `@vertexai` provider.
 :::
 
-## Collect the prompts
+## Collect the Prompts
 You'll collect the prompts you want to send to the LLM as a newline delimited JSON ([JSONLines](https://jsonlines.org/)) where each line contains a single prompt in the OpenAI format. Here's an example we will be using in this example:
 ```json
 {"custom_id": "request-1", "method": "POST", "url": "/v1/chat/completions", "body": {"model": "gemini-3-flash-preview", "messages": [{"role": "user", "content": "Where is NYU located?"}], "max_tokens": 2048}}
 {"custom_id": "request-2", "method": "POST", "url": "/v1/chat/completions", "body": {"model": "gemini-3-flash-preview", "messages": [{"role": "user", "content": "What resources are available for genAI research at nyu?"}], "max_tokens": 8196}}
 ```
 
-## Upload them to the GCS bucket
+## Upload Them to the GCS Bucket
 We will upload this via the Portkey client to the GCS ([Google Cloud Storage](https://cloud.google.com/storage)) bucket via the following script:
 ```python
 from portkey_ai import Portkey
@@ -50,7 +50,7 @@ This script will print to standard output the location of the uploaded file, lik
 
 ```
 
-## Submit a batch inference job
+## Submit a Batch Inference Job
 
 We are now ready to submit the batch inference job. Here's a script to do so:
 ```python
@@ -78,7 +78,7 @@ print(batch_job)
 
 Upon successful submission, you'll see an `id` field that refers to the job id.
 
-## Query job status
+## Query Job Status
 
 Using the id of the batch inference job, you can query the status by:
 
@@ -111,7 +111,7 @@ The output for a pending job looks like:
 Once the job completes, the `status` field will change from `in_progress` to `completed`.
 
 
-## Retrieving the output
+## Retrieving the Output
 
 The output of the batch inference job can be obtained by:
 ```sh

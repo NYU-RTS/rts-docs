@@ -1,10 +1,10 @@
-# Transferring Cloud Storage Data with rclone
+# Transferring Cloud Storage Data with Rclone
 
 :::tip Globus
 Globus is the recommended tool to use for large-volume data transfers due to the efficiency, reliability, security and ease of use. Use other tools only if you really need to. Detailed instructions available at [Globus](./03_globus.md)
 :::
 
-## Transferring files to and from Google Drive with RCLONE
+## Transferring Files to and from Google Drive with `rclone`
 Having access to Google Drive from the HPC environment provides an option to archive data and even share data with collaborators who have no access to the NYU HPC environment. Other options to archiving data include the HPC Archive file system and using [Globus](./03_globus.md) to share data with collaborators.
 
 Access to Google Drive is provided by [rclone](https://rclone.org/drive/) - rsync for cloud storage - a command line program to sync files and directories to and from cloud storage systems such as Google Drive, Amazon Drive, S3, B2 etc. [rclone](https://rclone.org/drive/) is available on Torch cluster as a module, the module versions currently available (March 2025) are:
@@ -26,7 +26,7 @@ rclone --transfers=32 --checkers=16 --drive-chunk-size=16384k --drive-upload-cut
 
 This option works great for file sizes 1Gb+ to 250GB. Keep in mind that there is a rate limiting of 2 files/sec for upload into Google Drive.  Small file transfers don’t work that well. If you have many small jobs, please tar the parent directory of such folders and split the tar file into 100GB chunks and then uploads then into Google Drive.
 
-## rclone Configuration
+## `rclone` Configuration
 You need to configure rclone before you will be able to move files between the HPC Environment and Google Drive
 
 There are specific instruction on the [rclone web site](https://rclone.org/drive/) and here is an example of the process for configuring rclone for use on Torch:
@@ -35,12 +35,12 @@ There are specific instruction on the [rclone web site](https://rclone.org/drive
 
 Follow [instructions](../02_connecting_to_hpc/01_connecting_to_hpc.mdx) to log into the Torch HPC cluster.
 
-### Step 2: Load the rclone module
+### Step 2: Load the `rclone` Module
 ```sh
 $ module load rclone/1.68.2
 ```
 
-### Step 3: Configure rclone
+### Step 3: Configure `rclone`
 
 Configuring rclone and setting up remote access to your Google Drive, using the command:
 ```sh

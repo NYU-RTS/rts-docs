@@ -1,5 +1,5 @@
 # Best Practices on HPC Storage
-## User Quota Limits and the myquota command
+## User Quota Limits and the Myquota Command
 All users have quote limits set on HPC fie systems. There are several types of quota limits, such as limits on the amount of disk space (disk quota), number of files (inode quota) etc. The default user quota limits on HPC file systems are listed [on our Data Management page](./01_intro_and_data_management.mdx#hpc-storage-comparison-table).
 
 :::warning[Home directory inode quotas]
@@ -8,17 +8,17 @@ _One of the common issues users report is running out of inodes in their home di
 
 Users can check their current utilization of quota using the myquota command. The myquota command provides a report of the current quota limits on mounted file systems, the user's quota utilization, as well as the percentage of quota utilization.  For details, please see [myquota](../06_tools_and_software/08_utils.mdx#myquota)
 
-## Large number of small files
+## Large number of Small Files
 In case your dataset or workflow requires to use large number of small files, this can create a bottleneck due to read/write rates. Please refer to [our page on working with a large number of files](./06_large_number_of_small_files.md) to learn about some of the options we recommend to consider.
 
-## Installing Python packages
+## Installing Python Packages
 :::warning
 Your home directory is limited to a relatively small number of inodes (30,000). Creating conda/python environments in you home directory, this can eat easily exhaust your inode quota.
 :::
 
 Please review the [Package Management section](../06_tools_and_software/01_intro.md#package-management-for-r-python--julia-and-conda-in-general) of the [Torch Software Page](../06_tools_and_software/01_intro.md).
 
-## Troubleshooting quota issues
+## Troubleshooting Quota Issues
 
 :::warning
 Being over your quota can cause problems logging into OOD and other issues.  If you find that you're suddenly unable to log in, one of the first things you should check is your quota with the [`myquota`](../06_tools_and_software/08_utils.mdx#myquota) command.
@@ -35,7 +35,7 @@ and here's how you can see which ones most contribute to your disk usage:
 du -h -s -- * .[!.]* ..?* 2>/dev/null | sort -hr | head -n 5
 ```
 
-### Moving common dot directories from `/home` to `/scratch`
+### Moving Common Dot Directories from `/home` to `/scratch`
 
 As mentioned elsewhere in our documentation, a problem we often see for our users is that of filling their `/home` directories by using common tools like VSCode, Cursor, etc.  These applications put a dot directory in your `/home` directory and it can quickly overwhelm your quota.
 

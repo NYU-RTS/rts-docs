@@ -87,7 +87,7 @@ $ echo $SECRET_IDENTITY
 Camilla
 ```
 
-## Environment variables
+## Environment Variables
 When we ran the `printenv` command we saw there were a lot of variables whose names were in upper case. That’s because, by convention, variables that are also available to use by *other* programs are given upper-case names. Such variables are called *environment variables* as they are shell variables that are defined for the current shell and are inherited by any child shells or processes.
 
 To create an environment variable you need to `export` a shell variable. For example, to make our `SECRET_IDENTITY` available to other programs that we call from our shell we can do:

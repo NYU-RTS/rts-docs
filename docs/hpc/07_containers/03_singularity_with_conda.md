@@ -147,7 +147,7 @@ exit
 # exit Singularity
 ```
 
-#### Install packages
+#### Install Packages
 
 You may now install packages into the environment with either the `pip install` or `conda install` commands. 
 
@@ -202,7 +202,7 @@ Now, exit the Singularity container and then rename the overlay image. Typing `e
 exit
 mv overlay-15GB-500K.ext3 my_pytorch.ext3
 ```
-#### Test your PyTorch Singularity Image
+#### Test Your PyTorch Singularity Image
 ```sh
 singularity exec --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash -c 'source /ext3/env.sh; python -c "import torch; print(torch.__file__); print(torch.__version__)"'
 
@@ -213,7 +213,7 @@ singularity exec --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro /
  the end `:ro` addition at the end of the pytorch ext3 image starts the image in read-only mode. To add packages you will need to use `:rw` to launch it in read-write mode.
 :::
 
-### Using your Singularity Container in a SLURM Batch Job
+### Using Your Singularity Container in a SLURM Batch Job
 Below is an example script of how to call a python script, in this case `torch-test.py`, from a SLURM batch job using your new Singularity image
 
 torch-test.py:
@@ -276,7 +276,7 @@ cat slurm-3752662.out
 # True
 ```
 
-### Optional: Convert ext3 to a compressed, read-only squashfs filesystem
+### Optional: Convert `ext3` to a Compressed, Read-only `squashfs` Filesystem
 Singularity images can be compressed into read-only squashfs filesystems to conserve space in your environment. Use the following steps to convert your ext3 Singularity image into a smaller squashfs filesystem.
 ```sh
 srun -N1 -c4 singularity exec --overlay my_pytorch.ext3:ro /share/apps/images/centos-8.2.2004.sif mksquashfs /ext3 /scratch/<NetID>/pytorch-example/my_pytorch.sqf -keep-as-directory -processors 4 -noappend
@@ -291,7 +291,7 @@ ls -ltrsh my_pytorch.*
 
 Notice that it saves over 3GB of storage in this case, though your results may vary.
 
-#### Use a squashFS Image for Running Jobs
+#### Use a `squashFS` Image for Running Jobs
 
 You can use squashFS images similarly to the ext3 images:
 ```sh
@@ -301,7 +301,7 @@ singularity exec --overlay /scratch/<NetID>/pytorch-example/my_pytorch.sqf:ro /s
 #example output: 2.6.0+cu124
 ```
 
-#### Adding Packages to a Full ext3 or squashFS Image 
+#### Adding Packages to a Full `ext3` or `squashFS` Image 
 
 If the first ext3 overlay image runs out of space or you are using a squashFS conda environment, but need to install a new package inside, please copy another writable ext3 overlay image to work together.
 

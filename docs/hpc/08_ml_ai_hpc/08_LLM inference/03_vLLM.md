@@ -1,6 +1,6 @@
-# High-performance LLM inference with `vLLM`
+# High-performance LLM Inference with `vLLM`
 
-## What is vLLM?
+## What Is vLLM?
 [`vLLM`](https://docs.vllm.ai/en/latest/) is an easy-to-use library for LLM inference and serving which support a wide variety of models with optimized kernels ensuring optimal utilization of GPUs.
 
 ## Why `vLLM`?
@@ -24,12 +24,12 @@ Concurrency: 8
 
 Max requests: 64
 
-## vLLM Installation Instructions
+## `vLLM` Installation Instructions
 Create a `vLLM` directory in your /scratch directory, then install the vLLM image:
 ```
 apptainer pull docker://vllm/vllm-openai:latest
 ```
-### Avoid filling up your `$HOME` directory
+### Avoid Filling Up Your `$HOME` Directory
 To avoid exceeding your `$HOME` quota (50GB) and inode limits (30,000 files), you should redirect `vLLM`'s cache and Hugging Face's model downloads to your scratch space:
 ```sh
 export HF_HOME=/scratch/$USER/hf_cache
@@ -45,7 +45,7 @@ echo "export VLLM_CACHE_ROOT=/scratch/\$USER/vllm_cache" >> ~/.bashrc
 Files on `$SCRATCH` are not backed up and will be deleted after 60 days of inactivity. Always keep your source code and .slurm scripts in `$HOME`!
 :::
 
-## Run vLLM
+## Run `vLLM`
 ### Online Serving (OpenAI-Compatible API)
 `vLLM` implements the OpenAI API protocol, allowing it to be a drop-in replacement for applications using OpenAI's services. By default, it starts the server at `http://localhost:8000`. You can specify the address with `--host` and `--port` arguments. 
 **In Terminal 1:**

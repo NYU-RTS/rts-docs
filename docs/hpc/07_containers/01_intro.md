@@ -1,6 +1,6 @@
 # Custom Applications with Containers
 
-## What is Apptainer?
+## What Is Apptainer?
 Apptainer is a container based Linux kernel workspace that works just like Docker. You can run pre-built programs in containers without having to worry about the pre-install environment. You can even run Docker containers with Apptainer. Please see the [Apptainer and Docker](https://apptainer.org/docs/user/main/docker_and_oci.html) documentation by Syslabs for details about all the ways Apptainer supports Docker. For a detailed introduction on Apptainer, visit their [official site](https://apptainer.org/documentation/).
 
 Apptainer is the continuation of the Singularity project. When we transition to the new Torch cluster you will only see reference to Apptainer.  The reason for this is that there were two container projects with the name Singularity. The original free and open-source (FOSS) project and a closed-source corporate fork.  The FOSS version has renamed itself to Apptainer to avoid confusion and this is the version we use.

@@ -1,4 +1,4 @@
-# Data management
+# Data Management
 
 HDFS stands for Hadoop Distributed File System. HDFS is a highly fault-tolerant file system and is designed to be deployed on low-cost hardware. HDFS provides high throughput access to application data and is suitable for analyses that use large datasets.
 
