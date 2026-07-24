@@ -8,7 +8,7 @@ After connecting VSCode to the Torch login node, open the Extensions view in the
 
 Install or enable the Microsoft Jupyter extension in the remote SSH environment. If the extension is not already installed remotely, VSCode should show an option such as:
 
-Install in SSH: torch
+`Install in SSH: torch`
 
 ## Step 2: Start a dummy batch job and connect to the compute node
 
@@ -22,13 +22,14 @@ For example:
 sbatch -c4 -t2:00:00 --mem=4G --account=<account_name> --wrap "sleep infinity"
 ```
 
-Replace <account_name> with the Slurm account for your project. After submitting the job, Slurm will print a job ID, for example:
+Replace `<account_name>` with the account for your project. After submitting the job, Slurm will print a job ID, for example:
 
 ```bash
 Submitted batch job <job_id>
 ```
 
 Once the job is running, identify the assigned compute node and connect to it from the VSCode terminal using SSH.
+Check the job status and assigned node:
 ```bash
 squeue -u $USER
 ```
