@@ -1,26 +1,52 @@
 # Use Apptainer Jupyter Notebooks in VSCode on Torch
 
-This page builds on the general VSCode access instructions in [Connect VSCode to Torch](./09_vscode_remote_ssh_torch). Before following this workflow, complete that setup and connect VSCode to the Torch login node.
+This page builds on the general VSCode access instructions in 09_vscode_remote_ssh_torch. Before following this workflow, complete that setup and connect VSCode to the Torch login node.
 
 ## Step 1: Install VSCode Jupyter support
 
-In the VSCode remote SSH window connected to Torch, install or enable the VSCode Jupyter extension.
+After connecting VSCode to the Torch login node, open the Extensions view in the VSCode remote window and search for Jupyter.
 
-## Step 2: Start an interactive job
+Install or enable the Microsoft Jupyter extension in the remote SSH environment. If the extension is not already installed remotely, VSCode should show an option such as:
 
-Open a terminal in the VSCode remote session. The terminal should start on a Torch login node.
+Install in SSH: torch
 
-Submit a dummy or interactive job from the login node. When the job starts, note the assigned compute node.
+## Step 2: Start a dummy batch job and connect to the compute node
 
-## Step 3: Connect to the compute node
+After the Jupyter extension is installed or enabled, open a terminal in the VSCode remote session on a Torch login node.
 
-From the VSCode terminal, ssh to the assigned compute node.
+Interactive jobs on Torch may experience intermittent issues. Some compute nodes may work as expected, while others may not. As a workaround, submit a lightweight dummy batch job and then ssh to the allocated compute node after the job is running.
 
-## Step 4: Open the notebook
+For example:
+
+```bash
+sbatch -c4 -t2:00:00 --mem=4G --account=<account_name> --wrap "sleep infinity"
+```
+
+Replace <account_name> with the Slurm account for your project. After submitting the job, Slurm will print a job ID, for example:
+
+```bash
+Submitted batch job <job_id>
+```
+
+Once the job is running, identify the assigned compute node and connect to it from the VSCode terminal using SSH.
+```bash
+squeue -u $USER
+```
+
+```bash
+ssh csXXX
+```
+
+After connecting, the terminal prompt should show the compute node:
+```bash
+[NetID@csXXX ~]$
+```
+
+## Step 3: Open the notebook
 
 Open the target .ipynb notebook in VSCode.
 
-## Step 5: Select the Apptainer kernel
+## Step 4: Select the Apptainer kernel
 
 Use the notebook kernel picker to select the Apptainer kernel for the notebook.
 
