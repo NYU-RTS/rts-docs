@@ -1,5 +1,5 @@
 # Connect VSCode to Apptainer Jupyter Notebook Environments
-Some users want to remotely work on Jupyter Notebooks using their Singularity kernels. This is a tedious, error prone process.
+Some users want to remotely work on Jupyter Notebooks using their Apptainer kernels. This is a tedious, error prone process.
 
 ## Step 1: Configure SSH for key-based ssh login
 Generate an ssh key with ssh-keygen
@@ -24,12 +24,12 @@ On your local computer:
 $ cat ~/.ssh/torch_NetID.pub
 ```
 
-Copy the full output. Then log in to Torch:
+Copy the full output and log on to Torch.
 On Torch:
 ```bash
-$ mkdir -p ~/.ssh**
-$ chmod 700 ~/.ssh**
-$ nano ~/.ssh/authorized_keys**
+$ mkdir -p ~/.ssh
+$ chmod 700 ~/.ssh
+$ nano ~/.ssh/authorized_keys
 ```
 
 If authorized_keys already contains an HPC-managed key, do not remove or edit it. Add your custom SSH public key below the existing key, preferably under the line:
