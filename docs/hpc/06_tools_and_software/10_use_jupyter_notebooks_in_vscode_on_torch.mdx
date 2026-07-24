@@ -1,0 +1,27 @@
+# Use Apptainer Jupyter Notebooks in VSCode on Torch
+
+This page builds on the general VSCode access instructions in [Connect VSCode to Torch](./09_vscode_remote_ssh_torch). Before following this workflow, complete that setup and connect VSCode to the Torch login node.
+
+## Step 1: Install VSCode Jupyter support
+
+In the VSCode remote SSH window connected to Torch, install or enable the VSCode Jupyter extension.
+
+## Step 2: Start an interactive job
+
+Open a terminal in the VSCode remote session. The terminal should start on a Torch login node.
+
+Submit a dummy or interactive job from the login node. When the job starts, note the assigned compute node.
+
+## Step 3: Connect to the compute node
+
+From the VSCode terminal, ssh to the assigned compute node.
+
+## Step 4: Open the notebook
+
+Open the target .ipynb notebook in VSCode.
+
+## Step 5: Select the Apptainer kernel
+
+Use the notebook kernel picker to select the Apptainer kernel for the notebook.
+
+If the Apptainer kernel does not appear, confirm that the kernel is installed and visible on Torch before retrying in VSCode.
