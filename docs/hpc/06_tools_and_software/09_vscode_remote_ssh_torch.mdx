@@ -1,4 +1,4 @@
-# Connect VSCode to Apptainer Jupyter Notebook Environments
+# Connect VSCode to Torch
 Some users want to remotely work on Jupyter Notebooks using their Apptainer kernels. This is a tedious, error prone process.
 
 ## Step 1: Configure SSH for key-based ssh login
@@ -67,7 +67,7 @@ Configure Remote - SSH settings:
 Check off Remote.SSH: Lockfiles In Tmp
 Uncheck Remote.SSH: Use Flock
 
-Because Torch requires Microsoft device authentication during SSH login, VSCode may time out before you finish entering the device code. If this happens, increase the Remote - SSH connection timeout to 90 seconds. In VSCode Settings, search for Remote.SSH: Connect Timeout and set it to 120.
+Because Torch requires Microsoft device authentication during SSH login, VSCode may time out before you finish entering the device code. If this happens, search for Remote.SSH: Connect Timeout and set it to 120.
 
 Before connecting, open https://microsoft.com/devicelogin and keep it ready. In VSCode Remote Explorer, connect to the Torch login node: torch. When VSCode prompts for Microsoft device authentication, enter the code on the device login page. This may take a few attempts. VSCode may also prompt more than once during setup because it can open multiple SSH connections.
 
