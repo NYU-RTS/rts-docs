@@ -49,7 +49,7 @@ You can find the available types of GPUs at [Torch Spec Sheet](../10_spec_sheet.
 
 `SLURM` partitions on Torch control stakeholder resource access. No physical nodes are tied to partitions — instead, equivalent compute resources are allocated via partition `QoS`([QualityOfService](https://slurm.schedmd.com/qos.html)).
 
-:::tip{title="Partitions"}
+:::tip[Partitions]
 Do not specify partitions manually, except for preemption which is described later.
 :::
 
@@ -67,7 +67,7 @@ Non-stakeholders to temporarily use stakeholder resources (a stakeholder group t
 ## Job Submission on Torch
 As stated in the tutorial, be sure to only request the compute resources (e.g., GPUs, CPUs, memory) needed for the job. Requesting too many resources can prevent your job from being scheduled within an adequate time. The `SLURM` scheduler will automatically dispatch jobs to all accessible GPU partitions that match resource requests.
 
-:::danger{title="Low GPU Utilization Policy"}
+:::danger[Low GPU Utilization Policy]
 Jobs with low GPU utilization will be automatically canceled:
 | Node Pattern | Cancellation Criteria | Warning Criteria |
 | :----------- | :-------------------: | :--------------: |
@@ -84,7 +84,7 @@ Enforcement will be very aggressive.
 ## Preemptible Jobs on Torch
 On Torch, users may run "preemptible" jobs on stakeholder resources that their group does not own. This allows the stakeholder resources to be utilized by non-stakeholders which may otherwise be idle. To make the best use of these resources, you are encouraged to adopt checkpoint/restart to allow for resumption of the workload in subsequent jobs.
 
-:::warning{title="Preemption Policy"}
+:::warning[Preemption Policy]
 Jobs become eligible for preemption after 30 minutes of runtime. Jobs will not be canceled within the first 30 minutes.
 :::
 
