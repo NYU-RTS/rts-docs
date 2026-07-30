@@ -7,7 +7,7 @@ on:
 permissions:
   contents: read
   pull-requests: write
-  
+
 jobs:
   vale:
     name: Vale Grammar and Style Check
@@ -21,16 +21,22 @@ jobs:
 
       - name: Get changed markdown files
         id: changed-files
-        uses: tj-actions/changed-files@v45
-        with:
-          files: |
-            docs/**/*.md
-            docs/**/*.mdx
+        run: |
+          files=$(git diff --name-only \
+            ${{ github.event.pull_request.base.sha }} \
+            ${{ github.sha }} \
+            | grep -E '^docs/.*\.(md|mdx)$' \
+            | tr '\n' ' ' || true)
+
+          echo "Changed markdown files:"
+          echo "$files"
+
+          echo "files=$files" >> "$GITHUB_OUTPUT"
 
       - name: Run Vale
-        if: steps.changed-files.outputs.any_changed == 'true'
+        if: steps.changed-files.outputs.files != ''
         uses: vale-cli/vale-action@v2
         with:
           version: 3.12.0
-          files: ${{ steps.changed-files.outputs.all_changed_files }}
+          files: ${{ steps.changed-files.outputs.files }}
           reporter: github-pr-review
