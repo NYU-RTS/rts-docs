@@ -73,5 +73,18 @@
       "last 3 firefox version",
       "last 5 safari version"
     ]
+  },
+  "remarkConfig": {
+    "plugins": [
+      "remark-lint",
+      [
+        "remark-lint-no-undefined-references",
+        {
+          "allow": [
+            "/^:::/"
+          ]
+        }
+      ]
+    ]
   }
 }
