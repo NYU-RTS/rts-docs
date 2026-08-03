@@ -189,9 +189,9 @@ Host torch login.torch.hpc.nyu.edu
   
 # NYU Torch compute nodes — match by hostname pattern, proxy through login
 Host cs* cl* gr* ga* gh* gl*
-    User fs3047
-    ProxyCommand ssh -W %h:%p torch-login
-    ForwardAgent yes
+  User <NetID>
+  ProxyCommand ssh -W %h:%p torch-login
+  ForwardAgent yes
 ######################################################
 ```
 You'll need to replace the sections above labelled `<Your NetID>` with your NetID.  You can find more details about this at the [Quickstart section of Accessing HPC at NYU](https://sites.google.com/nyu.edu/nyu-hpc/accessing-hpc#h.7t97br4zzvip)
