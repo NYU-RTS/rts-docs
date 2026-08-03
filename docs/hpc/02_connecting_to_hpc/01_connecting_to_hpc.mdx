@@ -32,6 +32,13 @@ Host torch login.torch.hpc.nyu.edu
   ForwardAgent yes
   UserKnownHostsFile /dev/null
   LogLevel ERROR
+
+# NYU Torch compute nodes — match by hostname pattern, proxy through login
+Host cs* cl* gr* ga* gh* gl*
+    User fs3047
+    ProxyCommand ssh -W %h:%p torch-login
+    ForwardAgent yes
+######################################################
 ```
 
 :::warning[No SSH Keys on Torch]
