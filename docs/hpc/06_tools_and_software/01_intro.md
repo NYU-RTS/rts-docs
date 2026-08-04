@@ -12,7 +12,7 @@ We strongly advise that you setup your own computational environments via Apptai
 -   [Managing R packages with renv](../06_tools_and_software/05_r_packages_with_renv.mdx)
 
 ## Examples of Software Usage on Torch 
-Examples can be found under `/scratch/work/public/examples/` and include the following
+Examples can be found under `/projects/work/public/examples/` and include the following
 
 |                   |                       |                       |
 |-------------------|-----------------------|-----------------------|

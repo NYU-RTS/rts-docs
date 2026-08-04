@@ -29,7 +29,7 @@ srun: job 62890341 has been allocated resources
 
 2.  Unzip files there, for example
 ```sh
-[NetID@cm002 NetID]$ tar -vxzf /scratch/work/public/examples/squashfs/imagenet-example.tar.gz
+[NetID@cm002 NetID]$ tar -vxzf /projects/work/public/examples/squashfs/imagenet-example.tar.gz
 ```
 
 3.  Change access permissions in case we'll share files with others
