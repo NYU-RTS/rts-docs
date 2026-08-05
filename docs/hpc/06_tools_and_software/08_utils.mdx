@@ -72,6 +72,10 @@ You can get very detailed information about the GPU with:
 ```
 :::
 
+## `rpsquota`
+
+`rpsquota` returns detailed information about how much of your Research Project Space quota you're using (if you have RPS space) just like `myquota` does for your personal space. To use it just type `rpsquota` in the base RPS directory or give the base RPS path as an input argument like `rpsquota /path/to/rps/base`.
+
 ## `sdiag`
 
 A scheduling diagnostic tool for Slurm.  It shows information related to slurmctld execution about: threads, agents, jobs, and scheduling algorithms.
@@ -198,8 +202,3 @@ This shows the maximum number of cpus/gpus and memory allowed for different wall
 ```
 You can see that, in general, the partitions with shorter wall times will allow the use of greater resources.
 
-{/* coming soon
-## `rpsquota`
-
-`rpsquota` returns detailed information about how much of your Research Project Space quota you're using (if you have RPS space). To use it just type `rpsquota` in the base RPS directory or give the base RPS path as an input argument like `rpsquota /path/to/rps/space`.
-*/}
