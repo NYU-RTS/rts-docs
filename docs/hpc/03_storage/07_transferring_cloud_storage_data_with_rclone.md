@@ -1,6 +1,6 @@
 # Transferring Cloud Storage Data with Rclone
 
-:::tip Globus
+:::tip[Globus]
 Globus is the recommended tool to use for large-volume data transfers due to the efficiency, reliability, security and ease of use. Use other tools only if you really need to. Detailed instructions available at [Globus](./03_globus.md)
 :::
 
