@@ -1,7 +1,18 @@
 # Connect VSCode to Torch
-This page describes how to connect VSCode to the Torch login node. 
+This page introduces two ways to connect VSCode to Torch. 
 
-## Step 1: Configure the Torch SSH Host
+## Recommended Option: `code-server` through Open OnDemand
+
+Torch provides `code-server`, which runs a VSCode-like editor in the browser, as an Open OnDemand interactive app.
+
+To use it, log in to Torch Open OnDemand and launch the code-server app from the interactive apps menu.
+
+After the session starts, open the code-server session by clicking "Connect to VS Code". The session provides browser-based file browsing and editing on Torch, and includes a working terminal.
+
+This workflow can be easier than local VSCode Remote - SSH because authentication is handled through the Open OnDemand login. After logging in to Open OnDemand, users do not need to complete additional Microsoft device authentication prompts. Open OnDemand also launches the code-server session through the scheduler, so users do not need to manually submit a dummy batch job and then connect to the assigned compute node. For users who only need a browser-based VSCode-like environment on Torch, code-server is the recommended option.
+
+## Alternative Option: Local VSCode with Remote - SSH
+### Step 1: Configure the Torch SSH Host
 
 Update your local `~/.ssh/config` to define a Torch SSH host for VSCode:
 
@@ -17,7 +28,7 @@ Host torch
 
 Replace `NetID` with your NYU NetID.
 
-## Step 2: Connect
+### Step 2: Connect
 Install the VSCode Remote - SSH extension. 
 
 Configure Remote - SSH settings:
