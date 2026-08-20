@@ -34,10 +34,14 @@ jobs:
       # remark-mdx from the project's node_modules, where @mdx-js/react pulls
       # in mdast-util-mdx-jsx@3 — incompatible with remark-cli@10's bundled
       # unified v10 stack. npm -g puts remark-mdx@2 next to remark-cli so the
-      # versions stay compatible. install_deps: false prevents the action from
-      # running npm install and reintroducing the incompatible project deps.
-      - name: Install remark-mdx globally
-        run: npm install -g remark-mdx@2
+      # versions stay compatible. The undefined-references rule is also
+      # installed at the top level because package.json names it directly;
+      # its nested copy under remark-preset-lint-recommended is not discoverable
+      # from the repository when install_deps is false.
+      # install_deps: false prevents the action from running npm install and
+      # reintroducing the incompatible project deps.
+      - name: Install remark plugins globally
+        run: npm install -g remark-mdx@2 remark-lint-no-undefined-references@4
 
       - name: remark-lint
         uses: reviewdog/action-remark-lint@v5
