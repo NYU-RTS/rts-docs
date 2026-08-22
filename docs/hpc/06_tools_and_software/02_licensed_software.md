@@ -104,8 +104,8 @@ cd /scratch/<net_id>/example
 ```
 2.  Copy example files to your newly created directory
 ```sh
-cp /scratch/work/public/examples/comsol/run-comsol.sbatch /scratch/<net_id>/example/
-cp /scratch/work/public/examples/comsol/test-input.mph /scratch/<net_id>/example/
+cp /projects/work/public/examples/comsol/run-comsol.sbatch /scratch/<net_id>/example/
+cp /projects/work/public/examples/comsol/test-input.mph /scratch/<net_id>/example/
 ```
 3.  Edit the slurm batch script file (run-comsol.sbatch) to match your case (for example chance location of the run directory).
 4.  Once the slurm batch script file is ready, it can be submitted to the job scheduler using sbatch. After successful completion of job, verify output log file for detail output information.
@@ -132,8 +132,8 @@ cd /scratch/<net_id>/example
 ```
 2.  Copy example files to your newly created directory.
 ```sh
-cp /scratch/work/public/examples/mathematica/basic/example.m /scratch/<net_id>/example/
-cp /scratch/work/public/examples/mathematica/basic/run-mathematica.sbatch /scratch/<net_id>/example
+cp /projects/work/public/examples/mathematica/basic/example.m /scratch/<net_id>/example/
+cp /projects/work/public/examples/mathematica/basic/run-mathematica.sbatch /scratch/<net_id>/example
 ```
 3.  Edit the slurm batch script file (run-mathematica.sbatch) to match your case (for example chance location of the run directory).
 4.  Once the sbatch script file is ready, it can be submitted to the job scheduler using sbatch. After successful completion of job, verify output log file generated.
@@ -168,9 +168,9 @@ cd /scratch/<net_id>/example
 ```
 2.  Copy example files to your newly created directory.
 ```sh
-cp /scratch/work/public/examples/sas/test.sas  /scratch/<net_id>/example/
-cp /scratch/work/public/examples/sas/test2.sas  /scratch/<net_id>/example/
-cp /scratch/work/public/examples/sas/run-sas.sbatch  /scratch/<net_id>/example/
+cp /projects/work/public/examples/sas/test.sas  /scratch/<net_id>/example/
+cp /projects/work/public/examples/sas/test2.sas  /scratch/<net_id>/example/
+cp /projects/work/public/examples/sas/run-sas.sbatch  /scratch/<net_id>/example/
 ```
 3.  Submit as shown below. After successful completion of job, verify output log file generated.
 ```sh
@@ -210,8 +210,8 @@ cd /scratch/<net_id>/example
 ```
 2.  Copy example files to your newly created directory.
 ```sh
-cp /scratch/work/public/examples/stata/run-stata.sbatch  /scratch/<net_id>/example/
-cp /scratch/work/public/examples/stata/stata-test.do  /scratch/<net_id>/example/
+cp /projects/work/public/examples/stata/run-stata.sbatch  /scratch/<net_id>/example/
+cp /projects/work/public/examples/stata/stata-test.do  /scratch/<net_id>/example/
 ```
 3.  Submit using sbatch. After successful completion of job, verify output log file generated.
 ```sh
@@ -231,8 +231,8 @@ To submit a Gaussian job for running on multiple processing elements, follow bel
 ```sh
 mkdir /scratch/<net_id>/example
 cd /scratch/<net_id>/example   #Copy example files to your newly created directory.
-cp /scratch/work/public/examples/gaussian/basic/test435.com  /scratch/<net_id>/example/
-cp /scratch/work/public/examples/gaussian/basic/run-gaussian.sbatch  /scratch/<net_id>/example/
+cp /projects/work/public/examples/gaussian/basic/test435.com  /scratch/<net_id>/example/
+cp /projects/work/public/examples/gaussian/basic/run-gaussian.sbatch  /scratch/<net_id>/example/
 ```
 2.  Once the sbatch script file is ready, it can be submitted to the job scheduler using sbatch. After successful completion of job, verify output log file generated.
 ```sh
@@ -253,7 +253,7 @@ cd /scratch/<net_id>/example
 ```
 2.  Copy example files to your newly created directory.
 ```sh
-cp /scratch/work/public/examples/knitro/knitro.py /scratch/<net_id>/example/
+cp /projects/work/public/examples/knitro/knitro.py /scratch/<net_id>/example/
 ```
 3.  There is no sample sbatch script available for knitro.
 4.  After creating your own sbatch script you can execute it as follows:

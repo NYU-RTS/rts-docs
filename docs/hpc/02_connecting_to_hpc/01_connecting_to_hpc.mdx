@@ -32,6 +32,13 @@ Host torch login.torch.hpc.nyu.edu
   ForwardAgent yes
   UserKnownHostsFile /dev/null
   LogLevel ERROR
+
+# NYU Torch compute nodes — match by hostname pattern, proxy through login
+Host cs* cl* gr* ga* gh* gl*
+  User <NetID>
+  ProxyCommand ssh -W %h:%p torch-login
+  ForwardAgent yes
+######################################################
 ```
 
 :::warning[No SSH Keys on Torch]
@@ -56,7 +63,7 @@ Configuring the file above will allow you to use the cmd terminal to connect to 
 
 ### Common Issues
 
-:::warning Man in the Middle warning
+:::warning[Man in the Middle warning]
 If you see this warning:
 ```sh
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -69,14 +76,14 @@ It is also possible that a host key has just been changed.
 Do not be alarmed - this is an issue that occurs because the Torch and Torch clusters have multiple login nodes. For instance, `login.torch.hpc.nyu.edu` resolves to one of three possible login nodes (`log-1`, `log-2`, and `log-3`). The configuration directive `StrictHostKeyChecking no` referenced in the recommended config above will prevent this error. Ensure that you have not missed adding it.
 :::
 
-:::info SSH Timeout errors
+:::info[SSH Timeout errors]
 SSH timeout errors can be fixed by extending the `ServerAliveInterval` argument.
 :::
 
 ## Connecting to the NYU Network
 To access the HPC systems, you must either be on the NYU secure network (such as the NYU WiFi or a wired connection from an NYU office) or use the NYU VPN.
 
-:::info Connecting to the HPC clusters from outside NYU Network
+:::info[Connecting to the HPC clusters from outside NYU Network]
 [Set up your computer to use the NYU VPN][nyu vpn link]. Once you've created a VPN connection, you can proceed as if you were connected to the NYU net
 :::
 

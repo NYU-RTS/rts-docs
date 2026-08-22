@@ -2,7 +2,7 @@
 
 When someone nominates you as their HPC sponsor, you should be notified by email.
 
-:::info VPN Needed
+:::info[VPN Needed]
 You need to be on the NYU VPN to perform this task!
 :::
 
