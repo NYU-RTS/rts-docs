@@ -1,0 +1,32 @@
+# Connect VSCode to Torch
+This page introduces two ways to connect VSCode to Torch. 
+
+For most users, the recommended way to use a VSCode-like environment on Torch is `code-server` through Open OnDemand. This avoids the Microsoft device authentication prompts required by local VSCode Remote - SSH.
+
+See [Use code-server on Torch through Open OnDemand](docs/hpc/09_ood/08_vscode.mdx) before using the local VSCode Remote - SSH workflow below.
+
+Use the following steps only if you specifically need to connect from your local VSCode application.
+
+## Step 1: Configure Your SSH Client
+
+Before using local VSCode Remote - SSH, configure your SSH client for Torch by following [Configuring your SSH client](docs/hpc/02_connecting_to_hpc/01_connecting_to_hpc.mdx).
+
+## Step 2: Connect
+Install the VSCode Remote - SSH extension. 
+
+Configure Remote - SSH settings:
+- Enable `Remote.SSH: Lockfiles In Tmp`
+- Unable `Remote.SSH: Use Flock`
+
+Because Torch requires Microsoft device authentication during SSH login, VSCode may time out before you finish entering the device code. If this happens, search for Remote.SSH: Connect Timeout and set it to 120.
+
+Before connecting, open https://microsoft.com/devicelogin and keep it ready. In VSCode Remote Explorer, connect to the Torch login node: torch. When VSCode prompts for Microsoft device authentication, enter the code on the device login page. This may take a few attempts. VSCode may also prompt more than once during setup because it can open multiple SSH connections.
+
+After authentication, VSCode may take a while to install or start the VSCode server on Torch. If the connection fails during this step, try connecting again. Once the server is installed successfully, future connections are usually more consistent.
+
+Once connected, open a terminal in the VSCode remote session. The prompt should show that you are on a Torch login node, for example:
+```bash
+[NetID@torch-login-... ~]$
+```
+
+
