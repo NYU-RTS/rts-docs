@@ -32,8 +32,8 @@ Replace `NetID` with your NYU NetID.
 Install the VSCode Remote - SSH extension. 
 
 Configure Remote - SSH settings:
-1. Check off `Remote.SSH: Lockfiles In Tmp`
-2. Uncheck `Remote.SSH: Use Flock`
+- Enable `Remote.SSH: Lockfiles In Tmp`
+- Unable `Remote.SSH: Use Flock`
 
 Because Torch requires Microsoft device authentication during SSH login, VSCode may time out before you finish entering the device code. If this happens, search for Remote.SSH: Connect Timeout and set it to 120.
 
