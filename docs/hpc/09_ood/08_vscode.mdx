@@ -8,7 +8,11 @@ For most users who want a VSCode-like development environment on Torch, `code-se
 
 From the Open OnDemand dashboard, open **Interactive Apps** from the top navigation bar and select **Code Server**.
 
+![Code Server app in the Interactive Apps menu](docs/hpc/09_ood/static/code_server.png)
+
 Configure the session options for your work. For example, select the number of cores, memory, GPU type, Slurm account, working directory, and session duration.
+
+![Code Server Configuration](docs/hpc/09_ood/static/code_server_configuration.png)
 
 Click **Launch**. Open OnDemand will submit a job for the `code-server` session.
 
@@ -18,10 +22,12 @@ After the job starts running, the session card will show the assigned host, sess
 
 Click `Connect to VS Code`.
 
+![Code Server Job](docs/hpc/09_ood/static/code_server_job.png)
+
 This opens a VSCode-like editor in your browser. You can browse and edit files on Torch and use the terminal provided in the session.
 
 ## Why Use `code-server` Instead of Local VSCode Remote - SSH?
 
 Using `code-server` through Open OnDemand can be easier than using local VSCode Remote - SSH because authentication and job submission are handled through Open OnDemand. Users do not need to complete separate Microsoft device authentication prompts in VSCode, submit a dummy batch job manually, or connect to the assigned compute node from a local VSCode session.
 
-If you specifically need to use the local VSCode desktop application, see [Connect VSCode to Torch](/docs/hpc/tools_and_software/vscode_remote_ssh_torch/).
+If you specifically need to use the local VSCode desktop application, see [Connect VSCode to Torch](docs/hpc/06_tools_and_software/09_vscode_remote_ssh_torch.mdx).
