@@ -5,7 +5,7 @@ env:
 
 permissions:
   contents: read
-  pull-requests: write 
+  pull-requests: write
 
 on:
   pull_request:
@@ -30,25 +30,10 @@ jobs:
           # https://github.com/pnpm/pnpm/issues/12959
           version: 11.11.0
 
-      # npm (not pnpm) is intentional: remark-cli is installed globally by the
-      # action at /usr/local/lib/node_modules/. pnpm's global store is not on
-      # that resolution path, so remark-cli would fall back to resolving
-      # remark-mdx from the project's node_modules, where @mdx-js/react pulls
-      # in mdast-util-mdx-jsx@3 — incompatible with remark-cli@10's bundled
-      # unified v10 stack. npm -g puts remark-mdx@2 next to remark-cli so the
-      # versions stay compatible. The undefined-references rule is also
-      # installed at the top level because package.json names it directly;
-      # its nested copy under remark-preset-lint-recommended is not discoverable
-      # from the repository when install_deps is false.
-      # install_deps: false prevents the action from running npm install and
-      # reintroducing the incompatible project deps.
-      - name: Install remark plugins globally
-        run: npm install -g remark-mdx@2 remark-lint-no-undefined-references@4
-
       - name: Install remark plugins and reviewdog
         run: |
           npm install -g remark-cli@10 remark-preset-lint-recommended remark-mdx@2 remark-lint-no-undefined-references@4
-          curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b /usr/local/bin
+          curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b /tmp
 
       - name: Find changed Markdown files
         id: changed_files
@@ -65,13 +50,13 @@ jobs:
           fi
 
       - name: remark-lint changed files
-  if: steps.changed_files.outputs.has_changed_files == 'true'
-  run: |
-    remark $(cat changed-markdown-files.txt) --use=remark-preset-lint-recommended --use=remark-mdx --ext .md,.mdx 2>&1 \
-      | sed 's/\x1b\[[0-9;]*m//g' \
-      | reviewdog -f=remark-lint \
-          -name="remark-lint" \
-          -reporter="github-pr-review" \
-          -filter-mode="nofilter" \
-          -fail-level="warning" \
-          -level="warning"
+        if: steps.changed_files.outputs.has_changed_files == 'true'
+        run: |
+          remark $(cat changed-markdown-files.txt) --use=remark-preset-lint-recommended --use=remark-mdx --ext .md,.mdx 2>&1 \
+            | sed 's/\x1b\[[0-9;]*m//g' \
+            | /tmp/reviewdog -f=remark-lint \
+                -name="remark-lint" \
+                -reporter="github-pr-review" \
+                -filter-mode="nofilter" \
+                -fail-level="warning" \
+                -level="warning"
