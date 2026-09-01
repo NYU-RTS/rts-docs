@@ -59,13 +59,14 @@ jobs:
             echo "No changed Markdown files."
           fi
 
-      - name: remark-lint
-        if: steps.changed_files.outputs.has_changed_files == 'true'
-        uses: reviewdog/action-remark-lint@v5
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: github-pr-review
-          fail_level: "warning"
-          level: "warning"
-          install_deps: false
-          remark_args: "$(cat changed-markdown-files.txt) --use=remark-preset-lint-recommended --use=remark-mdx --ext .md,.mdx"
+      - name: remark-lint changed files
+  if: steps.changed_files.outputs.has_changed_files == 'true'
+  run: |
+    remark $(cat changed-markdown-files.txt) --use=remark-preset-lint-recommended --use=remark-mdx --ext .md,.mdx 2>&1 \
+      | sed 's/\x1b\[[0-9;]*m//g' \
+      | reviewdog -f=remark-lint \
+          -name="remark-lint" \
+          -reporter="github-pr-review" \
+          -filter-mode="nofilter" \
+          -fail-level="warning" \
+          -level="warning"
