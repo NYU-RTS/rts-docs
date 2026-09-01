@@ -32,7 +32,7 @@ jobs:
 
       - name: Install remark plugins and reviewdog
         run: |
-          npm install -g remark-cli@10 remark-preset-lint-recommended remark-mdx@2 remark-lint-no-undefined-references@4
+          npm install -g remark-cli@10 remark-lint@10 remark-preset-lint-recommended remark-mdx@2 remark-lint-no-undefined-references@4
           curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b /tmp
 
       - name: Find changed Markdown files
