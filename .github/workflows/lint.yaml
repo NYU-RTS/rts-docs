@@ -18,6 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
 
       - name: Install pnpm
         uses: pnpm/action-setup@v6
@@ -43,7 +45,22 @@ jobs:
       - name: Install remark plugins globally
         run: npm install -g remark-mdx@2 remark-lint-no-undefined-references@4
 
+      - name: Find changed Markdown files
+        id: changed_files
+        run: |
+          git fetch origin ${{ github.base_ref }}
+          git diff --name-only --diff-filter=ACMRT origin/${{ github.base_ref }}...HEAD -- '*.md' '*.mdx' > changed-markdown-files.txt
+
+          if [ -s changed-markdown-files.txt ]; then
+            echo "has_changed_files=true" >> "$GITHUB_OUTPUT"
+            cat changed-markdown-files.txt
+          else
+            echo "has_changed_files=false" >> "$GITHUB_OUTPUT"
+            echo "No changed Markdown files."
+          fi
+
       - name: remark-lint
+        if: steps.changed_files.outputs.has_changed_files == 'true'
         uses: reviewdog/action-remark-lint@v5
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -51,4 +68,4 @@ jobs:
           fail_level: "warning"
           level: "warning"
           install_deps: false
-          remark_args: "--use=remark-preset-lint-recommended --use=remark-mdx --ext .md,.mdx"
+          remark_args: "$(cat changed-markdown-files.txt) --use=remark-preset-lint-recommended --use=remark-mdx --ext .md,.mdx"
