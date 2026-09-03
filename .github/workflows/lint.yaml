@@ -34,6 +34,15 @@ jobs:
         run: |
           npm install -g remark-cli@10 remark-lint@10 remark-preset-lint-recommended remark-mdx@2 remark-lint-no-undefined-references@4
           curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b /tmp
+            # reviewdog/action-remark-lint runs remark against a directory, but this
+  
+      # repository currently has existing repo-wide remark warnings. Because this
+      # workflow fails on warnings, running remark on the whole repository would
+      # fail PRs for warnings unrelated to the modified files.
+      # Until the existing repo-wide warnings are cleaned up, lint only Markdown/MDX
+      # files changed in the current PR and pipe the result to reviewdog manually.
+      # See the follow-up cleanup issue before reverting this back to
+      # reviewdog/action-remark-lint.
 
       - name: Find changed Markdown files
         id: changed_files
