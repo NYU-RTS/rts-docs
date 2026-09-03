@@ -1,0 +1,47 @@
+# Connect VSCode to Torch
+This page introduces two ways to connect VSCode to Torch. 
+
+## Recommended Option: `code-server` through Open OnDemand
+
+Torch provides `code-server`, which runs a VSCode-like editor in the browser, as an Open OnDemand interactive app.
+
+To use it, log in to Torch Open OnDemand and launch the code-server app from the interactive apps menu.
+
+After the session starts, open the code-server session by clicking "Connect to VS Code". The session provides browser-based file browsing and editing on Torch, and includes a working terminal.
+
+This workflow can be easier than local VSCode Remote - SSH because authentication is handled through the Open OnDemand login. After logging in to Open OnDemand, users do not need to complete additional Microsoft device authentication prompts. Open OnDemand also launches the code-server session through the scheduler, so users do not need to manually submit a dummy batch job and then connect to the assigned compute node. For users who only need a browser-based VSCode-like environment on Torch, code-server is the recommended option.
+
+## Alternative Option: Local VSCode with Remote - SSH
+### Step 1: Configure the Torch SSH Host
+
+Update your local `~/.ssh/config` to define a Torch SSH host for VSCode:
+
+```ssh-config
+Host torch
+  HostName login.torch.hpc.nyu.edu
+  User NetID
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  LogLevel ERROR
+  ServerAliveInterval 60
+```
+
+Replace `NetID` with your NYU NetID.
+
+### Step 2: Connect
+Install the VSCode Remote - SSH extension. 
+
+Configure Remote - SSH settings:
+1. Enable `Remote.SSH: Lockfiles In Tmp`
+2. Unable `Remote.SSH: Use Flock`
+
+Because Torch requires Microsoft device authentication during SSH login, VSCode may time out before you finish entering the device code. If this happens, search for Remote.SSH: Connect Timeout and set it to 120.
+
+Before connecting, open https://microsoft.com/devicelogin and keep it ready. In VSCode Remote Explorer, connect to the Torch login node: torch. When VSCode prompts for Microsoft device authentication, enter the code on the device login page. This may take a few attempts. VSCode may also prompt more than once during setup because it can open multiple SSH connections.
+
+After authentication, VSCode may take a while to install or start the VSCode server on Torch. If the connection fails during this step, try connecting again. Once the server is installed successfully, future connections are usually more consistent.
+
+Once connected, open a terminal in the VSCode remote session. The prompt should show that you are on a Torch login node, for example:
+```bash
+[NetID@torch-login-... ~]$
+```

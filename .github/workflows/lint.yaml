@@ -5,7 +5,7 @@ env:
 
 permissions:
   contents: read
-  pull-requests: write 
+  pull-requests: write
 
 on:
   pull_request:
@@ -18,6 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
 
       - name: Install pnpm
         uses: pnpm/action-setup@v6
@@ -28,27 +30,42 @@ jobs:
           # https://github.com/pnpm/pnpm/issues/12959
           version: 11.11.0
 
-      # npm (not pnpm) is intentional: remark-cli is installed globally by the
-      # action at /usr/local/lib/node_modules/. pnpm's global store is not on
-      # that resolution path, so remark-cli would fall back to resolving
-      # remark-mdx from the project's node_modules, where @mdx-js/react pulls
-      # in mdast-util-mdx-jsx@3 — incompatible with remark-cli@10's bundled
-      # unified v10 stack. npm -g puts remark-mdx@2 next to remark-cli so the
-      # versions stay compatible. The undefined-references rule is also
-      # installed at the top level because package.json names it directly;
-      # its nested copy under remark-preset-lint-recommended is not discoverable
-      # from the repository when install_deps is false.
-      # install_deps: false prevents the action from running npm install and
-      # reintroducing the incompatible project deps.
-      - name: Install remark plugins globally
-        run: npm install -g remark-mdx@2 remark-lint-no-undefined-references@4
+      - name: Install remark plugins and reviewdog
+        run: |
+          npm install -g remark-cli@10 remark-lint@10 remark-preset-lint-recommended remark-mdx@2 remark-lint-no-undefined-references@4
+          curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b /tmp
+            # reviewdog/action-remark-lint runs remark against a directory, but this
+  
+      # repository currently has existing repo-wide remark warnings. Because this
+      # workflow fails on warnings, running remark on the whole repository would
+      # fail PRs for warnings unrelated to the modified files.
+      # Until the existing repo-wide warnings are cleaned up, lint only Markdown/MDX
+      # files changed in the current PR and pipe the result to reviewdog manually.
+      # See the follow-up cleanup issue before reverting this back to
+      # reviewdog/action-remark-lint.
 
-      - name: remark-lint
-        uses: reviewdog/action-remark-lint@v5
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: github-pr-review
-          fail_level: "warning"
-          level: "warning"
-          install_deps: false
-          remark_args: "--use=remark-preset-lint-recommended --use=remark-mdx --ext .md,.mdx"
+      - name: Find changed Markdown files
+        id: changed_files
+        run: |
+          git fetch origin ${{ github.base_ref }}
+          git diff --name-only --diff-filter=ACMRT origin/${{ github.base_ref }}...HEAD -- '*.md' '*.mdx' > changed-markdown-files.txt
+
+          if [ -s changed-markdown-files.txt ]; then
+            echo "has_changed_files=true" >> "$GITHUB_OUTPUT"
+            cat changed-markdown-files.txt
+          else
+            echo "has_changed_files=false" >> "$GITHUB_OUTPUT"
+            echo "No changed Markdown files."
+          fi
+
+      - name: remark-lint changed files
+        if: steps.changed_files.outputs.has_changed_files == 'true'
+        run: |
+          remark $(cat changed-markdown-files.txt) --use=remark-preset-lint-recommended --use=remark-mdx --ext .md,.mdx 2>&1 \
+            | sed 's/\x1b\[[0-9;]*m//g' \
+            | /tmp/reviewdog -f=remark-lint \
+                -name="remark-lint" \
+                -reporter="github-pr-review" \
+                -filter-mode="nofilter" \
+                -fail-level="warning" \
+                -level="warning"
