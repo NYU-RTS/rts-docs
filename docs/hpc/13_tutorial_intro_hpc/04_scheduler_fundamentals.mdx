@@ -191,7 +191,7 @@ Try submitting multiple jobs and then cancelling them all with `scancel -u NetID
 
 ## Job Arrays
 > Job arrays offer a mechanism for submitting and managing collections of similar jobs quickly and easily, useful for repetitive workloads that follow a common job pattern. This greatly improves overall performance, since job arrays with millions of tasks can be submitted in milliseconds (subject to configured size limits) and the scheduler can quickly identify cases when no more array tasks are eligible to start.<br />
--- [Slurm documentation](https://slurm.schedmd.com/job_array.html)
+> -- [Slurm documentation](https://slurm.schedmd.com/job_array.html)
 
 ### Job Array Example
 As stated above, you can have a single sbatch job submit multiple jobs by using Job Arrays.  This example shows how you can run the same python file with a range of input parameters from a single sbatch file.
