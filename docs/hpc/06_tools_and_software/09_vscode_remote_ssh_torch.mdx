@@ -34,3 +34,12 @@ Once connected, open a terminal in the VSCode remote session. The prompt should 
 ```bash
 [NetID@torch-login-... ~]$
 ```
+:::tip[Troubleshooting]
+If you get an error message stating that the device is out of space, but you still have space in your personal directory, it could be that `/tmp` on the remote host does not have enough space for the install.
+
+You can have the VSCode installer use a temporary directory of your choosing (`/scratch/NetID/.vscode-tmp`) instead of `/tmp` by adding the following line to the block for the Torch login node in your `.ssh/config` file:
+```
+SetEnv TMPDIR=/scratch/NetID/.vscode-tmp
+```
+You'll need to replace `NetID` above with your NetID
+:::
