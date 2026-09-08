@@ -299,11 +299,11 @@ Say you have a “data” folder containing 10,000 or so files, a healthy mix of
 :::
 </summary>
 :::tip[Solution]
-1.   `scp` will recursively copy the directory. This works, but without compression.
-1.   `rsync -ra` works like `scp -r`, but preserves file information like creation times. This is marginally better.
-1.   `rsync -raz` adds compression, which will save some bandwidth. If you have a strong CPU at both ends of the line, and you’re on a slow network, this is a good choice.
-1.   This command first uses `tar` to merge everything into a single file, then `rsync -z` to transfer it with compression. If you have a large number of files, metadata overhead can hamper your transfer, so this is a good idea.
-1.   This command uses `tar -z` to compress the archive, then `rsync` to transfer it. This may perform similarly to the command directly above, but in most cases (for large datasets), it’s the best combination of high throughput and low latency (making the most of your time and network connection).
+1.  `scp` will recursively copy the directory. This works, but without compression.
+1.  `rsync -ra` works like `scp -r`, but preserves file information like creation times. This is marginally better.
+1.  `rsync -raz` adds compression, which will save some bandwidth. If you have a strong CPU at both ends of the line, and you’re on a slow network, this is a good choice.
+1.  This command first uses `tar` to merge everything into a single file, then `rsync -z` to transfer it with compression. If you have a large number of files, metadata overhead can hamper your transfer, so this is a good idea.
+1.  This command uses `tar -z` to compress the archive, then `rsync` to transfer it. This may perform similarly to the command directly above, but in most cases (for large datasets), it’s the best combination of high throughput and low latency (making the most of your time and network connection).
 :::
 </details>
 
