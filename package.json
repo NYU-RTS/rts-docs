@@ -77,13 +77,9 @@
   "remarkConfig": {
     "plugins": [
       "remark-lint",
+      "remark-directive",
       [
-        "remark-lint-no-undefined-references",
-        {
-          "allow": [
-            "/^:::/"
-          ]
-        }
+        "remark-lint-no-undefined-references"
       ]
     ]
   }
