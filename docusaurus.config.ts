@@ -198,11 +198,11 @@ const config: Config = {
     },
 
     docsearch: {
-      appId: "AGENT_STUDIO_APP_ID",
-      apiKey: "AGENT_STUDIO_SEARCH_API_KEY",
-      indices: [{ name: "AGENT_STUDIO_INDEX_NAME" }],
+      appId: "5Y8Q0MVP6Y",
+      apiKey: "765882f24d95c1462561a66b67f33fb8",
+      indices: [{ name: "algolia-crawler" }],
       askAi: {
-        agentId: "AGENT_STUDIO_AGENT_ID",
+        agentId: "c88dc637-3487-428a-bf12-f6dd4a5981e9",
       },
       sidePanel: true,
       insights: true,
