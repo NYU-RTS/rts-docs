@@ -12,21 +12,10 @@ After the session starts, open the code-server session by clicking "Connect to V
 This workflow can be easier than local VSCode Remote - SSH because authentication is handled through the Open OnDemand login. After logging in to Open OnDemand, users do not need to complete additional Microsoft device authentication prompts. Open OnDemand also launches the code-server session through the scheduler, so users do not need to manually submit a dummy batch job and then connect to the assigned compute node. For users who only need a browser-based VSCode-like environment on Torch, code-server is the recommended option.
 
 ## Alternative Option: Local VSCode with Remote - SSH
+
 ### Step 1: Configure the Torch SSH Host
 
-Update your local `~/.ssh/config` to define a Torch SSH host for VSCode:
-
-```ssh-config
-Host torch
-  HostName login.torch.hpc.nyu.edu
-  User NetID
-  StrictHostKeyChecking no
-  UserKnownHostsFile /dev/null
-  LogLevel ERROR
-  ServerAliveInterval 60
-```
-
-Replace `NetID` with your NYU NetID.
+Ensure that you SSH client has been configured [as described here](../02_connecting_to_hpc/01_connecting_to_hpc.mdx#configuring-your-ssh-client)
 
 ### Step 2: Connect
 Install the VSCode Remote - SSH extension. 
