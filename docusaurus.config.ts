@@ -34,7 +34,7 @@ const config: Config = {
       onBrokenMarkdownImages: "throw",
     },
   },
-  themes: ["@docusaurus/theme-mermaid"],
+  themes: ["@docusaurus/theme-mermaid", "@docsearch/docusaurus-adapter"],
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -197,12 +197,14 @@ const config: Config = {
       ],
     },
 
-    algolia: {
-      askAi: "8ZKKd4FtQw2e",
+    docsearch: {
       appId: "5Y8Q0MVP6Y",
       apiKey: "765882f24d95c1462561a66b67f33fb8",
-      indexName: "algolia-crawler",
-      searchPagePath: "search",
+      indices: [{ name: "algolia-crawler" }],
+      askAi: {
+        agentId: "c88dc637-3487-428a-bf12-f6dd4a5981e9",
+      },
+      sidePanel: true,
       insights: true,
     },
   } satisfies Preset.ThemeConfig,
