@@ -58,7 +58,7 @@ Singularity> find /state/partition1/<NetID>/imagenet-example | wc -l
 1303
 ```
 
-7.  To delete the tempoary folder on host
+7.  To delete the temporary folder on host
 ```sh
 [NetID@cm002 NetID]$ rm -rf /state/partition1/<NetID>
 ```
