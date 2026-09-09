@@ -204,7 +204,10 @@ const config: Config = {
       askAi: {
         agentId: "c88dc637-3487-428a-bf12-f6dd4a5981e9",
       },
-      sidePanel: true,
+      sidePanel: {
+        width: "min(32vw, 480px)",
+        expandedWidth: "min(48vw, 720px)",
+      },
       insights: true,
     },
   } satisfies Preset.ThemeConfig,
