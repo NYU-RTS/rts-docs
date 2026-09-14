@@ -195,8 +195,8 @@ renv::init()
 
 ### What to save/publish/commit with Git
 In order to have your work reproducible by you and/or others:
-- save and/or commit your code in git
-- be sure to include `renv.lock` (which lists all packages and versions that you use including the version of R)
+-   save and/or commit your code in git
+-   be sure to include `renv.lock` (which lists all packages and versions that you use including the version of R)
 
 ### Migrating from Packrat
 The `renv` package has replaced the now deprecated `Packrat` package. The `renv::migrate()` function makes it possible to migrate projects from `Packrat` to `renv`. See the ?migrate documentation for more details. In essence, calling `renv::migrate("<project path>")` will be enough to migrate the `Packrat` library and lockfile such that they can then be used by `renv`.
