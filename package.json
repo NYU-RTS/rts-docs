@@ -57,6 +57,7 @@
     "prettier": "^3.9.4",
     "prettier-plugin-jsdoc": "^1.8.1",
     "remark-directive": "^3.0.0",
+    "remark-frontmatter": "^4.0.1",
     "stylelint": "^17.14.0",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-standard": "^40.0.0",
@@ -80,6 +81,7 @@
     "plugins": [
       "remark-lint",
       "remark-directive",
+      "remark-frontmatter",
       [
         "remark-lint-no-undefined-references"
       ]
