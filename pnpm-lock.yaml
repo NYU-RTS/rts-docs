@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@docsearch/docusaurus-adapter':
-        specifier: ^5.0.5
-        version: 5.0.5(@algolia/client-search@5.55.2)(@docusaurus/faster@3.10.2(@docusaurus/types@3.10.2(@swc/core@1.15.43)(@swc/html@1.15.43)(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.16))(csso@5.0.5)(html-minifier-terser@7.2.0)(lightningcss@1.32.0)(postcss@8.5.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(supports-color@10.2.2))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.16))(csso@5.0.5)(html-minifier-terser@7.2.0)(postcss@8.5.16))(@mdx-js/react@3.1.1(@types/react@19.2.17)(react@19.2.7))(@rspack/core@1.7.12)(@swc/core@1.15.43)(@swc/html@1.15.43)(@types/react@19.2.17)(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.16))(csso@5.0.5)(debug@4.4.3(supports-color@10.2.2))(html-minifier-terser@7.2.0)(lightningcss@1.32.0)(postcss@8.5.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(supports-color@10.2.2)(typescript@5.9.3)
+        specifier: ^5.1.0
+        version: 5.1.0(@algolia/client-search@5.55.2)(@docusaurus/faster@3.10.2(@docusaurus/types@3.10.2(@swc/core@1.15.43)(@swc/html@1.15.43)(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.16))(csso@5.0.5)(html-minifier-terser@7.2.0)(lightningcss@1.32.0)(postcss@8.5.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(supports-color@10.2.2))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.16))(csso@5.0.5)(html-minifier-terser@7.2.0)(postcss@8.5.16))(@mdx-js/react@3.1.1(@types/react@19.2.17)(react@19.2.7))(@rspack/core@1.7.12)(@swc/core@1.15.43)(@swc/html@1.15.43)(@types/react@19.2.17)(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.16))(csso@5.0.5)(debug@4.4.3(supports-color@10.2.2))(html-minifier-terser@7.2.0)(lightningcss@1.32.0)(postcss@8.5.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(supports-color@10.2.2)(typescript@5.9.3)
       '@docusaurus/core':
         specifier: ^3.10.2
         version: 3.10.2(@docusaurus/faster@3.10.2(@docusaurus/types@3.10.2(@swc/core@1.15.43)(@swc/html@1.15.43)(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.16))(csso@5.0.5)(html-minifier-terser@7.2.0)(lightningcss@1.32.0)(postcss@8.5.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(supports-color@10.2.2))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.16))(csso@5.0.5)(html-minifier-terser@7.2.0)(postcss@8.5.16))(@mdx-js/react@3.1.1(@types/react@19.2.17)(react@19.2.7))(@rspack/core@1.7.12)(@swc/core@1.15.43)(@swc/html@1.15.43)(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.16))(csso@5.0.5)(debug@4.4.3(supports-color@10.2.2))(html-minifier-terser@7.2.0)(lightningcss@1.32.0)(postcss@8.5.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(supports-color@10.2.2)(typescript@5.9.3)
@@ -142,31 +142,27 @@ packages:
     resolution: {integrity: sha512-7mJJl+wf1AByoT0PknQiQfOPnVNT4fevGrUBVWO4HXsnYn1aQPyRyrELYrNUFleUBM++KzMKN6QaxHPk0t/6/g==}
     engines: {node: '>=11'}
 
-  '@ai-sdk/gateway@2.0.147':
-    resolution: {integrity: sha512-uBi+N+9ApEKPrasD+QeUhGoDaXGZF4VuEfBrd1eh/taKQeThK02RzbPsLP9UmJNZJnqjr+7VPcZ5+Cj65QfGiw==}
+  '@ai-sdk/gateway@3.0.193':
+    resolution: {integrity: sha512-T2vq1EKPhbFF2Sk2MUFL/RmCg/2mp1LGbCZZSx5vh0M6Sr1EAj3wRr1EnpcwCV3/Imj2q56pT89XLiUFnB+ZgQ==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
-  '@ai-sdk/provider-utils@3.0.36':
-    resolution: {integrity: sha512-2eSw90hn32Je6n2a8Gf4dJ2EoecPJuOCWqwZCw+BkhPq2LOS01HX3s6ljgOm0iIkZiD5aAuMdpOw17rYKQF/Zg==}
-    engines: {node: '>=18'}
+  '@ai-sdk/provider-utils@4.0.51':
+    resolution: {integrity: sha512-ukLTs9x1Xm6lxSIwbJIxYQxbZHmVeIczNntARZrBcOa6pjdBhqeZnATNnJMHa7M9dZ8Ji5NJbpKpvz7o5XyBtg==}
+    engines: {node: '>=18.17'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
-  '@ai-sdk/provider@2.0.3':
-    resolution: {integrity: sha512-h88OPkavHTiN9tMn2l5awAznGB0lXzjcLhgR1/rvjB2zlLprsNxbM2tt6OJsHUxduLC3klq0/eqaSf6fX5XVww==}
+  '@ai-sdk/provider@3.0.16':
+    resolution: {integrity: sha512-9Av6kg0t/IN/dcYAAmEJ4B9OPhcEJqwSR+GfHEA8olRkindXpUHadc3p3cyvgFUQFTVm1G5thtsmgZ9yVb2w3A==}
     engines: {node: '>=18'}
 
-  '@ai-sdk/react@2.0.256':
-    resolution: {integrity: sha512-tR6EPQ++wEqAFcyoCBPBkGY2CATOk57hysEXxms8tRFBRCqfclCGal9RL0FgNEXvEymb8to1lHlj+btMoTylwg==}
+  '@ai-sdk/react@3.0.285':
+    resolution: {integrity: sha512-1WUxHwaagyB6pCQ8VjBm+YNitVNwWFvzZVZsaL9UKOKDpFFRYU81RMQGjHZ/WbIOWHEW0a7rQhfrhlE7cEAYQA==}
     engines: {node: '>=18'}
     peerDependencies:
       react: ^18 || ~19.0.1 || ~19.1.2 || ^19.2.1
-      zod: ^3.25.76 || ^4.1.8
-    peerDependenciesMeta:
-      zod:
-        optional: true
 
   '@algolia/abtesting@1.21.2':
     resolution: {integrity: sha512-uXj0rgk30EpsKvOpuS+R+1XFDrnm56hED1Lz56e8uBkZdKCxw99LS2U8eXBqAHYU8kpkbsnV1GC8velBG070Hg==}
@@ -1298,8 +1294,8 @@ packages:
       react-dom:
         optional: true
 
-  '@docsearch/core@5.0.5':
-    resolution: {integrity: sha512-p1IiedAnlnRUVHGFvFKdfkrNI5Ga3NRZdHaDicrrb41LkpPtsYuV97jFnof+uMVV0YsC2JZtJ8WVrJJmQtJ0Ig==}
+  '@docsearch/core@5.1.0':
+    resolution: {integrity: sha512-cKss7ExN86ICPeJDNgWHJgYOCFXfklWTWTuMGMJH+CK7ctf2Irhr2xpB0YwaRXyfWKev/QHo0GSxHwVBWv/VvQ==}
     peerDependencies:
       '@types/react': '>= 16.8.0 < 20.0.0'
       react: '>= 16.8.0 < 20.0.0'
@@ -1315,18 +1311,18 @@ packages:
   '@docsearch/css@4.6.3':
     resolution: {integrity: sha512-nlOwcXcsNAptQl4vlL4MA78qNJKO0Qlds5GuBjCoePgkebTXLSf8Qt1oyZ3YBshYupKXG9VRGEsk1zr23d+bzQ==}
 
-  '@docsearch/css@5.0.5':
-    resolution: {integrity: sha512-0ETIihH1MKPzIcTZjjJsXGpheg53ZIuQ7mETXZVTnRDxK8BEbUz62IBSz0RuhGa6G3jxMVzWkVKenj7Ru4vUcA==}
+  '@docsearch/css@5.1.0':
+    resolution: {integrity: sha512-8+4N7h0MbW4wuPpjVBry3jvqnkBk8ZmBP5EeXrX+b6ysdUeWFt8/OWzriZ9vrHjdkdhMihWxRDYT5+GsHXLWGg==}
 
-  '@docsearch/docusaurus-adapter@5.0.5':
-    resolution: {integrity: sha512-HJy09ZrrbxVNWWSxBJX1WgiQndhEiH3FI1SSELVrZmFlApaAl86zjuQIR93fx9ZHTHlgiNJQZzJ0jnOmSuw1YQ==}
+  '@docsearch/docusaurus-adapter@5.1.0':
+    resolution: {integrity: sha512-w35y0d+PHkU5uim2s7rczF9XG1iiAusvHFk69tSa9TYrwhoJ8opoM9fdsIXoB3fw3gEjH8FJYUS1zsp0OO8wJg==}
     engines: {node: '>=20.0'}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
 
-  '@docsearch/modal@5.0.5':
-    resolution: {integrity: sha512-WrqHXUav95yZAlezmU8JJoX+LRluc0pmA/OxU9XHDUTddbDepDItWQDo5dmYzZRNsyp8Z/5Q/7NOQ7g9RnSTxw==}
+  '@docsearch/modal@5.1.0':
+    resolution: {integrity: sha512-Gs355BkCGQRc2sC/yQ2TepoguI0zw77ya1qeqS7Kxi9BJ7+63TXZocXVxQ6eW84ZUxiLqMN+YjvKqs+maI9znQ==}
     peerDependencies:
       '@types/react': '>= 16.8.0 < 20.0.0'
       react: '>= 16.8.0 < 20.0.0'
@@ -1356,8 +1352,8 @@ packages:
       search-insights:
         optional: true
 
-  '@docsearch/react@5.0.5':
-    resolution: {integrity: sha512-EyD2oQmWLMu/nVq/jh5SZ9f4uc+Ut/3aoBA5xrKqFfdArLNqiyqFbMSZYI2xddv5yS8ENHo1ZU6lYOTPW0YrZQ==}
+  '@docsearch/react@5.1.0':
+    resolution: {integrity: sha512-roWVIS3nGdXGIYg4OnKx4hny6+7VJYvOEtk9WaoHkVsPgZJWYZuyLsSVboQI1e9AiWNa9vT3DDAmAH6s2ZdaqA==}
     peerDependencies:
       '@types/react': '>= 16.8.0 < 20.0.0'
       react: '>= 16.8.0 < 20.0.0'
@@ -1373,8 +1369,8 @@ packages:
       search-insights:
         optional: true
 
-  '@docsearch/sidepanel@5.0.5':
-    resolution: {integrity: sha512-fzX+5FZ6eFVaU80FNBfzhv6GVUEKDDEoNbGDcnkACHWF5dTJwHZRQZ9c6Cz3Eog4A1natyHudUbIns3RXeHrRA==}
+  '@docsearch/sidepanel@5.1.0':
+    resolution: {integrity: sha512-jVtLPf0g/Sz1/yCf2jpa4SXv3KdM9Kkh/O6DXNCWfMhEIZ0rplA51TI9IA10eauaaiL4YsN5sv7aWrP6RnHCtQ==}
     peerDependencies:
       '@types/react': '>= 16.8.0 < 20.0.0'
       react: '>= 16.8.0 < 20.0.0'
@@ -1651,10 +1647,6 @@ packages:
   '@eslint/plugin-kit@0.4.1':
     resolution: {integrity: sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@fastify/busboy@2.1.1':
-    resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
-    engines: {node: '>=14'}
 
   '@floating-ui/core@1.7.5':
     resolution: {integrity: sha512-1Ih4WTWyw0+lKyFMcBHGbb5U5FtuHJuujoyyr5zTaWS5EYMeT6Jb2AuDeftsCsEuchO+mM2ij5+q9crhydzLhQ==}
@@ -3063,8 +3055,8 @@ packages:
   '@upsetjs/venn.js@2.0.0':
     resolution: {integrity: sha512-WbBhLrooyePuQ1VZxrJjtLvTc4NVfpOyKx0sKqioq9bX1C1m7Jgykkn8gLrtwumBioXIqam8DLxp88Adbue6Hw==}
 
-  '@vercel/oidc@3.1.0':
-    resolution: {integrity: sha512-Fw28YZpRnA3cAHHDlkt7xQHiJ0fcL+NRcIqsocZQUSmbzeIKRpwttJjik5ZGanXP+vlA4SbTg+AbA3bP363l+w==}
+  '@vercel/oidc@3.2.0':
+    resolution: {integrity: sha512-UycprH3T6n3jH0k44NHMa7pnFHGu/N05MjojYr+Mc6I7obkoLIJujSWwin1pCvdy/eOxrI/l3uDLQsmcrOb4ug==}
     engines: {node: '>= 20'}
 
   '@webassemblyjs/ast@1.14.1':
@@ -3153,8 +3145,8 @@ packages:
     resolution: {integrity: sha512-4I7Td01quW/RpocfNayFdFVk1qSuoh0E7JrbRJ16nH01HhKFQ88INq9Sd+nd72zqRySlr9BmDA8xlEJ6vJMrYA==}
     engines: {node: '>=8'}
 
-  ai@5.0.253:
-    resolution: {integrity: sha512-Z784HqUI3GOYiK/CACH9H8A7aqf67cuUnNslS2+//TJZZzCCFuQq6L2socSkIeVGkB8kC4arThXAYl6lWOq/lQ==}
+  ai@6.0.282:
+    resolution: {integrity: sha512-fdzEzSppVTYlgyW/Gp6tMAFIU88yv7k86x77m5vAJo7hXV31hDJCsAkq/aIpE3tP3k4LjrrLcUANPHcBZ0YWsw==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -8585,9 +8577,9 @@ packages:
   undici-types@8.3.0:
     resolution: {integrity: sha512-j375ScV60dom+YkPFIfTLcOiPxkN/buHz5GobjLhixFuANaNs3C9l4GmrWqejgXWJ7BbJcFYpTEUkS1Ge8bpZQ==}
 
-  undici@5.29.0:
-    resolution: {integrity: sha512-raqeBD6NQK4SkWhQzeYKd1KmIG6dllBOTt55Rmkt4HtI9mwdWtJljnrXjAFUBLTSN67HWrOIZ3EPF4kjUw80Bg==}
-    engines: {node: '>=14.0'}
+  undici@6.28.1:
+    resolution: {integrity: sha512-zWpdTVD54H48CIybL0rWQ3ukpb9d23wM7eH5RtfdmeP70cWHNjtfo7P4vZX+5CoDcO53J4Pu5uXp7lNfjc6DRA==}
+    engines: {node: '>=18.17'}
 
   unherit@1.1.3:
     resolution: {integrity: sha512-Ft16BJcnapDKp0+J/rqFC3Rrk6Y/Ng4nzsC028k2jdDII/rdZ7Wd3pPT/6+vIIxRagwRc9K0IUX0Ra4fKvw+WQ==}
@@ -9030,34 +9022,34 @@ snapshots:
       section-matter: 1.0.0
       strip-bom-string: 1.0.0
 
-  '@ai-sdk/gateway@2.0.147(zod@4.5.4)':
+  '@ai-sdk/gateway@3.0.193(zod@4.5.4)':
     dependencies:
-      '@ai-sdk/provider': 2.0.3
-      '@ai-sdk/provider-utils': 3.0.36(zod@4.5.4)
-      '@vercel/oidc': 3.1.0
+      '@ai-sdk/provider': 3.0.16
+      '@ai-sdk/provider-utils': 4.0.51(zod@4.5.4)
+      '@vercel/oidc': 3.2.0
       zod: 4.5.4
 
-  '@ai-sdk/provider-utils@3.0.36(zod@4.5.4)':
+  '@ai-sdk/provider-utils@4.0.51(zod@4.5.4)':
     dependencies:
-      '@ai-sdk/provider': 2.0.3
+      '@ai-sdk/provider': 3.0.16
       '@standard-schema/spec': 1.1.0
       eventsource-parser: 3.1.1
-      undici: 5.29.0
+      undici: 6.28.1
       zod: 4.5.4
 
-  '@ai-sdk/provider@2.0.3':
+  '@ai-sdk/provider@3.0.16':
     dependencies:
       json-schema: 0.4.0
 
-  '@ai-sdk/react@2.0.256(react@19.2.7)(zod@4.5.4)':
+  '@ai-sdk/react@3.0.285(react@19.2.7)(zod@4.5.4)':
     dependencies:
-      '@ai-sdk/provider-utils': 3.0.36(zod@4.5.4)
-      ai: 5.0.253(zod@4.5.4)
+      '@ai-sdk/provider-utils': 4.0.51(zod@4.5.4)
+      ai: 6.0.282(zod@4.5.4)
       react: 19.2.7
       swr: 2.5.1(react@19.2.7)
       throttleit: 2.1.0
-    optionalDependencies:
-      zod: 4.5.4
+    transitivePeerDependencies:
+      - zod
 
   '@algolia/abtesting@1.21.2':
     dependencies:
@@ -10437,7 +10429,7 @@ snapshots:
       react: 19.2.7
       react-dom: 19.2.7(react@19.2.7)
 
-  '@docsearch/core@5.0.5(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
+  '@docsearch/core@5.1.0(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     optionalDependencies:
       '@types/react': 19.2.17
       react: 19.2.7
@@ -10445,15 +10437,15 @@ snapshots:
 
   '@docsearch/css@4.6.3': {}
 
-  '@docsearch/css@5.0.5': {}
+  '@docsearch/css@5.1.0': {}
 
-  '@docsearch/docusaurus-adapter@5.0.5(@algolia/client-search@5.55.2)(@docusaurus/faster@3.10.2(@docusaurus/types@3.10.2(@swc/core@1.15.43)(@swc/html@1.15.43)(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.16))(csso@5.0.5)(html-minifier-terser@7.2.0)(lightningcss@1.32.0)(postcss@8.5.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(supports-color@10.2.2))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.16))(csso@5.0.5)(html-minifier-terser@7.2.0)(postcss@8.5.16))(@mdx-js/react@3.1.1(@types/react@19.2.17)(react@19.2.7))(@rspack/core@1.7.12)(@swc/core@1.15.43)(@swc/html@1.15.43)(@types/react@19.2.17)(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.16))(csso@5.0.5)(debug@4.4.3(supports-color@10.2.2))(html-minifier-terser@7.2.0)(lightningcss@1.32.0)(postcss@8.5.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(supports-color@10.2.2)(typescript@5.9.3)':
+  '@docsearch/docusaurus-adapter@5.1.0(@algolia/client-search@5.55.2)(@docusaurus/faster@3.10.2(@docusaurus/types@3.10.2(@swc/core@1.15.43)(@swc/html@1.15.43)(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.16))(csso@5.0.5)(html-minifier-terser@7.2.0)(lightningcss@1.32.0)(postcss@8.5.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(supports-color@10.2.2))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.16))(csso@5.0.5)(html-minifier-terser@7.2.0)(postcss@8.5.16))(@mdx-js/react@3.1.1(@types/react@19.2.17)(react@19.2.7))(@rspack/core@1.7.12)(@swc/core@1.15.43)(@swc/html@1.15.43)(@types/react@19.2.17)(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.16))(csso@5.0.5)(debug@4.4.3(supports-color@10.2.2))(html-minifier-terser@7.2.0)(lightningcss@1.32.0)(postcss@8.5.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(supports-color@10.2.2)(typescript@5.9.3)':
     dependencies:
       '@algolia/autocomplete-core': 1.19.2(@algolia/client-search@5.55.2)(algoliasearch@5.55.2)(search-insights@2.17.3)
-      '@docsearch/core': 5.0.5(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      '@docsearch/modal': 5.0.5(@algolia/client-search@5.55.2)(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(search-insights@2.17.3)
-      '@docsearch/react': 5.0.5(@algolia/client-search@5.55.2)(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(search-insights@2.17.3)
-      '@docsearch/sidepanel': 5.0.5(@algolia/client-search@5.55.2)(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(search-insights@2.17.3)
+      '@docsearch/core': 5.1.0(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@docsearch/modal': 5.1.0(@algolia/client-search@5.55.2)(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(search-insights@2.17.3)
+      '@docsearch/react': 5.1.0(@algolia/client-search@5.55.2)(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(search-insights@2.17.3)
+      '@docsearch/sidepanel': 5.1.0(@algolia/client-search@5.55.2)(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(search-insights@2.17.3)
       '@docusaurus/core': 3.10.2(@docusaurus/faster@3.10.2(@docusaurus/types@3.10.2(@swc/core@1.15.43)(@swc/html@1.15.43)(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.16))(csso@5.0.5)(html-minifier-terser@7.2.0)(lightningcss@1.32.0)(postcss@8.5.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(supports-color@10.2.2))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.16))(csso@5.0.5)(html-minifier-terser@7.2.0)(postcss@8.5.16))(@mdx-js/react@3.1.1(@types/react@19.2.17)(react@19.2.7))(@rspack/core@1.7.12)(@swc/core@1.15.43)(@swc/html@1.15.43)(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.16))(csso@5.0.5)(debug@4.4.3(supports-color@10.2.2))(html-minifier-terser@7.2.0)(lightningcss@1.32.0)(postcss@8.5.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(supports-color@10.2.2)(typescript@5.9.3)
       '@docusaurus/plugin-content-docs': 3.10.2(@docusaurus/faster@3.10.2(@docusaurus/types@3.10.2(@swc/core@1.15.43)(@swc/html@1.15.43)(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.16))(csso@5.0.5)(html-minifier-terser@7.2.0)(lightningcss@1.32.0)(postcss@8.5.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(supports-color@10.2.2))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.16))(csso@5.0.5)(html-minifier-terser@7.2.0)(postcss@8.5.16))(@mdx-js/react@3.1.1(@types/react@19.2.17)(react@19.2.7))(@rspack/core@1.7.12)(@swc/core@1.15.43)(@swc/html@1.15.43)(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.16))(csso@5.0.5)(debug@4.4.3(supports-color@10.2.2))(html-minifier-terser@7.2.0)(lightningcss@1.32.0)(postcss@8.5.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(supports-color@10.2.2)(typescript@5.9.3)
       '@docusaurus/theme-common': 3.10.2(1b3d82971ddf1dc381666a929cdeb234)
@@ -10496,10 +10488,10 @@ snapshots:
       - utf-8-validate
       - webpack-cli
 
-  '@docsearch/modal@5.0.5(@algolia/client-search@5.55.2)(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(search-insights@2.17.3)':
+  '@docsearch/modal@5.1.0(@algolia/client-search@5.55.2)(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(search-insights@2.17.3)':
     dependencies:
-      '@docsearch/core': 5.0.5(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      '@docsearch/react': 5.0.5(@algolia/client-search@5.55.2)(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(search-insights@2.17.3)
+      '@docsearch/core': 5.1.0(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@docsearch/react': 5.1.0(@algolia/client-search@5.55.2)(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(search-insights@2.17.3)
     optionalDependencies:
       '@types/react': 19.2.17
       react: 19.2.7
@@ -10524,14 +10516,14 @@ snapshots:
       - '@algolia/client-search'
       - algoliasearch
 
-  '@docsearch/react@5.0.5(@algolia/client-search@5.55.2)(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(search-insights@2.17.3)':
+  '@docsearch/react@5.1.0(@algolia/client-search@5.55.2)(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(search-insights@2.17.3)':
     dependencies:
-      '@ai-sdk/react': 2.0.256(react@19.2.7)(zod@4.5.4)
+      '@ai-sdk/react': 3.0.285(react@19.2.7)(zod@4.5.4)
       '@algolia/autocomplete-core': 1.19.2(@algolia/client-search@5.55.2)(algoliasearch@5.55.2)(search-insights@2.17.3)
       '@base-ui/react': 1.8.0(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      '@docsearch/core': 5.0.5(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      '@docsearch/css': 5.0.5
-      ai: 5.0.253(zod@4.5.4)
+      '@docsearch/core': 5.1.0(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@docsearch/css': 5.1.0
+      ai: 6.0.282(zod@4.5.4)
       algoliasearch: 5.55.2
       marked: 16.4.2
       zod: 4.5.4
@@ -10545,11 +10537,11 @@ snapshots:
       - '@date-fns/tz'
       - date-fns
 
-  '@docsearch/sidepanel@5.0.5(@algolia/client-search@5.55.2)(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(search-insights@2.17.3)':
+  '@docsearch/sidepanel@5.1.0(@algolia/client-search@5.55.2)(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(search-insights@2.17.3)':
     dependencies:
-      '@docsearch/core': 5.0.5(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      '@docsearch/css': 5.0.5
-      '@docsearch/react': 5.0.5(@algolia/client-search@5.55.2)(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(search-insights@2.17.3)
+      '@docsearch/core': 5.1.0(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@docsearch/css': 5.1.0
+      '@docsearch/react': 5.1.0(@algolia/client-search@5.55.2)(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(search-insights@2.17.3)
     optionalDependencies:
       '@types/react': 19.2.17
       react: 19.2.7
@@ -11622,8 +11614,6 @@ snapshots:
     dependencies:
       '@eslint/core': 0.17.0
       levn: 0.4.1
-
-  '@fastify/busboy@2.1.1': {}
 
   '@floating-ui/core@1.7.5':
     dependencies:
@@ -13123,7 +13113,7 @@ snapshots:
       d3-selection: 3.0.0
       d3-transition: 3.0.1(d3-selection@3.0.0)
 
-  '@vercel/oidc@3.1.0': {}
+  '@vercel/oidc@3.2.0': {}
 
   '@webassemblyjs/ast@1.14.1':
     dependencies:
@@ -13233,11 +13223,11 @@ snapshots:
       clean-stack: 2.2.0
       indent-string: 4.0.0
 
-  ai@5.0.253(zod@4.5.4):
+  ai@6.0.282(zod@4.5.4):
     dependencies:
-      '@ai-sdk/gateway': 2.0.147(zod@4.5.4)
-      '@ai-sdk/provider': 2.0.3
-      '@ai-sdk/provider-utils': 3.0.36(zod@4.5.4)
+      '@ai-sdk/gateway': 3.0.193(zod@4.5.4)
+      '@ai-sdk/provider': 3.0.16
+      '@ai-sdk/provider-utils': 4.0.51(zod@4.5.4)
       '@opentelemetry/api': 1.9.0
       zod: 4.5.4
 
@@ -19621,9 +19611,7 @@ snapshots:
 
   undici-types@8.3.0: {}
 
-  undici@5.29.0:
-    dependencies:
-      '@fastify/busboy': 2.1.1
+  undici@6.28.1: {}
 
   unherit@1.1.3:
     dependencies:
