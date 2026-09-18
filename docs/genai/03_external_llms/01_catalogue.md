@@ -4,6 +4,8 @@ We currently facilitate access to the following externally hosted LLMs:
 
 
 ## Google (via GCP VertexAI)
+-   gemma-4-26b-a4b
+-   gemini-3.8-flash
 -   gemini-3.7-flash
 -   gemini-3.6-flash
 -   gemini-3.5-(flash, flash-lite)
@@ -12,7 +14,7 @@ We currently facilitate access to the following externally hosted LLMs:
 
 ## Anthropic (via GCP VertexAI)
 -   Claude Sonnet 4.5/4.6/5
--   Claude Opus 4.5/4.6/4.8
+-   Claude Opus 4.5/4.6/4.8/5
 -   Claude Haiku 4.5
 
 ## OpenAI (via Azure OpenAI)
