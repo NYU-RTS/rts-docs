@@ -7,18 +7,17 @@ The Torch cluster has 518 [Intel "Xeon Platinum 8592+ 64C"](https://www.intel.co
 | Type | Nodes  | CPU Cores  | GPUs  | Memory (GB) | CPUs per Node | GPUs per Node | Memory per Node (GB) |
 |---|---|---|---|---|---|---|---|
 | Standard Memory | 186 | 23,808 | N/A | 95,232 | 128 | N/A | 512 |
-| Large memory | 7 | 896 | N/A | 21,504 | 128 | N/A | 3,072 |
-| H200 GPU | 29 | 3,712 | 232 | 59,392 | 128 | 8 | 2,048 |
+| Large memory | 8 | 1,024 | N/A | 24,576 | 128 | N/A | 3,072 |
+| H200 GPU | 34 | 4,352 | 272 | 69,632 | 128 | 8 | 2,048 |
 | L40S GPU | 68 | 8,704 | 272 | 34,816 | 128 | 4 | 512 |
-| RTX Pro 6000 GPU | 2 | 256 | 16 | 3,072 | 128 | 8 | 1,536 |
+| B200 GPU | 15 | 1,920 | 120 | 46,080 | 128 | 4 | 512 |
+| RTX Pro 6000 GPU | 6 | 768 | 48 | 9,216 | 128 | 8 | 1,536 |
 | H100 GPU | 15 | 1,440 | 60 | 23,040 | 96 | 4 | 1,536 |
 | A100 GPU | 9 | 576 | 36 | 4,608 | 64 | 4 |  512 |
 | A100 GPU | 34 | 2720 | 136 | 34,816 | 80 | 4 | 1,024 |
 | Login | 4 | 512 | N/A | 1024 | 128 | N/A | 256 |
 | Data Transfer | 2 | 64 | N/A | 512 | 32 | N/A | 256 |
-| Provisioning | 4 | 320 | N/A | 1024 | 80 | N/A | 256 |
-| Scheduler | 2 | 64 | N/A | 1024 | 32 | N/A | 512 |
-| Total | N/A | 43,072 | 752 | 280.1(TB) | NA | NA | NA |
+| Total | N/A | 45,248 | 944 | 332.5(TB) | NA | NA | NA |
 
 
 Torch was tested in June 2025 using the [LINPACK benchmark system](https://top500.org/project/linpack/), which is the basis for all HPC systems ranked on the Top500 list. It had a theoretical maximum performance of 12.25 PF/s thanks to its powerful GPU resources, of which LINPACK was able to use 10.79 PF/s, thus placing it at [#133 on the listed](https://top500.org/system/180363/).
@@ -28,13 +27,14 @@ Torch was tested in June 2025 using the [LINPACK benchmark system](https://top50
 ## Torch Stakeholder Resources
 Many GPUs on Torch are owned by stakeholder groups who have priority access to the resources. The breakdown of these GPUs into stakeholder groups is as follows:
 
-| Stakeholders | H200 | L40S | H100 | A100 | RTX Pro 6000 | Total |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| Tandon SoE | 112 | | 60 | 60 | | 232 |
-| Courant (CS) | 88 | 52 | | | | 140 |
-| CDS | 24 | | | 24 | | 48 |
-| Chemistry | | | | 56 | | 56 |
-| CILVR | | | | 32 | | 32 |
-| Individual PIs | 24 | 12 | | | 16 | 52 |
-| IT Public | 24 | 208 | | | | 232 |
-| **Total** | **272** | **272** | **60** | **172** | **16** | **792** |
+| Stakeholders | H200 | L40S | H100 | A100 | RTX Pro 6000 | B200 | Total |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Tandon SoE | 112 | | 60 | 60 | | 16 | 248 |
+| Courant (CS) | 88 | 52 | | | 8 | 96 | 244 |
+| CDS | 24 | | | 24 | | | 48 |
+| Chemistry | | | | 56 | | | 56 |
+| CILVR | | | | 32 | | | 32 |
+| FAS | | | | | 16 | 8 | 24 |
+| Individual PIs | 24 | 12 | | | 24 | | 60 |
+| IT Public | 24 | 208 | | | | | 232 |
+| **Total** | **272** | **272** | **60** | **172** | **48** | **120** | **944** |
