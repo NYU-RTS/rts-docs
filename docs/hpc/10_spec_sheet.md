@@ -7,11 +7,11 @@ The Torch cluster has 518 [Intel "Xeon Platinum 8592+ 64C"](https://www.intel.co
 | Type | Nodes  | CPU Cores  | GPUs  | Memory (GB) | CPUs per Node | GPUs per Node | Memory per Node (GB) |
 |---|---|---|---|---|---|---|---|
 | Standard Memory | 186 | 23,808 | N/A | 95,232 | 128 | N/A | 512 |
-| Large memory | 7 | 896 | N/A | 21,504 | 128 | N/A | 3,072 |
+| Large memory | 8 | 1,024 | N/A | 24,576 | 128 | N/A | 3,072 |
 | H200 GPU | 34 | 4,352 | 272 | 69,632 | 128 | 8 | 2,048 |
 | L40S GPU | 68 | 8,704 | 272 | 34,816 | 128 | 4 | 512 |
 | B200 GPU | 15 | 1,920 | 120 | 46,080 | 128 | 4 | 512 |
-| RTX Pro 6000 GPU | 6 | 256 | 48 | 9,216 | 128 | 8 | 1,536 |
+| RTX Pro 6000 GPU | 6 | 768 | 48 | 9,216 | 128 | 8 | 1,536 |
 | H100 GPU | 15 | 1,440 | 60 | 23,040 | 96 | 4 | 1,536 |
 | A100 GPU | 9 | 576 | 36 | 4,608 | 64 | 4 |  512 |
 | A100 GPU | 34 | 2720 | 136 | 34,816 | 80 | 4 | 1,024 |
