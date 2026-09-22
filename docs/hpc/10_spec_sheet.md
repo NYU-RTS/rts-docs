@@ -17,7 +17,7 @@ The Torch cluster has 518 Intel "Xeon Platinum 8592+ 64C" CPUs, 120 NVIDIA B200 
 | A100 GPU | 34 | 2720 | 136 | 34,816 | 80 | 4 | 1,024 |
 | Login | 4 | 512 | N/A | 1024 | 128 | N/A | 256 |
 | Data Transfer | 2 | 64 | N/A | 512 | 32 | N/A | 256 |
-| Total | N/A | 45,248 | 944 | 332.5(TB) | NA | NA | NA |
+| Total | N/A | 45,248 | 944 | 335.5(TB) | NA | NA | NA |
 
 
 Torch was tested in June 2025 using the [LINPACK benchmark system](https://top500.org/project/linpack/), which is the basis for all HPC systems ranked on the Top500 list. It had a theoretical maximum performance of 12.25 PF/s thanks to its powerful GPU resources, of which LINPACK was able to use 10.79 PF/s, thus placing it at [#133 on the listed](https://top500.org/system/180363/).
