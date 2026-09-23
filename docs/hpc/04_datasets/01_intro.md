@@ -77,12 +77,53 @@ Please open the ImageNet site, find the terms of use ([http://image-net.org/down
 -   `/projects/work/public/ml-datasets/millionsongdataset/`
 
 ### ProQuest Congressional Record
-About data set: [ProQuest Congressional Record](https://guides.nyu.edu/govdocs/congressional#s-lg-box-14137380)
+*About data set*: [ProQuest Congressional Record](https://guides.nyu.edu/govdocs/congressional#s-lg-box-14137380)
 
 The ProQuest Congressional Record text-as-data collection consists of machine-readable files capturing the full text and a small number of metadata fields for a full run of the Congressional Record between 1789 and 2005. Metadata fields include the date of publication, subjects (for issues for which such information exists in the ProQuest system), and URLs linking the full text to the canonical online record for that issue on the ProQuest Congressional platform. A total of 31,952 issues are available.
 
 *Dataset is available under*: 
 -   `/projects/work/public/proquest/`
+
+### ProQuest Historical Newspapers
+*About data set*: [ProQuest Historical Newspapers](https://persistent.library.nyu.edu/arch/148cd8d4)
+
+The ProQuest Historical Newspapers text data collection consists of approximately 99.1 million XML files from 26 historical newspaper collections. Each file represents an item, advertisement, article, or subsection of a newspaper edition and includes metadata and full text extracted from digitized print using optical character recognition. Coverage varies by publication and ranges from 1764 to 2008. This is a static collection and is available to NYU faculty and students only.
+
+*Dataset is available under*:
+-   `/projects/work/public/proquest/proquest_hnp/`
+
+### `eggNOG-mapper` Reference Data
+
+*About data set*: [eggNOG-mapper](https://eggnog-mapper.cgmlab.org/)
+
+The directory contains reference data for the legacy eggNOG-mapper
+database based on eggNOG 5.0.2. It includes annotation, taxonomy,
+protein-sequence, MMseqs2, and Pfam resources. These data are not
+compatible with the current eggNOG-mapper v3 database.
+
+*Dataset is available under*:
+
+- `/projects/work/public/genomics/eggnog-mapper-data/`
+
+### Kraken 2 NCBI Reference Database
+
+*About data set*: [Kraken 2](https://ccb.jhu.edu/software/kraken2/)
+
+This pre-built Kraken 2 database contains NCBI reference sequence and taxonomy resources for taxonomic classification of genomic and metagenomic sequencing data. The database snapshot is dated October 7, 2025, and includes Kraken 2 indexes, NCBI taxonomy files, sequence-to-taxonomy mappings, k-mer distributions, and supporting database reports.
+
+*Dataset is available under*:
+
+- `/projects/work/public/genomics/kraken2/`
+
+### NCBI Data Resources
+
+*About data set*: [Molecular Biology & Biochemistry Data Resources](https://www.ncbi.nlm.nih.gov/)
+
+This directory provides locally hosted NCBI data resources for molecular biology and biochemistry research workflows. The specific databases, versions, and update schedule included in this directory have not yet been confirmed.
+
+*Dataset is available under*:
+
+- `/projects/work/public/genomics/ncbi/`
 
 ### C4
 *About data set*: [c4  |  TensorFlow Datasets](https://www.tensorflow.org/datasets/catalog/c4)
