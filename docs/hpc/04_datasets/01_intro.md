@@ -103,7 +103,7 @@ compatible with the current eggNOG-mapper v3 database.
 
 *Dataset is available under*:
 
-- `/projects/work/public/genomics/eggnog-mapper-data/`
+-   `/projects/work/public/genomics/eggnog-mapper-data/`
 
 ### Kraken 2 NCBI Reference Database
 
@@ -113,7 +113,7 @@ This pre-built Kraken 2 database contains NCBI reference sequence and taxonomy r
 
 *Dataset is available under*:
 
-- `/projects/work/public/genomics/kraken2/`
+-   `/projects/work/public/genomics/kraken2/`
 
 ### NCBI Data Resources
 
@@ -123,7 +123,7 @@ This directory provides locally hosted NCBI data resources for molecular biology
 
 *Dataset is available under*:
 
-- `/projects/work/public/genomics/ncbi/`
+-   `/projects/work/public/genomics/ncbi/`
 
 ### C4
 *About data set*: [c4  |  TensorFlow Datasets](https://www.tensorflow.org/datasets/catalog/c4)
