@@ -1,16 +1,16 @@
-# Singularity with Conda
+# Apptainer with Conda
 :::info
 Overlay Files:
 ```
 /share/apps/overlay-fs-ext3
 ```
-Singularity Files:
+Apptainer Files:
 ```
 /share/apps/images/
 ```
 :::
 
-## Using Singularity Overlays for Miniforge (Python & Julia)
+## Using Apptainer Overlays for Miniforge (Python & Julia)
 ### Preinstallation Warning
 :::warning
 If you have initialized Conda in your base environment, your prompt on Torch may show something like: 
@@ -36,11 +36,11 @@ unset __conda_setup
 # <<< conda initialize <<<
 ```
 
-The above code automatically makes your environment look for the default shared installation of Conda on the cluster and will sabotage  any attempts to install packages to a Singularity environment. Once removed or commented out, log out and back into the cluster for a fresh environment.
+The above code automatically makes your environment look for the default shared installation of Conda on the cluster and will sabotage  any attempts to install packages to an Apptainer environment. Once removed or commented out, log out and back into the cluster for a fresh environment.
 :::
 
 ### Miniforge Environment PyTorch Example
-[Conda environments](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) allow users to create customizable, portable work environments and dependencies to support specific packages or versions of software for research. Common conda distributions include Anaconda, Miniconda and Miniforge. Packages are available via "channels". Popular channels include "conda-forge" and "bioconda".  In this tutorial we shall use [Miniforge](https://github.com/conda-forge/miniforge) which sets "conda-forge" as the package channel. Traditional conda environments, however, also create a large number of files that can cut into quotas. To help reduce this issue, we suggest using [Singularity](https://docs.sylabs.io/guides/4.1/user-guide/), a container technology that is popular on HPC systems. Below is an example of how to create a pytorch environment using Singularity and Miniforge.
+[Conda environments](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) allow users to create customizable, portable work environments and dependencies to support specific packages or versions of software for research. Common conda distributions include Anaconda, Miniconda and Miniforge. Packages are available via "channels". Popular channels include "conda-forge" and "bioconda".  In this tutorial we shall use [Miniforge](https://github.com/conda-forge/miniforge) which sets "conda-forge" as the package channel. Traditional conda environments, however, also create a large number of files that can cut into quotas. To help reduce this issue, we suggest using [Apptainer](https://docs.sylabs.io/guides/4.1/user-guide/), a container technology that is popular on HPC systems. Below is an example of how to create a pytorch environment using Apptainer and Miniforge.
 
 Create a directory for the environment:
 ```bash
@@ -58,33 +58,33 @@ cp -rp /share/apps/overlay-fs-ext3/overlay-15GB-500K.ext3.gz .
 gunzip overlay-15GB-500K.ext3.gz
 ```
 
-Choose a corresponding Singularity image. For this example we will use the following image:
+Choose a corresponding Apptainer image. For this example we will use the following image:
 ```bash
 /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif 
 ```
 
-For Singularity image available on nyu HPC Torch, please check the singularity images folder:
+For Apptainer image available on nyu HPC Torch, please check the apptainer images folder:
 ```sh
 ls /share/apps/images/
 ```
 
 For the most recent supported versions of PyTorch, please check the [PyTorch website](https://pytorch.org/get-started/locally/). 
 
-Launch the appropriate Singularity container in read/write mode (with the :rw flag):
+Launch the appropriate Apptainer container in read/write mode (with the :rw flag):
 ```sh
 singularity exec --fakeroot --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
 ```
 
-The above starts a bash shell inside the referenced Singularity Container overlaid with the 15GB 500K you set up earlier. This creates the functional illusion of having a writable filesystem inside the typically read-only Singularity container. 
+The above starts a bash shell inside the referenced Apptainer Container overlaid with the 15GB 500K you set up earlier. This creates the functional illusion of having a writable filesystem inside the typically read-only Apptainer container. 
 
 :::note
-Please note that the default Singularity on Torch is now Apptainer, which requires the --fakeroot option to load overlay files in read/write mode.
+Please note that the default Apptainer on Torch is now Apptainer, which requires the --fakeroot option to load overlay files in read/write mode.
 :::
 
 Now, inside the container, download and install miniforge to `/ext3/miniforge3`.
 
 :::note
-Please note your prompt should indicate you're in singularity with the `Singularity>` prompt
+Please note your prompt should indicate you're in apptainer with the `Singularity>` prompt
 :::
 
 ```bash
@@ -196,13 +196,13 @@ du -sh  /ext3
 # output should be something like: 6.5G    /ext3
 ```
 
-Now, exit the Singularity container and then rename the overlay image. Typing `exit` and hitting `enter` will exit the Singularity container if you are currently inside it. You can tell if you're in a Singularity container because your prompt will be different, such as showing the prompt `Singularity>`:
+Now, exit the Apptainer container and then rename the overlay image. Typing `exit` and hitting `enter` will exit the Apptainer container if you are currently inside it. You can tell if you're in a Apptainer container because your prompt will be different, such as showing the prompt `Singularity>`:
 ```sh
 #Singularity>
 exit
 mv overlay-15GB-500K.ext3 my_pytorch.ext3
 ```
-#### Test Your PyTorch Singularity Image
+#### Test Your PyTorch Apptainer Image
 ```sh
 singularity exec --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash -c 'source /ext3/env.sh; python -c "import torch; print(torch.__file__); print(torch.__version__)"'
 
@@ -213,7 +213,7 @@ singularity exec --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro /
  the end `:ro` addition at the end of the pytorch ext3 image starts the image in read-only mode. To add packages you will need to use `:rw` to launch it in read-write mode.
 :::
 
-### Using Your Singularity Container in a SLURM Batch Job
+### Using Your Apptainer Container in a SLURM Batch Job
 Below is an example script of how to call a python script, in this case `torch-test.py`, from a SLURM batch job using your new Singularity image
 
 torch-test.py:
@@ -235,7 +235,7 @@ print(torch.cuda.get_device_name(torch.cuda.current_device()))
 print(torch.cuda.is_available())
 ```
 
-Now we will write the SLURM job script, `run-test.SBATCH`, that will start our Singularity Image and call the `torch-test.py` script.
+Now we will write the SLURM job script, `run-test.SBATCH`, that will start our Apptainer Image and call the `torch-test.py` script.
 
 run-test.SBATCH:
 ```bash
@@ -251,13 +251,13 @@ run-test.SBATCH:
 
 module purge
 
-singularity exec --nv \
+apptainer exec --nv \
 	    --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro \
 	    /share/apps/images/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif\
 	    /bin/bash -c "source /ext3/env.sh; python torch-test.py"
 ```
 
-You will notice that the singularity exec command features the `--nv` flag - this flag is required to pass the CUDA drivers from a GPU to the Singularity container.
+You will notice that the apptainer exec command features the `--nv` flag - this flag is required to pass the CUDA drivers from a GPU to the Apptainer container.
 
 Run the run-test.SBATCH script:
 ```sh
@@ -277,9 +277,9 @@ cat slurm-3752662.out
 ```
 
 ### Optional: Convert `ext3` to a Compressed, Read-only `squashfs` Filesystem
-Singularity images can be compressed into read-only squashfs filesystems to conserve space in your environment. Use the following steps to convert your ext3 Singularity image into a smaller squashfs filesystem.
+Apptainer images can be compressed into read-only squashfs filesystems to conserve space in your environment. Use the following steps to convert your ext3 Apptainer image into a smaller squashfs filesystem.
 ```sh
-srun -N1 -c4 singularity exec --overlay my_pytorch.ext3:ro /share/apps/images/centos-8.2.2004.sif mksquashfs /ext3 /scratch/<NetID>/pytorch-example/my_pytorch.sqf -keep-as-directory -processors 4 -noappend
+srun -N1 -c4 apptainer exec --overlay my_pytorch.ext3:ro /share/apps/images/centos-8.2.2004.sif mksquashfs /ext3 /scratch/<NetID>/pytorch-example/my_pytorch.sqf -keep-as-directory -processors 4 -noappend
 ```
 
 Here is an example of the amount of compression that can be realized by converting:
@@ -295,7 +295,7 @@ Notice that it saves over 3GB of storage in this case, though your results may v
 
 You can use squashFS images similarly to the ext3 images:
 ```sh
-singularity exec --overlay /scratch/<NetID>/pytorch-example/my_pytorch.sqf:ro /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif  /bin/bash -c 'source /ext3/env.sh; python -c "import torch; print(torch.__file__); print(torch.__version__)"'
+apptainer exec --overlay /scratch/<NetID>/pytorch-example/my_pytorch.sqf:ro /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif  /bin/bash -c 'source /ext3/env.sh; python -c "import torch; print(torch.__file__); print(torch.__version__)"'
 
 #example output: /ext3/miniforge3/lib/python3.12/site-packages/torch/__init__.py
 #example output: 2.6.0+cu124
@@ -310,7 +310,7 @@ Open the first image in read only mode:
 cp -rp /share/apps/overlay-fs-ext3/overlay-2GB-100K.ext3.gz .
 gunzip overlay-2GB-100K.ext3.gz
 
-singularity exec --overlay overlay-2GB-100K.ext3 --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
+apptainer exec --overlay overlay-2GB-100K.ext3 --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
 source /ext3/env.sh
 pip install tensorboard
 ```
