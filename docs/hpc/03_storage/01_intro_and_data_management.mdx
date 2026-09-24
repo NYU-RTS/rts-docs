@@ -19,7 +19,7 @@ User Home Directories are not ideal for sharing files and folders with other use
 :::tip[`inode` limits]
 -   One of the common issues that users report regarding their home directories is running out of inodes (i.e. the number of files stored under their home exceeds the inode limit), which by default is set to 30,000 files
 -   To find out the current space and inode quota utilization and the distribution of files under your home directory, please see: [Understanding user quota limits and the myquota command.](./05_best_practices.mdx#user-quota-limits-and-the-myquota-command) 
--   Working with `conda` environments: To avoid running out of inode limits in home directories, the HPC team recommends **setting up `conda` environments with Singularity overlay images** as [described here](../07_containers/03_apptainer_with_conda.md). Avoid creating `conda` environments in your `$HOME` directory.
+-   Working with `conda` environments: To avoid running out of inode limits in home directories, the HPC team recommends **setting up `conda` environments with Apptainer overlay images** as [described here](../07_containers/03_apptainer_with_conda.md). Avoid creating `conda` environments in your `$HOME` directory.
 :::
 
 ## HPC Scratch
