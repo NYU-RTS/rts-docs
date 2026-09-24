@@ -125,50 +125,6 @@ This directory provides locally hosted NCBI data resources for molecular biology
 
 -   `/projects/work/public/genomics/ncbi/`
 
-### C4
-*About data set*: [c4  |  TensorFlow Datasets](https://www.tensorflow.org/datasets/catalog/c4)
-
-A colossal, cleaned version of Common Crawl's web crawl corpus.  Based on Common Crawl dataset: [https://commoncrawl.org](https://commoncrawl.org)
-
-*Dataset is available under*
--   `/projects/work/public/ml-datasets/c4`
-
-### GQA
-*About data set*: [GQA: Visual Reasoning in the Real World (stanford.edu)](https://cs.stanford.edu/people/dorarad/gqa/index.html)
-
-Question Answering on Image Scene Graphs
-
-*Dataset is available under*
--   `/projects/work/public/ml-datasets/gqa`
-
-### MJSynth
-*About data set*: [Visual Geometry Group - University of Oxford](https://www.robots.ox.ac.uk/~vgg/data/text/)
-
-This is synthetically generated dataset which found to be sufficient for training text recognition on real-world images
-
-This dataset consists of 9 million images covering 90k English words, and includes the training, validation and test splits used in the author's work (archived dataset is about 10 GB)
-
-*Dataset is available under*
--   `/projects/work/public/ml-datasets/mjsynth`
-
-### Open-images-dataset
-*About data set*: [Open Images Dataset – opensource.google](https://storage.googleapis.com/openimages/web/index.html)
-
-A dataset of ~9 million varied images with rich annotations
-
-The images are very diverse and often contain complex scenes with several objects (8.4 per image on average). It contains 	image-level labels annotations, object bounding boxes, object segmentations, visual relationships, localized narratives, and 	more
-
-*Dataset is available under*
--   `/projects/work/public/ml-datasets/open-images-dataset`
-
-### Pile
-*About data set*: [The Pile (eleuther.ai)](https://pile.eleuther.ai/)
-
-The Pile is a 825 GiB diverse, open source language modeling data set that consists of 22 smaller, high-quality datasets combined together.
-
-*Dataset is available under*
--   `/projects/work/public/ml-datasets/pile`
-
 ### Waymo Open Dataset
 *About data set*: [Open Dataset – Waymo](https://waymo.com/open/)
 
