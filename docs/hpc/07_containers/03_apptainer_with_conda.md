@@ -60,7 +60,7 @@ gunzip overlay-15GB-500K.ext3.gz
 
 Choose a corresponding Apptainer image. For this example we will use the following image:
 ```bash
-/share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif 
+/share/apps/images/cuda-13.3.1-ubuntu-26.04.sif
 ```
 
 For Apptainer image available on nyu HPC Torch, please check the apptainer images folder:
