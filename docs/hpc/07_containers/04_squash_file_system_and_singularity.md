@@ -5,7 +5,7 @@ View available datasets on the [Datasets page](../04_datasets/01_intro.md).
 :::
 
 ## Working with Datasets
-Writable ext3 overlay images have conda environments installed inside, Singularity can work with squashFS for fixed datasets, such as the coco datasets.  Here's an example using the `my_pytorch.ext3` we created in the last tutorial [Singularity with Conda](03_apptainer_with_conda.md):
+Writable ext3 overlay images have conda environments installed inside, Singularity can work with squashFS for fixed datasets, such as the coco datasets.  Here's an example using the `my_pytorch.ext3` we created in the last tutorial [Apptainer with Conda](03_apptainer_with_conda.md):
 
 ```sh
 [NetID@log-1 ~]$ singularity exec \
