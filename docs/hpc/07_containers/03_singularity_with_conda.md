@@ -72,7 +72,7 @@ For the most recent supported versions of PyTorch, please check the [PyTorch web
 
 Launch the appropriate Apptainer container in read/write mode (with the :rw flag):
 ```sh
-singularity exec --fakeroot --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
+apptainer exec --fakeroot --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
 ```
 
 The above starts a bash shell inside the referenced Apptainer Container overlaid with the 15GB 500K you set up earlier. This creates the functional illusion of having a writable filesystem inside the typically read-only Apptainer container. 
@@ -144,7 +144,7 @@ which pip
 # output: /ext3/miniforge3/bin/pip
 
 exit
-# exit Singularity
+# exit Apptainer
 ```
 
 #### Install Packages
@@ -160,18 +160,18 @@ srun --cpus-per-task=2 --mem=10GB --time=04:00:00 --pty /bin/bash
 # wait to be assigned a node
 ```
 
-After it is running, you’ll be redirected to a compute node. From there, run singularity to setup on conda environment, same as you were doing on login node. Your prompt should look similar to this:
+After it is running, you’ll be redirected to a compute node. From there, run apptainer to setup on conda environment, same as you were doing on login node. Your prompt should look similar to this:
 ```sh
 # Your prompt should now look something like this once your jobs starts: [NetID@cm001 pytorch-example]$
 
-singularity exec --fakeroot --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
+apptainer exec --fakeroot --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
 
 source /ext3/env.sh
 [NetID@cm001 pytorch-example]$ 
 ```
 Then you can activate your environment:
 ```sh
-singularity exec --fakeroot --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
+apptainer exec --fakeroot --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
 # Singularity>
 # activate the environment
 source /ext3/env.sh
@@ -204,7 +204,7 @@ mv overlay-15GB-500K.ext3 my_pytorch.ext3
 ```
 #### Test Your PyTorch Apptainer Image
 ```sh
-singularity exec --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash -c 'source /ext3/env.sh; python -c "import torch; print(torch.__file__); print(torch.__version__)"'
+apptainer exec --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash -c 'source /ext3/env.sh; python -c "import torch; print(torch.__file__); print(torch.__version__)"'
 
 #output: /ext3/miniforge3/lib/python3.8/site-packages/torch/__init__.py
 #output: 2.7.1+cu126
@@ -214,7 +214,7 @@ singularity exec --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro /
 :::
 
 ### Using Your Apptainer Container in a SLURM Batch Job
-Below is an example script of how to call a python script, in this case `torch-test.py`, from a SLURM batch job using your new Singularity image
+Below is an example script of how to call a python script, in this case `torch-test.py`, from a SLURM batch job using your new Apptainer image
 
 torch-test.py:
 ```sh
@@ -322,8 +322,8 @@ Please see [Conda Environments](../06_tools_and_software/06_conda_environments.m
 Please also keep in mind that once the overlay image is opened in default read-write mode, the file will be locked. You will not be able to open it from a new process. Once the overlay is opened either in read-write or read-only mode, it cannot be opened in RW mode from other processes either. For production jobs to run, the overlay image should be open in read-only mode. You can run many jobs at the same time as long as they are run in read-only mode. In this ways, it will protect the computation software environment, software packages are not allowed to change when there are jobs running. 
 :::
 
-### Julia Singularity Image
-Singularity can be used to set up a Julia environment.
+### Julia Apptainer Image
+Apptainer can be used to set up a Julia environment.
 
 Create a directory for your Julia work, such as `/scratch/<NetID>/julia`, and then change to your working directory to it. An example is shown below:
 ```sh
@@ -343,7 +343,7 @@ Copy the following wrapper script in the directory:
 cp -rp /share/apps/utils/julia-setup/* .
 ```
 
-Now launch writable Singularity overlay to install packages:
+Now launch writable Apptainer overlay to install packages:
 ```sh
 module purge
 module load knitro/12.3.0
@@ -506,7 +506,7 @@ Time spent in evaluations (secs)    =       0.00000
 ```
 
 ### Using CentOS 8 for Julia (for Module Compatibility)
-Building on the previous Julia example, this will demonstrate how to set up a similar environment using the Singularity CentOS 8 image for additional customization. Using the CentOS 8 overlay allows for the loading of modules installed on Torch, such as Knitro 12.3.0
+Building on the previous Julia example, this will demonstrate how to set up a similar environment using the Apptainer CentOS 8 image for additional customization. Using the CentOS 8 overlay allows for the loading of modules installed on Torch, such as Knitro 12.3.0
 
 Copy overlay image:
 ```sh
@@ -533,9 +533,9 @@ Now, in this example, the absolute paths are as follows:
 ```
 :::
 
-Launch Singularity with overlay images in writable mode to install packages:
+Launch Apptainer with overlay images in writable mode to install packages:
 ```sh
-singularity exec \
+apptainer exec \
         --overlay /scratch/<NetID>/julia/julia-pkgs.ext3 \
         --bind /share/apps \
         --bind /scratch/<NetID>/julia/julia-compiled:/ext3/pkgs/compiled \
@@ -601,7 +601,7 @@ done
 
 module purge
 
-singularity exec \
+apptainer exec \
         --overlay /scratch/<NetID>/julia/julia-pkgs.ext3:ro  \
         --bind /share/apps \
         --bind /scratch/<NetID>/julia/julia-compiled:/ext3/pkgs/compiled \
@@ -661,7 +661,7 @@ done
 
 module purge
 
-singularity exec \
+apptainer exec \
         --overlay /scratch/<NetID>/julia/julia-pkgs.ext3  \
         --bind /share/apps \
         --bind /scratch/<NetID>/julia/julia-compiled:/ext3/pkgs/compiled \
@@ -684,7 +684,7 @@ Install packages to the writable image:
 julia-writable -e 'using Pkg; Pkg.add(["Calculus", "LinearAlgebra"])'
 ```
 
-If you do not need host packages installed in `/share/apps`, you can work with Singularity OS image:
+If you do not need host packages installed in `/share/apps`, you can work with Apptainer OS image:
 ```sh
 /share/apps/images/ubuntu-20.04.1.sif 
 ```
