@@ -70,21 +70,21 @@ ls /share/apps/images/
 
 For the most recent supported versions of PyTorch, please check the [PyTorch website](https://pytorch.org/get-started/locally/). 
 
-Launch the appropriate Apptainer container in read/write mode (with the :rw flag):
+From the pytorch-example directory created above, launch the appropriate Apptainer container in read/write mode (with the :rw flag):
 ```sh
-apptainer exec --fakeroot --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
+apptainer exec --fakeroot --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda-13.3.1-ubuntu-26.04.sif /bin/bash
 ```
 
 The above starts a bash shell inside the referenced Apptainer Container overlaid with the 15GB 500K you set up earlier. This creates the functional illusion of having a writable filesystem inside the typically read-only Apptainer container. 
 
 :::note
-Please note that the default Apptainer on Torch is now Apptainer, which requires the --fakeroot option to load overlay files in read/write mode.
+Please note that Torch now uses Apptainer instead of Singularity by default. For the writable ext3 overlay used in this tutorial, use `--fakeroot` when mounting it in read/write mode.
 :::
 
 Now, inside the container, download and install miniforge to `/ext3/miniforge3`.
 
 :::note
-Please note your prompt should indicate you're in apptainer with the `Singularity>` prompt
+Please note your prompt should indicate you're in apptainer with the `Apptainer>` prompt
 :::
 
 ```bash
@@ -164,15 +164,15 @@ After it is running, you’ll be redirected to a compute node. From there, run a
 ```sh
 # Your prompt should now look something like this once your jobs starts: [NetID@cm001 pytorch-example]$
 
-apptainer exec --fakeroot --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
+apptainer exec --fakeroot --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda-13.3.1-ubuntu-26.04.sif /bin/bash
 
 source /ext3/env.sh
 [NetID@cm001 pytorch-example]$ 
 ```
 Then you can activate your environment:
 ```sh
-apptainer exec --fakeroot --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
-# Singularity>
+apptainer exec --fakeroot --overlay overlay-15GB-500K.ext3:rw /share/apps/images/cuda-13.3.1-ubuntu-26.04.sif /bin/bash
+# Apptainer>
 # activate the environment
 source /ext3/env.sh
 ```
@@ -196,15 +196,15 @@ du -sh  /ext3
 # output should be something like: 6.5G    /ext3
 ```
 
-Now, exit the Apptainer container and then rename the overlay image. Typing `exit` and hitting `enter` will exit the Apptainer container if you are currently inside it. You can tell if you're in a Apptainer container because your prompt will be different, such as showing the prompt `Singularity>`:
+Now, exit the Apptainer container and then rename the overlay image. Typing `exit` and hitting `enter` will exit the Apptainer container if you are currently inside it. You can tell if you're in a Apptainer container because your prompt will be different, such as showing the prompt `Apptainer>`:
 ```sh
-#Singularity>
+#Apptainer>
 exit
 mv overlay-15GB-500K.ext3 my_pytorch.ext3
 ```
 #### Test Your PyTorch Apptainer Image
 ```sh
-apptainer exec --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash -c 'source /ext3/env.sh; python -c "import torch; print(torch.__file__); print(torch.__version__)"'
+apptainer exec --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro /share/apps/images/cuda-13.3.1-ubuntu-26.04.sif /bin/bash -c 'source /ext3/env.sh; python -c "import torch; print(torch.__file__); print(torch.__version__)"'
 
 #output: /ext3/miniforge3/lib/python3.8/site-packages/torch/__init__.py
 #output: 2.7.1+cu126
@@ -253,7 +253,7 @@ module purge
 
 apptainer exec --nv \
 	    --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro \
-	    /share/apps/images/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif\
+	    /share/apps/images/cuda-13.3.1-ubuntu-26.04.sif\
 	    /bin/bash -c "source /ext3/env.sh; python torch-test.py"
 ```
 
@@ -295,7 +295,7 @@ Notice that it saves over 3GB of storage in this case, though your results may v
 
 You can use squashFS images similarly to the ext3 images:
 ```sh
-apptainer exec --overlay /scratch/<NetID>/pytorch-example/my_pytorch.sqf:ro /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif  /bin/bash -c 'source /ext3/env.sh; python -c "import torch; print(torch.__file__); print(torch.__version__)"'
+apptainer exec --overlay /scratch/<NetID>/pytorch-example/my_pytorch.sqf:ro /share/apps/images/cuda-13.3.1-ubuntu-26.04.sif /bin/bash -c 'source /ext3/env.sh; python -c "import torch; print(torch.__file__); print(torch.__version__)"'
 
 #example output: /ext3/miniforge3/lib/python3.12/site-packages/torch/__init__.py
 #example output: 2.6.0+cu124
@@ -310,7 +310,7 @@ Open the first image in read only mode:
 cp -rp /share/apps/overlay-fs-ext3/overlay-2GB-100K.ext3.gz .
 gunzip overlay-2GB-100K.ext3.gz
 
-apptainer exec --overlay overlay-2GB-100K.ext3 --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash
+apptainer exec --overlay overlay-2GB-100K.ext3 --overlay /scratch/<NetID>/pytorch-example/my_pytorch.ext3:ro /share/apps/images/cuda-13.3.1-ubuntu-26.04.sif /bin/bash
 source /ext3/env.sh
 pip install tensorboard
 ```
