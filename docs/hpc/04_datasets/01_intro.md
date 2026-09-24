@@ -87,7 +87,7 @@ The ProQuest Congressional Record text-as-data collection consists of machine-re
 ### ProQuest Historical Newspapers
 *About data set*: [ProQuest Historical Newspapers](https://persistent.library.nyu.edu/arch/148cd8d4)
 
-The ProQuest Historical Newspapers text data collection consists of approximately 99.1 million XML files from 26 historical newspaper collections. Each file represents an item, advertisement, article, or subsection of a newspaper edition and includes metadata and full text extracted from digitized print using optical character recognition. Coverage varies by publication and ranges from 1764 to 2008. This is a static collection and is available to NYU faculty and students only.
+The ProQuest Historical Newspapers text data collection consists of XML files from 26 historical newspaper collections. Each file represents an item, advertisement, article, or subsection of a newspaper edition and includes metadata and full text extracted from digitized print using optical character recognition. Coverage varies by publication and ranges from 1764 to 2008. 
 
 *Dataset is available under*:
 -   `/projects/work/public/proquest/proquest_hnp/`
@@ -96,10 +96,7 @@ The ProQuest Historical Newspapers text data collection consists of approximatel
 
 *About data set*: [eggNOG-mapper](https://eggnog-mapper.cgmlab.org/)
 
-The directory contains reference data for the legacy eggNOG-mapper
-database based on eggNOG 5.0.2. It includes annotation, taxonomy,
-protein-sequence, MMseqs2, and Pfam resources. These data are not
-compatible with the current eggNOG-mapper v3 database.
+The directory contains reference data for the legacy eggNOG-mapper database based on eggNOG 5.0.2. It includes annotation, taxonomy, protein-sequence, MMseqs2, and Pfam resources. 
 
 *Dataset is available under*:
 
@@ -109,7 +106,7 @@ compatible with the current eggNOG-mapper v3 database.
 
 *About data set*: [Kraken 2](https://ccb.jhu.edu/software/kraken2/)
 
-This pre-built Kraken 2 database contains NCBI reference sequence and taxonomy resources for taxonomic classification of genomic and metagenomic sequencing data. The database snapshot is dated October 7, 2025, and includes Kraken 2 indexes, NCBI taxonomy files, sequence-to-taxonomy mappings, k-mer distributions, and supporting database reports.
+This pre-built Kraken 2 database contains NCBI reference sequence and taxonomy resources for taxonomic classification of genomic and metagenomic sequencing data. The database snapshot includes Kraken 2 indexes, NCBI taxonomy files, sequence-to-taxonomy mappings, k-mer distributions, and supporting database reports.
 
 *Dataset is available under*:
 
@@ -119,7 +116,7 @@ This pre-built Kraken 2 database contains NCBI reference sequence and taxonomy r
 
 *About data set*: [Molecular Biology & Biochemistry Data Resources](https://www.ncbi.nlm.nih.gov/)
 
-This directory provides locally hosted NCBI data resources for molecular biology and biochemistry research workflows. The specific databases, versions, and update schedule included in this directory have not yet been confirmed.
+This directory provides locally hosted NCBI data resources for molecular biology and biochemistry research workflows.
 
 *Dataset is available under*:
 
