@@ -24,7 +24,7 @@ You can watch a [video](https://www.youtube.com/watch?v=wqTgM-Wq4YY&t=296s) that
 
 ## Step 2: Create PyTorch Overlay File
 
-Please follow the instructions on [Singularity with Conda](../07_containers/03_singularity_with_conda.md) to create a PyTorch overlay file in the working directory we created above.  We will use this overlay file for the PyTorch examples to follow.
+Please follow the instructions on [Apptainer with Conda](../07_containers/03_apptainer_with_conda.md) to create a PyTorch overlay file in the working directory we created above.  We will use this overlay file for the PyTorch examples to follow.
 
 We also need to add the profiler `kernprof` (in the line_profiler package) to the overlay environment:
 ```bash
