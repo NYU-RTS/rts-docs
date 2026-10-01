@@ -79,3 +79,17 @@ select {
     var(--ifm-color-emphasis-100) 100%
   );
 }
+
+/* The full navbar title crowds out the search and Ask AI buttons on mobile,
+   so show the abbreviation once the navbar collapses (Infima's 996px). */
+@media (width <= 996px) {
+  .navbar__title {
+    font-size: 0;
+  }
+
+  .navbar__title::after {
+    /* rem, not --ifm-font-size-base (100%), which would resolve against 0 */
+    font-size: 1rem;
+    content: "RTS" / "";
+  }
+}
