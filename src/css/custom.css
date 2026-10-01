@@ -14,6 +14,10 @@
   --ifm-color-primary-lighter: #6407a1;
   --ifm-color-primary-lightest: #7108b6;
   --ifm-code-font-size: 95%;
+
+  /* Infima defaults this to transparent, which leaves overlays such as the
+     DocSearch modal and Ask AI side panel see-through in light mode. */
+  --ifm-background-color: var(--ifm-color-white);
   --docusaurus-highlighted-code-line-bg: rgb(0 0 0 / 10%);
 }
 
@@ -48,7 +52,6 @@ select {
   vertical-align: middle;
 }
 
-/* stylelint-disable-next-line selector-class-pattern */
 [data-theme="light"] .DocSearch {
   --docsearch-muted-color: var(--ifm-color-secondary-darkest);
   --docsearch-container-background: rgb(94 100 112 / 70%);
@@ -57,11 +60,8 @@ select {
   --docsearch-searchbox-focus-background: var(--ifm-color-white);
   --docsearch-hit-color: var(--ifm-font-color-base);
   --docsearch-hit-active-color: var(--ifm-color-white);
-  --docsearch-hit-background: var(--ifm-color-white);
-  --docsearch-footer-background: var(--ifm-color-white);
 }
 
-/* stylelint-disable-next-line selector-class-pattern */
 [data-theme="dark"] .DocSearch {
   --docsearch-text-color: var(--ifm-font-color-base);
   --docsearch-muted-color: var(--ifm-color-secondary-darkest);
@@ -78,4 +78,18 @@ select {
     var(--ifm-color-emphasis-200) 0%,
     var(--ifm-color-emphasis-100) 100%
   );
+}
+
+/* The full navbar title crowds out the search and Ask AI buttons on mobile,
+   so show the abbreviation once the navbar collapses (Infima's 996px). */
+@media (width <= 996px) {
+  .navbar__title {
+    font-size: 0;
+  }
+
+  .navbar__title::after {
+    /* rem, not --ifm-font-size-base (100%), which would resolve against 0 */
+    font-size: 1rem;
+    content: "RTS" / "";
+  }
 }
