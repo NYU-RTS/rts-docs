@@ -327,8 +327,8 @@ Apptainer can be used to set up a Julia environment.
 
 Create a directory for your Julia work, such as `/scratch/<NetID>/julia`, and then change to your working directory to it. An example is shown below:
 ```sh
-mkdir /home/<NetID>/julia
-cd /home/<NetID>/julia
+mkdir /scratch/<NetID>/julia
+cd /scratch/<NetID>/julia
 ```
 
 Copy an overlay image, such as the 2GB 100K overlay, which generally has enough storage for Julia packages. Once copied, unzip to the same folder, rename to julia-pkgs.ext3:
@@ -346,7 +346,7 @@ cp -rp /share/apps/utils/julia-setup/* .
 Now launch writable Apptainer overlay to install packages:
 ```sh
 module purge
-module load knitro/12.3.0
+module load knitro/16.0.0
 module load julia/1.5.3
 
 ~/julia/my-julia-writable
