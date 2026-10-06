@@ -331,26 +331,21 @@ mkdir /scratch/<NetID>/julia
 cd /scratch/<NetID>/julia
 ```
 
-Copy an overlay image, such as the 2GB 100K overlay, which generally has enough storage for Julia packages. Once copied, unzip to the same folder, rename to julia-pkgs.ext3:
+Run the setup script from your Julia working directory on a compute node:
 ```sh
-cp -rp /share/apps/overlay-fs-ext3/overlay-2GB-100K.ext3.gz .
-gunzip overlay-2GB-100K.ext3.gz
-mv overlay-2GB-100K.ext3 julia-pkgs.ext3
+/share/apps/utils/julia/setup-julia.bash
 ```
+The script downloads Julia, creates a writable overlay, and installs Julia inside it. It also creates two launchers in your working directory: julia for running Julia with the overlay in read-only mode, and julia-rw for installing or updating packages with the overlay in read-write mode.
 
-Copy the following wrapper script in the directory:
-```sh
-cp -rp /share/apps/utils/julia-setup/* .
-```
-
-Now launch writable Apptainer overlay to install packages:
+Now launch Julia with the overlay in read-write mode to install packages. Run the following commands from your Julia working directory on a compute node:
 ```sh
 module purge
 module load knitro/16.0.0
-module load julia/1.5.3
+./julia-rw
+```
 
-~/julia/my-julia-writable
-
+At the `julia>` prompt, install the packages:
+```
 # Your prompt will look like this:
 # julia>
 using Pkg
@@ -359,22 +354,16 @@ Pkg.add("JuMP")
 ```
 
 Now exit from the container to launch a read only version to test (example below):
+```sh
+./julia
+```
+At the `julia>` prompt:
 ```julia
-~/julia/my-julia
-              _
-#  _       _ _(_)_     |  Documentation: https://docs.julialang.org
-#  (_)     | (_) (_)    |
-#  _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
-#  | | | | | | |/ _` |  |
-#  | | |_| | | | (_| |  |  Version 1.5.3 (2020-11-09)
-#_/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
-#|__/                   |
-
 using Pkg
 
 using JuMP, KNITRO
 
-m = Model(with_optimizer(KNITRO.Optimizer))
+m = Model(KNITRO.Optimizer)
 A JuMP Model
 Feasibility problem with:
 Variables: 0
@@ -400,7 +389,7 @@ You can make the above code into a Julia script to test batch jobs. Save the fol
 ```julia
 using Pkg
 using JuMP, KNITRO
-m = Model(with_optimizer(KNITRO.Optimizer))
+m = Model(KNITRO.Optimizer)
 @variable(m, x1 >= 0)
 @variable(m, x2 >= 0)
 @NLconstraint(m, x1*x2 == 0)
@@ -413,7 +402,7 @@ You can add additional packages with commands like the one below:
 Please do not install new packages when you have Julia jobs running, this may create issues with your Julia installation
 :::
 ```julia
-~/julia/my-julia-writable -e 'using Pkg; Pkg.add(["Calculus", "LinearAlgebra"])'
+./julia-rw -e 'using Pkg; Pkg.add("Calculus")'
 ```
 
 Run a SLURM job to test with the following sbatch command (e.g. julia-test.SBATCH):
@@ -428,10 +417,9 @@ Run a SLURM job to test with the following sbatch command (e.g. julia-test.SBATC
 #SBATCH --job-name=julia-test
 
 module purge
-module load julia/1.5.3
-module load knitro/12.3.0
+module load knitro/16.0.0
 
-~/julia/my-julia test-knitro.jl
+./julia test-knitro.jl
 ```
 
 Then run the command with the following:
@@ -446,249 +434,74 @@ cat slurm-1022969.out
 =======================================
            Academic License
        (NOT FOR COMMERCIAL USE)
-         Artelys Knitro 12.3.0
+         Artelys Knitro 16.0.0
 =======================================
 
-Knitro presolve eliminated 0 variables and 0 constraints.
+Knitro using 1 thread.
+No start point provided -- Knitro computing one.
 
-datacheck:               0
-hessian_no_f:            1
-par_numthreads:          1
+Knitro presolve eliminated 0 variables (0%) and 0 constraints (0%) in 0.09s.
 
-Problem Characteristics                                 (   Presolved)
+datacheck                0
+feastol                  1e-06
+feastol_abs              0.001
+hessian_no_f             1
+mip_numthreads           1
+ms_numthreads            1
+numthreads               1
+opttol                   1e-06
+opttol_abs               0.001
+
+Problem Characteristics                     |           Presolved
 -----------------------
-Objective goal:  Minimize
-Objective type:  general
-Number of variables:                                  2 (           2)
-    bounded below only:                               2 (           2)
-    bounded above only:                               0 (           0)
-    bounded below and above:                          0 (           0)
-    fixed:                                            0 (           0)
-    free:                                             0 (           0)
-Number of constraints:                                1 (           1)
-    linear equalities:                                0 (           0)
-    quadratic equalities:                             0 (           0)
-    gen. nonlinear equalities:                        1 (           1)
-    linear one-sided inequalities:                    0 (           0)
-    quadratic one-sided inequalities:                 0 (           0)
-    gen. nonlinear one-sided inequalities:            0 (           0)
-    linear two-sided inequalities:                    0 (           0)
-    quadratic two-sided inequalities:                 0 (           0)
-    gen. nonlinear two-sided inequalities:            0 (           0)
-Number of nonzeros in Jacobian:                       2 (           2)
-Number of nonzeros in Hessian:                        3 (           3)
+Problem type: NLP
+Objective: minimize / general  
+Number of variables:                      2 |                             2
+  bounds:         lower     upper     range |     lower     upper     range
+                      2         0         0 |         2         0         0
+                             free     fixed |                free     fixed
+                                0         0 |                   0         0
+Number of constraints:                    1 |                             1
+                    eq.     ineq.     range |       eq.     ineq.     range
+  linear:             0         0         0 |         0         0         0
+  quadratic:          0         0         0 |         0         0         0
+  nonlinear:          1         0         0 |         1         0         0
+Number of nonzeros:
+              objective  Jacobian   Hessian | objective  Jacobian   Hessian
+  linear:             0         0           |         0         0          
+  quadratic:          0         0         0 |         0         0         0
+  nonlinear:          2         2         3 |         2         2         3
+  total:              2         2         3 |         2         2         3
+Coefficient range:
+  linear objective:          [0e+00, 0e+00] |                [0e+00, 0e+00]
+  linear constraints:        [0e+00, 0e+00] |                [0e+00, 0e+00]
+  quadratic objective:       [0e+00, 0e+00] |                [0e+00, 0e+00]
+  quadratic constraints:     [0e+00, 0e+00] |                [0e+00, 0e+00]
+  variable bounds:           [0e+00, 0e+00] |                [0e+00, 0e+00]
+  constraint bounds:         [0e+00, 0e+00] |                [0e+00, 0e+00]
 
 Knitro using the Interior-Point/Barrier Direct algorithm.
 
-  Iter      Objective      FeasError   OptError    ||Step||    CGits 
---------  --------------  ----------  ----------  ----------  -------
-       0    0.000000e+00   0.000e+00
-
-WARNING: The initial point is a stationary point and only the first order
-         optimality conditions have been verified.
+    Iter       Objective  FeasError   OptError   ||Step||      Time 
+--------  --------------  ---------  ---------  ---------  --------
+       0   -3.684125e+00   3.37e+00
+       4   -1.519686e-07   1.06e-06   9.87e-07   9.58e-04      6.72
 
 EXIT: Locally optimal solution found.
 
 Final Statistics
 ----------------
-Final objective value               =   0.00000000000000e+00
-Final feasibility error (abs / rel) =   0.00e+00 / 0.00e+00
-Final optimality error  (abs / rel) =   0.00e+00 / 0.00e+00
-# of iterations                     =          0 
-# of CG iterations                  =          0 
-# of function evaluations           =          1
-# of gradient evaluations           =          1
-# of Hessian evaluations            =          0
-Total program time (secs)           =       1.03278 (     1.014 CPU time)
-Time spent in evaluations (secs)    =       0.00000
+Final objective value               =  -1.51968578354339e-07
+Final feasibility error (abs / rel) =   1.06e-06 / 3.15e-07
+Final optimality error  (abs / rel) =   9.87e-07 / 9.87e-07
+# of iterations                     =          4 
+# of CG iterations                  =          1 
+# of function evaluations           =          8
+# of gradient evaluations           =          7
+# of Hessian evaluations            =          4
+Total program time (secs)           =       6.72203 (     6.393 CPU time)
+Time spent in evaluations (secs)    =       4.88511
 
-===============================================================================
+================================================================================
 ```
-
-### Using CentOS 8 for Julia (for Module Compatibility)
-Building on the previous Julia example, this will demonstrate how to set up a similar environment using the Apptainer CentOS 8 image for additional customization. Using the CentOS 8 overlay allows for the loading of modules installed on Torch, such as Knitro 12.3.0
-
-Copy overlay image:
-```sh
-cd ~/julia
-cp -rp /share/apps/overlay-fs-ext3/overlay-2GB-100K.ext3.gz .
-gunzip overlay-2GB-100K.ext3.gz
-mv overlay-2GB-100K.ext3 julia-pkgs.ext3
-```
-
-:::note
-The path in this example is `/scratch/<NetID>/julia/julia-pkgs.ext3`
-:::
-
-To use modules installed into `/share/apps` you can make two directories:
-```sh
-mkdir julia-compiled julia-logs
-```
-
-:::note
-Now, in this example, the absolute paths are as follows:
-```sh
-/scratch/<NetID>/julia/julia-compiled
-/scratch/<NetID>/julia/julia-logs
-```
-:::
-
-Launch Apptainer with overlay images in writable mode to install packages:
-```sh
-apptainer exec \
-        --overlay /scratch/<NetID>/julia/julia-pkgs.ext3 \
-        --bind /share/apps \
-        --bind /scratch/<NetID>/julia/julia-compiled:/ext3/pkgs/compiled \
-        --bind /scratch/<NetID>/julia/julia-logs:/ext3/pkgs/logs  \
-        /share/apps/images/centos-8.2.2004.sif \
-        /bin/bash
-```
-
-Implement a wrapper script /ext3/env.sh:
-```bash
-#/bin/bash
-
-export JULIA_DEPOT_PATH=/ext3/pkgs # this changes the default installation path to the environment
-source /opt/apps/lmod/lmod/init/bash
-module use /share/apps/modulefiles
-module purge
-module load knitro/12.3.0
-module load julia/1.5.3
-```
-
-Load Julia via the wrapper script and check that it loads properly:
-```sh
-source /ext3/env.sh
-which julia
-# example output: /share/apps/julia/1.5.3/bin/julia
-julia --version
-# example output: julia version 1.5.3
-```
-
-Run Julia to install packages:
-```julia
-julia
-julia> using Pkg
-julia> Pkg.add("KNITRO")
-julia> Pkg.add("JuMP")
-# Your prompt should now be julia>
-using Pkg
-Pkg.add("KNITRO")
-Pkg.add("JuMP")
-```
-
-Set up a similar test script like the test-knitro.jl script above. Name it test.jl:
-```julia
-using Pkg
-using JuMP, KNITRO
-m = Model(with_optimizer(KNITRO.Optimizer))
-@variable(m, x1 >= 0)
-@variable(m, x2 >= 0)
-@NLconstraint(m, x1*x2 == 0)
-@NLobjective(m, Min, x1*(1-x2^2))
-optimize!(m)
-```
-
-Now implement a wrapper script named `julia` into ~/bin, the overlay image is in readonly mode:
-```bash
-#!/bin/bash
-
-args=''
-for i in "$@"; do
-    i="${i//\\/\\\\}"
-    args="$args \"${i//\"/\\\"}\""
-done
-
-module purge
-
-apptainer exec \
-        --overlay /scratch/<NetID>/julia/julia-pkgs.ext3:ro  \
-        --bind /share/apps \
-        --bind /scratch/<NetID>/julia/julia-compiled:/ext3/pkgs/compiled \
-        --bind /scratch/<NetID>/julia/julia-logs:/ext3/pkgs/logs  \
-        /share/apps/images/centos-8.2.2004.sif \
-        /bin/bash -c "
-source /ext3/env.sh
-julia $args
-"
-```
-
-Make the wrapper executable:
-```sh
-chmod 755 ~/bin/julia
-```
-
-Test your installation with a SLURM job example. The following code has been put into a file called test-julia-centos.SBATCH:
-```bash
-#!/bin/bash 
-
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=1
-#SBATCH --time=1:00:00
-#SBATCH --mem=2GB
-#SBATCH --job-name=julia-test
-module purge
-
-julia test.jl
-```
-
-Run the above with the following:
-```sh
-sbatch test-julia-centos.SBATCH
-```
-
-Read the output (example below):
-```sh
-cat slurm-764085.out 
-```
-
-#### Installing New Julia Packages Later
-
-Implement another writable julia-writable with overlay image writable in order to install new Julia packages later:
-```sh
-cd /home/<NetID>/bin
-cp -rp julia julia-writable
-```
-```bash
-#!/bin/bash
-
-args=''
-for i in "$@"; do
-    i="${i//\\/\\\\}"
-    args="$args \"${i//\"/\\\"}\""
-done
-
-module purge
-
-apptainer exec \
-        --overlay /scratch/<NetID>/julia/julia-pkgs.ext3  \
-        --bind /share/apps \
-        --bind /scratch/<NetID>/julia/julia-compiled:/ext3/pkgs/compiled \
-        --bind /scratch/<NetID>/julia/julia-logs:/ext3/pkgs/logs  \
-        /share/apps/images/centos-8.2.2004.sif \
-        /bin/bash -c "
-source /ext3/env.sh
-julia $args
-"
-```
-
-Check the writable image:
-```sh
-which julia-writable
-#example output: ~/bin/julia-writable
-```
-
-Install packages to the writable image:
-```sh
-julia-writable -e 'using Pkg; Pkg.add(["Calculus", "LinearAlgebra"])'
-```
-
-If you do not need host packages installed in `/share/apps`, you can work with Apptainer OS image:
-```sh
-/share/apps/images/ubuntu-20.04.1.sif 
-```
-
-Download Julia installation package from [https://julialang-s3.julialang.org/bin/linux/x64/1.5/julia-1.5.3-linux-x86_64.tar.gz](https://julialang-s3.julialang.org/bin/linux/x64/1.5/julia-1.5.3-linux-x86_64.tar.gz)
-
 Install Julia to `/ext3`, setup PATH properly. It will be easy to move to other servers in future.
