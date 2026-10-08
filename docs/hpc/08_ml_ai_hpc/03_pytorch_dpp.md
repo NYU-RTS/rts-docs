@@ -163,7 +163,7 @@ srun singularity exec --nv \
 
 In the script above, `MASTER_PORT`, `MASTER_ADDR` and `WORLD_SIZE` are set. The three are later used to create the DDP process group. The total number of GPUs allocated to the job must be equal to `WORLD_SIZE` -- this is satisfied above since nodes times ntasks-per-node is `2 x 2 = 4` and number of GPUs allocated is nodes times gpus_per_node which is also `2 x 2 = 4`.
 
-This uses the overlay file for PyTorch we created in [Singularity with Conda](../07_containers/03_singularity_with_conda.md)
+This uses the overlay file for PyTorch we created in [Singularity with Conda](../07_containers/03_apptainer_with_conda.md)
 
 ### Job Arrays
 
