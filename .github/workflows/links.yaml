@@ -1,38 +1,36 @@
+# Internal links are already checked by the Docusaurus build
+# (onBrokenLinks: "throw" in docusaurus.config.ts), so this only
+# needs to cover external URLs.
 name: Link checker
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
+  schedule:
+    - cron: "17 6 * * 1" # weekly: external links rot without any commit
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
-  build:
+  lychee:
     name: Link checker
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          # Pinned below 11.12.0, whose self-install crashes with
-          # "Cannot use 'in' operator to search for 'integrity' in undefined".
-          # https://github.com/pnpm/action-setup/issues/276
-          # https://github.com/pnpm/pnpm/issues/12959
-          version: 11.11.0
+          persist-credentials: false
 
-      
-      - uses: actions/setup-node@v7
+      - name: Check links
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
         with:
-          node-version: 22
-
-      - name: MDX Broken Link Checker
-        uses: KaiSpencer/gh-action-check-broken-links@v0
-        with:
-          # Required: The base URL to check links against
-          # For example: /pages/foo.mdx will be checked against https://mysite.com/foo
-          baseUrl: 'https://nyu-its.github.io/rts-docs-dev/'
-  
+          args: >-
+            --no-progress
+            './docs/**/*.md' './docs/**/*.mdx'
+            './blog/**/*.md' './blog/**/*.mdx'
+          # External links are flaky, so only the scheduled/manual runs fail;
+          # PRs report results in the job summary without blocking.
+          fail: ${{ github.event_name != 'pull_request' }}
+          jobSummary: true
