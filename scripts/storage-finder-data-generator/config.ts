@@ -149,7 +149,11 @@ export const FACET_CONFIGS: FacetConfig[] = [
         choices: ["affiliation.faculty"],
       },
       { pattern: /\bstaff\b/i, choices: ["affiliation.staff"] },
-      { pattern: /\bstudent\b/i, choices: ["affiliation.student"] },
+      { pattern: /\bstudents?\b/i, choices: ["affiliation.student"] },
+      {
+        pattern: /\bfaculty[\s-]+sponsored\b/i,
+        choices: ["affiliation.student"],
+      },
     ],
     fallback: "all",
   },
