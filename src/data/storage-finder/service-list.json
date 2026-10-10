@@ -1080,7 +1080,7 @@
         "weight": 5
       },
       "field_permission_settings": {
-        "value": "<p>Done via Grouper; can give collaborators read access, read/write access, or administrator priveleges for a share.</p>",
+        "value": "<p>Done via Grouper; can give collaborators read access, read/write access, or administrator privileges for a share.</p>",
         "label": "Permission Settings",
         "weight": 6
       },
