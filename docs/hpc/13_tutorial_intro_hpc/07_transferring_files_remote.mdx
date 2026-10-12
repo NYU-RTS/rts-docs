@@ -146,41 +146,37 @@ You can identify if a file has Windows line endings with `cat -A filename`. A fi
 To convert the file, just run `dos2unix filename`. (Conversely, to convert back to Windows format, you can run `unix2dos filename`.)
 :::
 
-## Transferring Single Files and Folders With `scp`
-To copy a single file to or from the cluster, we can use `scp` (“secure copy”). The syntax can be a little complex for new users, but we’ll break it down. The `scp` command is a relative of the `ssh` command we used to access the system, and can use the same public-key authentication mechanism.
+## Transferring Single Files and Folders With `rsync`
+To copy a single file to or from the cluster, we can use `rsync`. For the remote transfers shown here, rsync uses SSH and can use the same public-key authentication mechanism we used to access the system.
 
 To *upload* to another computer, the template command is
 ```bash
-[user@laptop ~]$ scp local_file NetID@login.torch.hpc.nyu.edu:remote_destination
+[user@laptop ~]$ rsync local_file NetID@login.torch.hpc.nyu.edu:remote_destination
 ```
-in which `@` and `:` are field separators and `remote_destination` is a path relative to your remote home directory, or a new filename if you wish to change it, or both a relative path *and* a new filename. If you don’t have a specific folder in mind you can omit the `remote_destination` and the file will be copied to your home directory on the remote computer (with its original name). If you include a `remote_destination`, note that `scp` interprets this the same way `cp` does when making local copies: if it exists and is a folder, the file is copied inside the folder; if it exists and is a file, the file is overwritten with the contents of `local_file`; if it does not exist, it is assumed to be a destination filename for `local_file`.
+in which `@` and `:` are field separators and `remote_destination` is a path relative to your remote home directory, or a new filename if you wish to change it, or both a relative path *and* a new filename. If you don’t have a specific folder in mind you can omit the `remote_destination` and the file will be copied to your home directory on the remote computer (with its original name). If you include a `remote_destination`, note that `rsync` interprets this the same way `cp` does when making local copies: if it exists and is a folder, the file is copied inside the folder; if it exists and is a file, the file is updated with the contents of `local_file` if needed; if it does not exist, it is assumed to be a destination filename for `local_file`.
 
 Upload the lesson material to your remote home directory like so:
 ```bash
-[user@laptop ~]$ scp amdahl.tar.gz NetID@login.torch.hpc.nyu.edu:
+[user@laptop ~]$ rsync amdahl.tar.gz NetID@login.torch.hpc.nyu.edu:
 ```
 
 ## Transferring a Directory
 To transfer an entire directory, we add the `-r` flag for “recursive”: copy the item specified, and every item below it, and every item below those… until it reaches the bottom of the directory tree rooted at the folder name you provided.
 ```bash
-[user@laptop ~]$ scp -r amdahl NetID@login.torch.hpc.nyu.edu:
+[user@laptop ~]$ rsync -r amdahl NetID@login.torch.hpc.nyu.edu:
 ```
 :::warning[Caution]
 For a large directory – either in size or number of files – copying with `-r` can take a long time to complete.
 :::
 
-When using `scp`, you may have noticed that a `:` always follows the remote computer name. A string *after* the `:` specifies the remote directory you wish to transfer the file or folder to, including a new name if you wish to rename the remote material. If you leave this field blank, `scp` defaults to your home directory and the name of the local material to be transferred.
+When using `rsync`, you may have noticed that a `:` always follows the remote computer name. A string *after* the `:` specifies the remote directory you wish to transfer the file or folder to, including a new name if you wish to rename the remote material. If you leave this field blank, `rsync` defaults to your home directory and the name of the local material to be transferred.
 
 On Linux computers, `/` is the separator in file or directory paths. A path starting with a `/` is called *absolute*, since there can be nothing above the root `/`. A path that does not start with `/` is called *relative*, since it is not anchored to the root.
 
 If you want to upload a file to a location inside your home directory – which is often the case – then you don’t need a *leading* `/`. After the `:`, you can type the destination path relative to your home directory. If your home directory *is* the destination, you can leave the destination field blank, or type `~` – the shorthand for your home directory – for completeness.
 
-With `scp`, a trailing slash on the target directory is optional, and has no effect. A trailing slash on a source directory is important for other commands, like `rsync`.
-
 :::tip[A Note on rsync]
-As you gain experience with transferring files, you may find the `scp` command limiting. The [rsync](https://rsync.samba.org/) utility provides advanced features for file transfer and is typically faster compared to both `scp` and `sftp` (see below). It is especially useful for transferring large and/or many files and for synchronizing folder contents between computers.
-
-The syntax is similar to `scp`. To transfer to another computer with commonly used options:
+To transfer to another computer with commonly used options:
 ```bash
 [user@laptop ~]$ rsync -avP amdahl.tar.gz NetID@login.torch.hpc.nyu.edu:
 ```
@@ -197,11 +193,11 @@ As written, this will place the local directory and its contents under your home
 
 To download a file, we simply change the source and destination:
 ```bash
-[user@laptop ~]$ rsync -avP NetID@login.torch.hpc.nyu.edu:amdahl ./
+[user@laptop ~]$ rsync -avP NetID@login.torch.hpc.nyu.edu:amdahl.tar.gz ./
 ```
 :::
 
-File transfers using both `scp` and `rsync` use SSH to encrypt data sent through the network. So, if you can connect via SSH, you will be able to transfer files. By default, SSH uses network port 22. If a custom SSH port is in use, you will have to specify it using the appropriate flag, often `-p`, `-P`, or `--port`. Check `--help` or the `man` page if you’re unsure.
+File transfers using rsync in the examples above use SSH to encrypt data sent through the network. So, if you can connect via SSH, you will be able to transfer files. By default, SSH uses network port 22. If a custom SSH port is in use, you will have to specify it using the appropriate flag, often `-p`, `-P`, or `--port`. Check `--help` or the `man` page if you’re unsure.
 
 <details>
 <summary>
@@ -216,14 +212,12 @@ Hint: check the `man` page or “help” for `rsync`. <br />
 </summary>
 ::::tip[Solution]
 ```bash
-[user@laptop ~]$ man rsync
-[user@laptop ~]$ rsync --help | grep port
-     --port=PORT             specify double-colon alternate port number
-See http://rsync.samba.org/ for updates, bug reports, and answers
-[user@laptop ~]$ rsync --port=768 amdahl.tar.gz NetID@login.torch.hpc.nyu.edu:
+[user@laptop ~]$ rsync -e "ssh -p 768" amdahl.tar.gz NetID@login.torch.hpc.nyu.edu:
 ```
+The `-e` option specifies the remote shell command. Here, `ssh -p 768` connects through SSH port 768.
+
 :::note
-This command will fail, as the correct port in this case is the default: 22.
+This command will fail if the remote SSH service uses the default port, 22, instead of 768.
 :::
 ::::
 </details>
@@ -243,7 +237,7 @@ To connect to the cluster, we’ll just need to enter our credentials at the top
 Hit “Quickconnect” to connect. You should see your remote files appear on the right hand side of the screen. You can drag-and-drop files between the left (local) and right (remote) sides of the screen to transfer files.
 
 :::tip
-Finally, if you need to move large files (typically larger than a gigabyte) from one remote computer to another remote computer, SSH in to the computer hosting the files and use `scp` or `rsync` to transfer over to the other. This will be more efficient than using FileZilla (or related applications) that would copy from the source to your local machine, then to the destination machine.
+Finally, if you need to move large files (typically larger than a gigabyte) from one remote computer to another remote computer, SSH in to the computer hosting the files and use `rsync` to transfer over to the other. This will be more efficient than using FileZilla (or related applications) that would copy from the source to your local machine, then to the destination machine.
 :::
 
 ## Limiting Factors of Data Transfer Speed
@@ -275,9 +269,6 @@ If you are transferring large amounts of data you will need to think about what 
 
 Say you have a “data” folder containing 10,000 or so files, a healthy mix of small and large ASCII and binary data. Which of the following would be the best way to transfer them to Torch?
 ```bash
-[user@laptop ~]$ scp -r data NYUNetID@login.torch.hpc.nyu.edu:~/
-```
-```bash
 [user@laptop ~]$ rsync -ra data NYUNetID@login.torch.hpc.nyu.edu:~/
 ```
 ```bash
@@ -299,8 +290,7 @@ Say you have a “data” folder containing 10,000 or so files, a healthy mix of
 :::
 </summary>
 :::tip[Solution]
-1.  `scp` will recursively copy the directory. This works, but without compression.
-1.  `rsync -ra` works like `scp -r`, but preserves file information like creation times. This is marginally better.
+1.  `rsync -ra` preserves file information like creation times.
 1.  `rsync -raz` adds compression, which will save some bandwidth. If you have a strong CPU at both ends of the line, and you’re on a slow network, this is a good choice.
 1.  This command first uses `tar` to merge everything into a single file, then `rsync -z` to transfer it with compression. If you have a large number of files, metadata overhead can hamper your transfer, so this is a good idea.
 1.  This command uses `tar -z` to compress the archive, then `rsync` to transfer it. This may perform similarly to the command directly above, but in most cases (for large datasets), it’s the best combination of high throughput and low latency (making the most of your time and network connection).
@@ -309,6 +299,10 @@ Say you have a “data” folder containing 10,000 or so files, a healthy mix of
 
 :::tip[Key Points]
 -   `wget` and `curl -O` download a file from the internet.
--   `scp` and `rsync` transfer files to and from your computer.
+-   `rsync` transfer files to and from your computer.
 -   You can use an SFTP client like FileZilla to transfer files through a GUI.
+:::
+
+:::tip
+For more information, see the [rsync manual](https://linux.die.net/man/1/rsync).
 :::
