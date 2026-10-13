@@ -77,7 +77,7 @@ ADD JAR /usr/lib/hive/lib/hive-hcatalog-core.jar
 ```
 See [here](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-RowFormats&SerDe) for more information.
 
-Access to Hive databases on NYU Dataproc is derived from HDFS permissions because we use [Storage-Based Authorization](http://storagebasedauthorizationprovider/). To grant read-only access to a Hive database to someone other than yourself, you can run the following command:
+Access to Hive databases on NYU Dataproc is derived from HDFS permissions because we use [Storage-Based Authorization](https://cwiki.apache.org/confluence/spaces/Hive/pages/45876440/Storage+Based+Authorization+in+the+Metastore+Server). To grant read-only access to a Hive database to someone other than yourself, you can run the following command:
 ```
 hdfs dfs -setfacl -R -m user:<OTHER_PERSON_NETID>_nyu_edu:r-x /user/hive/warehouse/NetID_nyu_edu.db
 ```

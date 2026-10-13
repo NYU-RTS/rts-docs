@@ -30,7 +30,7 @@ Here are some webpages and videos:
 -   [YouTube Video](https://www.youtube.com/watch?v=TibQO_xv1zc)  
 -   [GitHub Gist](https://gist.github.com/TengdaHan/1dd10d335c7ca6f13810fff41e809904)  
 -   [GWDG Webpage](https://info.gwdg.de/wiki/doku.php?id=wiki:hpc:pytorch_on_the_hpc_clusters)  
--   [SageMaker Webpage](https://sagemaker.readthedocs.io/en/stable/api/training/sdp_versions/latestsmd_data_parallel_pytorch.html) 
+-   [SageMaker Webpage](https://docs.aws.amazon.com/sagemaker/latest/dg/data-parallel.html) 
 
 :::warning
 Do not use `DataParallel` in PyTorch for anything since it gives poor performance relative to `DistributedDataParallel`.
