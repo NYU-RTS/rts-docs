@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       # npm (not pnpm) is intentional: remark-cli is installed globally by the
       # action at /usr/local/lib/node_modules/. pnpm's global store is not on
@@ -34,7 +34,7 @@ jobs:
         run: npm install -g remark-mdx@2 remark-lint-no-undefined-references@4 remark-directive@3 remark-frontmatter@4
 
       - name: remark-lint
-        uses: reviewdog/action-remark-lint@v5
+        uses: reviewdog/action-remark-lint@b59ae6b0c8764e8fe1b72541328b9a19f0f94ae0 # v5.20.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
