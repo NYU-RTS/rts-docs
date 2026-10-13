@@ -1,6 +1,6 @@
 # Visualization Workstations
 
-[vnc-clients]: https://help.ubuntu.com/community/VNC/Clients
+[vnc-clients]: https://en.wikipedia.org/wiki/Comparison_of_remote_desktop_software
 
 The burst cluster includes a partition (`nvgrid`) that can be used to run graphical applications on NVIDIA GPUs for visualization purposes.  You can use this partition by following the instructions below.
 

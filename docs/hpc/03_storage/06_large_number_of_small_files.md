@@ -100,7 +100,7 @@ LMDB supports reading by many readers and many parallel thread from the same fil
 One can store data in different way inside LMDB or HDF5. For example we can store binary representation of jpeg, or we can store python numpy array. In the first case file can be read from any language, in the second - only from Python. We can also store objects from other languages - for example tibble in R
 
 #### Other Formats
-There are other formats like [Bcolz](http://bcolz.blosc.org/), [Zarr](https://github.com/alimanfoo/zarr-python), and others. Some examples can be found [here](https://alimanfoo.github.io/2016/04/14/to-hdf5-and-beyond.html).
+There are other formats like [Bcolz](https://github.com/Blosc/bcolz), [Zarr](https://github.com/alimanfoo/zarr-python), and others. Some examples can be found [here](https://alimanfoo.github.io/2016/04/14/to-hdf5-and-beyond.html).
 
 ## Benchmarking Code
 -   A benchmarking of various ways of reading data was performed on now retired Prince HPC cluster. You can find the code used to perform that benchmarking and the results [at this repository](https://github.com/nyuhpc/public_ml/tree/master/Data_read_benchmarking).
