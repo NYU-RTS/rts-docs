@@ -19,7 +19,7 @@ tracks.conf
 variants.sorted.vcf.gz 
 variants.sorted.vcf.gz.tbi
 ```
-Commonly used genomic data sets are available from the [Shared Genome Resource](https://gencore.bio.nyu.edu/explore-the-new-shared-genome-resource/).  The data is stored in a common location with the following naming convention:
+Commonly used genomic data sets are available from the Shared Genome Resource.  The data is stored in a common location with the following naming convention:
 ```bash
 /scratch/work/cgsb/genomes/Public/<KINGDOM>/<SPECIES>/<SOURCE>/<VERSION>/
 ```
@@ -37,14 +37,14 @@ $ ln -s /scratch/work/cgsb/genomes/.../genes.gff3.tbi genes.gff3.tbi
 For the commands listed below, `bgzip` and `tabix` are provided by the `htslib` module. `samtools` and `bcftools` are provided by the module of the same name. (use `module avail htslib samtools bcftools` to list the installed versions)
 
 #### FA
-If the reference and index are not available in the [Shared Genome Resource](https://gencore.bio.nyu.edu/explore-the-new-shared-genome-resource/), it should be compressed with `bgzip` and indexed with `samtools faidx`.
+If the reference and index are not available in the Shared Genome Resource, it should be compressed with `bgzip` and indexed with `samtools faidx`.
 ```bash
 bgzip reference.fa
 samtools faidx reference.fa.gz
 ```
 
 #### GFF3
-If the GFF3 is not available in the [Shared Genome Resource](https://gencore.bio.nyu.edu/explore-the-new-shared-genome-resource/), the file should first be sorted by `seqid` (column 1) and `start` (column 4), compressed with `bgzip`, and indexed with `tabix`.
+If the GFF3 is not available in the Shared Genome Resource, the file should first be sorted by `seqid` (column 1) and `start` (column 4), compressed with `bgzip`, and indexed with `tabix`.
 ```bash
 awk -F '\t' 'NF == 9' genes.gff3 | sort -k 1,1 -k 4n,4n | bgzip > genes.sorted.gff3.gz
 tabix -p gff genes.sorted.gff3.gz
