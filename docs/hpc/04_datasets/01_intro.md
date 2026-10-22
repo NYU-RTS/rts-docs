@@ -67,7 +67,7 @@ ILSVRC uses a subset of ImageNet images for training the algorithms and some of 
 
 New York University does not own this dataset.
 
-Please open the ImageNet site, find the terms of use ([http://image-net.org/download](http://image-net.org/download)), copy them, replace the needed parts with your name, send us an email including the terms with your name - thereby confirming you agree to the these terms. Once you do this, we can grant you access to the copy of the dataset on the cluster.
+Please open the ImageNet site, find the terms of use ([https://image-net.org/download.php](https://image-net.org/download.php)), copy them, replace the needed parts with your name, send us an email including the terms with your name - thereby confirming you agree to the these terms. Once you do this, we can grant you access to the copy of the dataset on the cluster.
 
 ### Millions Songs
 *About data set*:  [http://millionsongdataset.com/](http://millionsongdataset.com/)
