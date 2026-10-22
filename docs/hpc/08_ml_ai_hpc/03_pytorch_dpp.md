@@ -30,13 +30,13 @@ Here are some webpages and videos:
 -   [YouTube Video](https://www.youtube.com/watch?v=TibQO_xv1zc)  
 -   [GitHub Gist](https://gist.github.com/TengdaHan/1dd10d335c7ca6f13810fff41e809904)  
 -   [GWDG Webpage](https://info.gwdg.de/wiki/doku.php?id=wiki:hpc:pytorch_on_the_hpc_clusters)  
--   [SageMaker Webpage](https://sagemaker.readthedocs.io/en/stable/api/training/sdp_versions/latestsmd_data_parallel_pytorch.html) 
+-   [SageMaker Webpage](https://docs.aws.amazon.com/sagemaker/latest/dg/data-parallel.html) 
 
 :::warning
 Do not use `DataParallel` in PyTorch for anything since it gives poor performance relative to `DistributedDataParallel`.
 :::
 
-## Main changes needed in going from single-GPU to multi-GPU training with DDP
+## Main Changes Needed in Going from Single-GPU to Multi-GPU Training with DDP
 
 This completely new piece is needed to form the process group:
 
@@ -163,7 +163,7 @@ srun singularity exec --nv \
 
 In the script above, `MASTER_PORT`, `MASTER_ADDR` and `WORLD_SIZE` are set. The three are later used to create the DDP process group. The total number of GPUs allocated to the job must be equal to `WORLD_SIZE` -- this is satisfied above since nodes times ntasks-per-node is `2 x 2 = 4` and number of GPUs allocated is nodes times gpus_per_node which is also `2 x 2 = 4`.
 
-This uses the overlay file for PyTorch we created in [Singularity with Conda](../07_containers/03_singularity_with_conda.md)
+This uses the overlay file for PyTorch we created in [Singularity with Conda](../07_containers/03_apptainer_with_conda.md)
 
 ### Job Arrays
 
@@ -174,11 +174,11 @@ Here is one possibility:
 export MASTER_PORT=$(expr 10000 + $(echo -n $SLURM_JOBID | tail -c 4) + $SLURM_ARRAY_TASK_ID)
 ```
 
-### `--ntasks-per-node` versus `--ntasks`
+### `--ntasks-per-node` Versus `--ntasks`
 
 Be sure to use `--ntasks-per-node` and not `--ntasks` in your Slurm script.
 
-## What is `local_rank`?
+## What Is `local_rank`?
 
 The indices of the GPUs on each node of your Slurm allocation begin at 0 and end at N - 1, where N is the total number of GPUs in your allocation on each node. Consider the case of 2 nodes and 8 tasks with 4 GPUs per node. The process ranks will be 0, 1, 2, 3 on the first node and 4, 5, 6, 7 on the second node while the GPU indices will be 0, 1, 2, 3 on the first and 0, 1, 2, 3 on the second. Thus, one cannot make calls such as `data.to(rank)` since this will fail on the second node where there is a mismatch between the process ranks and the GPU indices. To deal with this a local rank is introduced:
 
@@ -192,7 +192,7 @@ The `local_rank` should be used everywhere in your script except when initializi
 
 # DDP and Slurm
 
-## Total number of tasks equals total number of GPUs
+## Total Number of Tasks Equals Total Number of GPUs
 
 When using DDP, the total number of tasks must equal the total number of allocated GPUs. Therefore, if `--ntasks-per-node=<N>` then you must have `--gres=gpu:<N>`. Here are two examples:
 
@@ -429,6 +429,6 @@ Execute the commands below to run the example above:
 [NetID@log-1 full-ddp-test]$ sbatch run-full.SBATCH
 ```
 
-## Memory issues
+## Memory Issues
 
 Use `gradient_as_bucket_view=True` when making the DDP model to decrease the required memory by 1/3.

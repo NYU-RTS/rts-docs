@@ -12,7 +12,7 @@ We facilitate access to Google Cloud Platform (GCP) for your research projects. 
 
 In addition to the I2 Net+ GCP benefits, NYU scholars can enjoy significant discounts in using GCP resources in their research project through a 3 year commitment (started in 2019) NYU made in GCP. The NYU network connects with GCP via Partner Interconnect using [Internet2 Cloud Connect (I2CC)][internet2-cc] service.
 
-## Why work with the NYU Research Cloud team to deploy your research project on GCP?
+## Why Work with the NYU Research Cloud Team to Deploy Your Research Project on GCP?
 
 NYU researchers who work with the Research Cloud team to deploy projects on GCP may benefit from the following:
 -   Discounted rates, lower GCP project cost:  Through NYU's participation in the Internet2 Net+ agreement, as well as the 3-year commitment NYU made to using GCP, GCP projects enjoy discounted rates, lowering the cost of the project. The exact discounts depend on the GCP service used in the research project and can vary between 5% and 25%. Free data egress is usually included.
@@ -36,12 +36,13 @@ The NYU Research Cloud team does not currently offer training on how to deploy a
 -   Through the [Google For Education][google-for-edu] program, GCP offers training credits and discounts to Students, Faculty, and IT Admins. To apply for training credits and discounts, please [click here](https://services.google.com/fb/forms/googlecloudskillsbooststudenttrainingcreditsapplication/).
 -   [Getting started with Google Cloud Platform][gcp-get-started] offers quick starts and sample projects on GCP.
 
-## How can I fund my research project on GCP?
+## How Can I Fund My Research Project on GCP?
 ### GCP Free Tier
 Apply for credits using your NYU account (https://cloud.google.com/free/). After credits expire, if you would like to switch to another type of funding and are approved to do so, we will modify your project so it can use other funds:
 -   https://edu.google.com/programs/credits/research/?modal_active=none
 -   https://edu.google.com/programs/?modal_active=none
-### Sources of funding for GCP project
+
+### Sources of Funding for GCP Project
 Please consider options below and explore other options which may exist for your specific field.
 -   [Google Cloud research credits][gcp-credits]
 -   NIH STRIDES

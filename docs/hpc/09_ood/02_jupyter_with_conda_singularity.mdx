@@ -1,17 +1,5 @@
 # Jupyter Notebook with Conda/Singularity in OOD
-Please note that Greene and Torch organize overlay files and Singularity images in different directories. 
-
-## Greene Directories
-Overlay Files:
-```
-/scratch/work/public/overlay-fs-ext3/
-```
-Singularity Files:
-```
-/scratch/work/public/singularity/
-```
-
-## Torch Directories
+:::info
 Overlay Files:
 ```
 /share/apps/overlay-fs-ext3
@@ -20,6 +8,8 @@ Singularity Files:
 ```
 /share/apps/images/
 ```
+:::
+
 ## OOD + Singularity + conda
 This page describes how to use your Singularity with conda environment in OOD GUI at Torch. 
 
@@ -72,7 +62,7 @@ cd /scratch/$USER/my_env
 cp -rp /share/apps/overlay-fs-ext3/overlay-15GB-500K.ext3.gz .
 gunzip overlay-15GB-500K.ext3.gz
 ```
-Above we used the overlay file `overlay-15GB-500K.ext3.gz` which will contain all of the installed packages. There are more optional overlay files. You can find instructions on the following pages: [Singularity with Conda](../07_containers/03_singularity_with_conda.md), [Squash File System and Singularity](../07_containers/04_squash_file_system_and_singularity.md). 
+Above we used the overlay file `overlay-15GB-500K.ext3.gz` which will contain all of the installed packages. There are more optional overlay files. You can find instructions on the following pages: [Apptainer with Conda](../07_containers/03_apptainer_with_conda.md), [Squash File System and Singularity](../07_containers/04_squash_file_system_and_singularity.md). 
 
 ### Launch Singularity Environment for Installation
 ```bash
@@ -174,7 +164,6 @@ After it is running, you’ll be redirected to a compute node. From there, run s
 
 ### Configure iPython Kernels
 To create a kernel named my_env copy the template files to your home directory.
-Please note that kernel_template on Greene is stored under `/share/apps/mypy/src/kernel_template`
 ```bash sh
 mkdir -p ~/.local/share/jupyter/kernels
 cd ~/.local/share/jupyter/kernels
@@ -241,7 +230,7 @@ and select Jupyter Notebook from the Interactive Apps pull-down menu:
 
 ![Configure Notebook](./static/configure_notebook.png)
 
-### Select kernel
+### Select Kernel
 Once configured and launched, kernels can be selected in the "New" dropdown or within the notebook under the kernel menu. Please note that your notebook view may look slightly different depending on available directories and environments, as well as if you choose the lab or traditional notebook view.
 
 ![Select Kernel](./static/select_kernel.png)

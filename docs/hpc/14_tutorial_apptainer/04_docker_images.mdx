@@ -1,0 +1,47 @@
+# Using Docker Images with Apptainer
+
+So far, we have used container images that are already available on Torch under `/share/apps/images`.
+
+In practice, you may also want to run software that is not provided by the cluster. Apptainer can pull images directly from Docker registries and convert them into the Apptainer `SIF` format.
+
+:::warning
+Pulling container images can require significant network bandwidth and disk space. On Torch, image downloads should be performed on compute nodes rather than login nodes.
+:::
+
+For example, we can pull an official PyTorch image from Docker Hub:
+
+```bash
+apptainer pull pytorch.sif docker://pytorch/pytorch:latest
+```
+
+During the pull process, Apptainer downloads the Docker image layers and converts them into a single `SIF` image:
+
+```bash
+INFO:    Converting OCI blobs to SIF format
+INFO:    Starting build...
+INFO:    Fetching OCI image...
+...
+INFO:    Creating SIF file...
+```
+
+The output shows that Apptainer is downloading the Docker image layers and converting them into a single `SIF` image. Once the conversion completes, the resulting `SIF` file can be used without Docker. When the command completes, a new image named `pytorch.sif` will be created in the current directory.
+
+You can verify that the image exists:
+
+```bash
+ls -lh pytorch.sif
+```
+
+The image can now be used like any other Apptainer image.
+
+For example:
+
+```bash
+apptainer exec pytorch.sif python --version
+```
+
+or
+
+```bash
+apptainer exec pytorch.sif python -c "import torch; print(torch.__version__)"
+```

@@ -1,6 +1,6 @@
 # HPC Bursting
 
-[gcp-cost-calculator]: https://cloudpricingcalculator.appspot.com/
+[gcp-cost-calculator]: https://cloud.google.com/products/calculator?hl=en
 [bursting-form]: https://sites.google.com/nyu.edu/nyu-hpc/hpc-systems/cloud-computing/hpc-bursting-to-cloud/hpc-bursting-request-form?authuser=0
 
 HPC may provide bursting capabilities to researchers or classes, in some cases, in order to augment the available resources. Bursting is ideal for when you need a large amount of resources for a very short period of time. The way that bursting is made possible is by running a scalable SLURM cluster in the Google Cloud Platform (GCP), which is separate from the on-premise HPC clusters.

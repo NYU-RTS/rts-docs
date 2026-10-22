@@ -1,4 +1,4 @@
-# Start here!
+# Start Here!
 
 Welcome to the Secure Research Data Environment documentation! If you do not have an active project, please proceed to the next section that explains the eligibility criteria and how you may request one.
 

@@ -1,0 +1,43 @@
+# lychee config, picked up automatically from the repo root by
+# .github/workflows/links.yaml.
+
+# Identify ourselves honestly so site owners can see who is checking.
+user_agent = "NYU-RTS-docs-linkcheck/1.0 (+https://github.com/NYU-RTS/rts-docs)"
+
+max_retries = 3
+timeout = 30
+
+# 429 means rate-limited, not dead.
+accept = ["100..=103", "200..=299", "429"]
+
+exclude = [
+  # Only reachable on the NYU network / VPN (time out from CI runners)
+  '^https?://identity\.it\.nyu\.edu',
+  '^https?://iiq\.nyu\.edu',
+  '^https?://ood\.torch\.hpc\.nyu\.edu',
+  '^https?://projects\.hpc\.nyu\.edu',
+  '^https?://stats\.apps\.cloud\.rt\.nyu\.edu',
+
+  # Require an NYU / vendor login
+  '^https://(docs|drive)\.google\.com/',
+  '^https://gemini\.google\.com/',
+  '^https://www\.schrodinger\.com/license-installation-instructions',
+
+  # Bot protection blocks automated requests
+  '^https://medium\.com/',
+  '^https://stackoverflow\.com/',
+  '^https://www\.linkedin\.com/',
+  '^https://www\.mathworks\.com/',
+  '^https://www\.oreilly\.com/',
+  '^https://researchcomputing\.princeton\.edu/',
+  '^https://wordnet\.princeton\.edu/',
+  '^https://persistent\.library\.nyu\.edu/',
+  '^https://filezilla-project\.org/',
+
+  # Block GitHub runner IPs (405/403 from CI, fine from elsewhere)
+  '^https://www\.nyu\.edu/',
+  '^https://info\.gwdg\.de/',
+
+  # Very slow to respond; times out intermittently
+  '^https://www\.chiark\.greenend\.org\.uk/',
+]

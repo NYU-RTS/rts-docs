@@ -13,7 +13,7 @@ The benefits of participating in NIH Strides program include:
 -   Receive opportunities for professional service engagements to help drive success
 -   Receive guidance for best practices in areas such as data storage, governance, and controlled access
 
-## Enrolling to the NIH Strides initiative
+## Enrolling to the NIH Strides Initiative
 
 NYU has enrolled in the NIH Strides initiative in December 2020 by signing an agreement with Carahsoft, GCP's billing and administrative partner. Thus NIH-funded NYU researchers with an active NIH award may take advantage of the STRIDES Initiative for their NIH-funded research projects. The NYU RTS team works closely with Burwood Group, a GCP reseller, to provide access to GCP resources for NYU researchers who are approved to participate in the NIH STRIDES initiative. NYU researchers who wish to participate must follow the steps outlined below.
 

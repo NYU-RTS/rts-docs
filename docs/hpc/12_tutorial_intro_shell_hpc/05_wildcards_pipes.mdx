@@ -14,8 +14,8 @@ Objectives
 
 :::warning[Required files]
 If you didn’t get them in the last lesson, make sure to download the example files used in the next few sections:
--   Using wget: wget https://nyuhpc.github.io/hpc-shell/files/bash-lesson.tar.gz
--   Using a web browser: https://nyuhpc.github.io/hpc-shell/files/bash-lesson.tar.gz
+-   Using wget: wget https://www.hpc-carpentry.org/hpc-shell/files/bash-lesson.tar.gz
+-   Using a web browser: https://www.hpc-carpentry.org/hpc-shell/files/bash-lesson.tar.gz
 :::
 
 Now that we know some of the basic UNIX commands, we are going to explore some more advanced features. The first of these features is the wildcard `*`. In our examples before, we’ve done things to files one at a time and otherwise had to specify things explicitly. The `*` character lets us speed things up and do things across multiple files.
@@ -109,7 +109,7 @@ $ wc -l *
 <summary>
 :::info[Multiple wildcards]
 You can even use multiple *s at a time. How would you run wc -l on every file with “fb” in it?
-<br />**[Click for Solution]**
+<br />**\[Click for Solution\]**
 :::
 </summary>
 :::tip[Solution]
@@ -124,7 +124,7 @@ i.e. *anything or nothing* then `fb` then *anything or nothing*
 <summary>
 :::info[Using other commands]
 Now let’s try cleaning up our working directory a bit. Create a folder called “fastq” and move all of our .fastq files there in one `mv` command.
-<br />**[Click for Solution]**
+<br />**\[Click for Solution\]**
 :::
 </summary>
 :::tip[Solution]
@@ -135,7 +135,7 @@ mv *.fastq fastq/
 :::
 </details>
 
-## Redirecting output
+## Redirecting Output
 Each of the commands we’ve used so far does only a very small amount of work. However, we can chain these small UNIX commands together to perform otherwise complicated actions!
 
 For our first foray into *piping*, or redirecting output, we are going to use the `>` operator to write output to a file. When using `>`, whatever is on the left of the `>` is written to the filename you specify on the right of the arrow. The actual syntax looks like `command > filename`.
@@ -208,7 +208,7 @@ $ cat word_counts.txt
 We want to add this sentence to the end of our file
 ```
 
-## Chaining commands together
+## Chaining Commands Together
 We now know how to redirect `stdout` and `stderr` to files. We can actually take this a step further and redirect output (`stdout`) from one command to serve as the input (stdin) for the next. To do this, we use the `|` (pipe) operator.
 
 `grep` is an extremely useful command. It finds things for us within files. Basic usage (there are a lot of options for more clever things, see the `man` page) uses the syntax `grep whatToFind fileToSearch`. Let’s use `grep` to find all of the entries pertaining to the `Act5C` gene in Drosophila melanogaster.
@@ -234,7 +234,7 @@ This is just the same as redirecting output to a file, then reading the number o
 :::info[Writing commands using pipes]
 How many files are there in the “fastq” directory we made earlier? (Use the shell to do this.)
 :::
-**[Click for Solution]**
+**\[Click for Solution\]**
 </summary>
 :::tip[Solution]
 ```bash
@@ -252,7 +252,7 @@ Let’s compress one of our files using `gzip`.
 $ gzip gene_association.fb
 ```
 `zcat` acts like `cat`, except that it can read information from `.gz` (compressed) files. Using `zcat`, can you write a command to take a look at the top few lines of the `gene_association.fb.gz` file (without decompressing the file itself)? <br />
-**[Click for Solution]**
+**\[Click for Solution\]**
 :::
 </summary>
 :::tip[Solution]

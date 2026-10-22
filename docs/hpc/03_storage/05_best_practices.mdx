@@ -1,66 +1,61 @@
 # Best Practices on HPC Storage
-## User Quota Limits and the myquota command
+## User Quota Limits and the Myquota Command
 All users have quote limits set on HPC fie systems. There are several types of quota limits, such as limits on the amount of disk space (disk quota), number of files (inode quota) etc. The default user quota limits on HPC file systems are listed [on our Data Management page](./01_intro_and_data_management.mdx#hpc-storage-comparison-table).
 
 :::warning[Home directory inode quotas]
 _One of the common issues users report is running out of inodes in their home directory._ This usually occurs during software installation, for example installing conda environment under their home directory. Running out of quota causes a variety of issues such as running user jobs being interrupted or users being unable to finish the installation of packages under their home directory.
 :::
 
-Users can check their current utilization of quota using the myquota command. The myquota command provides a report of the current quota limits on mounted file systems, the user's quota utilization, as well as the percentage of quota utilization.
+Users can check their current utilization of quota using the myquota command. The myquota command provides a report of the current quota limits on mounted file systems, the user's quota utilization, as well as the percentage of quota utilization.  For details, please see [myquota](../06_tools_and_software/08_utils.mdx#myquota)
 
-In the following example the user who executes the `myquota` command is out of inodes in their home directory. The user inode quota limit on the `/home` file system **30.0K inodes** and the user has **33000 inodes**, thus **110%** of the inode quota limit.
-```sh
-$ myquota
-Quota Information for NetID
-Hostname: torch-login-2 at 2025-12-09 17:18:24
-
-Filesystem   Environment       Backed up?   Allocation           Current Usage
-Space        Variable          /Flushed?    Space / Files        Space(%) / Files(%)
-
-/home        $HOME             YES/NO       0.05TB/0.03M         0.0TB(0.0%)/54(0%)
-/scratch     $SCRATCH          NO/YES       5.0TB/5.0M           0.0TB(0.0%)/1(0%)
-/archive     $ARCHIVE          YES/NO       2.0TB/0.02M          0.0TB(0.0%)/1(0%)
-```
-You can use the following command to print the list of files within each sub-folder for a given directory:
-```sh
-$cd $HOME
-$du --inodes -h --max-depth=1
-6	./.ssh
-88	./.config
-2	./.vnc
-2	./.aws
-3	./.lmod.d
-5.3K	./.local
-3	./.dbus
-408	./ondemand
-2	./.virtual_documents
-6	./.nv
-6.7K	./.pixi
-33	./workshop_scripts
-5	./.cupy
-6	./.gnupg
-1	./.emacs.d
-194	./.nextflow
-6	./.terminfo
-2	./.conda
-2	./.singularity
-3	./.vast-dev
-1	./custom
-185	./genai-workshop
-6	./.atuin
-1	./.apptainer
-9	./.subversion
-4	./packages
-1.4K	./.cache
-15K	.
-```
-
-## Large number of small files
+## Large number of Small Files
 In case your dataset or workflow requires to use large number of small files, this can create a bottleneck due to read/write rates. Please refer to [our page on working with a large number of files](./06_large_number_of_small_files.md) to learn about some of the options we recommend to consider.
 
-## Installing Python packages
+## Installing Python Packages
 :::warning
 Your home directory is limited to a relatively small number of inodes (30,000). Creating conda/python environments in you home directory, this can eat easily exhaust your inode quota.
 :::
 
 Please review the [Package Management section](../06_tools_and_software/01_intro.md#package-management-for-r-python--julia-and-conda-in-general) of the [Torch Software Page](../06_tools_and_software/01_intro.md).
+
+## Troubleshooting Quota Issues
+
+:::warning
+Being over your quota can cause problems logging into OOD and other issues.  If you find that you're suddenly unable to log in, one of the first things you should check is your quota with the [`myquota`](../06_tools_and_software/08_utils.mdx#myquota) command.
+:::
+
+If you find that you're over your quota, `myquota` will show you if you are over your quota for space or i-nodes or both.  You can then see which folders most contribute to you being over quota with the following commands:
+
+Here's how you can see which folders contain the most files:
+```bash
+du --inodes -h -s -- * .[!.]* ..?* 2>/dev/null | sort -hr | head -n 5
+```
+and here's how you can see which ones most contribute to your disk usage:
+```bash
+du -h -s -- * .[!.]* ..?* 2>/dev/null | sort -hr | head -n 5
+```
+
+### Moving Common Dot Directories from `/home` to `/scratch`
+
+As mentioned elsewhere in our documentation, a problem we often see for our users is that of filling their `/home` directories by using common tools like VSCode, Cursor, etc.  These applications put a dot directory in your `/home` directory and it can quickly overwhelm your quota.
+
+Our recommended fix for this is to make a directory for these files in your `/scratch` directory and then make a symbolic link in your `/home` that points to the one you just created in `/scratch`.  This allows these applications to write to what appears to be your `/home` directory, but is actually stored in your `/scratch` directory.  This can be accomplished with the following commands:
+
+For VSCode:
+```bash
+mv ${HOME}/.vscode-server ${SCRATCH}/.vscode-server && ln -s ${SCRATCH}/.vscode-server ${HOME}/.vscode-server
+```
+
+For Cursor:
+```bash
+mv ${HOME}/.cursor-server ${SCRATCH}/.cursor-server && ln -s ${SCRATCH}/.cursor-server ${HOME}/.cursor-server
+```
+
+For RStudio:
+```bash
+mv ${HOME}/.local/share/rstudio ${SCRATCH}/.local/share/rstudio && ln -s ${SCRATCH}/.local/share/rstudio ${HOME}/.local/share/rstudio
+```
+
+For details about changing your default RStudio directory please see [User state storage](https://docs.posit.co/ide/server-pro/admin/rstudio_pro_sessions/workspace_management.html#user-state-storage).
+
+Please contact [hpc@nyu.edu](mailto:hpc@nyu.edu) if you have any questions.

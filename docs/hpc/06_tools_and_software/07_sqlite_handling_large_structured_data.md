@@ -7,7 +7,7 @@ Storing your data in the [SQLite](https://www.sqlite.org/index.html) format allo
 >
 > -- [SQLite website](https://www.sqlite.org/index.html):
 
-### Some use-cases
+### Some Use-cases
 
 -   You think you need MySQL, PostreSQL, etc for your ML project. Usually you don't
 -   You have to deal with hundreds of GB of table-structured data (or larger) and your script (for whatever reason) can't be made parallel.
@@ -30,7 +30,7 @@ It is better in this case to request smaller amount of RAM and read data (effici
 -   You can have multiple threads accessing an SQLite database simultaneously (for read operations. Writing is more tricky)
 -   Merging/Joining datasets on disk
 
-### Major benefits of SQLite compared to MySQL (PostgreSQL, etc)
+### Major Benefits of SQLite Compared to MySQL (PostgreSQL, etc)
 
 -   You control your own data (sqlite file). You don't depend on any service like MySQL
 -   You can copy a file to your own laptop and work with it
@@ -41,7 +41,7 @@ It is better in this case to request smaller amount of RAM and read data (effici
 -   SQLite has some limitations in terms of concurrency, which usually don't apply for typical ML/AI jobs.
 -   See [Four Different Ways To Handle SQLite Concurrency](https://medium.com/@gwendal.roue/four-different-ways-to-handle-sqlite-concurrency-db3bcc74d00e) for more information.
 
-## Command line (CLI) example
+## Command Line (CLI) Example
 Create environment
 ```sh
 $ mkdir projects/sqlite-test
@@ -70,7 +70,7 @@ hello!|10
 goodbye|20
 ```
 
-## R example
+## R Example
 ### Install
 Here we use conda, as a great way to keep everything isolated and reproducible.
 
@@ -151,7 +151,7 @@ Save as feather
 feather::write_feather(df_temp, "my_data.feather")
 ```
 
-### Alternative: read csv file to SQLite directly
+### Alternative: Read csv File to SQLite Directly
 
 If you already have a large csv file on disk, and you don't want to read it to RAM, you can read it to SQLite file directly
 ```R

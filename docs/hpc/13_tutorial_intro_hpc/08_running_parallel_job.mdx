@@ -1,4 +1,4 @@
-# Running a parallel job
+# Running a Parallel job
 :::info[Overview]
 Questions
 -   How do we execute a task in parallel?
@@ -109,14 +109,14 @@ srun amdahl
 ```
 As before, use the Slurm status commands to check whether your job is running and when it ends:
 ```bash
-[NetID@log-1 amdahl]$ squeue -u NetID
+[NetID@log-1 amdahl]$ squeue --me
 ```
 Use `ls` to locate the output file. The `-t` flag sorts in reverse-chronological order: newest first. What was the output?
 
 <details>
 <summary>
 :::info[Read the Job Output]
-**[Click for Output]**
+**\[Click for Output\]**
 :::
 </summary>
 :::tip[Output]
@@ -132,6 +132,7 @@ which should take 30.000 seconds with 0.850 parallel proportion of the workload.
   Hello, World! I am process 0 of 1 on cs. I will do parallel 'work' for 25.500 seconds.
 
 Total execution time (according to rank 0): 30.033 seconds
+```
 :::
 </details>
 
@@ -198,7 +199,7 @@ Total execution time (according to rank 0): 10.888 seconds
 <summary>
 :::info[Is it 4× faster?]
 The parallel job received 4× more processors than the serial job: does that mean it finished in ¼ the time? <br />
-**[Click for Solution]**
+**\[Click for Solution\]**
 :::
 </summary>
 :::tip[Solution]

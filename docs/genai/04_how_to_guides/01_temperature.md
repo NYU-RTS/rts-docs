@@ -34,7 +34,7 @@ completion = portkey.chat.completions.create(
 print(completion)
 ```
 
-At the temperature of 2.0, you might get an output along along the lines of:
+At the temperature of 2.0, you might get an output along the lines of:
 
 -   ``"listening to old radio static."``
 -   ``"... a really peculiar shade of chartreuse today."``

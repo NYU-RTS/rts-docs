@@ -49,7 +49,7 @@ ImageNet is an image dataset organized according to the [WordNet](https://wordne
 WordNet® is a large lexical database of English. Nouns, verbs, adjectives and adverbs are grouped into sets of cognitive synonyms (synsets), each expressing a distinct concept ([https://wordnet.princeton.edu/](https://wordnet.princeton.edu/))
 :::
 
-#### ILSVRC (subset of ImageNet)
+#### ILSVRC (Subset of ImageNet)
 
 ILSVRC uses a subset of ImageNet images for training the algorithms and some of ImageNet’s image collection protocols for annotating additional images for testing the algorithms ([https://arxiv.org/abs/1409.0575](https://arxiv.org/abs/1409.0575)). The name comes from 'ImageNet Large Scale Visual Recognition Challenge ([ILSVRC](https://image-net.org/challenges/LSVRC/2017/))'. Competition was moved to Kaggle ([http://image-net.org/challenges/LSVRC/2017/](http://image-net.org/challenges/LSVRC/2017/))
 
@@ -63,72 +63,66 @@ ILSVRC uses a subset of ImageNet images for training the algorithms and some of 
 *Dataset is available under*
 -   `/projects/work/public/ml-datasets/imagenet`
 
-##### Get access to Data
+##### Get Access to Data
 
 New York University does not own this dataset.
 
 Please open the ImageNet site, find the terms of use ([http://image-net.org/download](http://image-net.org/download)), copy them, replace the needed parts with your name, send us an email including the terms with your name - thereby confirming you agree to the these terms. Once you do this, we can grant you access to the copy of the dataset on the cluster.
 
 ### Millions Songs
-*About data set*:  [https://labrosa.ee.columbia.edu/millionsong/](https://labrosa.ee.columbia.edu/millionsong/)
+*About data set*:  [http://millionsongdataset.com/](http://millionsongdataset.com/)
 
 *Dataset is available under*
 
 -   `/projects/work/public/ml-datasets/millionsongdataset/`
 
 ### ProQuest Congressional Record
-About data set: [ProQuest Congressional Record](https://guides.nyu.edu/govdocs/congressional#s-lg-box-14137380)
+*About data set*: [ProQuest Congressional Record](https://guides.nyu.edu/govdocs/congressional#s-lg-box-14137380)
 
 The ProQuest Congressional Record text-as-data collection consists of machine-readable files capturing the full text and a small number of metadata fields for a full run of the Congressional Record between 1789 and 2005. Metadata fields include the date of publication, subjects (for issues for which such information exists in the ProQuest system), and URLs linking the full text to the canonical online record for that issue on the ProQuest Congressional platform. A total of 31,952 issues are available.
 
 *Dataset is available under*: 
 -   `/projects/work/public/proquest/`
 
-### C4
-*About data set*: [c4  |  TensorFlow Datasets](https://www.tensorflow.org/datasets/catalog/c4)
+### ProQuest Historical Newspapers
+*About data set*: [ProQuest Historical Newspapers](https://persistent.library.nyu.edu/arch/148cd8d4)
 
-A colossal, cleaned version of Common Crawl's web crawl corpus.  Based on Common Crawl dataset: [https://commoncrawl.org](https://commoncrawl.org)
+The ProQuest Historical Newspapers text data collection consists of XML files from 26 historical newspaper collections. Each file represents an item, advertisement, article, or subsection of a newspaper edition and includes metadata and full text extracted from digitized print using optical character recognition. Coverage varies by publication and ranges from 1764 to 2008. 
 
-*Dataset is available under*
--   `/projects/work/public/ml-datasets/c4`
+*Dataset is available under*:
+-   `/projects/work/public/proquest/proquest_hnp/`
 
-### GQA
-*About data set*: [GQA: Visual Reasoning in the Real World (stanford.edu)](https://cs.stanford.edu/people/dorarad/gqa/index.html)
+### `eggNOG-mapper` Reference Data
 
-Question Answering on Image Scene Graphs
+*About data set*: [eggNOG-mapper](https://eggnog-mapper.cgmlab.org/)
 
-*Dataset is available under*
--   `/projects/work/public/ml-datasets/gqa`
+The directory contains reference data for the legacy eggNOG-mapper database based on eggNOG 5.0.2. It includes annotation, taxonomy, protein-sequence, MMseqs2, and Pfam resources. 
 
-### MJSynth
-*About data set*: [Visual Geometry Group - University of Oxford](https://www.robots.ox.ac.uk/~vgg/data/text/)
+*Dataset is available under*:
 
-This is synthetically generated dataset which found to be sufficient for training text recognition on real-world images
+-   `/projects/work/public/genomics/eggnog-mapper-data/`
 
-This dataset consists of 9 million images covering 90k English words, and includes the training, validation and test splits used in the author's work (archived dataset is about 10 GB)
+### Kraken 2 NCBI Reference Database
 
-*Dataset is available under*
--   `/projects/work/public/ml-datasets/mjsynth`
+*About data set*: [Kraken 2](https://ccb.jhu.edu/software/kraken2/)
 
-### open-images-dataset
-*About data set*: [Open Images Dataset – opensource.google](https://storage.googleapis.com/openimages/web/index.html)
+This pre-built Kraken 2 database contains NCBI reference sequence and taxonomy resources for taxonomic classification of genomic and metagenomic sequencing data. The database snapshot includes Kraken 2 indexes, NCBI taxonomy files, sequence-to-taxonomy mappings, k-mer distributions, and supporting database reports.
 
-A dataset of ~9 million varied images with rich annotations
+*Dataset is available under*:
 
-The images are very diverse and often contain complex scenes with several objects (8.4 per image on average). It contains 	image-level labels annotations, object bounding boxes, object segmentations, visual relationships, localized narratives, and 	more
+-   `/projects/work/public/genomics/kraken2/`
 
-*Dataset is available under*
--   `/projects/work/public/ml-datasets/open-images-dataset`
+### NCBI Data Resources
 
-### Pile
-*About data set*: [The Pile (eleuther.ai)](https://pile.eleuther.ai/)
+*About data set*: [Molecular Biology & Biochemistry Data Resources](https://www.ncbi.nlm.nih.gov/)
 
-The Pile is a 825 GiB diverse, open source language modeling data set that consists of 22 smaller, high-quality datasets combined together.
+This directory provides locally hosted NCBI data resources for molecular biology and biochemistry research workflows.
 
-*Dataset is available under*
--   `/projects/work/public/ml-datasets/pile`
+*Dataset is available under*:
 
-### Waymo open dataset
+-   `/projects/work/public/genomics/ncbi/`
+
+### Waymo Open Dataset
 *About data set*: [Open Dataset – Waymo](https://waymo.com/open/)
 
 The field of machine learning is changing rapidly. Waymo is in a unique position to contribute to the research community with 	some of the largest and most diverse autonomous driving datasets ever released.

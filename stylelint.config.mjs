@@ -9,6 +9,12 @@ const stylelintConfig = {
   extends: ["stylelint-config-standard", "stylelint-config-rational-order"],
   overrides: [
     {
+      files: ["src/css/custom.css"],
+      rules: {
+        "selector-class-pattern": null,
+      },
+    },
+    {
       files: ["**/*.module.css"],
       rules: {
         "selector-class-pattern": [

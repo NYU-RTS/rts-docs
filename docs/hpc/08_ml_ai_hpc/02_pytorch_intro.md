@@ -24,14 +24,14 @@ You can watch a [video](https://www.youtube.com/watch?v=wqTgM-Wq4YY&t=296s) that
 
 ## Step 2: Create PyTorch Overlay File
 
-Please follow the instructions on [Singularity with Conda](../07_containers/03_singularity_with_conda.md) to create a PyTorch overlay file in the working directory we created above.  We will use this overlay file for the PyTorch examples to follow.
+Please follow the instructions on [Apptainer with Conda](../07_containers/03_apptainer_with_conda.md) to create a PyTorch overlay file in the working directory we created above.  We will use this overlay file for the PyTorch examples to follow.
 
 We also need to add the profiler `kernprof` (in the line_profiler package) to the overlay environment:
 ```bash
 [NetID@log-1 ~]$ srun --pty -c 2 --mem=5GB /bin/bash
 [NetID@cm001 ~]$ singularity exec \
 	            --overlay /scratch/NetID/pytorch-example/my_pytorch.ext3:rw \
-	            /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif \
+	            /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif \
 	            /bin/bash
 Singularity> source /ext3/env.sh
 Singularity> pip install line_profiler
@@ -62,7 +62,7 @@ Let's first switch to a compute node, so we don't overly tax our login node:
 
 This uses the `torchvision` package, so you'll need to run it with our overlay file:
 ```bash
-[NetID@cm001 pytorch_single_gpu]$ singularity exec --nv --overlay /scratch/rjy1/pytorch-example/my_pytorch.ext3:ro /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash -c "source /ext3/env.sh; python download_data.py"
+[NetID@cm001 pytorch_single_gpu]$ singularity exec --nv --overlay /scratch/NetID/pytorch-example/my_pytorch.ext3:ro /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif /bin/bash -c "source /ext3/env.sh; python download_data.py"
 ```
 After running the command above you should see that it has created a subdirectory named `data` that contains the data we'll use in this example.
 
@@ -243,7 +243,7 @@ module purge
 
 srun singularity exec --nv \
 	    --overlay /scratch/NetID/pytorch-example/my_pytorch.ext3:ro \
-	    /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif\
+	    /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif\
 	    /bin/bash -c "source /ext3/env.sh; kernprof -o ${SLURM_JOBID}.lprof -l mnist_classify.py --epochs=3"
 ```
 
@@ -279,7 +279,7 @@ We installed [line_profiler](https://researchcomputing.princeton.edu/python-prof
 [NetID@log-1 ~]$ srun --pty -c 2 --mem=5GB /bin/bash
 [NetID@cm001 ~]$ singularity exec \
 	            --overlay /scratch/NetID/pytorch-example/my_pytorch.ext3:rw \
-	            /scratch/work/public/singularity/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif \
+	            /share/apps/images/cuda12.1.1-cudnn8.9.0-devel-ubuntu22.04.2.sif \
 	            /bin/bash -c "source /ext3/env.sh; python -m line_profiler -rmt *.lprof"
 Timer unit: 1e-06 s
 
@@ -315,7 +315,7 @@ The slowest line is number 42 which consumes 84.5% of the time in the training f
 
 Note that GPU utilization as measured using nvidia-smi is only a measure of the fraction of the time that a GPU kernel is running on the GPU. It says nothing about how many CUDA cores are being used or how efficiently the GPU kernels have been written. However, for codes used by large communities, one can generally associate GPU utilization with overall GPU efficiency. For a more accurate measure of GPU utilization, use [Nsight Systems or Nsight Compute](https://researchcomputing.princeton.edu/support/knowledge-base/gpu-computing#profiling) to measure the occupancy.
 
-## Step 6: Work through the Performance Tuning Guide from Princeton
+## Step 6: Work Through the Performance Tuning Guide from Princeton
 
 Make sure you optimize the single GPU case before going to multiple GPUs by working through the [Performance Tuning Guide](https://pytorch.org/tutorials/recipes/recipes/tuning_guide.html).
 

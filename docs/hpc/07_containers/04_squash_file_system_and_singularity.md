@@ -5,7 +5,7 @@ View available datasets on the [Datasets page](../04_datasets/01_intro.md).
 :::
 
 ## Working with Datasets
-Writable ext3 overlay images have conda environments installed inside, Singularity can work with squashFS for fixed datasets, such as the coco datasets.  Here's an example using the `my_pytorch.ext3` we created in the last tutorial [Singularity with Conda](03_singularity_with_conda.md):
+Writable ext3 overlay images have conda environments installed inside, Singularity can work with squashFS for fixed datasets, such as the coco datasets.  Here's an example using the `my_pytorch.ext3` we created in the last tutorial [Apptainer with Conda](03_apptainer_with_conda.md):
 
 ```sh
 [NetID@log-1 ~]$ singularity exec \
@@ -29,7 +29,7 @@ srun: job 62890341 has been allocated resources
 
 2.  Unzip files there, for example
 ```sh
-[NetID@cm002 NetID]$ tar -vxzf /scratch/work/public/examples/squashfs/imagenet-example.tar.gz
+[NetID@cm002 NetID]$ tar -vxzf /projects/work/public/examples/squashfs/imagenet-example.tar.gz
 ```
 
 3.  Change access permissions in case we'll share files with others
@@ -58,7 +58,7 @@ Singularity> find /state/partition1/<NetID>/imagenet-example | wc -l
 1303
 ```
 
-7.  To delete the tempoary folder on host
+7.  To delete the temporary folder on host
 ```sh
 [NetID@cm002 NetID]$ rm -rf /state/partition1/<NetID>
 ```

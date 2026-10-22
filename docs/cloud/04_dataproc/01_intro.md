@@ -9,7 +9,7 @@
 
 Dataproc is a cloud-based Hadoop distribution that is managed by Google.  Google administers updates to Dataproc so that it is kept current.  Google also packages and maintains additional software that can be run on top of Hadoop. Additionally Dataproc includes other cloud-specific features, such as the ability to automatically add/remove nodes depending upon how busy the cluster is (autoscaling).  It can also use object storage ([GCS][gcs]) or [BigQuery][bigquery] as an alternative to HDFS, and provides integration with [BigTable][bigtable] using HBase interfaces.
 
-### What is Hadoop?
+### What Is Hadoop?
 
 Hadoop is an open-source software framework for storing and processing big data in a distributed/parallel fashion on large clusters of commodity hardware. At its core, Hadoop strives to increase processing speed by increasing [data locality][data-locality] (i.e., it moves computation to servers where the data is located).  There are three components to Hadoop: HDFS (the Hadoop Distributed File System), the Hadoop implementation of MapReduce, and YARN (Yet Another Resource Negotiator; a scheduler).
 

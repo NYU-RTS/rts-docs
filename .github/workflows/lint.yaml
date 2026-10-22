@@ -5,12 +5,9 @@ env:
 
 permissions:
   contents: read
-  pull-requests: write 
+  pull-requests: write
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
@@ -19,19 +16,29 @@ jobs:
   remark-lint:
     name: runner / remark-lint
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v5
-        with:
-          version: latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # npm (not pnpm) is intentional: remark-cli is installed globally by the
+      # action at /usr/local/lib/node_modules/. pnpm's global store is not on
+      # that resolution path, so remark-cli would fall back to resolving
+      # remark-mdx from the project's node_modules, where @mdx-js/react pulls
+      # in mdast-util-mdx-jsx@3 — incompatible with remark-cli@10's bundled
+      # unified v10 stack. npm -g puts the remark plugins next to remark-cli so
+      # the versions stay compatible.
+      #
+      # install_deps: false prevents the action from running npm install and
+      # reintroducing the incompatible project dependencies.
+      - name: Install remark plugins globally
+        run: npm install -g remark-mdx@2 remark-lint-no-undefined-references@4 remark-directive@3 remark-frontmatter@4
 
       - name: remark-lint
-        uses: reviewdog/action-remark-lint@v5
+        uses: reviewdog/action-remark-lint@b59ae6b0c8764e8fe1b72541328b9a19f0f94ae0 # v5.20.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: github-pr-check
+          reporter: github-pr-review
           fail_level: "warning"
           level: "warning"
-          remark_args: "--use=remark-preset-lint-recommended --use=remark-mdx"
+          install_deps: false
+          remark_args: "--use=remark-preset-lint-recommended --use=remark-mdx --use=remark-directive --use=remark-frontmatter --ext .md,.mdx"

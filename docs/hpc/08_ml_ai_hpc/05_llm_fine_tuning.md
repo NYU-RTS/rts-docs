@@ -129,7 +129,7 @@ This section provides a comprehensive overview of all environment-related issues
 
 |Problem|Symptom|Cause|Resolution|
 |---|---|---|---|
-|Incorrect overlay filename|No such file: `overlay-50GB-500K.ext3.gz`|The filename was incorrectly assumed|Use `ls /scratch/work/public/overlay-fs-ext3/` to verify the correct file: `overlay-50G-10M.ext3.gz`|
+|Incorrect overlay filename|No such file: `overlay-50GB-500K.ext3.gz`|The filename was incorrectly assumed|Use `ls /share/apps/images` to verify the correct file: `overlay-50G-10M.ext3.gz`|
 |Compressed overlay used directly|`FATAL: while loading overlay images...`|Attempted to use `.gz` file directly with Singularity|Run `gunzip overlay-50G-10M.ext3.gz` before using the file|
 |Overlay missing in working directory|sbatch cannot find the overlay file|Overlay not copied to the training directory|Ensure the overlay file is placed in `/scratch/<NetID>/fine-tune/` where sbatch accesses it|
 |Invalid overlay structure|`FATAL: could not create upper dir`|Overlay created via `fallocate` + `mkfs.ext3`, missing necessary internal structure|Always use `singularity overlay create --size 25000` to create overlays|

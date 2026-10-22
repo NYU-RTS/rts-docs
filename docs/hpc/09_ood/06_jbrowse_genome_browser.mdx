@@ -2,9 +2,9 @@
 
 [JBrowse](https://jbrowse.org/jbrowse1.html) is a web-based genome browser for visualizing genomic features in common file formats, such as variants (VCF), genes (GFF3, BigBed) and gene expression (BigWig), and sequence alignments (BAM, CRAM, and GFF3).
 
-## Getting started
+## Getting Started
 
-### 1. Place or link all files into one data folder
+### 1. Place or Link All Files into One Data Folder
 ```bash
 $ cd /path/to/data_directory
 $ ls 
@@ -33,7 +33,7 @@ $ ln -s /scratch/work/cgsb/genomes/.../genes.gff3.tbi genes.gff3.tbi
 ```
 :::
 
-### 2. Verify data files are in a supported format
+### 2. Verify Data Files Are in a Supported Format
 For the commands listed below, `bgzip` and `tabix` are provided by the `htslib` module. `samtools` and `bcftools` are provided by the module of the same name. (use `module avail htslib samtools bcftools` to list the installed versions)
 
 #### FA
@@ -76,7 +76,7 @@ tabix -p vcf variants.sorted.vcf.gz
 
 For large VCF files (above ~768M), the bcftools `--max-mem` option may be used to allocate extra memory for sorting VCF records, avoiding the use of the file system for an [external merge sort](https://en.wikipedia.org/wiki/External_sorting#External_merge_sort).
 
-### 3. Create the configuration file, tracks.conf
+### 3. Create the Configuration File, tracks.conf
 
 An example of a [minimal configuration](https://jbrowse.org/docs/minimal.html)
 ```ini
@@ -122,7 +122,7 @@ Customizing Tracks:
 -   [Wiggle/BigWig Tracks](https://jbrowse.org/docs/bigwig.html)
 -   [VCF Tracks](https://jbrowse.org/docs/variants.html)
 
-### 4. Making feature names searchable in JBrowse (Optional)
+### 4. Making Feature Names Searchable in JBrowse (Optional)
 
 The JBrowse `generate-names.pl` script generates an index of feature names for searching and autocompletion when typed into the JBrowse search box, or the `View > search for features` menu option.
 ```bash
@@ -135,6 +135,6 @@ generate-names.pl --compress --out .
 Enter the full path to the directory you created above in the `Data Folder Path` input, add any optional Slurm options and press the `Launch` button.
 
 
-## JBrowse running in OOD
+## JBrowse Running in OOD
 
 After a short pause while your job is in the Torch queue and then starts up, you'll see the JBrowse application.

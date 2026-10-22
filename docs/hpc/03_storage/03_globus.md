@@ -2,7 +2,7 @@
 
 The Globus project aims at providing powerful tools for scientific data management, to help researchers to focus on their domain subjects and solve data intensive research problems. Globus has been grown maturely to enable grid computing by connecting computing resources distributed globally across organizational boundary. Universities, national laboratories and computing facilities are using services of Globus.
 
-## Transferring data between endpoints
+## Transferring Data Between Endpoints
 ### Endpoint
 
 A globus **Endpoint** is a data transfer location, a location where data can be moved to or from using Globus transfer, sync and sharing service. An endpoint can either be a ***personal endpoint*** (on a user’s personal computer) or a ***server endpoint*** (located on a server, for use by multiple users). Please see [Data Transfer With Globus](https://www.globus.org/data-transfer) for details.
@@ -40,12 +40,11 @@ The NYU HPC Server Endpoint: nyu#torch
 
 **Globus Connect Server** is already installed on the NYU HPC cluster creating a ***Server Endpoint*** named **nyu#torch**, that is available to authorized users (users with a valid HPC account) using Globus. If you want to move data to or from your computer and the NYU HPC cluster, you need to install **[Globus Connect Personal](https://www.globus.org/globus-connect-personal)** on your computer, thus creating a ***Personal Endpoint*** on your computer.
 
-### Moving data between Server Endpoints
+### Moving Data Between Server Endpoints
 
 If you plan to transfer data between ***Server Endpoints***, such as between the NYU server endpoint **nyu#torch** and a server endpoint at another institution, you do not need to install Globus Connect Personal on your computer.
 
-#### Creating a Personal Endpoint on your computer
-
+#### Creating a Personal Endpoint On Your Computer
 This needs to be done only once on your personal computer.  
 
 After clicking "Transfer or Sync to...", click "Search" on the upper right side. Then follow the link "Install Globus Connect Personal".
@@ -54,7 +53,7 @@ More information about **Globus Connect Personal** and download links for Linux,
 
 ![Globus Connect Personal](./static/globus_connect_personal.png)
 
-### Transfer files between your Personal Endpoint and NYU nyu#torch
+### Transfer Files between Your Personal Endpoint and NYU nyu#torch
 To transfer files you need to specify two collections (endpoints). Specify one of them as **Torch scratch directory**, or **Torch archive directory** or **Torch home directory**. The other endpoint is the one created for your personal computer (e.g. My Mac Laptop) if it is involved in the transfer. When you first use the Torch directory collection, authentication/consent is required for the Globus web app to manage collections on this endpoint on your behalf.
 
 ![Globus Start Transfer](./static/globus_start_transfer.png)
@@ -67,7 +66,7 @@ When the transfer is done, you should receive an email notification. Click "ACTI
 
 ![Globus Success](./static/globus_success.png)
 
-### Small file download from web browsers
+### Small File Download from Web Browsers
 
 Globus support HTTPS access to data. To download a small file from your web browser, select a file and right-click your mouse, then click 'Download' at the popup menu. 
 
