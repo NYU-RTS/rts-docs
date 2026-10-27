@@ -1,9 +1,9 @@
 # Start Here!
 
-We encourage you to setup your own computational environment on Torch and to assist you in doing so, we allow you to run [Apptainer](../07_containers/01_intro.md) (formerly known as Singularity) containers, we manage licensed software suites and offer extensive documentation, training and support.
+We encourage you to setup your own computational environment on Torch and to assist you in doing so, we allow you to run [Apptainer](../07_containers/01_intro.mdx) (formerly known as Singularity) containers, we manage licensed software suites and offer extensive documentation, training and support.
 
 :::tip
-We strongly advise that you setup your own computational environments via Apptainer containers and overlay files. Detailed documentation is available in the [containers section](../07_containers/01_intro.md).
+We strongly advise that you setup your own computational environments via Apptainer containers and overlay files. Detailed documentation is available in the [containers section](../07_containers/01_intro.mdx).
 :::
 
 ## Package Management for R, Python, & Julia, and Conda in general
