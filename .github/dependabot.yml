@@ -6,5 +6,6 @@ updates:
     cooldown:
       default-days: 14
     schedule:
-      interval: "weekly"
+      interval: cron
+      cronjob: "05 03 2,16 * *"
 
