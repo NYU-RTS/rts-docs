@@ -41,7 +41,7 @@ Common Objects in Context (COCO) is a large-scale object detection, segmentation
 -   `/projects/work/public/ml-datasets/coco/coco-2017.sqf`
 
 ### ImageNet and ILSVRC
-About data set: [ImageNet (image-net.org)](https://image-net.org/)
+About data set: [ImageNet (Wikipedia)](https://en.wikipedia.org/wiki/ImageNet)
 
 ImageNet is an image dataset organized according to the [WordNet](https://wordnet.princeton.edu/) hierarchy (Miller, 1995). Each concept in WordNet, possibly described by multiple words or word phrases, is called a “synonym set” or “synset”. ImageNet populates 21,841 synsets of WordNet with an average of 650 manually verified and full resolution images. As a result, ImageNet contains 14,197,122 annotated images organized by the semantic hierarchy of WordNet (as of August 2014). ImageNet is larger in scale and diversity than the other image classification datasets ([https://arxiv.org/abs/1409.0575](https://arxiv.org/abs/1409.0575)).
 
@@ -51,7 +51,7 @@ WordNet® is a large lexical database of English. Nouns, verbs, adjectives and a
 
 #### ILSVRC (Subset of ImageNet)
 
-ILSVRC uses a subset of ImageNet images for training the algorithms and some of ImageNet’s image collection protocols for annotating additional images for testing the algorithms ([https://arxiv.org/abs/1409.0575](https://arxiv.org/abs/1409.0575)). The name comes from 'ImageNet Large Scale Visual Recognition Challenge ([ILSVRC](https://image-net.org/challenges/LSVRC/2017/))'. Competition was moved to Kaggle ([http://image-net.org/challenges/LSVRC/2017/](http://image-net.org/challenges/LSVRC/2017/))
+ILSVRC uses a subset of ImageNet images for training the algorithms and some of ImageNet’s image collection protocols for annotating additional images for testing the algorithms ([https://arxiv.org/abs/1409.0575](https://arxiv.org/abs/1409.0575)). The name comes from 'ImageNet Large Scale Visual Recognition Challenge ([ILSVRC](https://en.wikipedia.org/wiki/ImageNet#History_of_the_ImageNet_challenge))'. Competition was moved to Kaggle ([https://en.wikipedia.org/wiki/ImageNet#History_of_the_ImageNet_challenge](https://en.wikipedia.org/wiki/ImageNet#History_of_the_ImageNet_challenge))
 
 *What is included* ([https://arxiv.org/abs/1409.0575](https://arxiv.org/abs/1409.0575)).
 -   1000 object classes

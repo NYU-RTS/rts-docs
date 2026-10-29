@@ -34,6 +34,9 @@ exclude = [
   '^https://persistent\.library\.nyu\.edu/',
   '^https://filezilla-project\.org/',
 
+  # ImageNet's dataset terms download page may be unavailable intermittently
+  '^https?://image-net\.org/download\.php$',
+
   # Block GitHub runner IPs (405/403 from CI, fine from elsewhere)
   '^https://www\.nyu\.edu/',
   '^https://info\.gwdg\.de/',
