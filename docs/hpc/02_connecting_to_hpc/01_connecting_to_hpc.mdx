@@ -23,6 +23,8 @@ Host dtn.torch.hpc.nyu.edu
   ForwardAgent yes
   UserKnownHostsFile /dev/null
   LogLevel ERROR
+  PreferredAuthentications keyboard-interactive
+  PasswordAuthentication no
 
 Host torch login.torch.hpc.nyu.edu
   Hostname login.torch.hpc.nyu.edu
@@ -32,9 +34,11 @@ Host torch login.torch.hpc.nyu.edu
   ForwardAgent yes
   UserKnownHostsFile /dev/null
   LogLevel ERROR
+  PreferredAuthentications keyboard-interactive
+  PasswordAuthentication no
 
 # NYU Torch compute nodes — match by hostname pattern, proxy through login
-Host cs* cl* gr* ga* gh* gl*
+Host cs* cl* gr* ga* gh* gl* gb*
   User <NetID>
   ProxyCommand ssh -W %h:%p torch-login
   ForwardAgent yes
