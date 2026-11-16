@@ -98,14 +98,13 @@ Questions are defined in `scripts/storage-finder-data-generator/config.ts` as en
 | 2 | What is your University affiliation? | Radio | Eligibility |
 | 3 | Who needs access to your data? | Checkbox | Permission Settings |
 | 4 | Do you need backups, snapshots or replication of your data? | Radio | Backup |
-| 5 | Do you need synchronous or simultaneous access to your data? | Radio | Synchronous Access |
-| 6 | What is your storage duration need? | Radio | Use Case |
-| 7 | What is the primary purpose for your storage? | Checkbox | Use Case |
-| 8 | What is your budget for storage? | Radio | Limitations |
-| 9 | What storage capacity do you need? | Radio | Limitations |
-| 10 | From where will the data be accessed? | Checkbox | Access locations |
-| 11 | Do you have any special requirements or restrictions? | Checkbox | Limitations |
-| 12 | What additional features do you need? | Checkbox | Additional capabilities |
+| 5 | What is your storage duration need? | Radio | Use Case |
+| 6 | What is the primary purpose for your storage? | Checkbox | Use Case |
+| 7 | What is your budget for storage? | Radio | Limitations |
+| 8 | What storage capacity do you need? | Radio | Limitations |
+| 9 | From where will the data be accessed? | Checkbox | Access locations |
+| 10 | Do you have any special requirements or restrictions? | Checkbox | Limitations |
+| 11 | What additional features do you need? | Checkbox | Additional capabilities |
 
 ## Current Service Detail Fields
 
@@ -120,7 +119,6 @@ When a service is selected, the following fields appear as rows in the compariso
 | `field_permission_settings` | Permission Settings | Permission Settings |
 | `field_eligibility` | Eligibility | Eligibility |
 | `field_access_location` | Access locations (VPN, Public Cloud, Off Campus, Browser GUI) | Access Locations |
-| `field_synchronous_access` | Synchronous Access | Synchronous Access |
 | `field_backup` | Backup | Backup |
 | `field_additional_features` | Additional capabilities | Additional Features |
 
