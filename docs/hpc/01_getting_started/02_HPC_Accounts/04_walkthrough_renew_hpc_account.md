@@ -1,6 +1,6 @@
 # Renewing Your HPC Account
 
-:::info VPN Needed
+:::info[VPN Needed]
 You need to be on the NYU VPN to perform this task!
 :::
 
